@@ -1,0 +1,82 @@
+/* Color palette based on your app + logo */
+:root {
+    --teal: #1abcde;
+    --dark: #0f0f0f;
+    --light: #ffffff;
+    --gray: #cccccc;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    text-align: center;
+}
+
+header {
+    padding: 30px 10px;
+    border-bottom: 2px solid var(--teal);
+}
+
+.logo {
+    width: 80px;
+    border-radius: 12px;
+}
+
+h1 {
+    margin: 10px 0 5px 0;
+    font-size: 2.4rem;
+    color: var(--teal);
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--gray);
+}
+
+.hero {
+    padding: 40px 20px;
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: var(--teal);
+    color: black;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.download-btn:hover {
+    background: #0fb3d6;
+}
+
+.features {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    font-size: 1.2rem;
+    padding: 8px;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+footer a {
+    color: var(--teal);
+}
