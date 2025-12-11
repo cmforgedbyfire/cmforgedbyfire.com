@@ -127,7 +127,7 @@ h1 {
     color: var(--gray);
 }
 
-/* Generic page sections (Coming Soon / About) */
+/* Generic page sections (Coming Soon / About / Downloads) */
 .page-section {
     padding: 40px 20px 50px 20px;
     max-width: 900px;
@@ -157,6 +157,26 @@ h1 {
     color: var(--light);
 }
 
+/* Downloads list */
+.download-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.download-list li {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #202020;
+}
+
+.download-meta {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin: 2px 0 4px 0;
+}
+
 footer {
     margin-top: 40px;
     padding: 20px;
@@ -174,6 +194,21 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Visitor counter */
+.visitor-counter {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.visitor-counter img {
+    border-radius: 4px;
+}
+
 /* Simple responsiveness */
 @media (max-width: 600px) {
     h1 {
@@ -188,7 +223,8 @@ footer a:hover {
     .features li,
     .whats-new li,
     .roadmap li,
-    .about-block {
+    .about-block,
+    .download-list li {
         font-size: 0.95rem;
     }
 
