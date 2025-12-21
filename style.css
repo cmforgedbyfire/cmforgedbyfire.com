@@ -436,8 +436,13 @@ main{display:block}
 }
 
 .form-field select option{
-  background: #f4f4f5;
-  color: #111;
+  background: #f4f4f5 !important;
+  color: #111 !important;
+}
+
+.form-field select optgroup{
+  background: #f4f4f5 !important;
+  color: #111 !important;
 }
 
 .form-field textarea{
@@ -478,4 +483,6 @@ main{display:block}
   .project-gallery{grid-template-columns: 1fr}
   .form-grid{grid-template-columns: 1fr}
   .hero h2{font-size: 1.65rem}
+}
+
 }
