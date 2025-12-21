@@ -403,6 +403,50 @@ main{display:block}
 }
 .security-note p{margin: 8px 0; color: var(--muted)}
 
+.service-form{
+  display: block;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-field{
+  display:flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label{
+  font-weight: 700;
+  color: var(--text);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: .95rem;
+}
+
+.form-field textarea{
+  resize: vertical;
+}
+
+.form-actions{
+  margin-top: 14px;
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .footer{
   padding: 18px 16px 26px 16px;
   border-top: 1px solid var(--line);
@@ -427,5 +471,6 @@ main{display:block}
   .grid{grid-template-columns: 1fr}
   .gallery{grid-template-columns: 1fr}
   .project-gallery{grid-template-columns: 1fr}
+  .form-grid{grid-template-columns: 1fr}
   .hero h2{font-size: 1.65rem}
 }
