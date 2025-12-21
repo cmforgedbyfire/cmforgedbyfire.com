@@ -435,6 +435,11 @@ main{display:block}
   font-size: .95rem;
 }
 
+.form-field select option{
+  background: #f4f4f5;
+  color: #111;
+}
+
 .form-field textarea{
   resize: vertical;
 }
