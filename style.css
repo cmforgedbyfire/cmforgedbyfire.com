@@ -221,8 +221,11 @@ main{display:block}
 
 .project-image{
   width: 100%;
-  height: auto;
+  height: 260px;
   display: block;
+  object-fit: contain;
+  background: #0e1116;
+  padding: 18px;
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
