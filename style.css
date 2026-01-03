@@ -584,3 +584,22 @@ main{display:block}
 @media (prefers-reduced-motion: reduce){
   *{animation: none !important; transition: none !important}
 }
+
+.cursor-trail-dot{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(circle, rgba(255,122,24,.95), rgba(209,163,90,.35), rgba(58,167,197,.12));
+  mix-blend-mode: screen;
+  box-shadow: 0 0 10px rgba(255,122,24,.35);
+  transform: translate(-100px, -100px);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cursor-trail-dot{display:none}
+}
