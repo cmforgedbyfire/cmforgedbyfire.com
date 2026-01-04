@@ -27,7 +27,7 @@ body{
     radial-gradient(900px 500px at 90% 0%, rgba(58,167,197,.18), transparent 65%),
     linear-gradient(180deg, rgba(15,14,12,.94), rgba(15,14,12,.94)),
     repeating-linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.03) 1px, transparent 1px, transparent 8px),
-    url('stone_wall_2.jpg');
+    url('../assets/bg/stone_wall_2.jpg');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -603,3 +603,4 @@ main{display:block}
 @media (prefers-reduced-motion: reduce){
   .cursor-trail-dot{display:none}
 }
+
