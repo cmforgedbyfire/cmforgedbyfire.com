@@ -19,6 +19,25 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
+
+/* Skip to main content link for accessibility */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: var(--ember);
+  color: #1a130c;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+.skip-to-main:focus {
+  left: 8px;
+}
+
 body{
   margin:0;
   font-family:'Trebuchet MS','Segoe UI',Tahoma,sans-serif;
@@ -37,6 +56,19 @@ body{
 }
 
 a{color:inherit}
+
+/* Enhanced focus indicators for accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+.btn:focus,
+.nav-link:focus {
+  outline: 3px solid var(--ember);
+  outline-offset: 2px;
+}
+
 .dot{margin:0 10px; opacity:.6}
 
 h1,h2,h3,h4{

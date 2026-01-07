@@ -1,0 +1,9 @@
+# cmforgedbyfire.com robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://cmforgedbyfire.com/sitemap.xml
+
+# Crawl-delay (optional - helps prevent overload)
+Crawl-delay: 1
