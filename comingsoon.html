@@ -4,54 +4,102 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Roadmap — Forged By Fire</title>
+  <title>Roadmap - Forged By Fire</title>
   <meta name="description" content="Roadmap for PC Purifier and future Forged By Fire Software LLC tools." />
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="pcpurifier.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/the_forge.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/the_forge-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/the_forge-32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/the_forge-48.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/the_forge-64.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="assets/icons/the_forge-128.png" />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/icons/the_forge-256.png" />
 </head>
 
 <body>
   <header class="site-header">
-    <div class="brand-row">
-      <img src="forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
-      <div class="brand-text">
-        <h1 class="brand-title">Roadmap</h1>
-        <p class="brand-subtitle">Forged By Fire Software LLC</p>
+    <div class="container">
+      <div class="brand-row">
+        <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="brand-title">Roadmap</h1>
+          <p class="brand-subtitle">Forged By Fire Software LLC</p>
+        </div>
       </div>
-    </div>
 
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="pcpurifier.html" class="nav-link">PC Purifier</a>
-      <a href="downloads.html" class="nav-link">Downloads</a>
-      <a href="comingsoon.html" class="nav-link active">Roadmap</a>
-      <a href="about.html" class="nav-link">About</a>
-    </nav>
+                  <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="pcpurifier.html" class="nav-link">PC Purifier</a>
+        <a href="shipstudio.html" class="nav-link">Ship Studio</a>
+        <a href="games.html" class="nav-link">Games</a>
+        <a href="theforge.html" class="nav-link">The Forge</a>
+        <a href="downloads.html" class="nav-link">Downloads</a>
+        <a href="comingsoon.html" class="nav-link active">Roadmap</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+    </div>
   </header>
 
   <main class="page">
     <section class="section">
-      <h2 class="section-title">PC Purifier — Next</h2>
+      <h2 class="section-title">PC Purifier - Pro Focus</h2>
 
       <div class="panel">
         <ul class="bullets">
-          <li><strong>Privacy Dashboard expansion</strong>: more categories (contacts, calendar, etc.) and clearer grouping</li>
-          <li><strong>Ghost / Transparent mode</strong> (Pro boundary): guided actions + reversible changes</li>
-          <li><strong>Cleanup history</strong>: show what was cleaned + how much space per run</li>
-          <li><strong>Per-app cleanup profiles</strong>: browsers / launchers / temp-heavy apps</li>
-          <li><strong>Game Mode+</strong>: close background junk, then restore safely afterward</li>
+          <li><strong>Pro Clean+</strong>: deeper cache cleanup with a detailed report of targets cleaned</li>
+          <li><strong>Game Requirements (Pro)</strong>: save libraries, import Steam, and find compatible games</li>
+          <li><strong>Pro Audit Report</strong>: system + mode snapshot with exportable report history</li>
+          <li><strong>Pro Modes</strong>: Gamer, Ghost, Silent with previews, apply, and rollback</li>
+          <li><strong>Threat Scan (Pro)</strong>: startup scan with optional Steam + Downloads scanning</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Coming Soon</h2>
+      <div class="project-grid">
+        <article class="project-card" id="the-forge">
+          <img src="assets/icons/the_forge.ico" alt="The Forge logo" class="project-image" />
+          <div class="project-body">
+            <p class="project-kicker">theforge <span style="color:#ff6b35;font-weight:700;margin-left:10px;">[IN DEVELOPMENT]</span></p>
+            <h3 class="project-title">The Forge</h3>
+            <p class="project-subtitle">
+              A classic e-Tools-style character builder with switchable D and D 3.5e and 5e rulesets.
+              Build, manage, and export characters locally with full rules awareness.
+            </p>
+            <ul class="feature-list">
+              <li>Rules-aware stats, saves, and combat grids</li>
+              <li>Skills, feats, bio, and portrait management</li>
+              <li>Local AI assistant and JSON import/export</li>
+            </ul>
+          </div>
+          <div class="project-gallery">
+            <div class="project-shot">
+              <img src="assets/screenshots/theforge/theforge-hero.png" alt="The Forge main character builder" />
+            </div>
+            <div class="project-shot">
+              <img src="assets/screenshots/theforge/theforge-character-sheet.png" alt="The Forge stats and combat grid" />
+            </div>
+            <div class="project-shot">
+              <img src="assets/screenshots/theforge/theforge-skills.png" alt="The Forge skills tab" />
+            </div>
+            <div class="project-shot">
+              <img src="assets/screenshots/theforge/theforge-ai-assistant.png" alt="The Forge AI assistant" />
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section">
       <h2 class="section-title">New product idea</h2>
       <div class="panel">
-        <h3 class="panel-title">Browser extension: “privacy/legal translator”</h3>
+        <h3 class="panel-title">Browser extension: "privacy/legal translator"</h3>
         <p class="muted">
-          Live-reads consent text and policy wording, then displays a plain-English breakdown of what you’re agreeing to.
-          The goal is clarity — not fear — and a fast way to spot mismatches (example: a simple flashlight app asking for contacts).
+          Live-reads consent text and policy wording, then displays a plain-English breakdown of what you are agreeing to.
+          The goal is clarity - not fear - and a fast way to spot mismatches (example: a simple flashlight app asking for contacts).
         </p>
       </div>
 
@@ -62,7 +110,22 @@
   </main>
 
   <footer class="footer">
-    <p>© 2025 cmforgedbyfire.com — Forged By Fire Software LLC. All Rights Reserved.</p>
+    <div class="footer-inner container">
+      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved. #because_Jesus</p>
+      <form class="donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="2VRFMADCKZLRU" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </form>
+    </div>
   </footer>
+  <script src="js/lightbox.js"></script>
+  <script src="js/cursor-trail.js"></script>
 </body>
 </html>
+
+
+
+
+
+

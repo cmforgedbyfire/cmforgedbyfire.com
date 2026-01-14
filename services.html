@@ -177,7 +177,7 @@
 
   <footer class="footer">
     <div class="footer-inner container">
-      <p>&copy; 2025 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved.</p>
+      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved. #because_Jesus</p>
       <form class="donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
         <input type="hidden" name="hosted_button_id" value="2VRFMADCKZLRU" />
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
@@ -189,6 +189,13 @@
   <script>
     function sendServiceRequest() {
       var form = document.getElementById('serviceForm');
+      
+      // Validate required fields
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      
       var fields = [
         ['Name', form.name.value],
         ['Company', form.company.value],
@@ -215,6 +222,28 @@
 
       window.location.href = mailto;
     }
+    
+    // Add visual validation feedback
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('serviceForm');
+      var inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+      
+      inputs.forEach(function(input) {
+        input.addEventListener('blur', function() {
+          if (this.value.trim() === '') {
+            this.classList.add('error');
+          } else {
+            this.classList.remove('error');
+          }
+        });
+        
+        input.addEventListener('input', function() {
+          if (this.value.trim() !== '') {
+            this.classList.remove('error');
+          }
+        });
+      });
+    });
   </script>
   <script src="js/cursor-trail.js"></script>
 </body>

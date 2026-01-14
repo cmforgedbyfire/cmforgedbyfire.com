@@ -1,0 +1,29 @@
+# Windows
+desktop.ini
+Thumbs.db
+
+# VS Code
+*.code-workspace
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# Development tools (not part of website)
+/main.py
+/run.bat
+/interviewer_ai/
+/interviewer_ai_app/
+/qr-tool/
+*.json
+!package.json
+!tsconfig.json
+
+# Personal files
+stephen-joseph-scott.json
