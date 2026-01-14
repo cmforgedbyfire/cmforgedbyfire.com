@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background: #040404;
+  color: #f7f7f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(255, 111, 0, 0.35), transparent 45%),
+    radial-gradient(circle at bottom, rgba(0, 255, 255, 0.25), transparent 40%), #040404;
+}
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #7abfff;
+  margin-bottom: 0.25rem;
+}
+
+.tagline {
+  margin: 0.25rem 0 0;
+  color: #c9d9ff;
+}
+
+.btn-link {
+  color: #ffd369;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255, 211, 105, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-link:hover {
+  background: rgba(255, 211, 105, 0.2);
+  transform: translateY(-2px);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.controls,
+.preview-panel {
+  background: rgba(15, 15, 15, 0.85);
+  border-radius: 18px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.control-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.control-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.control-block label {
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8da6ff;
+}
+
+.control-block small {
+  font-size: 0.75rem;
+  color: #8d8f92;
+}
+
+input,
+select,
+button {
+  font-family: inherit;
+}
+
+input[type="text"],
+input[type="url"],
+select {
+  background: #0e0e0f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+  color: #f7f7f7;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.range-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #8d8f92;
+}
+
+.control-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #c9d9ff;
+}
+
+.control-option input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #ff6f00, #ffad33);
+  color: #050505;
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #f7f7f7;
+}
+
+.btn.subtle {
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f7f7f7;
+  padding: 0.5rem 1rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 111, 0, 0.35);
+}
+
+.note {
+  color: #d0d5e3;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-top: 1rem;
+}
+
+.qr-frame {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(255, 149, 0, 0.2), rgba(5, 5, 5, 0.8));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-frame-glow {
+  box-shadow: 0 0 30px rgba(255, 111, 0, 0.6);
+}
+
+#qrcode {
+  border-radius: 16px;
+  padding: 0.5rem;
+  background: #fefefe;
+}
+
+.preview-panel p {
+  margin: 0.25rem 0;
+}
+
+.preview-meta {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.url-preview {
+  font-size: 0.85rem;
+  word-break: break-all;
+  color: #f7f7f7;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem;
+  border-radius: 10px;
+}
+
+.muted {
+  color: #8d8f92;
+  font-size: 0.85rem;
+}
+
+.half {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding: 1.2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

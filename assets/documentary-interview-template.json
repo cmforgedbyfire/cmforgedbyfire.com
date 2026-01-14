@@ -1,0 +1,124 @@
+{
+  "project": {
+    "title": "",
+    "logline": "",
+    "director": "",
+    "producer": "",
+    "date": "",
+    "location": ""
+  },
+  "subject": {
+    "full_name": "",
+    "preferred_name": "",
+    "pronouns": "",
+    "age": "",
+    "occupation": "",
+    "location": "",
+    "contact": {
+      "phone": "",
+      "email": "",
+      "best_time_to_reach": "",
+      "rep": ""
+    },
+    "background": "",
+    "identity_notes": "",
+    "sensitive_topics": [],
+    "boundaries": "",
+    "consent": {
+      "recording": "",
+      "release_signed": false,
+      "restrictions": ""
+    }
+  },
+  "story": {
+    "central_question": "",
+    "themes": [],
+    "stakes": "",
+    "timeline": [],
+    "turning_points": [],
+    "conflicts": [],
+    "resolution_hopes": ""
+  },
+  "pre_interview": {
+    "rapport_builders": [],
+    "research_notes": [],
+    "key_terms": [],
+    "visual_style": "",
+    "tone": ""
+  },
+  "interview": {
+    "setting": {
+      "location": "",
+      "time_of_day": "",
+      "ambience": "",
+      "interruptions_risks": []
+    },
+    "crew_roles": {
+      "director": "",
+      "interviewer": "",
+      "producer": "",
+      "dp": "",
+      "sound": "",
+      "pa": ""
+    },
+    "equipment_check": {
+      "camera": "",
+      "audio": "",
+      "lighting": "",
+      "backup_plan": ""
+    },
+    "run_of_show": [
+      {
+        "segment": "",
+        "goal": "",
+        "approx_minutes": ""
+      }
+    ],
+    "question_bank": [
+      {
+        "id": "Q1",
+        "prompt": "",
+        "intent": "",
+        "followups": []
+      }
+    ],
+    "safety_stop": {
+      "signal": "",
+      "notes": ""
+    }
+  },
+  "b_roll": {
+    "must_haves": [],
+    "nice_to_haves": [],
+    "archival": {
+      "sources": [],
+      "clearance_notes": ""
+    }
+  },
+  "logistics": {
+    "schedule": {
+      "call_time": "",
+      "wrap_time": "",
+      "travel": ""
+    },
+    "release_forms": {
+      "appearance": false,
+      "location": false,
+      "music": false
+    },
+    "permissions": [],
+    "risk_assessment": ""
+  },
+  "post": {
+    "editor_notes": [],
+    "selects_timecodes": [],
+    "fact_check_items": [],
+    "follow_up_interviews": []
+  },
+  "metadata": {
+    "version": "1.0",
+    "created_by": "",
+    "created_at": "",
+    "last_updated": ""
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forged By Fire QR Studio</title>
+    <link rel="stylesheet" href="qr-tool.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Forged By Fire</p>
+          <h1>QR Studio</h1>
+          <p class="tagline">Generate branded QR codes for the site, downloads, and cards.</p>
+        </div>
+        <a class="btn-link" href="../index.html">Back to site</a>
+      </header>
+
+      <main class="content-grid">
+        <section class="controls">
+          <div class="control-block">
+            <label for="preset">Master destinations</label>
+            <select id="preset">
+              <option value="https://cmforgedbyfire.com" selected>Forged By Fire Homepage</option>
+              <option value="https://github.com/cmforgedbyfire/cmforgedbyfire.github.io/releases/download/v1.4.1/PCPurifierSetup_1.4.1.exe">
+                PC Purifier download
+              </option>
+              <option value="https://www.paypal.com/ncp/payment/LC7WFT638D2EY">PC Purifier Pro purchase</option>
+              <option value="https://www.paypal.com/ncp/payment/UM4WSGRL46YTG">Ship Studio purchase</option>
+              <option value="custom">Custom URL / asset</option>
+            </select>
+          </div>
+
+          <div class="control-block">
+            <label for="custom-url">Custom URL</label>
+            <input id="custom-url" type="url" placeholder="https://example.com" />
+            <small>If you pick “Custom URL” above, enter the address here.</small>
+          </div>
+
+          <div class="control-block">
+            <label for="size">Size (pixels)</label>
+            <input id="size" type="range" min="180" max="420" value="320" />
+            <div class="range-info">
+              <span id="size-value">320</span>
+              <span>sq px</span>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <div class="control-block half">
+              <label for="fg-color">Dark color</label>
+              <input id="fg-color" type="color" value="#0f0f0f" />
+            </div>
+            <div class="control-block half">
+              <label for="bg-color">Light color</label>
+              <input id="bg-color" type="color" value="#ffffff" />
+            </div>
+          </div>
+
+          <div class="control-block">
+            <label for="correction">Error correction</label>
+            <select id="correction">
+              <option value="M" selected>Medium (15%)</option>
+              <option value="L">Low (7%)</option>
+              <option value="Q">Quartile (25%)</option>
+              <option value="H">High (30%)</option>
+            </select>
+          </div>
+
+          <div class="control-block">
+            <label for="label">Label text (optional)</label>
+            <input id="label" type="text" placeholder="PC Purifier Pro" />
+          </div>
+
+          <div class="control-block">
+            <label class="control-option">
+              <input id="glow" type="checkbox" />
+              <span>Add flare (glow & shadow)</span>
+            </label>
+          </div>
+
+          <div class="control-block actions">
+            <button id="generate" type="button" class="btn">Refresh preview</button>
+            <button id="download" type="button" class="btn ghost">Download PNG</button>
+          </div>
+
+          <p class="note">Windows-ready: open this file in Edge or Chrome, customize, and download a PNG to use anywhere.</p>
+        </section>
+
+        <section class="preview-panel">
+          <div id="qr-frame" class="qr-frame">
+            <div id="qrcode"></div>
+          </div>
+          <div class="preview-meta">
+            <p>Bound URL</p>
+            <p id="url-preview" class="url-preview"></p>
+            <p class="muted">
+              Optional: paste the PNG into your business cards, packaging, or screens. The download button will name the file
+              `forged-qrcode.png`.
+            </p>
+            <button id="copy-url" type="button" class="btn subtle">Copy URL</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="qr-tool.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "project_name": "",
+  "working_title": "",
+  "logline": "",
+  "purpose": "",
+  "audience": "",
+  "format": "documentary",
+  "estimated_runtime_minutes": 0,
+  "story_goals": [
+    ""
+  ],
+  "core_themes": [
+    ""
+  ],
+  "scope_boundaries": {
+    "in_scope": [
+      ""
+    ],
+    "out_of_scope": [
+      ""
+    ]
+  },
+  "tone_and_style": {
+    "tone": "",
+    "visual_style": "",
+    "reference_titles": [
+      ""
+    ]
+  },
+  "ethics_and_safety": {
+    "sensitive_topics": [
+      ""
+    ],
+    "consent_requirements": [
+      ""
+    ],
+    "risk_mitigation": [
+      ""
+    ]
+  },
+  "production_constraints": {
+    "budget_range": "",
+    "schedule": "",
+    "locations": [
+      ""
+    ],
+    "crew_size": "",
+    "legal_clearances": [
+      ""
+    ]
+  },
+  "deliverables": [
+    ""
+  ],
+  "open_questions": [
+    ""
+  ]
+}
