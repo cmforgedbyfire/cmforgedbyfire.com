@@ -180,19 +180,6 @@ main{display:block}
   font-size: 1.8rem;
 }
 
-@media (max-width: 900px){
-  .hero-split{
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .hero-content{
-    text-align: center;
-  }
-  .hero-media img{
-    max-width: 150px;
-  }
-}
-
 .cta-row{
   margin-top: 18px;
   display:flex;
@@ -383,4 +370,17 @@ main{display:block}
   .cards{grid-template-columns: 1fr}
   .grid{grid-template-columns: 1fr}
   .hero h2{font-size: 1.65rem}
+  .hero-split{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-content{
+    text-align: center;
+  }
+  .hero-content h2{
+    font-size: 1.5rem;
+  }
+  .hero-media img{
+    max-width: 150px;
+  }
 }
