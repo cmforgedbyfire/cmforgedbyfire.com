@@ -137,6 +137,62 @@ main{display:block}
     radial-gradient(800px 420px at 15% 30%, rgba(255,106,0,.08), transparent 70%);
 }
 
+.hero-precision{
+  background:
+    radial-gradient(900px 400px at 50% 0%, rgba(255,106,0,.15), transparent 70%),
+    radial-gradient(800px 420px at 80% 30%, rgba(26,188,222,.12), transparent 70%);
+}
+
+.hero-foundry{
+  background:
+    radial-gradient(900px 400px at 50% 0%, rgba(255,106,0,.20), transparent 70%);
+}
+
+.hero-split{
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero-media{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-media img{
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.hero-content{
+  text-align: left;
+}
+
+.hero-content h2{
+  margin: 0 0 10px 0;
+  font-size: 1.8rem;
+}
+
+@media (max-width: 900px){
+  .hero-split{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-content{
+    text-align: center;
+  }
+  .hero-media img{
+    max-width: 150px;
+  }
+}
+
 .cta-row{
   margin-top: 18px;
   display:flex;
