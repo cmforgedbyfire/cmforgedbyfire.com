@@ -366,6 +366,20 @@ main{display:block}
 
 .visitor-counter img{border-radius: 6px}
 
+.cursor-trail-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255,106,0,0.8) 0%, rgba(255,106,0,0.4) 50%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform-origin: center;
+  transition: opacity 0.1s ease;
+}
+
 @media (max-width: 900px){
   .cards{grid-template-columns: 1fr}
   .grid{grid-template-columns: 1fr}
