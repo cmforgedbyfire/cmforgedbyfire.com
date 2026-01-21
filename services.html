@@ -18,43 +18,36 @@
         <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
         <div class="brand-text">
           <h1 class="brand-title">Services</h1>
-          <p class="brand-subtitle">Custom software - AI tools - Remote IT</p>
+          <p class="brand-subtitle">One guy who can actually help</p>
         </div>
       </div>
 
                   <nav class="nav">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="pcpurifier.html" class="nav-link">PC Purifier</a>
-        <a href="shipstudio.html" class="nav-link">Ship Studio</a>
-        <a href="games.html" class="nav-link">Games</a>
-        <a href="theforge.html" class="nav-link">The Forge</a>
-        <a href="downloads.html" class="nav-link">Downloads</a>
-        <a href="changelog.html" class="nav-link">Changelog</a>
-        <a href="services.html" class="nav-link active">Services</a>
+        <a href="software.html" class="nav-link">Software</a>
+        <a href="ai.html" class="nav-link">AI</a>
         <a href="about.html" class="nav-link">About</a>
+        <a href="downloads.html" class="nav-link">Downloads</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="changelog.html" class="nav-link">Changelog</a>
       </nav>
     </div>
   </header>
 
   <main class="page">
     <section class="section">
-      <h2 class="section-title">Order Custom Software</h2>
+      <h2 class="section-title">What I Actually Do</h2>
       <p class="muted">
-        Tell us what you need and we will reply with cost and timeline options.
-        We specialize in custom software, automation, and AI tooling (local or hosted).
-        No work starts until payment is received, and the timeline begins after payment.
+        I'm one guy who knows computers, coding, and Christ. Here's what I can help with.
+        No corporate BS - just honest work at fair prices.
       </p>
 
       <div class="panel">
         <form id="serviceForm" class="service-form">
           <div class="form-grid">
             <div class="form-field">
-              <label for="name">Name</label>
+              <label for="name">Your name</label>
               <input id="name" name="name" type="text" placeholder="Your name" required />
-            </div>
-            <div class="form-field">
-              <label for="company">Company (optional)</label>
-              <input id="company" name="company" type="text" placeholder="Company or studio" />
             </div>
             <div class="form-field">
               <label for="email">Email</label>
@@ -62,113 +55,55 @@
             </div>
             <div class="form-field">
               <label for="phone">Phone (optional)</label>
-              <input id="phone" name="phone" type="text" placeholder="Best number to reach you" />
+              <input id="phone" name="phone" type="text" placeholder="Best number" />
             </div>
             <div class="form-field">
-              <label for="type">Project type</label>
+              <label for="type">What do you need?</label>
               <select id="type" name="type" required>
                 <option value="">Choose one</option>
-                <option>Remote IT support</option>
-                <option>AI tool / automation</option>
-                <option>Local AI setup (Ollama, model tuning, offline)</option>
-                <option>AI copilot / internal assistant</option>
-                <option>RAG knowledge base / document search</option>
-                <option>Workflow automation (scripts + dashboards)</option>
-                <option>Data cleanup / migration</option>
-                <option>Security review / hardening pass</option>
-                <option>Desktop app or launcher</option>
-                <option>Web app / dashboard</option>
-                <option>API / backend service</option>
-                <option>Integration (Zapier, Slack, Discord, email)</option>
-                <option>Code job (feature or fix)</option>
-                <option>Small contract (1-2 weeks)</option>
-                <option>Ongoing support / maintenance</option>
-                <option>Custom environment setup</option>
-                <option>Other</option>
+                <option>Website for small business/ministry ($500-1500)</option>
+                <option>Tech support - remote help ($50/hr)</option>
+                <option>Social media setup/tech help ($100-300)</option>
+                <option>Simple automation script ($200-500)</option>
+                <option>PC cleanup/optimization (remote) ($100-200)</option>
+                <option>Training/tutoring on software ($50/hr)</option>
+                <option>Custom tool/app (quote needed)</option>
+                <option>Other - let's talk</option>
               </select>
             </div>
             <div class="form-field">
-              <label for="budget">Budget range</label>
+              <label for="budget">Your budget</label>
               <select id="budget" name="budget" required>
-                <option value="">Select range</option>
-                <option>Under $250</option>
-                <option>$250 - $750</option>
-                <option>$750 - $2,000</option>
-                <option>$2,000 - $5,000</option>
-                <option>$5,000 - $10,000</option>
-                <option>$10,000 - $25,000</option>
-                <option>$25,000+</option>
-                <option>Not sure yet</option>
+                <option value="">Honestly, what can you spend?</option>
+                <option>Under $100</option>
+                <option>$100 - $300</option>
+                <option>$300 - $750</option>
+                <option>$750 - $1,500</option>
+                <option>$1,500 - $3,000</option>
+                <option>$3,000+</option>
+                <option>Not sure - need estimate</option>
               </select>
             </div>
             <div class="form-field">
-              <label for="timeline">Timeline</label>
+              <label for="timeline">When do you need it?</label>
               <select id="timeline" name="timeline" required>
                 <option value="">Select timeline</option>
-                <option>ASAP</option>
-                <option>1 week</option>
+                <option>ASAP (rush fee applies)</option>
                 <option>1-2 weeks</option>
                 <option>2-4 weeks</option>
-                <option>1-3 months</option>
-                <option>3+ months</option>
-                <option>Flexible</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="environment">Environment</label>
-              <select id="environment" name="environment">
-                <option value="">Not sure</option>
-                <option>Windows</option>
-                <option>Linux</option>
-                <option>Mac</option>
-                <option>Mixed</option>
-                <option>Server + desktop</option>
-                <option>Cloud + on-prem</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="model">AI model preference</label>
-              <select id="model" name="model">
-                <option value="">No preference</option>
-                <option>Local only (Qwen/DeepSeek/Phi)</option>
-                <option>Local + hosted mix</option>
-                <option>Open to hosted models</option>
-                <option>Need model advice</option>
-                <option>Not sure</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="ai_focus">AI focus (optional)</label>
-              <select id="ai_focus" name="ai_focus">
-                <option value="">None</option>
-                <option>Automation / agents</option>
-                <option>Document understanding</option>
-                <option>Customer support / chat</option>
-                <option>Code assistance</option>
-                <option>Data extraction</option>
-                <option>Image or vision tools</option>
-                <option>Audio / transcription</option>
-                <option>Security or compliance review</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="contact">Preferred contact</label>
-              <select id="contact" name="contact">
-                <option>Email</option>
-                <option>Phone</option>
-                <option>Either</option>
+                <option>Flexible/whenever</option>
               </select>
             </div>
           </div>
 
           <div class="form-field">
-            <label for="details">Project details</label>
-            <textarea id="details" name="details" rows="6" placeholder="Tell us what you want built, key goals, and any constraints." required></textarea>
+            <label for="details">Tell me what you need</label>
+            <textarea id="details" name="details" rows="6" placeholder="Explain what you need help with. Be specific but don't worry about technical terms - I'll ask questions." required></textarea>
           </div>
 
           <div class="form-actions">
             <button type="button" class="btn btn-primary" onclick="sendServiceRequest()">Send request</button>
-            <span class="muted">Opens your email client with the details pre-filled.</span>
+            <span class="muted">Opens your email with details filled in.</span>
           </div>
         </form>
       </div>
@@ -190,7 +125,6 @@
     function sendServiceRequest() {
       var form = document.getElementById('serviceForm');
       
-      // Validate required fields
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
@@ -198,16 +132,11 @@
       
       var fields = [
         ['Name', form.name.value],
-        ['Company', form.company.value],
         ['Email', form.email.value],
         ['Phone', form.phone.value],
-        ['Project type', form.type.value],
+        ['Service needed', form.type.value],
         ['Budget', form.budget.value],
         ['Timeline', form.timeline.value],
-        ['Environment', form.environment.value],
-        ['Model preference', form.model.value],
-        ['AI focus', form.ai_focus.value],
-        ['Preferred contact', form.contact.value],
         ['Details', form.details.value]
       ];
 
@@ -215,7 +144,7 @@
         return item[0] + ': ' + (item[1] || '-');
       }).join('\n');
 
-      var subject = 'Service Request - ' + (form.type.value || 'Custom Project');
+      var subject = 'Service Request - ' + (form.type.value || 'Help Needed');
       var mailto = 'mailto:cmforgedbyfire@protonmail.com'
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
@@ -223,7 +152,6 @@
       window.location.href = mailto;
     }
     
-    // Add visual validation feedback
     document.addEventListener('DOMContentLoaded', function() {
       var form = document.getElementById('serviceForm');
       var inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
