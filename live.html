@@ -1,275 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔴 Live Stream - Forged by Fire Software</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 100%);
-            color: white;
-            min-height: 100vh;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #00F0FF, #FF00FF);
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,240,255,0.3);
-        }
-        
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        header p {
-            font-size: 1.2em;
-            color: #0A0E27;
-            font-weight: bold;
-        }
-        
-        .live-indicator {
-            display: inline-block;
-            background: #FF0000;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-            margin-right: 10px;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-        
-        main {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .stream-container {
-            background: #1A1F3A;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0,240,255,0.2);
-            margin-bottom: 30px;
-            border: 2px solid #00F0FF;
-        }
-        
-        .stream-container iframe {
-            width: 100%;
-            height: 600px;
-            border: none;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .info-card {
-            background: #1A1F3A;
-            border: 2px solid #00F0FF;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        
-        .info-card h2 {
-            color: #00F0FF;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-        
-        .info-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .info-card li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0,240,255,0.2);
-        }
-        
-        .info-card li:last-child {
-            border-bottom: none;
-        }
-        
-        .info-card a {
-            color: #00FF41;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .info-card a:hover {
-            color: #FF00FF;
-        }
-        
-        .schedule {
-            background: linear-gradient(135deg, #FF6600, #FF00FF);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 30px 0;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-        
-        .offline-message {
-            text-align: center;
-            padding: 60px 20px;
-            background: #1A1F3A;
-            border-radius: 15px;
-            margin: 30px 0;
-        }
-        
-        .offline-message h2 {
-            color: #FF6600;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
-        nav {
-            background: #1A1F3A;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        
-        nav a {
-            color: #00F0FF;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: #FF00FF;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .stream-container iframe { height: 300px; }
-            .info-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>🔴 Live Stream - Forged By Fire Software LLC</title>
+  <meta name="description" content="Watch Stephen code live - building AI systems, software tools, and gaming. Pop-up streams on TikTok and YouTube. #because_Jesus" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/the_forge.ico" />
 </head>
+
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="software.html">Software</a>
-        <a href="downloads.html">Downloads</a>
-        <a href="live.html">🔴 Live</a>
-    </nav>
-    
-    <header>
-        <h1><span class="live-indicator">● LIVE</span>11am Walk & Build</h1>
-        <p>#BecauseJesus - Building Honest Software in Public</p>
-    </header>
-    
-    <main>
-        <div class="schedule">
-            📅 Daily at 11:00 AM EST - Walk, Talk, Build
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand-row">
+        <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="brand-title">🔴 Live Streams</h1>
+          <p class="brand-subtitle">Pop-up lives - Subscribe for notifications</p>
         </div>
-        
-        <!-- LIVE STREAM EMBED -->
-        <div class="stream-container" id="streamContainer">
-            <!-- Replace YOUR_CHANNEL_ID with actual YouTube channel ID -->
-            <iframe 
-                src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger"></span>
+        </button>
+        <div class="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="software.html" class="nav-link">Software</a>
+          <a href="ai.html" class="nav-link">AI</a>
+          <a href="live.html" class="nav-link active" style="color: #FF0000; font-weight: bold;">🔴 Live</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="downloads.html" class="nav-link">Downloads</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="changelog.html" class="nav-link">Changelog</a>
         </div>
-        
-        <!-- If offline, show this instead -->
-        <!-- <div class="offline-message">
-            <h2>📡 Stream Offline</h2>
-            <p>Next stream: Tomorrow at 11:00 AM EST</p>
-            <p>Subscribe on <a href="https://youtube.com/@ForgedByFireSoftware">YouTube</a> for notifications!</p>
-        </div> -->
-        
-        <div class="info-grid">
-            <div class="info-card">
-                <h2>🎯 Today's Focus</h2>
-                <ul>
-                    <li>💻 Building: Ship Studio</li>
-                    <li>🐛 Fixing: PCP Purifier bugs</li>
-                    <li>📱 Testing: Mobile Moroni</li>
-                    <li>💬 Q&A with chat</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h2>🔗 Resources</h2>
-                <ul>
-                    <li><a href="https://github.com/ForgedByFireSoftware">GitHub Repos</a></li>
-                    <li><a href="downloads.html">Download Tools</a></li>
-                    <li><a href="software.html">All Software</a></li>
-                    <li><a href="mailto:forgedbyfiresoftware@gmail.com">Email Support</a></li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h2>📜 The Covenant</h2>
-                <ul>
-                    <li>✅ No dark patterns</li>
-                    <li>✅ No data harvesting</li>
-                    <li>✅ No manipulation</li>
-                    <li>✅ Honest tools that serve</li>
-                    <li>✅ Built for God's glory</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h2>💬 Join the Chat</h2>
-                <ul>
-                    <li>💬 YouTube Live Chat (during stream)</li>
-                    <li>📱 Mobile Claude Chat (always)</li>
-                    <li>📧 Email: forgedbyfiresoftware@gmail.com</li>
-                    <li>🐦 X: @ForgedByFire</li>
-                </ul>
-            </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page" id="main-content">
+    <section class="section">
+      <h2 class="section-title">Live Stream</h2>
+      
+      <div class="panel" style="margin-bottom: 30px;">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+          <iframe 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            src="https://www.youtube.com/embed/live_stream?channel=UCndOu-MXvue2KxqBI7DybqQ"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
-        
-        <div class="info-card" style="margin-top: 30px;">
-            <h2>📅 Stream Schedule</h2>
-            <ul>
-                <li><strong>Daily:</strong> 11:00 AM EST - Morning Walk & Build Session</li>
-                <li><strong>Monday:</strong> Week Planning + Reddit AMA</li>
-                <li><strong>Wednesday:</strong> Deep Dive Technical Build</li>
-                <li><strong>Friday:</strong> Release Prep + Community Q&A</li>
-                <li><strong>Sunday:</strong> Weekly Reflection + #BecauseJesus Devotional</li>
-            </ul>
-        </div>
-    </main>
-    
-    <script>
-        // Check if stream is live (optional - requires YouTube API)
-        // For now, manually toggle between live/offline views
-        
-        // Auto-refresh every 5 minutes to check for stream status
-        setInterval(() => {
-            // Could implement YouTube API check here
-            console.log('Checking stream status...');
-        }, 300000);
-    </script>
+      </div>
+
+      <p class="muted" style="text-align: center; margin-bottom: 40px;">
+        No set schedule - pop-up streams when inspiration hits. Turn on notifications so you don't miss it.
+      </p>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">What You'll See On Stream</h3>
+      
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <div class="badge-icon">💬</div>
+            <div>
+              <h4 class="card-title">Chat & Hangouts</h4>
+            </div>
+          </div>
+          <p class="card-body">
+            Just talking with chat, answering questions, discussing projects and life. Come hang out.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="badge-icon">💻</div>
+            <div>
+              <h4 class="card-title">Live Coding</h4>
+            </div>
+          </div>
+          <p class="card-body">
+            Building AI systems, PC tools, websites. Python, JavaScript, whatever the project needs. Real work, real bugs, real fixes.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="badge-icon">🏔️</div>
+            <div>
+              <h4 class="card-title">ATV & Mountain Views</h4>
+            </div>
+          </div>
+          <p class="card-body">
+            Streaming from the trails. Fresh air, mountain views, and good conversation. Sometimes the best ideas come outside.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="badge-icon">🎮</div>
+            <div>
+              <h4 class="card-title">Gaming</h4>
+            </div>
+          </div>
+          <p class="card-body">
+            Playing games, testing game projects, or just having fun. Gaming is part of the creative process.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Where to Watch</h3>
+      
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
+            <div class="badge-icon" style="background: #FF0000;">▶️</div>
+            <div>
+              <h4 class="card-title">YouTube</h4>
+              <p class="card-subtitle">Main platform</p>
+            </div>
+          </div>
+          <p class="card-body">
+            Primary streaming platform. Better for coding streams and longer sessions.
+          </p>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="https://www.youtube.com/channel/UCndOu-MXvue2KxqBI7DybqQ" target="_blank" rel="noopener">Subscribe</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="badge-icon" style="background: #000000;">📱</div>
+            <div>
+              <h4 class="card-title">TikTok</h4>
+              <p class="card-subtitle">@lpt959</p>
+            </div>
+          </div>
+          <p class="card-body">
+            Quick streams, ATV rides, casual hangouts. More spontaneous content.
+          </p>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="https://www.tiktok.com/@lpt959/live" target="_blank" rel="noopener">Follow</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">The Mission</h3>
+      <div class="panel">
+        <p class="muted">
+          Everything built here is <strong>#because_Jesus</strong>. Honest tools, no manipulation, no dark patterns.
+          Free software that actually helps people. Built in public so you can see the process - mistakes and all.
+        </p>
+        <p class="muted" style="margin-top: 15px;">
+          Building a different kind of software company. One that puts people before profit.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Join the Community</h3>
+      <p class="muted" style="margin-bottom: 20px;">
+        Discord: <a href="https://discord.gg/GQVQRpVJ" target="_blank" rel="noopener">discord.gg/GQVQRpVJ</a>
+        <span class="dot">•</span>
+        Email: <a href="mailto:cmforgedbyfire@protonmail.com">cmforgedbyfire@protonmail.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner container">
+      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved. #because_Jesus</p>
+
+      <div class="visitor-counter">
+        <span>Visitors:</span>
+        <img
+          src="https://visitor-badge.laobi.icu/badge?page_id=cmforgedbyfire.cmforgedbyfire.github.io&left_color=ff7a18&right_color=0f0f0f"
+          alt="Visitor counter"
+        />
+      </div>
+
+      <form class="donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="2VRFMADCKZLRU" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </form>
+    </div>
+  </footer>
+  <script src="js/cursor-trail.js"></script>
+  <script src="js/mobile-nav.js"></script>
 </body>
 </html>
