@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Support / Feedback - Forged By Fire Software LLC</title>
+  <meta name="description" content="Send support requests, bug reports, and feedback for Forged By Fire Software LLC free software." />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/the_forge.ico" />
+</head>
+
+<body>
+  <a href="#main-content" class="skip-to-main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand-row">
+        <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
+        <div class="brand-text">
+          <h1 class="brand-title">Support / Feedback</h1>
+          <p class="brand-subtitle">Bug reports, ideas, and help requests</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="software.html" class="nav-link">Software</a>
+        <a href="ai.html" class="nav-link">AI</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page" id="main-content">
+    <section class="section">
+      <h2 class="section-title">Send a Message</h2>
+      <div class="panel">
+        <p class="muted">
+          Use this for bugs, download problems, feature ideas, screenshots, or notes about what worked and what did not.
+          The button opens your email app with the details filled in.
+        </p>
+
+        <form id="supportForm" class="service-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" />
+            </div>
+            <div class="form-field">
+              <label for="reply">Your email</label>
+              <input id="reply" name="reply" type="email" placeholder="you@example.com" />
+            </div>
+            <div class="form-field">
+              <label for="software">Software</label>
+              <select id="software" name="software">
+                <option>General website feedback</option>
+                <option>PC Purifier</option>
+                <option>FORGE</option>
+                <option>Master Generator</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="kind">Message type</label>
+              <select id="kind" name="kind">
+                <option>Support request</option>
+                <option>Bug report</option>
+                <option>Feature idea</option>
+                <option>Download problem</option>
+                <option>General feedback</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="7" placeholder="Tell me what happened, what you expected, and any Windows/app version details that matter."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="button" onclick="sendSupportMessage()">Send Support / Feedback</button>
+            <span class="muted">No address is displayed on this page.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner container">
+      <p class="footer-support"><a href="support.html">Support / Feedback</a></p>
+      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved.
+        <span class="dot">•</span> <a href="privacy.html">Privacy</a>
+        <span class="dot">•</span> <a href="faq.html">FAQ</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function supportInbox() {
+      return ['Lpt969', 'hotmail.com'].join('@');
+    }
+
+    function sendSupportMessage() {
+      var form = document.getElementById('supportForm');
+      var subject = 'Support / Feedback - ' + form.software.value + ' - ' + form.kind.value;
+      var body = [
+        'Name: ' + (form.name.value || '-'),
+        'Reply email: ' + (form.reply.value || '-'),
+        'Software: ' + form.software.value,
+        'Type: ' + form.kind.value,
+        '',
+        'Message:',
+        form.message.value || '-'
+      ].join('\n');
+
+      window.location.href = 'mailto:' + supportInbox()
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+    }
+  </script>
+  <script src="js/cursor-trail.js"></script>
+</body>
+</html>

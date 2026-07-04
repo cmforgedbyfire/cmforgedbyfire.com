@@ -170,6 +170,8 @@
 
   <footer class="footer">
     <div class="footer-inner container">
+
+      <p class="footer-support"><a href="support.html">Support / Feedback</a></p>
       <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved.</p>
       <form class="donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
         <input type="hidden" name="hosted_button_id" value="2VRFMADCKZLRU" />
@@ -180,6 +182,10 @@
   </footer>
 
   <script>
+    function supportInbox() {
+      return ['Lpt969', 'hotmail.com'].join('@');
+    }
+
     function sendServiceRequest() {
       var form = document.getElementById('serviceForm');
       var fields = [
@@ -202,7 +208,7 @@
       }).join('\n');
 
       var subject = 'Service Request - ' + (form.type.value || 'Custom Project');
-      var mailto = 'mailto:cmforgedbyfire@protonmail.com'
+      var mailto = 'mailto:' + supportInbox()
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
 
@@ -212,8 +218,3 @@
   <script src="js/cursor-trail.js"></script>
 </body>
 </html>
-
-
-
-
-
