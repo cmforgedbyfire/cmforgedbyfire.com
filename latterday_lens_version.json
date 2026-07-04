@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "download_url": "https://github.com/cmforgedbyfire/cmforgedbyfire.com/releases/download/latterday-lens-v1.0.0/LatterdayLens_v1.0.0_Windows_Portable_Full.zip",
+  "lite_download_url": "",
+  "changelog": [
+    "Refreshed Forged By Fire dark theme with ember and gold accents.",
+    "Added the new Latterday Lens compass scripture icon.",
+    "Improved dark reader contrast with white scripture text."
+  ]
+}
