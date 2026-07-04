@@ -403,6 +403,22 @@ main{display:block}
 .card-body{margin: 12px 0 0 0; color: var(--muted); line-height: 1.5}
 .card-actions{margin-top: 14px; display:flex; gap: 10px; flex-wrap:wrap}
 
+.software-preview{
+  margin-top: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #14120e;
+}
+
+.software-preview img{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: cover;
+  object-position: top left;
+}
+
 .grid{
   display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
