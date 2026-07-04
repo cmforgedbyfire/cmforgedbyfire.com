@@ -473,6 +473,12 @@ main{display:block}
 
 .panel h4{margin: 0 0 10px 0}
 .panel-title{margin: 0 0 8px 0}
+.empty-state{
+  max-width:720px;
+  margin:0 auto;
+  text-align:center;
+}
+.empty-state h3{margin:0 0 8px}
 
 .bullets{
   margin: 0;
