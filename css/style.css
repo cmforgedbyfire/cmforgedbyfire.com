@@ -419,6 +419,34 @@ main{display:block}
   object-position: top left;
 }
 
+.software-list{
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.software-list .card{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
+  gap: 8px 14px;
+  align-items: start;
+}
+
+.software-list .card-top,
+.software-list .card-body,
+.software-list .card-actions{
+  grid-column: 1;
+}
+
+.software-list .software-preview{
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  margin-top: 0;
+}
+
+.software-list .software-preview img{
+  aspect-ratio: 4 / 3;
+}
+
 .grid{
   display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -652,6 +680,12 @@ main{display:block}
 
 @media (max-width: 900px){
   .cards{grid-template-columns: 1fr}
+  .software-list .card{
+    display: block;
+  }
+  .software-list .software-preview{
+    margin-top: 14px;
+  }
   .project-grid{grid-template-columns: 1fr}
   .grid{grid-template-columns: 1fr}
   .gallery{grid-template-columns: 1fr}
