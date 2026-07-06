@@ -1,6 +1,7 @@
 (function () {
-  const isLocalPreview = ["localhost", "127.0.0.1", ""].includes(window.location.hostname) || window.location.protocol === "file:";
-  const defaultEndpoint = isLocalPreview ? "http://127.0.0.1:8790" : "https://api.cmforgedbyfire.com/otto";
+  const host = window.location.hostname;
+  const isLocalPreview = ["localhost", "127.0.0.1", ""].includes(host) || window.location.protocol === "file:";
+  const defaultEndpoint = isLocalPreview ? "http://127.0.0.1:7793" : "https://api.cmforgedbyfire.com/otto";
   const apiBase = (window.OTTO_API_URL || localStorage.getItem("OTTO_API_URL") || defaultEndpoint).replace(/\/$/, "");
   const sessionKey = "otto_session_id";
   let sessionId = localStorage.getItem(sessionKey);
