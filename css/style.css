@@ -767,7 +767,7 @@ main{display:block}
 .otto-chat-form{
   position: relative;
   display:grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   gap: 8px;
   padding: 10px;
   border-top: 1px solid var(--line);
@@ -794,6 +794,24 @@ main{display:block}
 .otto-chat-plus[aria-expanded="true"]{
   color:#1a130c;
   background: linear-gradient(135deg, var(--brass), var(--ember));
+}
+
+.otto-chat-voice{
+  min-width: 46px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  color: var(--teal);
+  background: rgba(58,167,197,.08);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  cursor:pointer;
+}
+
+.otto-chat-voice.recording{
+  color:#1a130c;
+  background: linear-gradient(135deg, var(--ember), var(--brass));
 }
 
 .otto-action-menu{
@@ -1095,7 +1113,7 @@ main{display:block}
   }
 
   .otto-chat-form{
-    grid-template-columns: 38px minmax(0, 1fr) auto;
+    grid-template-columns: 38px 44px minmax(0, 1fr) auto;
     gap: 6px;
     padding: 8px;
   }
@@ -1108,6 +1126,12 @@ main{display:block}
   .otto-chat-send{
     min-width: 58px;
     padding: 0 10px;
+  }
+
+  .otto-chat-voice{
+    min-width: 44px;
+    height: 38px;
+    font-size: .72rem;
   }
 }
 

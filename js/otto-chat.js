@@ -41,6 +41,7 @@
                 <button type="button" data-otto-export-chat>Export chat</button>
               </div>
             </div>
+            <button class="otto-chat-voice" type="button" data-otto-voice aria-label="Record voice message">Mic</button>
             <input data-otto-input type="text" maxlength="1200" autocomplete="off" placeholder="Ask OTTO..." />
             <button class="otto-chat-send" type="submit" aria-label="Send message">Send</button>
           </form>
@@ -55,6 +56,14 @@
           <img src="assets/logos/otto.png" alt="" />
           <span>OTTO</span>
         </button>`
+      );
+    }
+
+    const existingInput = document.querySelector("[data-otto-input]");
+    if (existingInput && !document.querySelector("[data-otto-voice]")) {
+      existingInput.insertAdjacentHTML(
+        "beforebegin",
+        `<button class="otto-chat-voice" type="button" data-otto-voice aria-label="Record voice message">Mic</button>`
       );
     }
   }
@@ -72,8 +81,11 @@
   const actionMenu = document.querySelector("[data-otto-action-menu]");
   const newChatBtn = document.querySelector("[data-otto-new-chat]");
   const exportChatBtn = document.querySelector("[data-otto-export-chat]");
+  const voiceBtn = document.querySelector("[data-otto-voice]");
   const starterMessage = "Ask me about the Forged By Fire knowledge base, tools, learning tracks, or practical project direction.";
   const transcript = [];
+  let mediaRecorder = null;
+  let voiceChunks = [];
 
   if (!messages || !form || !input || !launchers.length || !panel) {
     return;
@@ -232,35 +244,7 @@
     exportChatBtn.addEventListener("click", exportTranscript);
   }
 
-  document.addEventListener("click", (event) => {
-    if (!actionMenu || actionMenu.hidden) return;
-    if (event.target === actionsBtn || actionMenu.contains(event.target)) return;
-    closeActionMenu();
-  });
-
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest ? event.target.closest("a[href]") : null;
-    if (!link) return;
-    const target = (link.getAttribute("target") || "").toLowerCase();
-    if (target && target !== "_self") return;
-    try {
-      const destination = new URL(link.href, window.location.href);
-      if (destination.origin !== window.location.origin) {
-        clearLocalChatSession();
-      }
-    } catch (error) {
-      return;
-    }
-  });
-
-  loadTranscript();
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const text = input.value.trim();
-    if (!text) return;
-
-    input.value = "";
+  async function sendChatMessage(text) {
     input.disabled = true;
     addMessage("user", text);
     setStatus("OTTO is thinking...", "busy");
@@ -292,6 +276,122 @@
         input.focus();
       }
     }
+  }
+
+  async function uploadVoice(blob) {
+    const formData = new FormData();
+    const extension = blob.type.includes("ogg") ? "ogg" : "webm";
+    formData.append("audio", blob, `otto-voice-${Date.now()}.${extension}`);
+    formData.append("session_id", sessionId);
+    setStatus("Saving voice...", "busy");
+
+    const response = await fetch(`${apiBase}/voice`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.detail || `Voice upload failed: ${response.status}`);
+    }
+
+    return response.json();
+  }
+
+  async function startVoiceRecording() {
+    if (!navigator.mediaDevices || !window.MediaRecorder) {
+      addMessage("otto", "Voice recording is not available in this browser.");
+      return;
+    }
+
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    voiceChunks = [];
+    const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+      ? "audio/webm;codecs=opus"
+      : "audio/webm";
+    mediaRecorder = new MediaRecorder(stream, { mimeType });
+
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      if (event.data && event.data.size) {
+        voiceChunks.push(event.data);
+      }
+    });
+
+    mediaRecorder.addEventListener("stop", async () => {
+      stream.getTracks().forEach((track) => track.stop());
+      const blob = new Blob(voiceChunks, { type: mimeType });
+      mediaRecorder = null;
+      voiceBtn.classList.remove("recording");
+      voiceBtn.textContent = "Mic";
+      voiceBtn.setAttribute("aria-label", "Record voice message");
+
+      try {
+        const result = await uploadVoice(blob);
+        const spokenText = (result.translated_text || result.transcript || "").trim();
+        if (spokenText) {
+          await sendChatMessage(spokenText);
+        } else {
+          addMessage("otto", `Voice saved, but I could not transcribe it yet. Recording id: ${result.recording_id}`);
+          setStatus("Voice saved", "ready");
+        }
+      } catch (error) {
+        addMessage("otto", `I could not process that voice recording. ${error.message || ""}`);
+        setStatus("Voice failed", "offline");
+      }
+    });
+
+    mediaRecorder.start();
+    voiceBtn.classList.add("recording");
+    voiceBtn.textContent = "Stop";
+    voiceBtn.setAttribute("aria-label", "Stop recording voice message");
+    setStatus("Recording voice...", "busy");
+  }
+
+  if (voiceBtn) {
+    voiceBtn.addEventListener("click", async () => {
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        return;
+      }
+      try {
+        await startVoiceRecording();
+      } catch (error) {
+        addMessage("otto", `Microphone access failed. ${error.message || "Please check browser permission."}`);
+        setStatus("Mic unavailable", "offline");
+      }
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!actionMenu || actionMenu.hidden) return;
+    if (event.target === actionsBtn || actionMenu.contains(event.target)) return;
+    closeActionMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest ? event.target.closest("a[href]") : null;
+    if (!link) return;
+    const target = (link.getAttribute("target") || "").toLowerCase();
+    if (target && target !== "_self") return;
+    try {
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin) {
+        clearLocalChatSession();
+      }
+    } catch (error) {
+      return;
+    }
+  });
+
+  loadTranscript();
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = "";
+    await sendChatMessage(text);
   });
 
   fetch(`${apiBase}/health`, { method: "GET" })
