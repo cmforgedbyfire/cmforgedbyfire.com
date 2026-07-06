@@ -329,7 +329,9 @@
         const result = await uploadVoice(blob);
         const spokenText = (result.translated_text || result.transcript || "").trim();
         if (spokenText) {
-          await sendChatMessage(spokenText);
+          input.value = spokenText;
+          input.focus();
+          setStatus("Voice transcribed - review and send", "ready");
         } else {
           addMessage("otto", `Voice saved, but I could not transcribe it yet. Recording id: ${result.recording_id}`);
           setStatus("Voice saved", "ready");
