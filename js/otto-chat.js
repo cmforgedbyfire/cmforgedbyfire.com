@@ -2,7 +2,11 @@
   const host = window.location.hostname;
   const isLocalPreview = ["localhost", "127.0.0.1", ""].includes(host) || window.location.protocol === "file:";
   const defaultEndpoint = isLocalPreview ? "http://127.0.0.1:7793" : "https://api.cmforgedbyfire.com/otto";
-  const apiBase = (window.OTTO_API_URL || localStorage.getItem("OTTO_API_URL") || defaultEndpoint).replace(/\/$/, "");
+  if (!isLocalPreview) {
+    localStorage.removeItem("OTTO_API_URL");
+  }
+  const endpointOverride = isLocalPreview ? (window.OTTO_API_URL || localStorage.getItem("OTTO_API_URL")) : "";
+  const apiBase = (endpointOverride || defaultEndpoint).replace(/\/$/, "");
   const sessionKey = "otto_session_id";
   let sessionId = localStorage.getItem(sessionKey);
 
@@ -174,12 +178,12 @@
       }
 
       const data = await response.json();
-      addMessage("otto", data.reply || "I did not get a response.", data.sources || []);
+      addMessage("otto", data.reply || "I did not get a response.", [...(data.sources || []), ...(data.web_sources || [])]);
       setStatus(`Online via ${data.model || "OTTO"}`, "ready");
     } catch (error) {
       addMessage(
         "otto",
-        "I cannot reach OTTO right now. The public chat backend may not be running yet."
+        `I cannot reach OTTO right now. ${error.message || "The public chat backend may not be running yet."}`
       );
       setStatus("Backend offline", "offline");
     } finally {
