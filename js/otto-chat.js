@@ -9,6 +9,7 @@
   const apiBase = (endpointOverride || defaultEndpoint).replace(/\/$/, "");
   const sessionKey = "otto_session_id";
   const transcriptKey = "otto_transcript";
+  const stillnessKey = "otto_last_response_finished_at";
   const isCoarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
   let sessionId = sessionStorage.getItem(sessionKey);
 
@@ -101,6 +102,50 @@
     sessionStorage.setItem(transcriptKey, JSON.stringify(transcript));
   }
 
+  function formatDuration(ms) {
+    if (!Number.isFinite(ms) || ms < 0) return "0s";
+    const totalSeconds = Math.floor(ms / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    if (days) return `${days}d ${hours}h ${minutes}m`;
+    if (hours) return `${hours}h ${minutes}m ${seconds}s`;
+    if (minutes) return `${minutes}m ${seconds}s`;
+    return `${seconds}s`;
+  }
+
+  function stillnessLabel(ms) {
+    if (!Number.isFinite(ms) || ms < 60000) return "immediate continuation";
+    if (ms < 10 * 60000) return "short pause";
+    if (ms < 60 * 60000) return "user stepped away";
+    if (ms < 12 * 60 * 60000) return "long gap";
+    return "session resumed later";
+  }
+
+  function buildStillnessContext() {
+    const raw = sessionStorage.getItem(stillnessKey);
+    if (!raw) return null;
+    const startedAt = new Date(raw);
+    const returnedAt = new Date();
+    const durationMs = returnedAt.getTime() - startedAt.getTime();
+    if (!Number.isFinite(durationMs) || durationMs < 0) return null;
+    return {
+      kind: "ai_stillness",
+      thread_id: sessionId,
+      thread_name: "Website chat",
+      response_finished_at: startedAt.toISOString(),
+      next_interaction_at: returnedAt.toISOString(),
+      still_duration_ms: durationMs,
+      still_duration_text: formatDuration(durationMs),
+      still_label: stillnessLabel(durationMs),
+    };
+  }
+
+  function markAIStill() {
+    sessionStorage.setItem(stillnessKey, new Date().toISOString());
+  }
+
   function renderMessage(role, text, sources) {
     const item = document.createElement("div");
     item.className = `otto-message otto-message-${role}`;
@@ -152,6 +197,7 @@
     messages.replaceChildren();
     transcript.length = 0;
     sessionStorage.removeItem(transcriptKey);
+    sessionStorage.removeItem(stillnessKey);
     sessionId = `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
     sessionStorage.setItem(sessionKey, sessionId);
     addMessage("otto", starterMessage);
@@ -246,6 +292,7 @@
 
   async function sendChatMessage(text) {
     input.disabled = true;
+    const stillnessContext = buildStillnessContext();
     addMessage("user", text);
     setStatus("OTTO is thinking...", "busy");
 
@@ -253,7 +300,14 @@
       const response = await fetch(`${apiBase}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, session_id: sessionId }),
+        body: JSON.stringify({
+          message: text,
+          session_id: sessionId,
+          client_id: "website-public",
+          client_context: {
+            stillness: stillnessContext,
+          },
+        }),
       });
 
       if (!response.ok) {
@@ -263,12 +317,14 @@
 
       const data = await response.json();
       addMessage("otto", data.reply || "I did not get a response.", [...(data.sources || []), ...(data.web_sources || [])]);
+      markAIStill();
       setStatus(`Online via ${data.model || "OTTO"}`, "ready");
     } catch (error) {
       addMessage(
         "otto",
         `I cannot reach OTTO right now. ${error.message || "The public chat backend may not be running yet."}`
       );
+      markAIStill();
       setStatus("Backend offline", "offline");
     } finally {
       input.disabled = false;
