@@ -646,7 +646,7 @@ main{display:block}
   bottom: 78px;
   z-index: 1001;
   width: min(390px, calc(100vw - 28px));
-  height: min(590px, calc(100vh - 108px));
+  height: min(590px, calc(100dvh - 108px));
   display:none;
   grid-template-rows: auto 1fr auto;
   overflow:hidden;
@@ -836,6 +836,7 @@ main{display:block}
   padding: 11px 12px;
   color: var(--text);
   background: rgba(255,255,255,.04);
+  font-size: 16px;
 }
 
 .otto-chat-send{
@@ -1034,6 +1035,79 @@ main{display:block}
   .otto-hero .hero-media img{
     width: 168px;
     height: 168px;
+  }
+}
+
+@media (max-width: 640px){
+  .otto-chat-launcher{
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    min-height: 46px;
+    border-radius: 12px;
+  }
+
+  .otto-chat-panel{
+    left: 8px;
+    right: 8px;
+    bottom: max(68px, calc(env(safe-area-inset-bottom) + 68px));
+    width: auto;
+    height: min(560px, calc(100dvh - 92px));
+    max-height: calc(100dvh - 92px);
+    border-radius: 12px;
+  }
+
+  .otto-chat-head{
+    padding: 8px;
+  }
+
+  .otto-chat-title img{
+    width: 36px;
+    height: 36px;
+  }
+
+  .otto-chat-title strong{
+    font-size: .95rem;
+  }
+
+  .otto-chat-title span{
+    font-size: .78rem;
+  }
+
+  .otto-chat-close{
+    width: 36px;
+    height: 36px;
+  }
+
+  .otto-chat-messages{
+    padding: 10px;
+  }
+
+  .otto-message{
+    padding: 9px 10px;
+  }
+
+  .otto-message-user{
+    margin-left: 14px;
+  }
+
+  .otto-message-otto{
+    margin-right: 10px;
+  }
+
+  .otto-chat-form{
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .otto-chat-plus{
+    width: 38px;
+    height: 38px;
+  }
+
+  .otto-chat-send{
+    min-width: 58px;
+    padding: 0 10px;
   }
 }
 

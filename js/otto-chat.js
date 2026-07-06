@@ -9,6 +9,7 @@
   const apiBase = (endpointOverride || defaultEndpoint).replace(/\/$/, "");
   const sessionKey = "otto_session_id";
   const transcriptKey = "otto_transcript";
+  const isCoarsePointer = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
   let sessionId = sessionStorage.getItem(sessionKey);
 
   if (!sessionId) {
@@ -147,7 +148,9 @@
   function openPanel() {
     panel.classList.add("open");
     launchers.forEach((button) => button.setAttribute("aria-expanded", "true"));
-    input.focus();
+    if (!isCoarsePointer) {
+      input.focus();
+    }
   }
 
   function clearLocalChatSession() {
@@ -179,7 +182,9 @@
     resetMessages();
     setStatus("New chat ready", "ready");
     closeActionMenu();
-    input.focus();
+    if (!isCoarsePointer) {
+      input.focus();
+    }
   }
 
   function exportTranscript() {
@@ -196,7 +201,9 @@
     link.click();
     URL.revokeObjectURL(url);
     closeActionMenu();
-    input.focus();
+    if (!isCoarsePointer) {
+      input.focus();
+    }
   }
 
   launchers.forEach((launcher) => {
@@ -281,7 +288,9 @@
       setStatus("Backend offline", "offline");
     } finally {
       input.disabled = false;
-      input.focus();
+      if (!isCoarsePointer) {
+        input.focus();
+      }
     }
   });
 
