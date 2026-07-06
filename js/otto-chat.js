@@ -8,12 +8,57 @@
   const endpointOverride = isLocalPreview ? (window.OTTO_API_URL || localStorage.getItem("OTTO_API_URL")) : "";
   const apiBase = (endpointOverride || defaultEndpoint).replace(/\/$/, "");
   const sessionKey = "otto_session_id";
-  let sessionId = localStorage.getItem(sessionKey);
+  const transcriptKey = "otto_transcript";
+  let sessionId = sessionStorage.getItem(sessionKey);
 
   if (!sessionId) {
     sessionId = `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-    localStorage.setItem(sessionKey, sessionId);
+    sessionStorage.setItem(sessionKey, sessionId);
   }
+
+  function ensureWidget() {
+    if (!document.querySelector("[data-otto-panel]")) {
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `<aside class="otto-chat-panel" data-otto-panel aria-label="OTTO chat">
+          <div class="otto-chat-head">
+            <div class="otto-chat-title">
+              <img src="assets/logos/otto.png" alt="" />
+              <div>
+                <strong>OTTO</strong>
+                <span data-otto-status>Checking backend...</span>
+              </div>
+            </div>
+            <button class="otto-chat-close" type="button" data-otto-close aria-label="Close OTTO chat">×</button>
+          </div>
+          <div class="otto-chat-messages" data-otto-messages></div>
+          <form class="otto-chat-form" data-otto-form>
+            <div class="otto-chat-actions">
+              <button class="otto-chat-plus" type="button" data-otto-actions aria-label="Open chat actions" aria-expanded="false">+</button>
+              <div class="otto-action-menu" data-otto-action-menu hidden>
+                <button type="button" data-otto-new-chat>New chat</button>
+                <button type="button" data-otto-export-chat>Export chat</button>
+              </div>
+            </div>
+            <input data-otto-input type="text" maxlength="1200" autocomplete="off" placeholder="Ask OTTO..." />
+            <button class="otto-chat-send" type="submit" aria-label="Send message">Send</button>
+          </form>
+        </aside>`
+      );
+    }
+
+    if (!document.querySelector(".otto-chat-launcher[data-otto-launcher]")) {
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        `<button class="otto-chat-launcher" type="button" data-otto-launcher aria-label="Open OTTO chat" aria-expanded="false">
+          <img src="assets/logos/otto.png" alt="" />
+          <span>OTTO</span>
+        </button>`
+      );
+    }
+  }
+
+  ensureWidget();
 
   const messages = document.querySelector("[data-otto-messages]");
   const form = document.querySelector("[data-otto-form]");
@@ -33,15 +78,17 @@
     return;
   }
 
-  transcript.push({ role: "otto", text: starterMessage, sources: [], timestamp: new Date().toISOString() });
-
   function setStatus(text, mode) {
     if (!status) return;
     status.textContent = text;
     status.dataset.state = mode || "idle";
   }
 
-  function addMessage(role, text, sources) {
+  function saveTranscript() {
+    sessionStorage.setItem(transcriptKey, JSON.stringify(transcript));
+  }
+
+  function renderMessage(role, text, sources) {
     const item = document.createElement("div");
     item.className = `otto-message otto-message-${role}`;
 
@@ -62,12 +109,38 @@
 
     messages.appendChild(item);
     messages.scrollTop = messages.scrollHeight;
+  }
+
+  function addMessage(role, text, sources) {
+    renderMessage(role, text, sources);
     transcript.push({ role, text, sources: sources || [], timestamp: new Date().toISOString() });
+    saveTranscript();
+  }
+
+  function loadTranscript() {
+    const saved = sessionStorage.getItem(transcriptKey);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length) {
+          transcript.splice(0, transcript.length, ...parsed);
+          messages.replaceChildren();
+          transcript.forEach((item) => renderMessage(item.role, item.text, item.sources || []));
+          return;
+        }
+      } catch (error) {
+        sessionStorage.removeItem(transcriptKey);
+      }
+    }
+    addMessage("otto", starterMessage);
   }
 
   function resetMessages() {
     messages.replaceChildren();
     transcript.length = 0;
+    sessionStorage.removeItem(transcriptKey);
+    sessionId = `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    sessionStorage.setItem(sessionKey, sessionId);
     addMessage("otto", starterMessage);
   }
 
@@ -75,6 +148,11 @@
     panel.classList.add("open");
     launchers.forEach((button) => button.setAttribute("aria-expanded", "true"));
     input.focus();
+  }
+
+  function clearLocalChatSession() {
+    sessionStorage.removeItem(transcriptKey);
+    sessionStorage.removeItem(sessionKey);
   }
 
   function closePanel() {
@@ -98,8 +176,6 @@
   }
 
   function startNewChat() {
-    sessionId = `web-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-    localStorage.setItem(sessionKey, sessionId);
     resetMessages();
     setStatus("New chat ready", "ready");
     closeActionMenu();
@@ -154,6 +230,23 @@
     if (event.target === actionsBtn || actionMenu.contains(event.target)) return;
     closeActionMenu();
   });
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest ? event.target.closest("a[href]") : null;
+    if (!link) return;
+    const target = (link.getAttribute("target") || "").toLowerCase();
+    if (target && target !== "_self") return;
+    try {
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin) {
+        clearLocalChatSession();
+      }
+    } catch (error) {
+      return;
+    }
+  });
+
+  loadTranscript();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
