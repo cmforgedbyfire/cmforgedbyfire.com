@@ -184,6 +184,19 @@ main{display:block}
   text-align:left;
 }
 
+.hero-content .cta-row{
+  justify-content:flex-start;
+}
+
+.hero-kicker{
+  margin: 0 0 8px 0;
+  color: var(--brass);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .78rem;
+}
+
 .hero h2{
   margin: 0 0 12px 0;
   font-size: 2.1rem;
@@ -207,6 +220,28 @@ main{display:block}
   background:
     radial-gradient(900px 420px at 50% 0%, rgba(58,167,197,.24), transparent 70%),
     radial-gradient(800px 420px at 15% 30%, rgba(255,122,24,.10), transparent 70%);
+}
+
+.otto-hero{
+  padding: 48px 0 38px 0;
+}
+
+.otto-hero .hero-split{
+  grid-template-columns: 220px 1fr;
+}
+
+.otto-hero .hero-media img{
+  width: 200px;
+  height: 200px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(58,167,197,.18), transparent 58%),
+    #14120e;
+  border-color: rgba(58,167,197,.32);
+}
+
+.otto-pill-row{
+  justify-content:flex-start;
 }
 
 .cta-row{
@@ -517,12 +552,301 @@ main{display:block}
 
 .panel h4{margin: 0 0 10px 0}
 .panel-title{margin: 0 0 8px 0}
+
+.otto-capability-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.otto-capability h4{
+  margin: 0 0 8px 0;
+}
+
+.capability-eyebrow{
+  margin: 0 0 8px 0;
+  color: var(--teal);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .72rem;
+}
+
+.otto-preview-panel{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  gap: 18px;
+  border-color: rgba(58,167,197,.22);
+  background:
+    linear-gradient(135deg, rgba(58,167,197,.11), transparent 42%),
+    var(--panel);
+}
+
+.otto-preview-panel .muted{
+  margin-bottom: 0;
+}
+
+.otto-track{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.track-step{
+  width: 42px;
+  height: 42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin: 0 0 12px 0;
+  border-radius: 12px;
+  color: #1a130c;
+  background: linear-gradient(135deg, var(--brass), var(--ember));
+  font-weight: 900;
+  font-size: 1.15rem;
+}
+
 .empty-state{
   max-width:720px;
   margin:0 auto;
   text-align:center;
 }
 .empty-state h3{margin:0 0 8px}
+
+.otto-chat-launcher{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1000;
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 12px 8px 8px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  color:#1a130c;
+  background: linear-gradient(135deg, var(--brass), var(--ember));
+  box-shadow: var(--shadow);
+  font-weight: 800;
+  letter-spacing: .06em;
+  cursor:pointer;
+}
+
+.otto-chat-launcher img{
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #14120e;
+}
+
+.otto-chat-panel{
+  position: fixed;
+  right: 18px;
+  bottom: 78px;
+  z-index: 1001;
+  width: min(390px, calc(100vw - 28px));
+  height: min(590px, calc(100vh - 108px));
+  display:none;
+  grid-template-rows: auto 1fr auto;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+    var(--panel);
+  box-shadow: 0 24px 70px rgba(0,0,0,.62);
+}
+
+.otto-chat-panel.open{display:grid}
+
+.otto-chat-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  background: #14120e;
+}
+
+.otto-chat-title{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.otto-chat-title img{
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  flex: 0 0 auto;
+}
+
+.otto-chat-title strong{
+  display:block;
+  color: var(--text);
+  letter-spacing: .08em;
+}
+
+.otto-chat-title span{
+  display:block;
+  color: var(--muted);
+  font-size: .8rem;
+  margin-top: 2px;
+}
+
+.otto-chat-title span[data-state="ready"]{color: var(--teal)}
+.otto-chat-title span[data-state="busy"]{color: var(--brass)}
+.otto-chat-title span[data-state="offline"]{color: var(--ember)}
+
+.otto-chat-close{
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 10px;
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor:pointer;
+}
+
+.otto-chat-messages{
+  overflow:auto;
+  padding: 12px;
+  background:
+    radial-gradient(460px 220px at 50% 0%, rgba(255,122,24,.12), transparent 70%),
+    rgba(10,9,8,.45);
+}
+
+.otto-message{
+  margin-bottom: 10px;
+  padding: 10px 11px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+}
+
+.otto-message-user{
+  margin-left: 34px;
+  border-color: rgba(209,163,90,.35);
+  background: rgba(209,163,90,.10);
+}
+
+.otto-message-otto{
+  margin-right: 20px;
+  border-color: rgba(58,167,197,.28);
+}
+
+.otto-message-label{
+  display:block;
+  margin-bottom: 4px;
+  color: var(--brass);
+  font-weight: 800;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.otto-message p{
+  margin: 0;
+  color: var(--text);
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.otto-message small{
+  display:block;
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.otto-chat-form{
+  position: relative;
+  display:grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid var(--line);
+  background: #14120e;
+}
+
+.otto-chat-actions{
+  position: relative;
+}
+
+.otto-chat-plus{
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  color: var(--brass);
+  background: rgba(255,255,255,.04);
+  font-size: 1.45rem;
+  line-height: 1;
+  font-weight: 700;
+  cursor:pointer;
+}
+
+.otto-chat-plus[aria-expanded="true"]{
+  color:#1a130c;
+  background: linear-gradient(135deg, var(--brass), var(--ember));
+}
+
+.otto-action-menu{
+  position:absolute;
+  left: 0;
+  bottom: 50px;
+  z-index: 2;
+  min-width: 154px;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  background: #1b1914;
+  box-shadow: 0 18px 44px rgba(0,0,0,.45);
+}
+
+.otto-action-menu button{
+  width: 100%;
+  min-height: 34px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 10px;
+  color: var(--text);
+  background: transparent;
+  text-align:left;
+  font-weight: 700;
+  cursor:pointer;
+}
+
+.otto-action-menu button:hover,
+.otto-action-menu button:focus-visible{
+  color:#1a130c;
+  background: linear-gradient(135deg, var(--brass), var(--ember));
+  outline: none;
+}
+
+.otto-chat-form input{
+  min-width: 0;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 11px 12px;
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+}
+
+.otto-chat-send{
+  border: 0;
+  border-radius: 10px;
+  padding: 0 14px;
+  color:#1a130c;
+  background: linear-gradient(135deg, var(--brass), var(--ember));
+  font-weight: 800;
+  cursor:pointer;
+}
 
 .bullets{
   margin: 0;
@@ -689,6 +1013,9 @@ main{display:block}
   .project-grid{grid-template-columns: 1fr}
   .grid{grid-template-columns: 1fr}
   .gallery{grid-template-columns: 1fr}
+  .otto-capability-grid{grid-template-columns: 1fr}
+  .otto-track{grid-template-columns: 1fr}
+  .otto-preview-panel{grid-template-columns: 1fr}
   .warning-shot-grid{grid-template-columns: 1fr}
   .project-gallery{grid-template-columns: 1fr}
   .form-grid{grid-template-columns: 1fr}
@@ -701,6 +1028,13 @@ main{display:block}
     text-align:center;
   }
   .hero-content{text-align:center}
+  .hero-content .cta-row,
+  .otto-pill-row{justify-content:center}
+  .otto-hero .hero-split{grid-template-columns: 1fr}
+  .otto-hero .hero-media img{
+    width: 168px;
+    height: 168px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce){

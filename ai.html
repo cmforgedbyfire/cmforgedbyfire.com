@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>AI - Forged By Fire Software LLC</title>
-  <meta name="description" content="AI projects and local-first experiments from Forged By Fire Software LLC." />
+  <meta name="description" content="Talk to OTTO, the Forged By Fire local-first AI assistant and public knowledge base preview." />
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/x-icon" href="assets/icons/the_forge.ico" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/otto.ico" />
 </head>
 
 <body>
@@ -30,24 +30,131 @@
   </header>
 
   <main class="page" id="main-content">
-    <section class="hero hero-precision">
-      <div class="hero-inner">
-        <h2>AI projects will live here.</h2>
-        <p class="lead">
-          This tab stays available for the AI side of the work. The page can be expanded after the free software library structure is settled.
-        </p>
+    <section class="hero hero-precision otto-hero">
+      <div class="hero-split">
+        <div class="hero-media">
+          <img src="assets/logos/otto.png" alt="OTTO local AI assistant icon" />
+        </div>
+        <div class="hero-content">
+          <p class="hero-kicker">Forged By Fire AI</p>
+          <h2>OTTO</h2>
+          <p class="lead">
+            A practical operations assistant for Forged By Fire Software LLC. The website preview lets people talk to OTTO, ask about the public knowledge base, and get plain-English help with tools, projects, learning topics, and next steps.
+          </p>
+          <div class="pill-row otto-pill-row" aria-label="OTTO capabilities">
+            <span class="pill">Public preview</span>
+            <span class="pill">Knowledge base</span>
+            <span class="pill">Local-first path</span>
+          </div>
+          <div class="cta-row">
+            <button class="btn btn-primary" type="button" data-otto-launcher aria-expanded="false">Talk to OTTO</button>
+            <a class="btn btn-ghost" href="privacy.html">Privacy</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="panel empty-state">
-        <h3>AI page ready</h3>
-        <p class="muted">
-          For now this is a quiet placeholder so the main navigation has Software and AI only.
-        </p>
+      <h3 class="section-title">What OTTO Is Here</h3>
+      <div class="otto-capability-grid">
+        <article class="panel otto-capability">
+          <p class="capability-eyebrow">Website</p>
+          <h4>Public chat preview</h4>
+          <p class="muted">
+            Visitors can open the AI tab, talk to OTTO, and ask questions that can be answered from the public-safe knowledge base.
+          </p>
+        </article>
+        <article class="panel otto-capability">
+          <p class="capability-eyebrow">Knowledge</p>
+          <h4>Code-aware guidance</h4>
+          <p class="muted">
+            OTTO can help explain project direction, software notes, learning material, and code concepts that have been approved for the public RAG set.
+          </p>
+        </article>
+        <article class="panel otto-capability">
+          <p class="capability-eyebrow">Boundary</p>
+          <h4>Not the full desktop assistant</h4>
+          <p class="muted">
+            The website chat does not control private machines, read private files, use local memory, or process OCR uploads. Those stay in the local desktop build.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel otto-preview-panel">
+        <div>
+          <h3 class="panel-title">Public Preview</h3>
+          <p class="muted">
+            This is the first website-facing version of OTTO. Conversations may be saved to improve replies, debug issues, and review abuse. Private computer control, schedules, files, OCR, and long-term local memory are not part of this public chat.
+          </p>
+        </div>
+        <button class="btn btn-primary" type="button" data-otto-launcher aria-expanded="false">Open Chat</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Build Track</h3>
+      <div class="cards otto-track">
+        <article class="card">
+          <p class="track-step">1</p>
+          <h4 class="card-title">Public AI tab</h4>
+          <p class="card-body">
+            Keep OTTO visible on this page, make the pop-out chat reliable, and keep the privacy boundary easy to find.
+          </p>
+        </article>
+        <article class="card">
+          <p class="track-step">3</p>
+          <h4 class="card-title">Better answers</h4>
+          <p class="card-body">
+            Improve the public RAG set, test real questions, and keep personal or private company details out of the website assistant.
+          </p>
+        </article>
+        <article class="card">
+          <p class="track-step">5</p>
+          <h4 class="card-title">Local assistant polish</h4>
+          <p class="card-body">
+            Grow the desktop version separately with OCR, file tools, memory, and trusted local workflows once the website preview is stable.
+          </p>
+        </article>
       </div>
     </section>
   </main>
+
+  <aside class="otto-chat-panel" data-otto-panel aria-label="OTTO chat">
+    <div class="otto-chat-head">
+      <div class="otto-chat-title">
+        <img src="assets/logos/otto.png" alt="" />
+        <div>
+          <strong>OTTO</strong>
+          <span data-otto-status>Checking backend...</span>
+        </div>
+      </div>
+      <button class="otto-chat-close" type="button" data-otto-close aria-label="Close OTTO chat">×</button>
+    </div>
+    <div class="otto-chat-messages" data-otto-messages>
+      <div class="otto-message otto-message-otto">
+        <span class="otto-message-label">OTTO</span>
+        <p>Ask me about the Forged By Fire knowledge base, tools, learning tracks, or practical project direction.</p>
+      </div>
+    </div>
+    <form class="otto-chat-form" data-otto-form>
+      <div class="otto-chat-actions">
+        <button class="otto-chat-plus" type="button" data-otto-actions aria-label="Open chat actions" aria-expanded="false">+</button>
+        <div class="otto-action-menu" data-otto-action-menu hidden>
+          <button type="button" data-otto-new-chat>New chat</button>
+          <button type="button" data-otto-export-chat>Export chat</button>
+        </div>
+      </div>
+      <input data-otto-input type="text" maxlength="1200" autocomplete="off" placeholder="Ask OTTO..." />
+      <button class="otto-chat-send" type="submit" aria-label="Send message">Send</button>
+    </form>
+  </aside>
+
+  <button class="otto-chat-launcher" type="button" data-otto-launcher aria-label="Open OTTO chat" aria-expanded="false">
+    <img src="assets/logos/otto.png" alt="" />
+    <span>OTTO</span>
+  </button>
 
   <footer class="footer">
     <div class="footer-inner container">
@@ -60,5 +167,6 @@
     </div>
   </footer>
   <script src="js/cursor-trail.js"></script>
+  <script src="js/otto-chat.js"></script>
 </body>
 </html>
