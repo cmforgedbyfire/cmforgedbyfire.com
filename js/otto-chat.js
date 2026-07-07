@@ -25,7 +25,13 @@
         `<aside class="otto-chat-panel" data-otto-panel aria-label="OTTO chat">
           <div class="otto-chat-head">
             <div class="otto-chat-title">
-              <img src="assets/logos/otto.png" alt="" />
+              <img
+                src="assets/logos/otto.png"
+                data-otto-icon
+                data-idle-src="assets/logos/otto.png"
+                data-thinking-src="assets/logos/otto-thinking.webp"
+                alt=""
+              />
               <div>
                 <strong>OTTO</strong>
                 <span data-otto-status>Checking backend...</span>
@@ -54,7 +60,13 @@
       document.body.insertAdjacentHTML(
         "beforeend",
         `<button class="otto-chat-launcher" type="button" data-otto-launcher aria-label="Open OTTO chat" aria-expanded="false">
-          <img src="assets/logos/otto.png" alt="" />
+          <img
+            src="assets/logos/otto.png"
+            data-otto-icon
+            data-idle-src="assets/logos/otto.png"
+            data-thinking-src="assets/logos/otto-thinking.webp"
+            alt=""
+          />
           <span>OTTO</span>
         </button>`
       );
@@ -87,6 +99,7 @@
   const transcript = [];
   let mediaRecorder = null;
   let voiceChunks = [];
+  let voiceStartedAt = 0;
 
   if (!messages || !form || !input || !launchers.length || !panel) {
     return;
@@ -96,6 +109,14 @@
     if (!status) return;
     status.textContent = text;
     status.dataset.state = mode || "idle";
+  }
+
+  function setThinkingIcon(active) {
+    document.querySelectorAll("[data-otto-icon]").forEach((icon) => {
+      const idleSrc = icon.dataset.idleSrc || "assets/logos/otto.png";
+      const thinkingSrc = icon.dataset.thinkingSrc || "assets/logos/otto-thinking.webp";
+      icon.src = active ? thinkingSrc : idleSrc;
+    });
   }
 
   function saveTranscript() {
@@ -385,6 +406,7 @@
     input.disabled = true;
     const stillnessContext = buildStillnessContext();
     addMessage("user", text);
+    setThinkingIcon(true);
     setStatus("OTTO is thinking...", "busy");
 
     try {
@@ -423,6 +445,7 @@
       markAIStill();
       setStatus("Backend offline", "offline");
     } finally {
+      setThinkingIcon(false);
       input.disabled = false;
       if (!isCoarsePointer) {
         input.focus();
@@ -431,6 +454,9 @@
   }
 
   async function uploadVoice(blob) {
+    if (!blob || blob.size < 1200) {
+      throw new Error("No usable voice was captured. Hold Mic a little longer and try again.");
+    }
     const formData = new FormData();
     const extension = blob.type.includes("ogg") ? "ogg" : "webm";
     formData.append("audio", blob, `otto-voice-${Date.now()}.${extension}`);
@@ -458,6 +484,7 @@
 
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     voiceChunks = [];
+    voiceStartedAt = performance.now();
     const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
       ? "audio/webm;codecs=opus"
       : "audio/webm";
@@ -472,12 +499,17 @@
     mediaRecorder.addEventListener("stop", async () => {
       stream.getTracks().forEach((track) => track.stop());
       const blob = new Blob(voiceChunks, { type: mimeType });
+      const durationMs = performance.now() - voiceStartedAt;
       mediaRecorder = null;
+      voiceStartedAt = 0;
       voiceBtn.classList.remove("recording");
       voiceBtn.textContent = "Mic";
       voiceBtn.setAttribute("aria-label", "Record voice message");
 
       try {
+        if (!voiceChunks.length || blob.size < 1200 || durationMs < 450) {
+          throw new Error("No usable voice was captured. Hold Mic a little longer and try again.");
+        }
         const result = await uploadVoice(blob);
         const spokenText = (result.translated_text || result.transcript || "").trim();
         if (spokenText) {
@@ -494,7 +526,7 @@
       }
     });
 
-    mediaRecorder.start();
+    mediaRecorder.start(250);
     voiceBtn.classList.add("recording");
     voiceBtn.textContent = "Stop";
     voiceBtn.setAttribute("aria-label", "Stop recording voice message");

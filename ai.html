@@ -6,6 +6,7 @@
 
   <title>AI - Forged By Fire Software LLC</title>
   <meta name="description" content="Talk to OTTO, the Forged By Fire local-first AI assistant and public knowledge base preview." />
+  <link rel="preload" as="image" href="assets/logos/otto-thinking.webp" />
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/x-icon" href="assets/icons/otto.ico" />
@@ -124,7 +125,13 @@
   <aside class="otto-chat-panel" data-otto-panel aria-label="OTTO chat">
     <div class="otto-chat-head">
       <div class="otto-chat-title">
-        <img src="assets/logos/otto.png" alt="" />
+        <img
+          src="assets/logos/otto.png"
+          data-otto-icon
+          data-idle-src="assets/logos/otto.png"
+          data-thinking-src="assets/logos/otto-thinking.webp"
+          alt=""
+        />
         <div>
           <strong>OTTO</strong>
           <span data-otto-status>Checking backend...</span>
@@ -152,7 +159,13 @@
   </aside>
 
   <button class="otto-chat-launcher" type="button" data-otto-launcher aria-label="Open OTTO chat" aria-expanded="false">
-    <img src="assets/logos/otto.png" alt="" />
+    <img
+      src="assets/logos/otto.png"
+      data-otto-icon
+      data-idle-src="assets/logos/otto.png"
+      data-thinking-src="assets/logos/otto-thinking.webp"
+      alt=""
+    />
     <span>OTTO</span>
   </button>
 
