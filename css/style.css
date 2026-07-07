@@ -764,6 +764,88 @@ main{display:block}
   line-height: 1.35;
 }
 
+.otto-display-card{
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid rgba(58,167,197,.24);
+  border-radius: 8px;
+  background:
+    radial-gradient(280px 130px at 95% 0%, rgba(58,167,197,.12), transparent 72%),
+    rgba(12,18,18,.62);
+}
+
+.otto-weather-head{
+  display:flex;
+  justify-content:space-between;
+  gap: 10px;
+  align-items:flex-start;
+}
+
+.otto-weather-head strong{
+  display:block;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.otto-weather-head span{
+  display:block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.25;
+}
+
+.otto-weather-temp{
+  flex: 0 0 auto;
+  color: var(--brass);
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.otto-weather-grid,
+.otto-weather-forecast{
+  display:grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.otto-weather-grid{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.otto-weather-forecast{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.otto-weather-grid div,
+.otto-weather-forecast div{
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  background: rgba(255,255,255,.04);
+}
+
+.otto-weather-grid span,
+.otto-weather-forecast span,
+.otto-weather-forecast small{
+  display:block;
+  margin: 0;
+  color: var(--muted);
+  font-size: .68rem;
+  line-height: 1.2;
+}
+
+.otto-weather-grid strong,
+.otto-weather-forecast strong{
+  display:block;
+  margin-top: 2px;
+  color: var(--text);
+  font-size: .82rem;
+  line-height: 1.2;
+}
+
 .otto-chat-form{
   position: relative;
   display:grid;

@@ -146,7 +146,67 @@
     sessionStorage.setItem(stillnessKey, new Date().toISOString());
   }
 
-  function renderMessage(role, text, sources) {
+  function renderDisplayCard(card) {
+    if (!card || card.type !== "weather") return null;
+    const metrics = card.metrics || {};
+    const wrap = document.createElement("div");
+    wrap.className = "otto-display-card otto-weather-card";
+
+    const head = document.createElement("div");
+    head.className = "otto-weather-head";
+    head.innerHTML = `
+      <div>
+        <strong></strong>
+        <span></span>
+      </div>
+      <div class="otto-weather-temp"></div>
+    `;
+    head.querySelector("strong").textContent = card.title || "Weather";
+    head.querySelector("span").textContent = [card.subtitle || "", card.observed ? `Observed ${card.observed}` : ""]
+      .filter(Boolean)
+      .join(" · ");
+    head.querySelector(".otto-weather-temp").textContent = metrics.temperature_f
+      ? `${metrics.temperature_f}°F`
+      : "";
+    wrap.appendChild(head);
+
+    const grid = document.createElement("div");
+    grid.className = "otto-weather-grid";
+    [
+      ["Feels", metrics.feels_like_f ? `${metrics.feels_like_f}°F` : ""],
+      ["Humidity", metrics.humidity ? `${metrics.humidity}%` : ""],
+      ["Wind", metrics.wind_mph ? `${metrics.wind_mph} mph ${metrics.wind_dir || ""}`.trim() : ""],
+      ["Precip", metrics.precip_inches ? `${metrics.precip_inches} in` : ""],
+      ["Visibility", metrics.visibility_miles ? `${metrics.visibility_miles} mi` : ""],
+    ].forEach(([labelText, valueText]) => {
+      if (!valueText) return;
+      const item = document.createElement("div");
+      item.innerHTML = `<span></span><strong></strong>`;
+      item.querySelector("span").textContent = labelText;
+      item.querySelector("strong").textContent = valueText;
+      grid.appendChild(item);
+    });
+    wrap.appendChild(grid);
+
+    if (Array.isArray(card.forecast) && card.forecast.length) {
+      const forecast = document.createElement("div");
+      forecast.className = "otto-weather-forecast";
+      card.forecast.slice(0, 3).forEach((day) => {
+        const item = document.createElement("div");
+        const date = day.date ? new Date(`${day.date}T00:00:00`).toLocaleDateString(undefined, { weekday: "short" }) : "Day";
+        item.innerHTML = `<span></span><strong></strong><small></small>`;
+        item.querySelector("span").textContent = date;
+        item.querySelector("strong").textContent = `${day.high_f || "?"}° / ${day.low_f || "?"}°`;
+        item.querySelector("small").textContent = day.condition || "";
+        forecast.appendChild(item);
+      });
+      wrap.appendChild(forecast);
+    }
+
+    return wrap;
+  }
+
+  function renderMessage(role, text, sources, cards) {
     const item = document.createElement("div");
     item.className = `otto-message otto-message-${role}`;
 
@@ -165,13 +225,20 @@
       item.appendChild(sourceLine);
     }
 
+    if (cards && cards.length) {
+      cards.forEach((card) => {
+        const node = renderDisplayCard(card);
+        if (node) item.appendChild(node);
+      });
+    }
+
     messages.appendChild(item);
     messages.scrollTop = messages.scrollHeight;
   }
 
-  function addMessage(role, text, sources) {
-    renderMessage(role, text, sources);
-    transcript.push({ role, text, sources: sources || [], timestamp: new Date().toISOString() });
+  function addMessage(role, text, sources, cards) {
+    renderMessage(role, text, sources, cards);
+    transcript.push({ role, text, sources: sources || [], cards: cards || [], timestamp: new Date().toISOString() });
     saveTranscript();
   }
 
@@ -183,7 +250,7 @@
         if (Array.isArray(parsed) && parsed.length) {
           transcript.splice(0, transcript.length, ...parsed);
           messages.replaceChildren();
-          transcript.forEach((item) => renderMessage(item.role, item.text, item.sources || []));
+          transcript.forEach((item) => renderMessage(item.role, item.text, item.sources || [], item.cards || []));
           return;
         }
       } catch (error) {
@@ -316,7 +383,12 @@
       }
 
       const data = await response.json();
-      addMessage("otto", data.reply || "I did not get a response.", [...(data.sources || []), ...(data.web_sources || [])]);
+      addMessage(
+        "otto",
+        data.reply || "I did not get a response.",
+        [...(data.sources || []), ...(data.web_sources || [])],
+        data.display_cards || []
+      );
       markAIStill();
       setStatus(`Online via ${data.model || "OTTO"}`, "ready");
     } catch (error) {
