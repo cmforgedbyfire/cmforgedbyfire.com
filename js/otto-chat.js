@@ -203,7 +203,29 @@
       wrap.appendChild(forecast);
     }
 
+    const source = document.createElement("a");
+    source.className = "otto-card-source";
+    source.href = card.source_url || "#";
+    source.target = "_blank";
+    source.rel = "noopener noreferrer";
+    source.textContent = `Source: ${card.source || "weather data"}`;
+    wrap.appendChild(source);
+
     return wrap;
+  }
+
+  function isWeatherSource(source) {
+    return typeof source === "string" && source.includes("wttr.in/");
+  }
+
+  function sourceLabel(source) {
+    if (!source) return "";
+    try {
+      const url = new URL(source);
+      return url.hostname.replace(/^www\./, "");
+    } catch (_error) {
+      return source;
+    }
   }
 
   function renderMessage(role, text, sources, cards) {
@@ -219,9 +241,11 @@
 
     item.append(label, body);
 
-    if (sources && sources.length) {
+    const hasWeatherCard = Array.isArray(cards) && cards.some((card) => card && card.type === "weather");
+    const visibleSources = (sources || []).filter((source) => !(hasWeatherCard && isWeatherSource(source)));
+    if (visibleSources.length) {
       const sourceLine = document.createElement("small");
-      sourceLine.textContent = `Sources: ${sources.slice(0, 3).join(", ")}`;
+      sourceLine.textContent = `Sources: ${visibleSources.slice(0, 3).map(sourceLabel).join(", ")}`;
       item.appendChild(sourceLine);
     }
 

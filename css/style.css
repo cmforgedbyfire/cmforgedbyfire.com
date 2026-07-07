@@ -846,6 +846,19 @@ main{display:block}
   line-height: 1.2;
 }
 
+.otto-card-source{
+  display:inline-block;
+  margin-top: 8px;
+  color: var(--teal);
+  font-size: .72rem;
+  line-height: 1.2;
+  text-decoration:none;
+}
+
+.otto-card-source:hover{
+  color: var(--brass);
+}
+
 .otto-chat-form{
   position: relative;
   display:grid;
@@ -1192,6 +1205,20 @@ main{display:block}
 
   .otto-message-otto{
     margin-right: 10px;
+  }
+
+  .otto-weather-temp{
+    font-size: 1.35rem;
+  }
+
+  .otto-weather-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .otto-weather-forecast{
+    grid-template-columns: repeat(3, minmax(72px, 1fr));
+    overflow-x:auto;
+    padding-bottom: 2px;
   }
 
   .otto-chat-form{
