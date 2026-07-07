@@ -39,6 +39,22 @@ body{
 a{color:inherit}
 .dot{margin:0 10px; opacity:.6}
 
+select{
+  color-scheme: dark;
+}
+
+select option,
+select optgroup{
+  background: var(--panel);
+  color: var(--text);
+}
+
+select option:checked,
+select option:hover{
+  background: var(--ember);
+  color: #1a130c;
+}
+
 h1,h2,h3,h4{
   font-family: Georgia,'Times New Roman',serif;
   letter-spacing:.3px;
@@ -1054,13 +1070,23 @@ main{display:block}
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.12);
   color: var(--text);
+  color-scheme: dark;
   padding: 10px 12px;
   border-radius: 10px;
   font-size: .95rem;
 }
 
-.form-field select option{background: #f4f1ea !important; color: #1a130c !important;}
-.form-field select optgroup{background: #f4f1ea !important; color: #1a130c !important;}
+.form-field select option,
+.form-field select optgroup{
+  background: var(--panel);
+  color: var(--text);
+}
+
+.form-field select option:checked,
+.form-field select option:hover{
+  background: var(--ember);
+  color: #1a130c;
+}
 
 .form-field textarea{resize: vertical;}
 
