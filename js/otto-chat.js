@@ -123,7 +123,8 @@
   }
 
   function renderDisplayCard(card) {
-    if (!card || card.type !== "weather") return null;
+    if (!card) return null;
+    if (card.type !== "weather") return renderGenericDisplayCard(card);
     const metrics = card.metrics || {};
     const wrap = document.createElement("div");
     wrap.className = "otto-display-card otto-weather-card";
@@ -186,6 +187,46 @@
     source.rel = "noopener noreferrer";
     source.textContent = `Source: ${card.source || "weather data"}`;
     wrap.appendChild(source);
+
+    return wrap;
+  }
+
+  function renderGenericDisplayCard(card) {
+    const wrap = document.createElement("div");
+    const safeType = String(card.type || "generic").replace(/[^a-z0-9_-]/gi, "");
+    wrap.className = `otto-display-card otto-display-card-${safeType}`;
+
+    const title = document.createElement("strong");
+    title.className = "otto-display-card-title";
+    title.textContent = card.title || card.type || "OTTO display";
+    wrap.appendChild(title);
+
+    const body = document.createElement("div");
+    body.className = "otto-display-card-body";
+    if (Array.isArray(card.items) && card.items.length) {
+      const list = document.createElement("ul");
+      card.items.slice(0, 8).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = typeof item === "string" ? item : JSON.stringify(item);
+        list.appendChild(li);
+      });
+      body.appendChild(list);
+    } else {
+      body.textContent = card.text || card.subtitle || "";
+    }
+    wrap.appendChild(body);
+
+    if (card.source || card.source_url) {
+      const source = document.createElement(card.source_url ? "a" : "span");
+      source.className = "otto-card-source";
+      if (card.source_url) {
+        source.href = card.source_url;
+        source.target = "_blank";
+        source.rel = "noopener noreferrer";
+      }
+      source.textContent = `Source: ${card.source || sourceLabel(card.source_url)}`;
+      wrap.appendChild(source);
+    }
 
     return wrap;
   }
