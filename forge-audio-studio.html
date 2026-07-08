@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Forge Audio Studio - AI-assisted local audio tool</title>
+  <meta name="description" content="Forge Audio Studio is a free Forged By Fire Windows audio tool for local WAV generation, reusable voice-line profiles, and Ollama-backed AI prompt-to-settings help." />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/forge_audio_studio.ico" />
+</head>
+
+<body>
+  <a href="#main-content" class="skip-to-main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand-row">
+        <img src="assets/logos/forge_audio_studio.png" alt="Forge Audio Studio logo" class="brand-logo brand-logo-square" />
+        <div class="brand-text">
+          <h1 class="brand-title">Forge Audio Studio</h1>
+          <p class="brand-subtitle">Local audio, voice lines, and model-assisted sound design</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="software.html" class="nav-link">Software</a>
+        <a href="ai.html" class="nav-link">AI</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page" id="main-content">
+    <section class="hero hero-foundry product-hero">
+      <div class="product-hero-media">
+        <img src="assets/logos/forge_audio_studio.png" alt="Forge Audio Studio logo" />
+      </div>
+      <div class="hero-inner">
+        <h2>Generate local WAVs and reusable assistant voice lines.</h2>
+        <p class="lead">
+          Forge Audio Studio combines procedural audio controls, Windows voice rendering, saved voice profiles, and optional Ollama model help for turning sound ideas into generator settings.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/cmforgedbyfire/cmforgedbyfire.com/releases/download/forge-audio-studio-v1.0.0/ForgeAudioStudio_v1.0.0_Windows_Portable.zip" download>Download Free</a>
+          <a class="btn btn-ghost" href="software.html">Software Library</a>
+        </div>
+        <div class="pill-row">
+          <span class="pill">Free</span>
+          <span class="pill">Windows</span>
+          <span class="pill">Portable ZIP</span>
+          <span class="pill">Local files</span>
+          <span class="pill">Ollama helper</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">What It Does</h3>
+      <div class="cards">
+        <article class="card">
+          <h4 class="card-title">Procedural WAVs</h4>
+          <p class="card-body">
+            Build local WAV effects with editable generator controls, waveform preview, playback, and saved JSON metadata beside each render.
+          </p>
+        </article>
+        <article class="card">
+          <h4 class="card-title">Voice Lines</h4>
+          <p class="card-body">
+            Generate assistant-style speech from Windows TTS or optional Edge neural voices, then shape pitch, body, clarity, grit, robot tone, and space.
+          </p>
+        </article>
+        <article class="card">
+          <h4 class="card-title">Reusable Profiles</h4>
+          <p class="card-body">
+            Save voice profiles as local JSON so other desktop assistants or tools can create matching response clips later.
+          </p>
+        </article>
+        <article class="card">
+          <h4 class="card-title">Model-Assisted Settings</h4>
+          <p class="card-body">
+            With Ollama running, a local model can convert plain-English sound ideas into generator settings for faster experimentation.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Model Requirement</h3>
+      <div class="panel">
+        <p class="muted">
+          Forge Audio Studio is not just a plain audio utility. The AI-assisted settings workflow requires <strong>Ollama</strong> running locally with a compatible model installed.
+        </p>
+        <p class="muted">
+          Recommended local models are <strong>qwen2.5-coder:7b</strong> for normal use and <strong>paul-qwen30b:latest</strong> for heavier prompt-to-settings guidance if your machine has enough room.
+        </p>
+        <p class="muted">
+          Manual generator controls and Windows TTS voice rendering can still run without the model helper, but the intended prompt-driven workflow needs the local model available at <strong>127.0.0.1:11434</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Download</h3>
+      <div class="panel">
+        <p class="muted"><strong>Version:</strong> 1.0.0</p>
+        <p class="muted"><strong>Platform:</strong> Windows desktop app</p>
+        <p class="muted"><strong>File:</strong> Portable ZIP, 70.4 MB</p>
+        <p class="muted"><strong>Cost:</strong> Free</p>
+        <p class="muted"><strong>How to run:</strong> Download the ZIP, extract it, then open <strong>Forge Audio Studio.exe</strong>.</p>
+        <p class="muted"><strong>Privacy:</strong> Generated audio, metadata, and saved voice profiles stay in the extracted app folder unless you move or publish them yourself.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/cmforgedbyfire/cmforgedbyfire.com/releases/download/forge-audio-studio-v1.0.0/ForgeAudioStudio_v1.0.0_Windows_Portable.zip" download>Download Forge Audio Studio Free</a>
+          <a class="btn btn-ghost" href="downloads.html">All Downloads</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Windows Download Warning</h3>
+      <div class="panel">
+        <p class="muted">
+          Forge Audio Studio is new and not code-signed yet, so Microsoft Defender SmartScreen may warn that it is not commonly downloaded.
+          Only continue if you started the download from <strong>cmforgedbyfire.com</strong> or the official <strong>cmforgedbyfire</strong> GitHub release.
+        </p>
+        <ol class="bullets">
+          <li>Open the browser downloads menu next to the downloaded file.</li>
+          <li>Choose <strong>Keep</strong>.</li>
+          <li>If Windows shows "Make sure you trust this file", open the small arrow beside Delete.</li>
+          <li>Choose <strong>Keep anyway</strong>.</li>
+          <li>Extract the ZIP and open <strong>Forge Audio Studio.exe</strong>.</li>
+        </ol>
+        <div class="warning-shot-grid">
+          <figure class="warning-shot">
+            <img src="assets/screenshots/download-warnings/browser-keep-menu.png" alt="Browser downloads menu showing the Keep option" loading="lazy" />
+            <figcaption>Open the downloads menu and choose Keep.</figcaption>
+          </figure>
+          <figure class="warning-shot">
+            <img src="assets/screenshots/download-warnings/windows-trust-warning.png" alt="Windows trust warning showing the Keep anyway option" loading="lazy" />
+            <figcaption>If Windows asks again, choose Keep anyway only for official downloads linked from this site.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Notes</h3>
+      <div class="panel">
+        <p class="muted"><strong>Neural TTS:</strong> Edge neural voices require internet access and <strong>ffmpeg</strong> available on PATH. Windows TTS works offline but depends on installed Windows voices.</p>
+        <p class="muted"><strong>Model helper:</strong> The app talks to local Ollama only. It does not include a model in the ZIP.</p>
+        <p class="muted"><strong>Feedback:</strong> Use the support page with the preset, model, and voice backend you tested.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner container">
+      <p class="footer-support"><a href="support.html">Support / Feedback</a></p>
+      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved.
+        <span class="dot">•</span> <a href="privacy.html">Privacy</a>
+        <span class="dot">•</span> <a href="faq.html">FAQ</a>
+      </p>
+    </div>
+  </footer>
+  <script src="js/cursor-trail.js"></script>
+  <script src="js/otto-chat.js"></script>
+</body>
+</html>
