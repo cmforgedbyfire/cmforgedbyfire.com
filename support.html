@@ -54,6 +54,8 @@
                 <option>General website feedback</option>
                 <option>PC Purifier</option>
                 <option>Master Generator</option>
+                <option>Master Generator Android</option>
+                <option>V.E.N.T Android</option>
                 <option>Sky Tracker Pro</option>
                 <option>Other</option>
               </select>
@@ -66,6 +68,7 @@
                 <option>Feature idea</option>
                 <option>Download problem</option>
                 <option>General feedback</option>
+                <option>Play tester feedback</option>
               </select>
             </div>
           </div>
@@ -99,6 +102,20 @@
       return ['Lpt969', 'hotmail.com'].join('@');
     }
 
+    function applyFeedbackDefaults() {
+      var params = new URLSearchParams(window.location.search);
+      var software = params.get('software');
+      var kind = params.get('kind');
+      var message = params.get('message');
+      var form = document.getElementById('supportForm');
+
+      if (!form) return;
+
+      if (software) form.software.value = software;
+      if (kind) form.kind.value = kind;
+      if (message) form.message.value = message;
+    }
+
     function sendSupportMessage() {
       var form = document.getElementById('supportForm');
       var subject = 'Support / Feedback - ' + form.software.value + ' - ' + form.kind.value;
@@ -116,6 +133,8 @@
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(body);
     }
+
+    applyFeedbackDefaults();
   </script>
   <script src="js/cursor-trail.js"></script>
   <script src="js/otto-chat.js"></script>
