@@ -1,7 +1,18 @@
 (function () {
   const host = window.location.hostname;
-  const isLocalPreview = ["localhost", "127.0.0.1", ""].includes(host) || window.location.protocol === "file:";
-  const defaultEndpoint = isLocalPreview ? "http://127.0.0.1:7793" : "https://api.cmforgedbyfire.com/otto";
+  const isPrivateFireLineHost =
+    /^10\.77\.77\.\d+$/.test(host) ||
+    /^192\.168\.\d+\.\d+$/.test(host) ||
+    /^172\.(1[6-9]|2\d|3[01])\.\d+\.\d+$/.test(host);
+  const isLocalPreview =
+    ["localhost", "127.0.0.1", ""].includes(host) ||
+    isPrivateFireLineHost ||
+    window.location.protocol === "file:";
+  const defaultEndpoint = isPrivateFireLineHost
+    ? `http://${host}:7791`
+    : isLocalPreview
+      ? "http://127.0.0.1:7793"
+      : "https://api.cmforgedbyfire.com/otto";
   if (!isLocalPreview) {
     localStorage.removeItem("OTTO_API_URL");
   }
