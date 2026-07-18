@@ -19,6 +19,25 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
+
+.skip-to-main{
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: var(--ember);
+  color: #1a130c;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+
+.skip-to-main:focus{
+  left: 8px;
+}
+
 body{
   margin:0;
   font-family:'Trebuchet MS','Segoe UI',Tahoma,sans-serif;
@@ -84,10 +103,10 @@ h1,h2,h3,h4{
 }
 
 .brand-logo{
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(255,255,255,.08);
 }
@@ -95,7 +114,7 @@ h1,h2,h3,h4{
 .brand-logo-square{
   object-fit: contain;
   background: #14120e;
-  padding: 10px;
+  padding: 12px;
 }
 
 .brand-text{text-align:left}
@@ -172,7 +191,7 @@ main{display:block}
   max-width: 1080px;
   margin: 0 auto;
   display:grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 24px;
   align-items:center;
   text-align:left;
@@ -186,14 +205,14 @@ main{display:block}
 }
 
 .hero-media img{
-  width: 160px;
-  height: 160px;
+  width: 224px;
+  height: 224px;
   object-fit: contain;
-  border-radius: 18px;
+  border-radius: 24px;
   background: #14120e;
   border: 1px solid rgba(255,255,255,.12);
   box-shadow: var(--shadow);
-  padding: 10px;
+  padding: 14px;
 }
 
 .hero-content{
@@ -243,14 +262,14 @@ main{display:block}
 }
 
 .product-hero-media img{
-  width: 128px;
-  height: 128px;
+  width: 256px;
+  height: 256px;
   object-fit: contain;
-  border-radius: 22px;
+  border-radius: 28px;
   background: #14120e;
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--shadow);
-  padding: 12px;
+  padding: 16px;
 }
 
 .hero-precision{
@@ -433,13 +452,13 @@ main{display:block}
 }
 
 .product-logo{
-  width: 54px;
-  height: 54px;
+  width: 108px;
+  height: 108px;
   object-fit: contain;
-  border-radius: 14px;
+  border-radius: 20px;
   background: #14120e;
   border: 1px solid rgba(255,255,255,.08);
-  padding: 10px;
+  padding: 14px;
 }
 
 .downloads-logo{
@@ -1255,8 +1274,8 @@ main{display:block}
     height: 168px;
   }
   .product-hero-media img{
-    width: 112px;
-    height: 112px;
+    width: 192px;
+    height: 192px;
   }
   .screenshot-grid img,
   .shot img{
