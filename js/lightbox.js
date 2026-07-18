@@ -20,7 +20,7 @@ function openLightbox(src, alt) {
 }
 
 function bindLightbox() {
-  const images = document.querySelectorAll('.shot img, .project-shot img');
+  const images = document.querySelectorAll('.shot img, .project-shot img, .screenshot-grid img');
   images.forEach((img) => {
     if (img.dataset.lightboxBound === '1') return;
     img.dataset.lightboxBound = '1';
