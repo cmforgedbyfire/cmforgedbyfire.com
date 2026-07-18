@@ -103,18 +103,18 @@ h1,h2,h3,h4{
 }
 
 .brand-logo{
-  width: 96px;
-  height: 96px;
+  width: 112px;
+  height: 112px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 22px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(255,255,255,.08);
 }
 
 .brand-logo-square{
-  object-fit: contain;
-  background: #14120e;
-  padding: 12px;
+  object-fit: cover;
+  background: transparent;
+  padding: 0;
 }
 
 .brand-text{text-align:left}
@@ -205,14 +205,14 @@ main{display:block}
 }
 
 .hero-media img{
-  width: 224px;
-  height: 224px;
-  object-fit: contain;
-  border-radius: 24px;
-  background: #14120e;
+  width: 248px;
+  height: 248px;
+  object-fit: cover;
+  border-radius: 28px;
+  background: transparent;
   border: 1px solid rgba(255,255,255,.12);
   box-shadow: var(--shadow);
-  padding: 14px;
+  padding: 0;
 }
 
 .hero-content{
@@ -262,14 +262,14 @@ main{display:block}
 }
 
 .product-hero-media img{
-  width: 256px;
-  height: 256px;
-  object-fit: contain;
-  border-radius: 28px;
-  background: #14120e;
+  width: 288px;
+  height: 288px;
+  object-fit: cover;
+  border-radius: 32px;
+  background: transparent;
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--shadow);
-  padding: 16px;
+  padding: 0;
 }
 
 .hero-precision{
@@ -452,20 +452,20 @@ main{display:block}
 }
 
 .product-logo{
-  width: 108px;
-  height: 108px;
-  object-fit: contain;
-  border-radius: 20px;
-  background: #14120e;
+  width: 124px;
+  height: 124px;
+  object-fit: cover;
+  border-radius: 24px;
+  background: transparent;
   border: 1px solid rgba(255,255,255,.08);
-  padding: 14px;
+  padding: 0;
 }
 
 .downloads-logo{
-  width: 192px;
-  height: 192px;
-  border-radius: 22px;
-  padding: 14px;
+  width: 216px;
+  height: 216px;
+  border-radius: 28px;
+  padding: 0;
 }
 
 .downloads-card-head{
@@ -1274,8 +1274,8 @@ main{display:block}
     height: 168px;
   }
   .product-hero-media img{
-    width: 192px;
-    height: 192px;
+    width: 216px;
+    height: 216px;
   }
   .screenshot-grid img,
   .shot img{
