@@ -314,6 +314,32 @@ main{display:block}
   color: var(--text);
 }
 
+.btn-disabled{
+  opacity: .72;
+  cursor: not-allowed;
+}
+
+.price-line{
+  margin: 8px 0 0 0;
+  color: var(--brass);
+  font-family: Georgia,'Times New Roman',serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.hero-price{
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.paid-card{
+  border-color: rgba(209,163,90,.28);
+  background:
+    linear-gradient(180deg, rgba(209,163,90,.10), rgba(255,255,255,.02)),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+}
+
 .pill-row{
   margin-top: 16px;
   display:flex;
