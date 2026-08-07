@@ -32904,6 +32904,92 @@ function App() {
       (ref) => normalizeCardName(ref.name) === normalizeCardName(cardName)
     );
   }
+  function renderCoachOwnedRecommendation(message, recommendation, index) {
+    const groups = getCoachRecommendationGroups(
+      recommendation,
+      coachDraft?.game ?? "mtg",
+      collection
+    );
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: renderCoachText(recommendation.title, message.result.cardRefs) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: renderCoachText(recommendation.reason, message.result.cardRefs) }),
+      groups.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-result-groups", children: groups.map((group) => {
+        const groupKey = `coach-${message.id}-owned-${index}-${group.label}`;
+        const isOpen = collapsedGroups[groupKey] === false;
+        return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-result-group", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            "button",
+            {
+              "aria-expanded": isOpen,
+              className: "group-heading coach-result-group-heading",
+              onClick: () => toggleCollectionGroup(groupKey),
+              type: "button",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "group-title", children: [
+                  isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronUp, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { size: 17 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: group.label })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                  formatDistinctCardCount(group.distinctCards),
+                  " \xB7",
+                  " ",
+                  group.totalQuantity,
+                  " cop",
+                  group.totalQuantity === 1 ? "y" : "ies"
+                ] })
+              ]
+            }
+          ),
+          isOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-owned-matches coach-owned-group-matches", children: group.cards.map((change) => {
+            const cardRef = getCoachCardRef(
+              message.result,
+              change.name
+            );
+            return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              "button",
+              {
+                onClick: () => openCoachCard(change.name, cardRef?.sourceId),
+                type: "button",
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: change.quantity }),
+                  " ",
+                  change.name
+                ]
+              },
+              `${message.id}-${group.label}-${change.name}`
+            );
+          }) })
+        ] }, group.label);
+      }) }) : recommendation.add.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-owned-matches", children: recommendation.add.map((change) => {
+        const cardRef = getCoachCardRef(message.result, change.name);
+        return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            onClick: () => openCoachCard(change.name, cardRef?.sourceId),
+            type: "button",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: change.quantity }),
+              " ",
+              change.name
+            ]
+          },
+          `${message.id}-add-${change.name}`
+        );
+      }) }) : null,
+      coachDraft?.scope === "deck" && recommendation.remove.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        "button",
+        {
+          className: "secondary coach-apply-button",
+          onClick: () => void applyCoachRecommendation(recommendation),
+          type: "button",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { size: 17 }),
+            "Apply Changes"
+          ]
+        }
+      )
+    ] }, `${message.id}-owned-${index}`);
+  }
   function openPreviewDeckAction(createNewDeck) {
     if (!previewCard) {
       return;
@@ -35071,47 +35157,11 @@ function App() {
                           ) })
                         ] }, `${message.id}-synergy-${index}`)) }) : null,
                         message.result?.ownedRecommendations.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-answer-cards", children: message.result.ownedRecommendations.map(
-                          (recommendation, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
-                            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: renderCoachText(
-                              recommendation.title,
-                              message.result.cardRefs
-                            ) }),
-                            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: renderCoachText(
-                              recommendation.reason,
-                              message.result.cardRefs
-                            ) }),
-                            recommendation.add.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-owned-matches", children: recommendation.add.map((change) => {
-                              const cardRef = getCoachCardRef(
-                                message.result,
-                                change.name
-                              );
-                              return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                                "button",
-                                {
-                                  onClick: () => openCoachCard(change.name, cardRef?.sourceId),
-                                  type: "button",
-                                  children: [
-                                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: change.quantity }),
-                                    " ",
-                                    change.name
-                                  ]
-                                },
-                                `${message.id}-add-${change.name}`
-                              );
-                            }) }),
-                            coachDraft.scope === "deck" && recommendation.remove.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                              "button",
-                              {
-                                className: "secondary coach-apply-button",
-                                onClick: () => void applyCoachRecommendation(recommendation),
-                                type: "button",
-                                children: [
-                                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { size: 17 }),
-                                  "Apply Changes"
-                                ]
-                              }
-                            )
-                          ] }, `${message.id}-owned-${index}`)
+                          (recommendation, index) => renderCoachOwnedRecommendation(
+                            message,
+                            recommendation,
+                            index
+                          )
                         ) }) : null,
                         message.result && message.result.synergies.length === 0 && message.result.ownedRecommendations.length === 0 && (message.result.strengths.length > 0 || message.result.concerns.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { className: "coach-answer-points", children: [
                           ...message.result.strengths,
@@ -37275,6 +37325,44 @@ function groupCollection(items, groupBy, sortBy) {
     value: groupItems.reduce(
       (total, item) => total + (item.priceUsd ?? 0) * item.quantity,
       0
+    )
+  })).sort((left, right) => left.label.localeCompare(right.label));
+}
+function getCoachRecommendationGroups(recommendation, game, collection) {
+  const explicitGroups = recommendation.groups?.filter((group) => group.cards.length > 0).map((group) => ({
+    ...group,
+    cards: [...group.cards].sort(
+      (left, right) => left.name.localeCompare(right.name)
+    )
+  }));
+  if (explicitGroups?.length) {
+    return explicitGroups;
+  }
+  if (recommendation.add.length < 9) {
+    return [];
+  }
+  const collectionByName = new Map(
+    collection.filter((item) => item.game === game).map((item) => [normalizeCardName(item.name), item])
+  );
+  const groups = /* @__PURE__ */ new Map();
+  for (const card of recommendation.add) {
+    const item = collectionByName.get(normalizeCardName(card.name));
+    const label = item ? getCollectionGroupLabel(item, "color") : "Other";
+    const group = groups.get(label) ?? {
+      label,
+      totalQuantity: 0,
+      distinctCards: 0,
+      cards: []
+    };
+    group.cards.push(card);
+    group.totalQuantity += card.quantity;
+    group.distinctCards = group.cards.length;
+    groups.set(label, group);
+  }
+  return Array.from(groups.values()).map((group) => ({
+    ...group,
+    cards: [...group.cards].sort(
+      (left, right) => left.name.localeCompare(right.name)
     )
   })).sort((left, right) => left.label.localeCompare(right.label));
 }
