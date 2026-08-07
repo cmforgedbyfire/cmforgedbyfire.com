@@ -1722,10 +1722,13 @@ img {
 }
 .coach-message {
   align-items: flex-start;
-  display: flex;
+  display: grid;
   gap: 8px;
+  grid-template-columns: 30px minmax(0, 1fr);
+  min-width: 0;
 }
 .coach-message.user {
+  display: flex;
   justify-content: flex-end;
 }
 .coach-message-mark {
@@ -1746,13 +1749,17 @@ img {
   border-radius: 8px;
   display: grid;
   gap: 9px;
-  max-width: min(82%, 690px);
+  max-width: 690px;
+  min-width: 0;
   padding: 11px 12px;
+  width: 100%;
 }
 .coach-message.user .coach-message-body {
   background: #1e3a8a;
   border-color: #2563eb;
   color: #ffffff;
+  max-width: min(82%, 690px);
+  width: auto;
 }
 .coach-message-body > p {
   margin: 0;
@@ -1804,6 +1811,7 @@ img {
   border-left: 3px solid #2563eb;
   display: grid;
   gap: 5px;
+  min-width: 0;
   padding: 6px 8px;
 }
 .coach-answer-cards article > p,
@@ -1822,7 +1830,17 @@ img {
   gap: 8px;
 }
 .coach-result-group-heading {
+  min-width: 0;
   padding-bottom: 7px;
+}
+.coach-result-group-heading .group-title {
+  min-width: 0;
+}
+.coach-result-group-heading > span:last-child {
+  flex: 0 0 auto;
+  max-width: 42%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .coach-owned-group-matches {
   padding: 0 2px 4px 25px;
@@ -2725,7 +2743,10 @@ img {
   .coach-chat {
     max-height: 48svh;
   }
-  .coach-message-body {
+  .coach-message:not(.user) .coach-message-body {
+    max-width: none;
+  }
+  .coach-message.user .coach-message-body {
     max-width: 88%;
   }
   .coach-quick-prompts {
