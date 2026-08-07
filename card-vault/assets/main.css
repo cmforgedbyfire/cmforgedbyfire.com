@@ -1816,6 +1816,17 @@ img {
   flex-wrap: wrap;
   gap: 6px;
 }
+.coach-result-groups,
+.coach-result-group {
+  display: grid;
+  gap: 8px;
+}
+.coach-result-group-heading {
+  padding-bottom: 7px;
+}
+.coach-owned-group-matches {
+  padding: 0 2px 4px 25px;
+}
 .coach-owned-matches button {
   background: var(--surface);
   border: 1px solid var(--border);
