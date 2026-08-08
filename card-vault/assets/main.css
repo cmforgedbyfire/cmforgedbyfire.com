@@ -1659,7 +1659,15 @@ img {
   align-items: center;
   display: flex;
   gap: 12px;
-  padding-right: 44px;
+  padding-right: 92px;
+}
+.coach-thread-clear {
+  padding: 8px;
+  position: absolute;
+  right: 58px;
+  top: 10px;
+  width: 40px;
+  z-index: 1;
 }
 .coach-build-wait {
   align-items: center;

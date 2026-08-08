@@ -32043,6 +32043,9 @@ var mtgReportedWrongPrintingIds = {
 };
 var resultBatchSize = 12;
 var uiStateStorageKey = "card-vault-ui-state-v1";
+var coachThreadsStorageKey = "card-vault-coach-threads-v1";
+var coachThreadMessageLimit = 20;
+var coachThreadFallbackMessageLimit = 10;
 var createNewDeckValue = "__new__";
 var appTabs = ["scan", "mtg", "pokemon"];
 var gameFilters = ["mtg", "pokemon"];
@@ -32095,6 +32098,72 @@ function readPersistedUiState() {
     return state;
   } catch {
     return {};
+  }
+}
+function getCoachThreadKey(draft, profileId) {
+  const owner = profileId || "local";
+  const location2 = draft.scope === "deck" && draft.deckId !== null ? `deck:${draft.deckId}` : `library:${draft.game}`;
+  return `${owner}:${location2}`;
+}
+function capCoachMessages(messages) {
+  return messages.slice(-coachThreadMessageLimit);
+}
+function readCoachThreads() {
+  if (typeof window === "undefined") {
+    return {};
+  }
+  try {
+    const rawState = window.localStorage.getItem(coachThreadsStorageKey);
+    if (!rawState) {
+      return {};
+    }
+    const parsed = JSON.parse(rawState);
+    if (!isPlainObject(parsed)) {
+      return {};
+    }
+    const threads = {};
+    for (const [key, value] of Object.entries(parsed)) {
+      if (!Array.isArray(value)) {
+        continue;
+      }
+      const messages = value.filter(
+        (item) => isPlainObject(item) && typeof item.id === "string" && (item.role === "user" || item.role === "assistant") && typeof item.text === "string" && (item.result === void 0 || isPlainObject(item.result))
+      );
+      if (messages.length) {
+        threads[key] = capCoachMessages(messages);
+      }
+    }
+    return threads;
+  } catch {
+    return {};
+  }
+}
+function readCoachThreadMessages(draft, profileId) {
+  return readCoachThreads()[getCoachThreadKey(draft, profileId)] ?? [];
+}
+function writeCoachThreadMessages(draft, profileId, messages) {
+  if (typeof window === "undefined") {
+    return;
+  }
+  try {
+    const threads = readCoachThreads();
+    const key = getCoachThreadKey(draft, profileId);
+    const cappedMessages = capCoachMessages(messages);
+    if (cappedMessages.length) {
+      threads[key] = cappedMessages;
+    } else {
+      delete threads[key];
+    }
+    try {
+      window.localStorage.setItem(coachThreadsStorageKey, JSON.stringify(threads));
+    } catch {
+      if (cappedMessages.length <= coachThreadFallbackMessageLimit) {
+        throw new Error("Coach thread storage unavailable");
+      }
+      threads[key] = cappedMessages.slice(-coachThreadFallbackMessageLimit);
+      window.localStorage.setItem(coachThreadsStorageKey, JSON.stringify(threads));
+    }
+  } catch {
   }
 }
 function isPlainObject(value) {
@@ -32170,6 +32239,7 @@ function App() {
   const [saveDeckDraft, setSaveDeckDraft] = (0, import_react4.useState)(null);
   const [scanIssueDraft, setScanIssueDraft] = (0, import_react4.useState)(null);
   const [coachDraft, setCoachDraft] = (0, import_react4.useState)(null);
+  const coachDraftRef = (0, import_react4.useRef)(null);
   const [coachResult, setCoachResult] = (0, import_react4.useState)(null);
   const [coachError, setCoachError] = (0, import_react4.useState)("");
   const [isCoachLoading, setIsCoachLoading] = (0, import_react4.useState)(false);
@@ -32273,6 +32343,16 @@ function App() {
     } catch {
     }
   }, [activeTab, game, collectionGroup, collectionSort, collapsedGroups]);
+  (0, import_react4.useEffect)(() => {
+    if (!coachDraft) {
+      return;
+    }
+    writeCoachThreadMessages(
+      coachDraft,
+      accountSession?.profile.id ?? "",
+      coachMessages
+    );
+  }, [accountSession, coachDraft, coachMessages]);
   (0, import_react4.useEffect)(() => {
     if (!saveNotice) {
       return;
@@ -33224,11 +33304,15 @@ function App() {
     setSelectedDeckId(deckId);
     setStatus(`Created ${name}`);
   }
+  function replaceCoachDraft(nextDraft) {
+    coachDraftRef.current = nextDraft;
+    setCoachDraft(nextDraft);
+  }
   function openCoach(deck) {
     if (typeof deck.id !== "number") {
       return;
     }
-    setCoachDraft({
+    const nextDraft = {
       deckId: deck.id,
       game: deck.game,
       scope: "deck",
@@ -33236,18 +33320,21 @@ function App() {
       format: deck.format ?? getDefaultCoachFormat(deck.game),
       commanderName: deck.commanderName ?? "",
       goal: ""
-    });
+    };
+    replaceCoachDraft(nextDraft);
     setCoachResult(null);
     setCoachError("");
     setCoachQuestion("");
-    setCoachMessages([]);
+    setCoachMessages(
+      readCoachThreadMessages(nextDraft, accountSession?.profile.id ?? "")
+    );
     setAreCoachPromptsOpen(false);
     setCoachComboRefinement(null);
     setCoachBuildRefinement(null);
     setCommanderSuggestions([]);
   }
   function openLibraryCoach(libraryGame) {
-    setCoachDraft({
+    const nextDraft = {
       deckId: null,
       game: libraryGame,
       scope: "library",
@@ -33255,18 +33342,41 @@ function App() {
       format: getDefaultCoachFormat(libraryGame),
       commanderName: "",
       goal: ""
-    });
+    };
+    replaceCoachDraft(nextDraft);
     setCoachResult(null);
     setCoachError("");
     setCoachQuestion("");
-    setCoachMessages([]);
+    setCoachMessages(
+      readCoachThreadMessages(nextDraft, accountSession?.profile.id ?? "")
+    );
     setAreCoachPromptsOpen(false);
     setCoachComboRefinement(null);
     setCoachBuildRefinement(null);
     setCommanderSuggestions([]);
   }
   function updateCoachDraft(values) {
-    setCoachDraft((current) => current ? { ...current, ...values } : current);
+    const current = coachDraftRef.current;
+    if (!current) {
+      return;
+    }
+    const nextDraft = { ...current, ...values };
+    coachDraftRef.current = nextDraft;
+    setCoachDraft(nextDraft);
+  }
+  function clearCurrentCoachThread() {
+    const draft = coachDraftRef.current;
+    if (!draft || isCoachLoading) {
+      return;
+    }
+    writeCoachThreadMessages(draft, accountSession?.profile.id ?? "", []);
+    setCoachMessages([]);
+    setCoachResult(null);
+    setCoachError("");
+    setCoachQuestion("");
+    setSavedCoachDeckNames({});
+    setCoachComboRefinement(null);
+    setCoachBuildRefinement(null);
   }
   function selectCoachQuickPrompt(prompt) {
     setCoachError("");
@@ -33326,7 +33436,20 @@ function App() {
     setIsSuggestingCommander(true);
     setCoachError("");
     try {
-      const gameCollection = collection.filter((item) => item.game === "mtg");
+      const gameCollection = collection.flatMap((item) => {
+        if (item.game !== "mtg") {
+          return [];
+        }
+        if (typeof item.id !== "number") {
+          return [item];
+        }
+        const quantity = getAvailableQuantity(
+          item.quantity,
+          deckCards,
+          item.id
+        );
+        return quantity > 0 ? [{ ...item, quantity }] : [];
+      });
       const suggestions = await requestCommanderSuggestions(
         {
           colors: coachBuildRefinement.colors,
@@ -33361,43 +33484,88 @@ function App() {
     void runCoach({ mode: "combos", question });
   }
   function askCoachForRefinedBuild(skipFilters = false) {
-    if (!coachDraft || !coachBuildRefinement) {
+    const draft = coachDraftRef.current;
+    if (!draft || !coachBuildRefinement) {
       return;
     }
-    if (!skipFilters && coachDraft.game === "mtg" && coachDraft.format === "commander" && !coachDraft.commanderName.trim()) {
+    if (draft.game === "mtg" && draft.format === "commander" && !draft.commanderName.trim()) {
       setCoachError("Choose your commander before building a Commander deck.");
       return;
     }
-    const question = skipFilters ? coachBuildRefinement.prompt.question : buildCoachDeckQuestion(coachDraft.game, coachBuildRefinement);
+    const question = skipFilters ? coachBuildRefinement.prompt.question : buildCoachDeckQuestion(draft.game, coachBuildRefinement);
     setCoachBuildRefinement(null);
     setCoachQuestion("");
     updateCoachDraft({ mode: "build", goal: question });
     void runCoach({ mode: "build", question });
   }
   async function runCoach(options = {}) {
-    if (!coachDraft || isCoachLoading) {
+    const draft = coachDraftRef.current;
+    if (!draft || isCoachLoading) {
       return;
     }
     const question = (options.question ?? coachQuestion).trim();
-    const mode = options.mode ?? coachDraft.mode;
+    const mode = options.mode ?? draft.mode;
     if (!question) {
       setCoachError("Ask Coach a question first.");
       return;
     }
-    const deck = coachDraft.scope === "deck" ? decks.find((item) => item.id === coachDraft.deckId) : null;
-    if (coachDraft.scope === "deck" && !deck) {
+    if (mode === "build" && draft.game === "mtg" && draft.format === "commander" && !draft.commanderName.trim()) {
+      setCoachError("Choose your commander before building a Commander deck.");
+      return;
+    }
+    const deck = draft.scope === "deck" ? decks.find((item) => item.id === draft.deckId) : null;
+    if (draft.scope === "deck" && !deck) {
       setCoachError("That deck is no longer available.");
       return;
     }
     const entries = deckCards.filter(
-      (entry) => coachDraft.scope === "deck" && entry.deckId === coachDraft.deckId
+      (entry) => draft.scope === "deck" && entry.deckId === draft.deckId
     ).map((entry) => ({
       entry,
       item: collection.find((item) => item.id === entry.collectionItemId)
     })).filter(
       (value) => Boolean(value.item)
     );
-    const gameCollection = collection.filter((item) => item.game === coachDraft.game);
+    const gameCollection = collection.filter((item) => item.game === draft.game);
+    const selectedCommanderKey = mode === "build" && draft.game === "mtg" && draft.format === "commander" ? normalizeCardName(draft.commanderName) : "";
+    if (selectedCommanderKey) {
+      const commanderItems = gameCollection.filter(
+        (item) => normalizeCardName(item.name) === selectedCommanderKey
+      );
+      if (!commanderItems.length) {
+        setCoachError("That commander is not saved in your MTG collection.");
+        return;
+      }
+      const availableCommanderQuantity = commanderItems.reduce((total, item) => {
+        if (typeof item.id !== "number") {
+          return total + item.quantity;
+        }
+        return total + getAvailableQuantity(
+          item.quantity,
+          deckCards,
+          item.id
+        );
+      }, 0);
+      if (availableCommanderQuantity < 1) {
+        const assignedDeckNames = uniqueStrings(
+          commanderItems.flatMap((item) => {
+            if (typeof item.id !== "number") {
+              return [];
+            }
+            return deckCards.filter(
+              (entry) => entry.collectionItemId === item.id && entry.quantity > 0
+            ).map(
+              (entry) => decks.find((deck2) => deck2.id === entry.deckId)?.name ?? "another deck"
+            );
+          })
+        );
+        const assignedText = assignedDeckNames.length ? ` It is currently assigned to ${assignedDeckNames.join(", ")}.` : "";
+        setCoachError(
+          `That commander is already assigned to another deck.${assignedText} Remove it from that deck or delete the deck before Coach can build with it.`
+        );
+        return;
+      }
+    }
     const coachCollection = gameCollection.flatMap((item) => {
       if (mode !== "build" || typeof item.id !== "number") {
         return [item];
@@ -33405,8 +33573,7 @@ function App() {
       const quantity = getAvailableQuantity(
         item.quantity,
         deckCards,
-        item.id,
-        coachDraft.scope === "deck" ? coachDraft.deckId ?? void 0 : void 0
+        item.id
       );
       return quantity > 0 ? [{ ...item, quantity }] : [];
     });
@@ -33419,28 +33586,28 @@ function App() {
       role: "user",
       text: question
     };
-    const conversation = coachMessages.map((message) => ({
+    const conversation = capCoachMessages(coachMessages).map((message) => ({
       role: message.role,
       content: getCoachMessageContext(message)
     }));
-    setCoachMessages((current) => [...current, userMessage]);
+    setCoachMessages((current) => capCoachMessages([...current, userMessage]));
     setCoachQuestion("");
     try {
       if (deck && typeof deck.id === "number") {
         await db.decks.update(deck.id, {
-          format: coachDraft.format,
-          commanderName: coachDraft.format === "commander" ? coachDraft.commanderName.trim() : "",
+          format: draft.format,
+          commanderName: draft.format === "commander" ? draft.commanderName.trim() : "",
           updatedAt: (/* @__PURE__ */ new Date()).toISOString()
         });
       }
       const result = await requestCoach(
         {
-          game: coachDraft.game,
-          scope: coachDraft.scope,
+          game: draft.game,
+          scope: draft.scope,
           mode,
-          deckName: deck?.name ?? `${getGameLabel(coachDraft.game)} Library`,
-          format: coachDraft.format,
-          commanderName: coachDraft.format === "commander" ? coachDraft.commanderName.trim() : "",
+          deckName: deck?.name ?? `${getGameLabel(draft.game)} Library`,
+          format: draft.format,
+          commanderName: draft.format === "commander" ? draft.commanderName.trim() : "",
           goal: question,
           conversation,
           deckCards: entries.map(
@@ -33453,24 +33620,26 @@ function App() {
         accountSession?.token ?? ""
       );
       setCoachResult(result);
-      setCoachMessages((current) => [
-        ...current,
-        {
-          id: crypto.randomUUID(),
-          role: "assistant",
-          text: result.summary,
-          result
-        }
-      ]);
+      setCoachMessages(
+        (current) => capCoachMessages([
+          ...current,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant",
+            text: result.summary,
+            result
+          }
+        ])
+      );
       updateCoachDraft({ mode: "ask", goal: "" });
       setCoachComboRefinement(null);
       setCoachBuildRefinement(null);
-      if (coachDraft.scope === "deck") {
+      if (draft.scope === "deck") {
         await loadDeckData();
       }
     } catch (error) {
       setCoachError(
-        error instanceof DOMException && error.name === "AbortError" ? "Coach took too long to answer. Deterministic checks remain available after retry." : error instanceof Error ? error.message : `Coach could not analyze this ${coachDraft.scope}.`
+        error instanceof DOMException && error.name === "AbortError" ? "Coach took too long to answer. Deterministic checks remain available after retry." : error instanceof Error ? error.message : `Coach could not analyze this ${draft.scope}.`
       );
     } finally {
       setIsCoachDeckBuildRunning(false);
@@ -33576,6 +33745,33 @@ function App() {
       let deckId = 0;
       let savedCards = 0;
       await db.transaction("rw", db.collection, db.decks, db.deckCards, async () => {
+        const currentDeckCards = await db.deckCards.toArray();
+        const unavailableRequests = [];
+        for (const requested of requestedCards) {
+          const ownedItems = await db.collection.filter(
+            (item) => item.game === coachDraft.game && normalizeCardName(item.name) === normalizeCardName(requested.name)
+          ).toArray();
+          const available = ownedItems.reduce((total, item) => {
+            if (typeof item.id !== "number") {
+              return total;
+            }
+            return total + getAvailableQuantity(
+              item.quantity,
+              currentDeckCards,
+              item.id
+            );
+          }, 0);
+          if (available < requested.quantity) {
+            unavailableRequests.push(
+              `${requested.name} needs ${requested.quantity}, available ${available}`
+            );
+          }
+        }
+        if (unavailableRequests.length) {
+          throw new Error(
+            `Generated deck is stale because some cards are no longer available: ${unavailableRequests.slice(0, 4).join("; ")}.`
+          );
+        }
         deckId = await db.decks.add({
           game: coachDraft.game,
           name: deckName,
@@ -33593,10 +33789,9 @@ function App() {
             if (remaining <= 0 || typeof item.id !== "number") {
               break;
             }
-            const currentDeckCards = await db.deckCards.toArray();
             const available = getAvailableQuantity(
               item.quantity,
-              currentDeckCards,
+              await db.deckCards.toArray(),
               item.id
             );
             const quantity = Math.min(available, remaining);
@@ -35035,7 +35230,7 @@ function App() {
         className: "card-preview-backdrop coach-backdrop",
         onClick: () => {
           if (!isCoachLoading) {
-            setCoachDraft(null);
+            replaceCoachDraft(null);
             setCoachComboRefinement(null);
             setCoachBuildRefinement(null);
           }
@@ -35054,13 +35249,25 @@ function App() {
                   className: "preview-close",
                   disabled: isCoachLoading,
                   onClick: () => {
-                    setCoachDraft(null);
+                    replaceCoachDraft(null);
                     setCoachComboRefinement(null);
                     setCoachBuildRefinement(null);
                   },
                   title: "Close",
                   type: "button",
                   children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  "aria-label": "Clear Coach thread",
+                  className: "coach-thread-clear",
+                  disabled: isCoachLoading || coachMessages.length === 0,
+                  onClick: clearCurrentCoachThread,
+                  title: "Clear thread",
+                  type: "button",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 18 })
                 }
               ),
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "coach-heading", children: [
@@ -35102,16 +35309,7 @@ function App() {
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-chat", "aria-live": "polite", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-message assistant", children: [
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 16 }) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-message-body", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "What do you want help with?" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
-                      "I know your ",
-                      getGameLabel(coachDraft.game),
-                      " ",
-                      coachDraft.scope === "deck" ? "deck and collection" : "collection",
-                      ". Ask about cards you own, abilities, attacks, mana, or combos."
-                    ] })
-                  ] })
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-body", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "What do you need help with?" }) })
                 ] }),
                 coachMessages.map((message) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                   "div",
