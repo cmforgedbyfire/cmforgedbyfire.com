@@ -85,7 +85,7 @@
           <div class="card-actions">
             <a class="btn btn-primary" href="vent.html">View Details</a>
             <a class="btn btn-ghost" href="https://play.google.com/apps/testing/com.forgedbyfire.vent.mobile" target="_blank" rel="noopener">Join Android Testing</a>
-            <a class="btn btn-ghost" href="mailto:forgedbyfiresoftware@gmail.com?subject=V.E.N.T%20Google%20Play%20testing%20request&amp;body=Please%20add%20this%20Google%20Play%20email%20to%20the%20free%20V.E.N.T%20testing%20loop%3A%0A%0AGoogle%20Play%20email%3A%20">Send Google Play Email</a>
+            <button class="btn btn-ghost tooltip-button" type="button" id="ventTestingRequestButton" data-tooltip="Send your email to be added to the FREE testing loop for the V.E.N.T app" aria-haspopup="dialog">Send Google Play Email</button>
           </div>
         </article>
 
@@ -124,6 +124,36 @@
     </section>
   </main>
 
+  <div class="modal-overlay" id="ventTestingRequestModal" hidden>
+    <div class="modal-scrim" data-modal-close></div>
+    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="ventTestingRequestTitle">
+      <button class="modal-close" type="button" data-modal-close aria-label="Close testing request">&times;</button>
+      <p class="hero-kicker">V.E.N.T Testing</p>
+      <h3 id="ventTestingRequestTitle">Send Google Play Email</h3>
+      <p class="muted">
+        Add your Google Play email below. A FREE testing link will be sent within 48 hrs.
+      </p>
+      <form id="ventTestingRequestForm" class="service-form" action="https://formsubmit.co/forgedbyfiresoftware@gmail.com" method="POST" target="ventTestingRequestFrame">
+        <input type="hidden" name="_subject" value="V.E.N.T Google Play testing request" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="box" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="form-honey" aria-hidden="true" />
+        <div class="form-field">
+          <label for="ventGooglePlayEmail">Google Play email</label>
+          <input id="ventGooglePlayEmail" name="google_play_email" type="email" placeholder="you@example.com" required />
+        </div>
+        <input type="hidden" name="app" value="V.E.N.T" />
+        <input type="hidden" name="request" value="Please add this Google Play email to the free V.E.N.T testing loop." />
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Send Request</button>
+          <button class="btn btn-ghost" type="button" data-modal-close>Cancel</button>
+        </div>
+        <p class="muted small-top" id="ventTestingRequestStatus" aria-live="polite"></p>
+      </form>
+      <iframe name="ventTestingRequestFrame" class="hidden-frame" title="V.E.N.T testing request submission"></iframe>
+    </section>
+  </div>
+
   <footer class="footer">
     <div class="footer-inner container">
       <p class="footer-support"><a href="support.html">Support / Feedback</a></p>
@@ -133,6 +163,39 @@
       </p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var modal = document.getElementById('ventTestingRequestModal');
+      var openButton = document.getElementById('ventTestingRequestButton');
+      var form = document.getElementById('ventTestingRequestForm');
+      var email = document.getElementById('ventGooglePlayEmail');
+      var status = document.getElementById('ventTestingRequestStatus');
+
+      function openModal() {
+        modal.hidden = false;
+        status.textContent = '';
+        window.setTimeout(function () {
+          email.focus();
+        }, 50);
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+      }
+
+      openButton.addEventListener('click', openModal);
+      modal.addEventListener('click', function (event) {
+        if (event.target.hasAttribute('data-modal-close')) closeModal();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !modal.hidden) closeModal();
+      });
+      form.addEventListener('submit', function () {
+        status.textContent = 'Request sent. Watch that Google Play email for the testing link within 48 hrs.';
+        window.setTimeout(closeModal, 1800);
+      });
+    })();
+  </script>
   <script src="js/cursor-trail.js"></script>
 </body>
 </html>
