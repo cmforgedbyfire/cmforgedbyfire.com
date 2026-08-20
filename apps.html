@@ -210,8 +210,10 @@
               return payload;
             });
           })
-          .then(function () {
-            status.textContent = 'Request sent. A FREE testing link will be sent within 48 hrs.';
+          .then(function (payload) {
+            status.textContent = payload.emailed
+              ? 'Request sent. A FREE testing link will be sent within 48 hrs.'
+              : 'Request saved. A V.E.N.T testing-link request has been logged.';
             form.reset();
           })
           .catch(function (error) {
