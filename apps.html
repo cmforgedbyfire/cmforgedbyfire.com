@@ -133,25 +133,17 @@
       <p class="muted">
         Add your Google Play email below. A FREE testing link will be sent within 48 hrs.
       </p>
-      <form id="ventTestingRequestForm" class="service-form" action="https://formsubmit.co/7e306a47211556741bbec36d9a3ca280" method="POST" target="ventTestingRequestFrame">
-        <input type="hidden" name="_subject" value="V.E.N.T Google Play testing request" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="box" />
-        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="form-honey" aria-hidden="true" />
+      <form id="ventTestingRequestForm" class="service-form">
         <div class="form-field">
           <label for="ventGooglePlayEmail">Google Play email</label>
           <input id="ventGooglePlayEmail" name="email" type="email" placeholder="you@example.com" required />
         </div>
-        <input type="hidden" name="app" value="V.E.N.T" />
-        <input type="hidden" name="request" value="Please add this Google Play email to the free V.E.N.T testing loop." />
-        <input type="hidden" id="ventGooglePlayEmailCopy" name="Google Play email to add" value="" />
         <div class="form-actions">
-          <button class="btn btn-primary" type="submit">Send Request</button>
+          <button class="btn btn-primary" type="submit">Open Gmail To Send</button>
           <button class="btn btn-ghost" type="button" data-modal-close>Cancel</button>
         </div>
         <p class="muted small-top" id="ventTestingRequestStatus" aria-live="polite"></p>
       </form>
-      <iframe name="ventTestingRequestFrame" class="hidden-frame" title="V.E.N.T testing request submission"></iframe>
     </section>
   </div>
 
@@ -191,10 +183,32 @@
       document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && !modal.hidden) closeModal();
       });
-      form.addEventListener('submit', function () {
-        document.getElementById('ventGooglePlayEmailCopy').value = email.value;
-        status.textContent = 'Request sent. Watch that Google Play email for the testing link within 48 hrs.';
-        window.setTimeout(closeModal, 1800);
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        var requestedEmail = email.value.trim();
+        var stamp = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+        var subject = 'V.E.N.T Testing Request - ' + requestedEmail + ' - ' + stamp;
+        var body = [
+          'Please add this Google Play email to the FREE V.E.N.T testing loop:',
+          '',
+          'Google Play email to add: ' + requestedEmail,
+          '',
+          'Requested from: cmforgedbyfire.com/apps.html',
+          'Request time: ' + stamp
+        ].join('\n');
+        var composeUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+          + '&to=' + encodeURIComponent('forgedbyfiresoftware@gmail.com')
+          + '&su=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+        var composeWindow = window.open(composeUrl, '_blank', 'noopener');
+
+        if (composeWindow) {
+          status.textContent = 'Gmail compose opened. Send that message to request the testing link.';
+        } else {
+          status.textContent = 'Popup blocked. Allow popups for this site, then click Open Gmail To Send again.';
+        }
       });
     })();
   </script>
