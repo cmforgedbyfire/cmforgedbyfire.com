@@ -139,7 +139,7 @@
           <input id="ventGooglePlayEmail" name="email" type="email" placeholder="you@example.com" required />
         </div>
         <div class="form-actions">
-          <button class="btn btn-primary" type="submit">Send Request</button>
+          <button class="btn btn-primary" type="submit">Open Gmail To Send</button>
           <button class="btn btn-ghost" type="button" data-modal-close>Cancel</button>
         </div>
         <p class="muted small-top" id="ventTestingRequestStatus" aria-live="polite"></p>
@@ -163,7 +163,6 @@
       var form = document.getElementById('ventTestingRequestForm');
       var email = document.getElementById('ventGooglePlayEmail');
       var status = document.getElementById('ventTestingRequestStatus');
-      var submitButton = form.querySelector('button[type="submit"]');
 
       function openModal() {
         modal.hidden = false;
@@ -189,39 +188,27 @@
         if (!form.reportValidity()) return;
 
         var requestedEmail = email.value.trim();
-        submitButton.disabled = true;
-        status.textContent = 'Sending request...';
+        var stamp = new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+        var subject = 'V.E.N.T Testing Request - ' + requestedEmail + ' - ' + stamp;
+        var body = [
+          'Please add this Google Play email to the FREE V.E.N.T testing loop:',
+          '',
+          'Google Play email to add: ' + requestedEmail,
+          '',
+          'Requested from: cmforgedbyfire.com/apps.html',
+          'Request time: ' + stamp
+        ].join('\n');
+        var composeUrl = 'https://mail.google.com/mail/?view=cm&fs=1'
+          + '&to=' + encodeURIComponent('forgedbyfiresoftware@gmail.com')
+          + '&su=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+        var composeWindow = window.open(composeUrl, '_blank', 'noopener');
 
-        fetch('https://api.cmforgedbyfire.com/otto/vent-testing-request', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: requestedEmail,
-            source: window.location.href
-          })
-        })
-          .then(function (response) {
-            return response.json().catch(function () {
-              return {};
-            }).then(function (payload) {
-              if (!response.ok || !payload.ok) {
-                throw new Error(payload.detail || 'The request could not be sent.');
-              }
-              return payload;
-            });
-          })
-          .then(function (payload) {
-            status.textContent = payload.emailed
-              ? 'Request sent. A FREE testing link will be sent within 48 hrs.'
-              : 'Request saved. A V.E.N.T testing-link request has been logged.';
-            form.reset();
-          })
-          .catch(function (error) {
-            status.textContent = error.message || 'The request could not be sent. Try again in a minute.';
-          })
-          .finally(function () {
-            submitButton.disabled = false;
-          });
+        if (composeWindow) {
+          status.textContent = 'Gmail compose opened. Send that message to request the testing link.';
+        } else {
+          status.textContent = 'Popup blocked. Allow popups for this site, then click Open Gmail To Send again.';
+        }
       });
     })();
   </script>
