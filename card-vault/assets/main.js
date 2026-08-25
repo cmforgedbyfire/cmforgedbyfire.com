@@ -31682,6 +31682,7 @@ function adaptiveThresholdCanvas(context, width, height) {
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
 var scannerVersion = "ocr-2026-07-26-accuracy-01";
+var appVersionLabel = "0.55";
 var pokemonReportedNameCorrections = {
   "airy can": "Clefairy",
   clofai: "Clefairy",
@@ -32272,6 +32273,12 @@ function App() {
     displayName: "",
     password: "",
     remember: true,
+    isSaving: false
+  });
+  const [feedbackDraft, setFeedbackDraft] = (0, import_react4.useState)({
+    note: "",
+    choice: "",
+    dismissed: window.localStorage.getItem("card-vault-feedback-nudge-dismissed") === "1",
     isSaving: false
   });
   const previewIsOpen = previewCard !== null;
@@ -34056,6 +34063,63 @@ function App() {
       setStatus(
         `${syncedCount} saved scan issue report${syncedCount === 1 ? "" : "s"} sent.`
       );
+    }
+  }
+  function dismissFeedbackNudge() {
+    window.localStorage.setItem("card-vault-feedback-nudge-dismissed", "1");
+    setFeedbackDraft((current) => ({ ...current, dismissed: true }));
+  }
+  async function sendFeedbackNote(choice = feedbackDraft.choice) {
+    if (!accountSession) {
+      setAccountDialogOpen(true);
+      setStatus("Sign in first so feedback can be saved to your profile.");
+      return;
+    }
+    const note = feedbackDraft.note.trim();
+    if (!note && !choice) {
+      setStatus("Enter feedback or choose a quick button.");
+      return;
+    }
+    setFeedbackDraft((current) => ({ ...current, choice, isSaving: true }));
+    try {
+      const response = await fetch(getApiUrl("/api/feedback"), {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accountSession.token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          version: appVersionLabel,
+          kind: choice || "early_access_feedback",
+          body: [
+            "Early access feedback:",
+            choice ? `Quick choice: ${choice}` : "",
+            note ? `Enter feedback: ${note}` : "",
+            `Tab: ${activeTab}`,
+            `Game: ${game}`,
+            `Search: ${query.trim() || selectedTerm || "none"}`,
+            `Profile: ${accountSession.profile.displayName}`,
+            `Phone/browser: ${navigator.userAgent}`
+          ].filter(Boolean).join("\n"),
+          context: {
+            activeTab,
+            game,
+            hasScanResult: Boolean(scanResult),
+            collectionCount: collection.length,
+            deckCount: decks.length
+          }
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error || "Could not save feedback.");
+      }
+      dismissFeedbackNudge();
+      setFeedbackDraft({ note: "", choice: "", dismissed: true, isSaving: false });
+      setStatus("Feedback saved. Thank you.");
+    } catch (error) {
+      setFeedbackDraft((current) => ({ ...current, isSaving: false }));
+      setStatus(error instanceof Error ? error.message : "Feedback could not be saved.");
     }
   }
   function exportGameCollection(sectionGame) {
@@ -36269,7 +36333,52 @@ function App() {
               "Report Scan Issue"
             ]
           }
-        )
+        ),
+        !feedbackDraft.dismissed && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "feedback-nudge", "aria-label": "Quick feedback", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-title", children: "Quick feedback?" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-copy", children: "Type feedback here, or pick one quick button." })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            "textarea",
+            {
+              onChange: (event) => setFeedbackDraft((current) => ({ ...current, note: event.target.value })),
+              placeholder: "Enter feedback",
+              rows: 2,
+              value: feedbackDraft.note
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "feedback-nudge-actions", children: [
+            ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "button",
+              {
+                disabled: feedbackDraft.isSaving,
+                onClick: () => void sendFeedbackNote(choice),
+                type: "button",
+                children: choice === "Worked well" ? "Worked" : choice
+              },
+              choice
+            )),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "button",
+              {
+                disabled: feedbackDraft.isSaving,
+                onClick: () => void sendFeedbackNote(),
+                type: "button",
+                children: feedbackDraft.isSaving ? "Sending" : "Send"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "button",
+              {
+                disabled: feedbackDraft.isSaving,
+                onClick: dismissFeedbackNudge,
+                type: "button",
+                children: "No thanks"
+              }
+            )
+          ] })
+        ] })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
         "form",
