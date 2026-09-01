@@ -513,28 +513,24 @@ button.btn{
   padding: 0;
 }
 
-img.product-logo[src*="skill_rebuilder"],
 img.product-logo[src*="forge_audio_studio"]{
   object-fit: contain;
   background: transparent;
   padding: 12px;
 }
 
-img.downloads-logo[src*="skill_rebuilder"],
 img.downloads-logo[src*="forge_audio_studio"]{
   object-fit: contain;
   background: transparent;
   padding: 18px;
 }
 
-img.brand-logo-square[src*="skill_rebuilder"],
 img.brand-logo-square[src*="forge_audio_studio"]{
   object-fit: contain;
   background: transparent;
   padding: 10px;
 }
 
-.product-hero-media img[src*="skill_rebuilder"],
 .product-hero-media img[src*="forge_audio_studio"]{
   object-fit: contain;
   background: transparent;
@@ -596,6 +592,14 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 .store-badge:hover{
   background: #111;
   border-color: rgba(255,255,255,.28);
+}
+
+.store-badge-logo-only{
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  justify-content:center;
+  padding: 0;
 }
 
 .store-badge-icon{
