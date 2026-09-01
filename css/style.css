@@ -567,6 +567,100 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 .card-body{margin: 12px 0 0 0; color: var(--muted); line-height: 1.5}
 .card-actions{margin-top: 14px; display:flex; gap: 10px; flex-wrap:wrap}
 
+.store-links{
+  width: 100%;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.store-links .download-meta{
+  width: 100%;
+}
+
+.store-badge{
+  min-height: 46px;
+  display:inline-flex;
+  align-items:center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: #050505;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(0,0,0,.34);
+}
+
+.store-badge:hover{
+  background: #111;
+  border-color: rgba(255,255,255,.28);
+}
+
+.store-badge-icon{
+  width: 26px;
+  height: 26px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.store-badge-icon-play::before{
+  content:'';
+  position:absolute;
+  inset: 1px 2px;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  background: linear-gradient(135deg, #00d8ff 0 30%, #00d069 31% 52%, #ffd24a 53% 72%, #ff4f45 73% 100%);
+}
+
+.store-badge-icon-testflight{
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 50%, #fff 0 8%, transparent 9%),
+    radial-gradient(circle at 50% 50%, transparent 0 35%, rgba(255,255,255,.96) 36% 42%, transparent 43%),
+    linear-gradient(135deg, #1fb6ff, #006dff);
+}
+
+.store-badge-icon-testflight::before,
+.store-badge-icon-testflight::after{
+  content:'';
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.9);
+  transform-origin: center;
+}
+
+.store-badge-icon-testflight::before{
+  transform: translate(-50%, -50%) rotate(35deg);
+}
+
+.store-badge-icon-testflight::after{
+  transform: translate(-50%, -50%) rotate(-35deg);
+}
+
+.store-badge-kicker,
+.store-badge-name{
+  display:block;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.store-badge-kicker{
+  font-size: .68rem;
+  color: rgba(255,255,255,.78);
+}
+
+.store-badge-name{
+  margin-top: 2px;
+  font-size: .98rem;
+  font-weight: 800;
+}
+
 .software-preview{
   margin-top: 14px;
   border: 1px solid rgba(255,255,255,.08);
