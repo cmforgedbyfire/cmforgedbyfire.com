@@ -594,14 +594,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   border-color: rgba(255,255,255,.28);
 }
 
-.store-badge-logo-only{
-  width: 48px;
-  min-width: 48px;
-  height: 48px;
-  justify-content:center;
-  padding: 0;
-}
-
 .store-badge-icon{
   width: 26px;
   height: 26px;
@@ -663,6 +655,19 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   margin-top: 2px;
   font-size: .98rem;
   font-weight: 800;
+}
+
+.store-logo-mark{
+  width: 36px;
+  height: 36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.store-logo-mark .store-badge-icon{
+  width: 32px;
+  height: 32px;
 }
 
 .software-preview{
