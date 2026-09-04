@@ -512,31 +512,6 @@ button.btn{
   border-radius: 28px;
   padding: 0;
 }
-
-img.product-logo[src*="forge_audio_studio"]{
-  object-fit: contain;
-  background: transparent;
-  padding: 12px;
-}
-
-img.downloads-logo[src*="forge_audio_studio"]{
-  object-fit: contain;
-  background: transparent;
-  padding: 18px;
-}
-
-img.brand-logo-square[src*="forge_audio_studio"]{
-  object-fit: contain;
-  background: transparent;
-  padding: 10px;
-}
-
-.product-hero-media img[src*="forge_audio_studio"]{
-  object-fit: contain;
-  background: transparent;
-  padding: 18px;
-}
-
 .downloads-card-head{
   display: flex;
   flex-direction: column;
