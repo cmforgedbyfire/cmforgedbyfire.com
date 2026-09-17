@@ -33,7 +33,7 @@
 
   <main class="page" id="main-content">
     <section class="section">
-      <p class="muted">Last updated: September 7, 2026</p>
+      <p class="muted">Last updated: September 17, 2026</p>
 
       <div class="panel">
         <h2>Our Commitment</h2>
@@ -48,6 +48,7 @@
         <ul class="bullets">
           <li><strong>Most desktop apps are local-first</strong> - PC Purifier, Master Generator, and The Forge are designed to keep their main files and settings on your device</li>
           <li><strong>Creative QR</strong> - QR creation, profiles and exports stay on your device. Optional feedback sends the message, category, optional reply email, app version and Windows platform to us. Read the <a href="#creative-qr">Creative QR privacy details</a></li>
+          <li><strong>ForgeFlix</strong> - The Xbox app is a private local-media client for an owner-controlled home-network server. It does not include movies, sell data, or send your local library to Forged By Fire Software LLC. Read the <a href="#forgeflix">ForgeFlix privacy details</a></li>
           <li><strong>Some features need permissions</strong> - Card Vault may ask for camera access, V.E.N.T may ask for microphone access, and some apps store local data so they can remember your work</li>
           <li><strong>Some features use the Internet</strong> - Master Generator uses the public TreV gateway for TreV responses and downloads image packs when you choose them; Card Vault uses our Card Vault service and card-data providers for search, price data, accounts, sync, Coach, and optional scan reports; V.E.N.T uses Forged By Fire Software LLC servers for chat, voice transcription, uploads, archives, and AI responses</li>
           <li><strong>Optional uploads are real uploads</strong> - If you submit a Card Vault scan report, V.E.N.T voice note, V.E.N.T attachment, support email, or service request, that content is sent to us or to the service named in this policy</li>
@@ -66,7 +67,7 @@
           <li><strong>Camera</strong> - Card Vault uses camera access only when you choose to scan cards for OCR-assisted matching. Captured images are not sent to Forged By Fire Software LLC unless you submit a scan report</li>
           <li><strong>Microphone</strong> - V.E.N.T uses microphone access only when you choose voice input. Voice recordings are uploaded for transcription when you use that feature</li>
           <li><strong>Local storage</strong> - Apps may use browser, WebView, app-data, or extracted-folder storage for settings, saved work, sessions, drafts, reports, generated files, notes, collections, decks, and local preferences</li>
-          <li><strong>Internet access</strong> - Online features may contact Forged By Fire Software LLC services, PayPal, GitHub Pages, card-data providers, Edge neural voice services, or local services you run such as Ollama</li>
+          <li><strong>Internet and private-network access</strong> - Online features may contact Forged By Fire Software LLC services, PayPal, GitHub Pages, card-data providers, Edge neural voice services, or local services you run such as Ollama. ForgeFlix may connect to a ForgeFlix server you run on your home network</li>
           <li><strong>Files and exports</strong> - Some apps create local reports, exports, generated audio, saved profiles, notes, indexes, or campaign vault files when you choose those features</li>
         </ul>
       </div>
@@ -107,14 +108,29 @@
           <li><strong>No subscription tracking</strong> - The free version does not require an account or subscription</li>
         </ul>
       </div>
-      <div class="panel">
-        <h3>Master Generator (Desktop and Android Application)</h3>
+      <div class="panel" id="forgeflix">
+        <h3>ForgeFlix (Xbox and Local Streaming Applications)</h3>
         <ul class="bullets">
-          <li><strong>No telemetry</strong> - Master Generator does not send usage data to our servers</li>
-          <li><strong>Local saves</strong> - Campaign vault data is stored on your device</li>
+          <li><strong>Private local-media client</strong> - ForgeFlix for Xbox is designed to connect to a ForgeFlix server you control on your own home network. The app package does not include movies, television episodes, media catalogs, private network addresses, or account credentials.</li>
+          <li><strong>Local server connection</strong> - When you pair the Xbox app with your ForgeFlix server, the app sends the server address you enter, a short device-pairing code, and playback/library requests to that local server. The paired server address and session details may be saved on the Xbox so the app can reconnect later.</li>
+          <li><strong>Library and playback data</strong> - Your local ForgeFlix server supplies titles, artwork paths, collections, watch progress, playback sessions, and streaming URLs to the Xbox app. This data is used to show your library and play media on your device. It is not automatically uploaded to Forged By Fire Software LLC.</li>
+          <li><strong>Home-network permission</strong> - ForgeFlix may use Internet and private-network permissions so the Xbox app can reach your local ForgeFlix server and stream media on your home network. Do not connect the app to a server you do not trust.</li>
+          <li><strong>Microsoft Store distribution</strong> - Microsoft handles Store account, download, installation, certification, diagnostic, and entitlement information under Microsoft's own privacy terms. ForgeFlix does not receive your Microsoft account password.</li>
+          <li><strong>Support</strong> - If you email support, submit screenshots, or describe your setup, that message is handled like other support email. Do not send private media files, passwords, or full library exports unless specifically requested for support.</li>
+          <li><strong>Your choices</strong> - You can disconnect the Xbox app, remove the saved connection from the app or Xbox app storage, stop your local server, or uninstall the app. Local server data remains on your own server until you delete it there.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 id="master-generator">Master Generator (Desktop and Android Application)</h3>
+        <ul class="bullets">
+          <li><strong>Local workspace</strong> - Campaign vaults, party details, notes, saved results, settings and chat history are stored on your device. Core text generators and dice work offline. No app account, advertising or third-party analytics is required.</li>
           <li><strong>User-controlled exports</strong> - Exported campaign files are created only when you choose export</li>
           <li><strong>Android backup disabled</strong> - Android app-data backup is disabled; use export when you want to back up or move a campaign vault</li>
-          <li><strong>Optional Internet features</strong> - TreV sends prompts to the public TreV gateway when you ask TreV a question, and downloadable image packs contact the release host when you choose to save maps or magic item cards on the device</li>
+          <li><strong>Optional TreV assistance</strong> - When you request an AI response, the app sends your prompt, relevant recent chat and the context it assembles to our HTTPS gateway for processing. In linked chats this can include the selected result and campaign material such as party details, notes and saved results. This is not automatic cloud synchronization of your vault. Avoid including information you do not want sent.</li>
+          <li><strong>Windows chat choices</strong> - In the current Windows version, checking <em>Do not include current results in this chat</em> when creating a thread excludes automatically attached results and campaign context. What you type or paste and relevant recent messages from that chat are still included in AI requests.</li>
+          <li><strong>Image downloads</strong> - The app checks the published image-pack catalog online. Choosing Download retrieves maps or item/equipment cards from our GitHub release into per-user app storage for offline use. GitHub and delivery providers receive normal connection details such as your IP address. Removing a downloaded pack deletes its local images; overlapping packs can share files.</li>
+          <li><strong>Voluntary feedback</strong> - Sending feedback transmits your message or quick choice, app version, device/browser details, a local installation identifier, selected generator, campaign name and saved-item count to our feedback service. Feedback is reviewed in our private App Master inbox for support and improvements. If delivery fails, the app can open your email application; that email is sent only when you send it there.</li>
+          <li><strong>Retention and deletion</strong> - Feedback remains until removed by the operator; no automatic expiration is promised for these in-app records. To request access, correction or deletion of identifiable feedback, email <a href="mailto:forgedbyfiresoftware@gmail.com">forgedbyfiresoftware@gmail.com</a> with Master Generator, the approximate date and enough of your message to locate it. Anonymous submissions may be difficult to identify. Deleting a local chat or campaign does not delete feedback already sent.</li>
           <li><strong>Android Internet permission</strong> - The Android app may request Internet access for TreV, Google Play testing, and downloadable image packs</li>
           <li><strong>No accounts</strong> - Master Generator does not require a login or cloud sync</li>
         </ul>
@@ -195,9 +211,16 @@
       </div>
 
       <div class="panel">
+        <h3>ForgeFlix Local Server and Microsoft Store</h3>
+        <p>
+          ForgeFlix for Xbox communicates with the ForgeFlix server you choose to run on your home network. Forged By Fire Software LLC does not operate that local server for you, does not receive your local media library automatically, and does not provide media content through the Xbox app. Microsoft handles Store distribution, account, entitlement, installation, certification and diagnostic information under <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft's Privacy Statement</a>.
+        </p>
+      </div>
+
+      <div class="panel">
         <h3>Master Generator TreV and Image Packs</h3>
         <p>
-          Master Generator may contact the public TreV gateway when you ask TreV for help, and may contact the release host when you download map or magic item image packs. Campaign vault saves remain local unless you export and send them yourself.
+          Master Generator sends requested TreV prompts and assembled chat/campaign context through Cloudflare to the Forged by Fire HTTPS service for AI processing. Optional feedback uses our feedback service. Cloudflare and service infrastructure may process normal connection and request information to deliver and protect these services. Downloadable maps and cards use GitHub release hosting. Email support uses our Gmail inbox and your selected email provider. Windows and Microsoft Store have their own data practices. The vault itself is stored locally; portions can be included in a requested TreV response as described above.
         </p>
       </div>
 
@@ -249,6 +272,7 @@
           <li><strong>License emails</strong> - Kept indefinitely for license recovery support</li>
           <li><strong>Support emails</strong> - Kept for 2 years, then deleted</li>
           <li><strong>Creative QR in-app feedback</strong> - Kept while needed to investigate the report, provide support and verify improvements. There is currently no automatic expiry for in-app feedback. You may request deletion or de-identification of identifiable feedback through the contact details above. Removing a message from the owner's inbox only hides it; a data-deletion request is handled separately. Limited records may remain when needed for security, legal obligations or backup integrity.</li>
+          <li><strong>ForgeFlix local data</strong> - Library records, watch progress, artwork references, pairing/session details, and server settings are kept on your Xbox or your own ForgeFlix server until you delete them, disconnect the app, clear app storage, stop/remove the server, or uninstall the app. Support emails are retained as described above.</li>
           <li><strong>Card Vault scan reports</strong> - Captured card images and related OCR, search, result, note, and timing details are kept only while useful for reproducing scanner failures, improving recognition, providing support, and verifying fixes. You can request removal of reports tied to your account</li>
           <li><strong>Card Vault accounts and synchronized libraries</strong> - Kept while the account remains active. Verified account deletion requests delete or de-identify account records and synchronized collection, deck, and preference records except limited records needed for security, support, legal compliance, or backup integrity</li>
           <li><strong>V.E.N.T account, chat, voice, upload, archive, and server records</strong> - Kept while needed to provide the app, maintain continuity, support users, debug problems, prevent abuse, and satisfy legal or operational requirements. Some in-app deletes are soft deletes so the Recovery area can restore deleted Threads or Heart memories; account deletion requests are the path for deleting or de-identifying account data</li>
