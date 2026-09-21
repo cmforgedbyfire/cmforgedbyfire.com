@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260">
+  <rect width="360" height="260" fill="none"/>
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <rect x="22" y="25" width="110" height="48" rx="8" stroke="#4de7ff" stroke-width="2.6" opacity=".72"/>
+    <path d="M34 49h28M78 49h40" stroke="#ff4fd0" stroke-width="2" opacity=".7"/>
+    <text x="39" y="58" fill="#4de7ff" font-family="Consolas, 'Courier New', monospace" font-size="22" font-weight="800" opacity=".9">CARD BAR</text>
+    <rect x="198" y="31" width="120" height="46" rx="8" stroke="#ffd166" stroke-width="2.4" opacity=".66"/>
+    <text x="214" y="60" fill="#ffd166" font-family="Consolas, 'Courier New', monospace" font-size="17" font-weight="800" opacity=".86">FOIL CASE</text>
+    <rect x="54" y="137" width="128" height="50" rx="8" stroke="#ff4fd0" stroke-width="2.4" opacity=".66"/>
+    <text x="73" y="168" fill="#ff4fd0" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="800" opacity=".84">EMBER VEIL</text>
+    <rect x="218" y="138" width="94" height="50" rx="8" stroke="#4de7ff" stroke-width="2.4" opacity=".64"/>
+    <text x="235" y="168" fill="#4de7ff" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="800" opacity=".84">TIDE KEY</text>
+    <path d="M151 94h38v52h-38zM159 104h22M159 117h17M159 130h24" stroke="#c7f9ff" stroke-width="1.8" opacity=".5"/>
+    <path d="M282 88h40v55h-40zM290 100h24M290 114h18M290 128h26" stroke="#ff4fd0" stroke-width="1.8" opacity=".42"/>
+    <path d="M38 211h72M128 211h52M207 211h118" stroke="#4de7ff" stroke-width="1.8" opacity=".32"/>
+  </g>
+</svg>

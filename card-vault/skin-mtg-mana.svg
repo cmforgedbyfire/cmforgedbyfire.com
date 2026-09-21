@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="280" viewBox="0 0 360 280">
+  <rect width="360" height="280" fill="none"/>
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    <text x="30" y="38" fill="#d8b85f" font-size="24" opacity=".78">ARCANA</text>
+    <text x="29" y="61" fill="#b9b08e" font-size="12" opacity=".56">ELEMENT TABLE</text>
+    <text x="206" y="42" fill="#d8b85f" font-size="16" opacity=".66">RELIC STACK</text>
+    <text x="206" y="63" fill="#b9b08e" font-size="12" opacity=".52">DRAW • CHARGE • RELEASE</text>
+    <text x="35" y="244" fill="#b9b08e" font-size="13" opacity=".5">Ember Vow</text>
+    <text x="184" y="246" fill="#b9b08e" font-size="13" opacity=".5">Aether Key</text>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="44" y="87" width="54" height="76" rx="8" stroke="#d8b85f" stroke-width="2.3" opacity=".58"/>
+    <rect x="52" y="98" width="38" height="50" rx="5" stroke="#d8b85f" stroke-width="1.4" opacity=".44"/>
+    <rect x="257" y="93" width="54" height="76" rx="8" stroke="#d8b85f" stroke-width="2.3" opacity=".48"/>
+    <rect x="265" y="104" width="38" height="50" rx="5" stroke="#d8b85f" stroke-width="1.4" opacity=".36"/>
+    <path d="M118 194c41-23 83-23 126 0" stroke="#d8b85f" stroke-width="2.2" opacity=".32"/>
+    <path d="M121 202c39-16 79-16 120 0" stroke="#d8b85f" stroke-width="1.6" opacity=".26"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="800" text-anchor="middle" dominant-baseline="middle">
+    <circle cx="146" cy="94" r="19" fill="#e7dcc3" fill-opacity=".13" stroke="#e7dcc3" stroke-width="2.2" opacity=".74"/>
+    <text x="146" y="95" fill="#e7dcc3" font-size="17" opacity=".86">☼</text>
+    <circle cx="195" cy="92" r="19" fill="#5aa8d8" fill-opacity=".13" stroke="#5aa8d8" stroke-width="2.2" opacity=".74"/>
+    <text x="195" y="93" fill="#76bbe1" font-size="17" opacity=".86">≈</text>
+    <circle cx="122" cy="156" r="19" fill="#9aa0a6" fill-opacity=".11" stroke="#9aa0a6" stroke-width="2.2" opacity=".7"/>
+    <text x="122" y="157" fill="#c5cbd1" font-size="17" opacity=".82">◐</text>
+    <circle cx="172" cy="160" r="19" fill="#d45b47" fill-opacity=".13" stroke="#d45b47" stroke-width="2.2" opacity=".74"/>
+    <text x="172" y="161" fill="#e67965" font-size="17" opacity=".86">△</text>
+    <circle cx="222" cy="156" r="19" fill="#5fa96b" fill-opacity=".13" stroke="#5fa96b" stroke-width="2.2" opacity=".74"/>
+    <text x="222" y="157" fill="#80c988" font-size="17" opacity=".86">♧</text>
+  </g>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700" opacity=".48">
+    <text x="126" y="38" fill="#e7dcc3">{SUN}</text>
+    <text x="186" y="38" fill="#76bbe1">{TIDE}</text>
+    <text x="249" y="38" fill="#e67965">{EMBER}</text>
+  </g>
+</svg>

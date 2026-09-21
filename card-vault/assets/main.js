@@ -32052,6 +32052,68 @@ var appTabs = ["scan", "mtg", "pokemon"];
 var gameFilters = ["mtg", "pokemon"];
 var collectionGroups = ["color", "set", "condition", "category"];
 var collectionSorts = ["name", "value", "quantity", "newest"];
+var cardVaultSkinStorageKey = "card-vault-desktop-skin";
+var cardVaultAndroidUrl = "https://play.google.com/store/apps/details?id=com.cmforgedbyfire.cardvault";
+var cardVaultSkins = [
+  { label: "Vault", value: "vault" },
+  { label: "Arcane Table", value: "mana" },
+  { label: "Pokemon Gym", value: "pokemon" },
+  { label: "Binder Paper", value: "binder" },
+  { label: "Foily Neon", value: "arcade" },
+  { label: "Old Parchment", value: "parchment" },
+  { label: "Midnight Mint", value: "midnight" }
+];
+var cardVaultSkinValues = cardVaultSkins.map((skin) => skin.value);
+var defaultCardVaultSkin = "vault";
+var forgedBrandSymbols = [
+  "./brand-symbols/card-vault-icon.png",
+  "./brand-symbols/forged-by-fire-512.png",
+  "./brand-symbols/creative-qr-icon.png",
+  "./brand-symbols/master-generator-icon.png",
+  "./brand-symbols/forgeflix-mark.png",
+  "./brand-symbols/the-forge-icon.png",
+  "./brand-symbols/forgeflix-tile.png",
+  "./brand-symbols/ship-studio-logo.png",
+  "./brand-symbols/forged-by-fire-logo.jpg"
+];
+var forgedSymbolTiles = [
+  { x: -1, y: 9, size: 92, rotate: -12, opacity: 0.5 },
+  { x: 18, y: 7, size: 58, rotate: 9, opacity: 0.38 },
+  { x: 41, y: 10, size: 78, rotate: -8, opacity: 0.42 },
+  { x: 67, y: 8, size: 64, rotate: 13, opacity: 0.36 },
+  { x: 92, y: 10, size: 86, rotate: -10, opacity: 0.42 },
+  { x: 8, y: 32, size: 72, rotate: 12, opacity: 0.38 },
+  { x: 31, y: 29, size: 96, rotate: -4, opacity: 0.28 },
+  { x: 58, y: 33, size: 70, rotate: 9, opacity: 0.34 },
+  { x: 83, y: 30, size: 82, rotate: -14, opacity: 0.36 },
+  { x: -3, y: 56, size: 82, rotate: 7, opacity: 0.34 },
+  { x: 21, y: 58, size: 70, rotate: -16, opacity: 0.32 },
+  { x: 47, y: 55, size: 90, rotate: 10, opacity: 0.28 },
+  { x: 74, y: 57, size: 66, rotate: -5, opacity: 0.34 },
+  { x: 98, y: 58, size: 92, rotate: 15, opacity: 0.38 },
+  { x: 10, y: 82, size: 84, rotate: -9, opacity: 0.36 },
+  { x: 35, y: 80, size: 62, rotate: 12, opacity: 0.34 },
+  { x: 62, y: 83, size: 94, rotate: -13, opacity: 0.29 },
+  { x: 87, y: 80, size: 72, rotate: 8, opacity: 0.34 }
+];
+function ForgedSymbolField() {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "forged-symbol-field", "aria-hidden": "true", children: forgedSymbolTiles.map((tile, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    "img",
+    {
+      alt: "",
+      className: "forged-symbol",
+      src: forgedBrandSymbols[index % forgedBrandSymbols.length],
+      style: {
+        "--symbol-opacity": tile.opacity,
+        "--symbol-rotate": `${tile.rotate}deg`,
+        "--symbol-size": `${tile.size}px`,
+        "--symbol-x": `${tile.x}%`,
+        "--symbol-y": `${tile.y}%`
+      }
+    },
+    `${tile.x}-${tile.y}-${index}`
+  )) });
+}
 var conditions = [
   "Near Mint",
   "Lightly Played",
@@ -32066,6 +32128,13 @@ function getPersistedUiState() {
     cachedPersistedUiState = readPersistedUiState();
   }
   return cachedPersistedUiState;
+}
+function getStoredCardVaultSkin() {
+  if (typeof window === "undefined") {
+    return defaultCardVaultSkin;
+  }
+  const storedSkin = window.localStorage.getItem(cardVaultSkinStorageKey);
+  return isOneOf(storedSkin, cardVaultSkinValues) ? storedSkin : defaultCardVaultSkin;
 }
 function readPersistedUiState() {
   if (typeof window === "undefined") {
@@ -32183,6 +32252,7 @@ function isStringBooleanRecord(value) {
   return Object.values(value).every((item) => typeof item === "boolean");
 }
 function App() {
+  const isDesktopShell = typeof window !== "undefined" && Boolean(window.cardVaultDesktop);
   const videoRef = (0, import_react4.useRef)(null);
   const canvasRef = (0, import_react4.useRef)(null);
   const streamRef = (0, import_react4.useRef)(null);
@@ -32196,10 +32266,14 @@ function App() {
   const accountSyncRunningRef = (0, import_react4.useRef)(false);
   const accountSyncReadyRef = (0, import_react4.useRef)(false);
   const coachChatEndRef = (0, import_react4.useRef)(null);
+  const scanResultsRef = (0, import_react4.useRef)(null);
   const previewTouchStartRef = (0, import_react4.useRef)(null);
   const [game, setGame] = (0, import_react4.useState)(() => getPersistedUiState().game ?? "mtg");
   const [activeTab, setActiveTab] = (0, import_react4.useState)(
     () => getPersistedUiState().activeTab ?? "scan"
+  );
+  const [cardVaultSkin, setCardVaultSkin] = (0, import_react4.useState)(
+    getStoredCardVaultSkin
   );
   const [query, setQuery] = (0, import_react4.useState)("");
   const [collectionGroup, setCollectionGroup] = (0, import_react4.useState)(
@@ -32266,6 +32340,7 @@ function App() {
   const [accountSession, setAccountSession] = (0, import_react4.useState)(null);
   const [accountMode, setAccountMode] = (0, import_react4.useState)("login");
   const [accountDialogOpen, setAccountDialogOpen] = (0, import_react4.useState)(true);
+  const [isAndroidAppPanelOpen, setIsAndroidAppPanelOpen] = (0, import_react4.useState)(false);
   const [isAccountBooting, setIsAccountBooting] = (0, import_react4.useState)(true);
   const [accountStatus, setAccountStatus] = (0, import_react4.useState)("");
   const [accountDraft, setAccountDraft] = (0, import_react4.useState)({
@@ -32278,6 +32353,7 @@ function App() {
   const [feedbackDraft, setFeedbackDraft] = (0, import_react4.useState)({
     note: "",
     choice: "",
+    error: "",
     dismissed: window.localStorage.getItem("card-vault-feedback-nudge-dismissed") === "1",
     isSaving: false
   });
@@ -32295,6 +32371,14 @@ function App() {
       void syncStoredScanIssueReports(accountSession.token);
     }
   }, [accountSession]);
+  (0, import_react4.useEffect)(() => {
+    if (!isDesktopShell) {
+      delete document.documentElement.dataset.cardVaultSkin;
+      return;
+    }
+    document.documentElement.dataset.cardVaultSkin = cardVaultSkin;
+    window.localStorage.setItem(cardVaultSkinStorageKey, cardVaultSkin);
+  }, [cardVaultSkin, isDesktopShell]);
   (0, import_react4.useEffect)(() => {
     coachChatEndRef.current?.scrollIntoView({
       behavior: "smooth",
@@ -32610,6 +32694,20 @@ function App() {
     } finally {
       setIsSearching(false);
     }
+  }
+  function scrollScanResultsIntoView() {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        scanResultsRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    });
+  }
+  async function runSearchAndScroll(searchTerm = query) {
+    await runSearch(searchTerm);
+    scrollScanResultsIntoView();
   }
   async function runAutoSearch(terms, scanResult2, capturedCard) {
     const reportedWrongPrintingId = game === "mtg" ? terms.map((term) => mtgReportedWrongPrintingIds[normalizeName2(term)]).find(Boolean) : void 0;
@@ -34077,10 +34175,14 @@ function App() {
     }
     const note = feedbackDraft.note.trim();
     if (!note && !choice) {
+      setFeedbackDraft((current) => ({
+        ...current,
+        error: "Enter feedback or choose a quick button before sending."
+      }));
       setStatus("Enter feedback or choose a quick button.");
       return;
     }
-    setFeedbackDraft((current) => ({ ...current, choice, isSaving: true }));
+    setFeedbackDraft((current) => ({ ...current, choice, error: "", isSaving: true }));
     try {
       const response = await fetch(getApiUrl("/api/feedback"), {
         method: "POST",
@@ -34115,7 +34217,7 @@ function App() {
         throw new Error(payload.error || "Could not save feedback.");
       }
       dismissFeedbackNudge();
-      setFeedbackDraft({ note: "", choice: "", dismissed: true, isSaving: false });
+      setFeedbackDraft({ note: "", choice: "", error: "", dismissed: true, isSaving: false });
       setStatus("Feedback saved. Thank you.");
     } catch (error) {
       setFeedbackDraft((current) => ({ ...current, isSaving: false }));
@@ -36044,6 +36146,18 @@ function App() {
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                 "button",
                 {
+                  className: "secondary android-app-button",
+                  onClick: () => setIsAndroidAppPanelOpen(true),
+                  type: "button",
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./google-play-symbol.svg" }),
+                    "Android App"
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "button",
+                {
                   className: "secondary",
                   onClick: () => void signOutAccount(),
                   type: "button",
@@ -36161,21 +36275,74 @@ function App() {
                   "Remember this device"
                 ] }),
                 accountStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status", children: accountStatus }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "account-actions", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                  "button",
-                  {
-                    className: "primary",
-                    disabled: accountDraft.isSaving,
-                    type: "submit",
-                    children: [
-                      accountDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 18 }),
-                      accountMode === "create" ? "Create Profile" : "Sign In"
-                    ]
-                  }
-                ) })
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    "button",
+                    {
+                      className: "secondary android-app-button",
+                      onClick: () => setIsAndroidAppPanelOpen(true),
+                      type: "button",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./google-play-symbol.svg" }),
+                        "Android App"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    "button",
+                    {
+                      className: "primary",
+                      disabled: accountDraft.isSaving,
+                      type: "submit",
+                      children: [
+                        accountDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 18 }),
+                        accountMode === "create" ? "Create Profile" : "Sign In"
+                      ]
+                    }
+                  )
+                ] })
               ]
             }
           ),
+          isAndroidAppPanelOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "android-app-panel", "aria-label": "Card Vault Android app", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "android-app-panel-heading", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Phone scanner" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Get Card Vault for Android" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  "aria-label": "Close Android app QR",
+                  onClick: () => setIsAndroidAppPanelOpen(false),
+                  type: "button",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 17 })
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Scan cards on your phone, review and organize on Windows." }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "img",
+              {
+                alt: "QR code for Card Vault on Google Play",
+                className: "android-app-qr",
+                src: "./card-vault-android-qr.png"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              "a",
+              {
+                className: "android-app-store-link",
+                href: cardVaultAndroidUrl,
+                rel: "noreferrer",
+                target: "_blank",
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 17 }),
+                  "Open Play Store"
+                ]
+              }
+            )
+          ] }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", { className: "account-policy-links", "aria-label": "Account help and policies", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://cmforgedbyfire.com/privacy.html", children: "Privacy" }),
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://cmforgedbyfire.com/support.html", children: "Support" }),
@@ -36190,7 +36357,8 @@ function App() {
     (candidate) => candidate.game === previewCard.game && candidate.sourceId === previewCard.sourceId
   ) : -1;
   const hasScanPreviewNavigation = scanPreviewIndex >= 0 && candidates.length > 1;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: "app-shell", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: isDesktopShell ? "app-shell desktop-shell" : "app-shell", children: [
+    isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ForgedSymbolField, {}),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "landscape-side-art landscape-side-art-left", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "landscape-side-art landscape-side-art-right", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "topbar", children: [
@@ -36204,19 +36372,33 @@ function App() {
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "button",
-        {
-          className: "account-button",
-          onClick: () => setAccountDialogOpen(true),
-          title: accountSession ? "Profile and sync" : "Sign in",
-          type: "button",
-          children: [
-            accountSession ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cloud, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 18 }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: accountSession?.profile.displayName ?? "Profile" })
-          ]
-        }
-      )
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "topbar-actions", children: [
+        isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "skin-picker", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Skin" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            "select",
+            {
+              "aria-label": "Desktop skin",
+              onChange: (event) => setCardVaultSkin(event.target.value),
+              value: cardVaultSkin,
+              children: cardVaultSkins.map((skin) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: skin.value, children: skin.label }, skin.value))
+            }
+          )
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: "account-button",
+            onClick: () => setAccountDialogOpen(true),
+            title: accountSession ? "Profile and sync" : "Sign in",
+            type: "button",
+            children: [
+              accountSession ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cloud, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: accountSession?.profile.displayName ?? "Profile" })
+            ]
+          }
+        )
+      ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", { className: "tabbar", "aria-label": "Main views", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
@@ -36342,18 +36524,27 @@ function App() {
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
             "textarea",
             {
-              onChange: (event) => setFeedbackDraft((current) => ({ ...current, note: event.target.value })),
+              "aria-invalid": Boolean(feedbackDraft.error),
+              onChange: (event) => setFeedbackDraft((current) => ({
+                ...current,
+                error: "",
+                note: event.target.value
+              })),
               placeholder: "Enter feedback",
               rows: 2,
               value: feedbackDraft.note
             }
           ),
+          feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "feedback-nudge-actions", children: [
             ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "button",
               {
                 disabled: feedbackDraft.isSaving,
-                onClick: () => void sendFeedbackNote(choice),
+                onClick: () => {
+                  setFeedbackDraft((current) => ({ ...current, error: "" }));
+                  void sendFeedbackNote(choice);
+                },
                 type: "button",
                 children: choice === "Worked well" ? "Worked" : choice
               },
@@ -36386,7 +36577,7 @@ function App() {
           className: "search-form",
           onSubmit: (event) => {
             event.preventDefault();
-            void runSearch();
+            void runSearchAndScroll();
           },
           children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
@@ -36420,7 +36611,7 @@ function App() {
           {
             onClick: () => {
               setQuery(term);
-              void runSearch(term);
+              void runSearchAndScroll(term);
             },
             type: "button",
             children: term
@@ -36431,6 +36622,7 @@ function App() {
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
         "div",
         {
+          ref: scanResultsRef,
           className: `candidate-list scan-results${candidates.length === 0 ? " empty" : ""}`,
           children: [
             candidates.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-results-empty", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
