@@ -31714,7 +31714,7 @@ function adaptiveThresholdCanvas(context, width, height) {
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
 var scannerVersion = "ocr-2026-07-26-accuracy-01";
-var appVersionLabel = "0.58";
+var appVersionLabel = "1.0.0";
 var pokemonReportedNameCorrections = {
   "airy can": "Clefairy",
   clofai: "Clefairy",
@@ -32093,6 +32093,7 @@ var coachCreditCosts = {
   improve: 3,
   build: 8
 };
+var commanderSuggestionCreditCost = 1;
 var coachCreditProducts = [
   {
     id: "coach_credits_25",
@@ -33572,6 +33573,9 @@ function App() {
     if (!coachDraft || !coachBuildRefinement || isSuggestingCommander) {
       return;
     }
+    if (!canSpendCoachCredits(commanderSuggestionCreditCost)) {
+      return;
+    }
     setIsSuggestingCommander(true);
     setCoachError("");
     try {
@@ -33640,6 +33644,18 @@ function App() {
       `${product.title} is ready for ${platform} wiring. Next step is connecting receipt verification before taking payment.`
     );
   }
+  function canSpendCoachCredits(cost) {
+    if (coachCredits?.unlimited) {
+      return true;
+    }
+    if (coachCredits && coachCredits.balance < cost) {
+      setCoachError(
+        "You're out of Coach credits. Add credits or choose Unlimited Coach to keep using Coach."
+      );
+      return false;
+    }
+    return true;
+  }
   function askCoachForRefinedCombos(skipFilters = false) {
     if (!coachDraft || !coachComboRefinement) {
       return;
@@ -33673,6 +33689,10 @@ function App() {
     const mode = options.mode ?? draft.mode;
     if (!question) {
       setCoachError("Ask Coach a question first.");
+      return;
+    }
+    const coachCost = coachCreditCosts[mode] ?? coachCreditCosts.ask;
+    if (!canSpendCoachCredits(coachCost)) {
       return;
     }
     if (mode === "build" && draft.game === "mtg" && draft.format === "commander" && !draft.commanderName.trim()) {
@@ -35456,6 +35476,8 @@ function App() {
     const comboColorOptions = getCoachComboColorOptions(coachDraft.game);
     const buildColorOptions = getCoachBuildColorOptions(coachDraft.game);
     const coachCost = coachCreditCosts[coachDraft.mode] ?? coachCreditCosts.ask;
+    const isCoachOutOfCredits = Boolean(coachCredits) && !coachCredits?.unlimited && (coachCredits?.balance ?? 0) < coachCost;
+    const coachCreditWarning = "You're out of Coach credits. Add credits or choose Unlimited Coach to keep using Coach.";
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "div",
       {
@@ -35511,7 +35533,7 @@ function App() {
                 ] })
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-credit-strip", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "Unlimited Coach" : `${coachCredits?.balance ?? 0} Coach credits` }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !coachCredits ? "Checking Coach credits" : coachCredits.unlimited ? "Unlimited Coach" : `${coachCredits.balance} Coach credits` }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "No credit spend" : `${coachCost} credit${coachCost === 1 ? "" : "s"} this request` }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                   "button",
@@ -35525,6 +35547,10 @@ function App() {
                     ]
                   }
                 )
+              ] }),
+              isCoachOutOfCredits && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-alert warning", role: "alert", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { size: 18 }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCreditWarning })
               ] }),
               coachDraft.scope === "deck" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-format-bar", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
@@ -35742,7 +35768,7 @@ function App() {
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
                     "button",
                     {
-                      disabled: isCoachLoading,
+                      disabled: isCoachLoading || isCoachOutOfCredits,
                       onClick: () => askCoachForRefinedCombos(true),
                       type: "button",
                       children: "Skip filters"
@@ -35752,7 +35778,7 @@ function App() {
                     "button",
                     {
                       className: "primary",
-                      disabled: isCoachLoading,
+                      disabled: isCoachLoading || isCoachOutOfCredits,
                       onClick: () => askCoachForRefinedCombos(),
                       type: "button",
                       children: [
@@ -35850,7 +35876,7 @@ function App() {
                       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                         "button",
                         {
-                          disabled: isCoachLoading || isSuggestingCommander,
+                          disabled: isCoachLoading || isSuggestingCommander || Boolean(coachCredits) && !coachCredits?.unlimited && (coachCredits?.balance ?? 0) < commanderSuggestionCreditCost,
                           onClick: () => void suggestCoachCommander(),
                           type: "button",
                           children: [
@@ -35913,7 +35939,7 @@ function App() {
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
                     "button",
                     {
-                      disabled: isCoachLoading,
+                      disabled: isCoachLoading || isCoachOutOfCredits,
                       onClick: () => askCoachForRefinedBuild(true),
                       type: "button",
                       children: "Skip options"
@@ -35923,7 +35949,7 @@ function App() {
                     "button",
                     {
                       className: "primary",
-                      disabled: isCoachLoading,
+                      disabled: isCoachLoading || isCoachOutOfCredits,
                       onClick: () => askCoachForRefinedBuild(),
                       type: "button",
                       children: [
@@ -35978,7 +36004,7 @@ function App() {
                       "textarea",
                       {
                         "aria-label": "Ask Coach",
-                        disabled: isCoachLoading,
+                        disabled: isCoachLoading || isCoachOutOfCredits,
                         onChange: (event) => {
                           setCoachQuestion(event.target.value);
                           updateCoachDraft({ goal: event.target.value });
@@ -35998,7 +36024,7 @@ function App() {
                       "button",
                       {
                         "aria-label": "Send question",
-                        disabled: isCoachLoading || !coachQuestion.trim(),
+                        disabled: isCoachLoading || isCoachOutOfCredits || !coachQuestion.trim(),
                         title: "Send",
                         type: "submit",
                         children: isCoachLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 19 })
