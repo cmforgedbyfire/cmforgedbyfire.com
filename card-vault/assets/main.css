@@ -226,54 +226,10 @@ img {
   overflow-x: hidden;
   position: relative;
 }
-.desktop-shell::before,
-.desktop-shell::after {
-  content: "";
-  inset: 0;
-  pointer-events: none;
-  position: fixed;
-  z-index: 0;
-}
-.desktop-shell::before {
-  background-image: var(--skin-scatter);
-  background-position: var(--skin-scatter-position, 0 0);
-  background-repeat: repeat;
-  background-size: var(--skin-scatter-size, 230px 230px);
-  opacity: var(--skin-scatter-opacity, 0.34);
-}
-.desktop-shell::after {
-  background-image: var(--skin-glow);
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: var(--skin-glow-opacity, 0.36);
-}
 .desktop-shell > * {
   position: relative;
   z-index: 1;
 }
-.forged-symbol-field {
-  filter: var(--brand-symbol-filter, none);
-  inset: 0;
-  mix-blend-mode: var(--brand-symbol-blend, normal);
-  opacity: var(--brand-symbol-field-opacity, 1);
-  overflow: hidden;
-  pointer-events: none;
-  position: fixed;
-  z-index: 0;
-}
-.forged-symbol {
-  border-radius: 12px;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.3));
-  height: var(--symbol-size);
-  left: var(--symbol-x);
-  object-fit: contain;
-  opacity: calc(var(--symbol-opacity) * var(--brand-symbol-opacity, 0.28));
-  position: absolute;
-  top: var(--symbol-y);
-  transform: translate(-50%, -50%) rotate(var(--symbol-rotate));
-  width: var(--symbol-size);
-}
-.landscape-side-art,
 .scan-results-empty {
   display: none;
 }
@@ -485,17 +441,6 @@ img {
       rgba(53, 103, 111, 0.2),
       transparent 35%);
 }
-:root[data-card-vault-skin=arcade] .desktop-shell {
-  background:
-    radial-gradient(
-      circle at 20% 10%,
-      rgba(255, 88, 199, 0.16),
-      transparent 28%),
-    radial-gradient(
-      circle at 80% 12%,
-      rgba(45, 212, 255, 0.14),
-      transparent 30%);
-}
 :root[data-card-vault-skin=arcade] .desktop-shell .collection-panel,
 :root[data-card-vault-skin=arcade] .desktop-shell .tool-panel,
 :root[data-card-vault-skin=arcade] .desktop-shell .tabbar {
@@ -551,6 +496,109 @@ img {
   overflow: auto;
   padding: 18px;
   width: 100%;
+}
+.purchase-dialog {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42);
+  display: grid;
+  gap: 14px;
+  max-height: 92svh;
+  max-width: min(94vw, 820px);
+  overflow: auto;
+  padding: 18px;
+  position: relative;
+  width: 100%;
+}
+.purchase-heading,
+.purchase-product-heading,
+.purchase-product-footer,
+.purchase-balance,
+.purchase-costs {
+  align-items: center;
+  display: flex;
+}
+.purchase-heading {
+  gap: 11px;
+  padding-right: 42px;
+}
+.purchase-heading h2,
+.purchase-heading p,
+.purchase-product h3,
+.purchase-product p {
+  margin: 0;
+}
+.purchase-balance {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  padding: 11px 12px;
+}
+.purchase-balance span {
+  color: var(--text);
+  font-weight: 800;
+}
+.purchase-products {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.purchase-product {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  min-height: 154px;
+  padding: 13px;
+}
+.purchase-product.subscription {
+  border-color: var(--accent);
+}
+.purchase-product-heading {
+  align-items: flex-start;
+  gap: 10px;
+  justify-content: space-between;
+}
+.purchase-product-heading p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.purchase-product-heading span {
+  background: rgba(31, 122, 140, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 8px;
+}
+.purchase-product-footer {
+  align-self: end;
+  gap: 10px;
+  justify-content: space-between;
+}
+.purchase-product-footer strong {
+  font-size: 18px;
+}
+.purchase-costs {
+  color: var(--muted);
+  flex-wrap: wrap;
+  font-size: 12px;
+  gap: 6px;
+}
+.purchase-costs span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 8px;
+}
+.purchase-status {
+  margin-top: 0;
 }
 .account-dialog form {
   display: grid;
@@ -639,18 +687,19 @@ img {
 .account-actions {
   display: grid;
   gap: 9px;
-  grid-template-columns: repeat(auto-fit, minmax(101px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(126px, 1fr));
   width: 100%;
 }
 .account-actions button {
+  justify-content: center;
   min-width: 0;
 }
 .android-app-button {
+  overflow: hidden;
   white-space: nowrap;
 }
-.android-app-button img {
-  height: 18px;
-  width: 90px;
+.app-shell:not(.desktop-shell) .mirror-camera-button {
+  display: none;
 }
 .android-app-panel {
   background:
@@ -928,12 +977,35 @@ img {
 .camera-frame video.active {
   visibility: visible;
 }
+.camera-frame video.mirrored {
+  transform: scaleX(-1);
+}
 .captured-frame {
   height: 100%;
   inset: 0;
   object-fit: cover;
   position: absolute;
   width: 100%;
+}
+.mirror-camera-button {
+  background: rgba(10, 16, 18, 0.78);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-size: 12px;
+  gap: 5px;
+  min-height: 31px;
+  padding: 5px 8px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 3;
+}
+.mirror-camera-button[aria-pressed=true] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.mirror-camera-button:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.72);
 }
 .camera-empty {
   align-items: center;
@@ -2144,6 +2216,27 @@ img {
   gap: 12px;
   padding-right: 92px;
 }
+.coach-credit-strip {
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  gap: 8px;
+  justify-content: space-between;
+  margin: -4px 0 4px;
+  padding: 8px 10px;
+}
+.coach-credit-strip span:first-child {
+  color: var(--text);
+  font-weight: 800;
+}
+.coach-credit-action {
+  min-height: 32px;
+  padding: 5px 9px;
+}
 .coach-thread-clear {
   padding: 8px;
   position: absolute;
@@ -3040,27 +3133,6 @@ img {
     opacity: 0.48;
     width: min(48%, 230px);
   }
-  .landscape-side-art {
-    display: block;
-    opacity: 0.1;
-    pointer-events: none;
-    position: fixed;
-    top: 52%;
-    width: clamp(76px, 9vw, 138px);
-    z-index: 0;
-  }
-  .landscape-side-art img {
-    border-radius: 18px;
-    width: 100%;
-  }
-  .landscape-side-art-left {
-    left: 8px;
-    transform: translateY(-50%) rotate(-7deg);
-  }
-  .landscape-side-art-right {
-    right: 8px;
-    transform: translateY(-50%) rotate(7deg);
-  }
   .camera-frame {
     max-height: min(590px, 64svh);
     min-height: 0;
@@ -3119,11 +3191,21 @@ img {
     margin-bottom: 10px;
   }
   .app-shell:not(.desktop-shell) .topbar {
-    align-items: flex-start;
+    align-items: start;
+    column-gap: 8px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0;
   }
   .brand-heading {
     gap: 9px;
     min-width: 0;
+  }
+  .app-shell:not(.desktop-shell) .brand-heading {
+    align-items: flex-start;
+    grid-column: 1 / -1;
+    grid-row: 1 / span 2;
+    padding-right: 136px;
   }
   .brand-icon {
     height: 42px;
@@ -3157,8 +3239,21 @@ img {
     flex-wrap: wrap;
     width: 100%;
   }
+  .app-shell:not(.desktop-shell) .topbar-actions {
+    align-items: flex-start;
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+    justify-self: end;
+    margin-top: 1px;
+    width: auto;
+    z-index: 2;
+  }
   .app-shell:not(.desktop-shell) .account-button {
-    width: min(100%, 230px);
+    max-width: 128px;
+    min-height: 36px;
+    padding: 6px 9px;
+    width: 128px;
   }
   .tabbar {
     gap: 3px;
@@ -3329,6 +3424,9 @@ img {
   .coach-popout {
     padding: 14px;
   }
+  .purchase-products {
+    grid-template-columns: 1fr;
+  }
   .coach-format-bar,
   .coach-summary-grid,
   .coach-change-grid {
@@ -3397,11 +3495,17 @@ img {
     display: none;
   }
   .tabbar {
-    grid-template-columns: 1fr;
+    gap: 3px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 10px;
+    padding: 3px;
   }
   .tabbar button {
-    justify-content: flex-start;
-    min-height: 36px;
+    font-size: 13px;
+    gap: 5px;
+    justify-content: center;
+    min-height: 38px;
+    padding: 6px 4px;
   }
   .tool-panel,
   .collection-panel {
