@@ -29391,40 +29391,60 @@ var __iconNode7 = [
 ];
 var Cloud = createLucideIcon("cloud", __iconNode7);
 
-// node_modules/lucide-react/dist/esm/icons/database.mjs
+// node_modules/lucide-react/dist/esm/icons/credit-card.mjs
 var __iconNode8 = [
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+];
+var CreditCard = createLucideIcon("credit-card", __iconNode8);
+
+// node_modules/lucide-react/dist/esm/icons/crown.mjs
+var __iconNode9 = [
+  [
+    "path",
+    {
+      d: "M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",
+      key: "1vdc57"
+    }
+  ],
+  ["path", { d: "M5 21h14", key: "11awu3" }]
+];
+var Crown = createLucideIcon("crown", __iconNode9);
+
+// node_modules/lucide-react/dist/esm/icons/database.mjs
+var __iconNode10 = [
   ["ellipse", { cx: "12", cy: "5", rx: "9", ry: "3", key: "msslwz" }],
   ["path", { d: "M3 5V19A9 3 0 0 0 21 19V5", key: "1wlel7" }],
   ["path", { d: "M3 12A9 3 0 0 0 21 12", key: "mv7ke4" }]
 ];
-var Database = createLucideIcon("database", __iconNode8);
+var Database = createLucideIcon("database", __iconNode10);
 
 // node_modules/lucide-react/dist/esm/icons/download.mjs
-var __iconNode9 = [
+var __iconNode11 = [
   ["path", { d: "M12 15V3", key: "m9g1x1" }],
   ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
   ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-var Download = createLucideIcon("download", __iconNode9);
+var Download = createLucideIcon("download", __iconNode11);
 
 // node_modules/lucide-react/dist/esm/icons/ellipsis-vertical.mjs
-var __iconNode10 = [
+var __iconNode12 = [
   ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
   ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
   ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
 ];
-var EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode10);
+var EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode12);
 
 // node_modules/lucide-react/dist/esm/icons/external-link.mjs
-var __iconNode11 = [
+var __iconNode13 = [
   ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
   ["path", { d: "M10 14 21 3", key: "gplh6r" }],
   ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-var ExternalLink = createLucideIcon("external-link", __iconNode11);
+var ExternalLink = createLucideIcon("external-link", __iconNode13);
 
 // node_modules/lucide-react/dist/esm/icons/folder-kanban.mjs
-var __iconNode12 = [
+var __iconNode14 = [
   [
     "path",
     {
@@ -29436,10 +29456,10 @@ var __iconNode12 = [
   ["path", { d: "M12 10v2", key: "hh53o1" }],
   ["path", { d: "M16 10v6", key: "1d6xys" }]
 ];
-var FolderKanban = createLucideIcon("folder-kanban", __iconNode12);
+var FolderKanban = createLucideIcon("folder-kanban", __iconNode14);
 
 // node_modules/lucide-react/dist/esm/icons/layers.mjs
-var __iconNode13 = [
+var __iconNode15 = [
   [
     "path",
     {
@@ -29462,26 +29482,26 @@ var __iconNode13 = [
     }
   ]
 ];
-var Layers = createLucideIcon("layers", __iconNode13);
+var Layers = createLucideIcon("layers", __iconNode15);
 
 // node_modules/lucide-react/dist/esm/icons/loader-circle.mjs
-var __iconNode14 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-var LoaderCircle = createLucideIcon("loader-circle", __iconNode14);
+var __iconNode16 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+var LoaderCircle = createLucideIcon("loader-circle", __iconNode16);
 
 // node_modules/lucide-react/dist/esm/icons/log-out.mjs
-var __iconNode15 = [
+var __iconNode17 = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-var LogOut = createLucideIcon("log-out", __iconNode15);
+var LogOut = createLucideIcon("log-out", __iconNode17);
 
 // node_modules/lucide-react/dist/esm/icons/minus.mjs
-var __iconNode16 = [["path", { d: "M5 12h14", key: "1ays0h" }]];
-var Minus = createLucideIcon("minus", __iconNode16);
+var __iconNode18 = [["path", { d: "M5 12h14", key: "1ays0h" }]];
+var Minus = createLucideIcon("minus", __iconNode18);
 
 // node_modules/lucide-react/dist/esm/icons/pencil.mjs
-var __iconNode17 = [
+var __iconNode19 = [
   [
     "path",
     {
@@ -29491,26 +29511,26 @@ var __iconNode17 = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-var Pencil = createLucideIcon("pencil", __iconNode17);
+var Pencil = createLucideIcon("pencil", __iconNode19);
 
 // node_modules/lucide-react/dist/esm/icons/plus.mjs
-var __iconNode18 = [
+var __iconNode20 = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-var Plus = createLucideIcon("plus", __iconNode18);
+var Plus = createLucideIcon("plus", __iconNode20);
 
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconNode19 = [
+var __iconNode21 = [
   ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
   ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
   ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
   ["path", { d: "M8 16H3v5", key: "1cv678" }]
 ];
-var RefreshCw = createLucideIcon("refresh-cw", __iconNode19);
+var RefreshCw = createLucideIcon("refresh-cw", __iconNode21);
 
 // node_modules/lucide-react/dist/esm/icons/save.mjs
-var __iconNode20 = [
+var __iconNode22 = [
   [
     "path",
     {
@@ -29521,27 +29541,27 @@ var __iconNode20 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-var Save = createLucideIcon("save", __iconNode20);
+var Save = createLucideIcon("save", __iconNode22);
 
 // node_modules/lucide-react/dist/esm/icons/scan-line.mjs
-var __iconNode21 = [
+var __iconNode23 = [
   ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
   ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
   ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
   ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }],
   ["path", { d: "M7 12h10", key: "b7w52i" }]
 ];
-var ScanLine = createLucideIcon("scan-line", __iconNode21);
+var ScanLine = createLucideIcon("scan-line", __iconNode23);
 
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconNode22 = [
+var __iconNode24 = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-var Search = createLucideIcon("search", __iconNode22);
+var Search = createLucideIcon("search", __iconNode24);
 
 // node_modules/lucide-react/dist/esm/icons/send.mjs
-var __iconNode23 = [
+var __iconNode25 = [
   [
     "path",
     {
@@ -29551,10 +29571,10 @@ var __iconNode23 = [
   ],
   ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ];
-var Send = createLucideIcon("send", __iconNode23);
+var Send = createLucideIcon("send", __iconNode25);
 
 // node_modules/lucide-react/dist/esm/icons/sparkles.mjs
-var __iconNode24 = [
+var __iconNode26 = [
   [
     "path",
     {
@@ -29566,20 +29586,20 @@ var __iconNode24 = [
   ["path", { d: "M22 4h-4", key: "gwowj6" }],
   ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
 ];
-var Sparkles = createLucideIcon("sparkles", __iconNode24);
+var Sparkles = createLucideIcon("sparkles", __iconNode26);
 
 // node_modules/lucide-react/dist/esm/icons/trash-2.mjs
-var __iconNode25 = [
+var __iconNode27 = [
   ["path", { d: "M10 11v6", key: "nco0om" }],
   ["path", { d: "M14 11v6", key: "outv1u" }],
   ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
   ["path", { d: "M3 6h18", key: "d0wm0j" }],
   ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
 ];
-var Trash2 = createLucideIcon("trash-2", __iconNode25);
+var Trash2 = createLucideIcon("trash-2", __iconNode27);
 
 // node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
-var __iconNode26 = [
+var __iconNode28 = [
   [
     "path",
     {
@@ -29590,21 +29610,21 @@ var __iconNode26 = [
   ["path", { d: "M12 9v4", key: "juzpu7" }],
   ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-var TriangleAlert = createLucideIcon("triangle-alert", __iconNode26);
+var TriangleAlert = createLucideIcon("triangle-alert", __iconNode28);
 
 // node_modules/lucide-react/dist/esm/icons/user-round.mjs
-var __iconNode27 = [
+var __iconNode29 = [
   ["circle", { cx: "12", cy: "8", r: "5", key: "1hypcn" }],
   ["path", { d: "M20 21a8 8 0 0 0-16 0", key: "rfgkzh" }]
 ];
-var UserRound = createLucideIcon("user-round", __iconNode27);
+var UserRound = createLucideIcon("user-round", __iconNode29);
 
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconNode28 = [
+var __iconNode30 = [
   ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
-var X = createLucideIcon("x", __iconNode28);
+var X = createLucideIcon("x", __iconNode30);
 
 // src/runtime.ts
 var PUBLIC_API_BASE = "https://api.cmforgedbyfire.com/card-vault";
@@ -30635,6 +30655,18 @@ async function requestCommanderSuggestions(request, accountToken) {
     throw new Error(payload.error || "Coach could not suggest a commander.");
   }
   return payload.suggestions ?? [];
+}
+async function requestCoachCreditStatus(accountToken) {
+  const response = await fetch(getApiUrl("/api/credits/status"), {
+    headers: {
+      Authorization: `Bearer ${accountToken}`
+    }
+  });
+  const payload = await response.json();
+  if (!response.ok || !payload.ok || !payload.credits) {
+    throw new Error(payload.error || "Could not load Coach credits.");
+  }
+  return payload.credits;
 }
 
 // node_modules/dexie/import-wrapper.mjs
@@ -31682,7 +31714,7 @@ function adaptiveThresholdCanvas(context, width, height) {
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
 var scannerVersion = "ocr-2026-07-26-accuracy-01";
-var appVersionLabel = "0.55";
+var appVersionLabel = "0.58";
 var pokemonReportedNameCorrections = {
   "airy can": "Clefairy",
   clofai: "Clefairy",
@@ -32054,6 +32086,48 @@ var collectionGroups = ["color", "set", "condition", "category"];
 var collectionSorts = ["name", "value", "quantity", "newest"];
 var cardVaultSkinStorageKey = "card-vault-desktop-skin";
 var cardVaultAndroidUrl = "https://play.google.com/store/apps/details?id=com.cmforgedbyfire.cardvault";
+var coachCreditCosts = {
+  ask: 1,
+  review: 2,
+  combos: 3,
+  improve: 3,
+  build: 8
+};
+var coachCreditProducts = [
+  {
+    id: "coach_credits_25",
+    title: "25 Credits",
+    subtitle: "Good for a few deck builds or quick advice.",
+    price: "$2.99",
+    kind: "credits",
+    credits: 25
+  },
+  {
+    id: "coach_credits_75",
+    title: "75 Credits",
+    subtitle: "Enough for regular tuneups and several builds.",
+    price: "$6.99",
+    kind: "credits",
+    credits: 75,
+    badge: "Popular"
+  },
+  {
+    id: "coach_credits_200",
+    title: "200 Credits",
+    subtitle: "For heavy collectors managing multiple decks.",
+    price: "$14.99",
+    kind: "credits",
+    credits: 200
+  },
+  {
+    id: "coach_unlimited",
+    title: "Unlimited Coach",
+    subtitle: "Unlimited Coach requests while the subscription is active.",
+    price: "$9.99 / month",
+    kind: "subscription",
+    badge: "Best for builders"
+  }
+];
 var cardVaultSkins = [
   { label: "Vault", value: "vault" },
   { label: "Arcane Table", value: "mana" },
@@ -32065,55 +32139,6 @@ var cardVaultSkins = [
 ];
 var cardVaultSkinValues = cardVaultSkins.map((skin) => skin.value);
 var defaultCardVaultSkin = "vault";
-var forgedBrandSymbols = [
-  "./brand-symbols/card-vault-icon.png",
-  "./brand-symbols/forged-by-fire-512.png",
-  "./brand-symbols/creative-qr-icon.png",
-  "./brand-symbols/master-generator-icon.png",
-  "./brand-symbols/forgeflix-mark.png",
-  "./brand-symbols/the-forge-icon.png",
-  "./brand-symbols/forgeflix-tile.png",
-  "./brand-symbols/ship-studio-logo.png",
-  "./brand-symbols/forged-by-fire-logo.jpg"
-];
-var forgedSymbolTiles = [
-  { x: -1, y: 9, size: 92, rotate: -12, opacity: 0.5 },
-  { x: 18, y: 7, size: 58, rotate: 9, opacity: 0.38 },
-  { x: 41, y: 10, size: 78, rotate: -8, opacity: 0.42 },
-  { x: 67, y: 8, size: 64, rotate: 13, opacity: 0.36 },
-  { x: 92, y: 10, size: 86, rotate: -10, opacity: 0.42 },
-  { x: 8, y: 32, size: 72, rotate: 12, opacity: 0.38 },
-  { x: 31, y: 29, size: 96, rotate: -4, opacity: 0.28 },
-  { x: 58, y: 33, size: 70, rotate: 9, opacity: 0.34 },
-  { x: 83, y: 30, size: 82, rotate: -14, opacity: 0.36 },
-  { x: -3, y: 56, size: 82, rotate: 7, opacity: 0.34 },
-  { x: 21, y: 58, size: 70, rotate: -16, opacity: 0.32 },
-  { x: 47, y: 55, size: 90, rotate: 10, opacity: 0.28 },
-  { x: 74, y: 57, size: 66, rotate: -5, opacity: 0.34 },
-  { x: 98, y: 58, size: 92, rotate: 15, opacity: 0.38 },
-  { x: 10, y: 82, size: 84, rotate: -9, opacity: 0.36 },
-  { x: 35, y: 80, size: 62, rotate: 12, opacity: 0.34 },
-  { x: 62, y: 83, size: 94, rotate: -13, opacity: 0.29 },
-  { x: 87, y: 80, size: 72, rotate: 8, opacity: 0.34 }
-];
-function ForgedSymbolField() {
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "forged-symbol-field", "aria-hidden": "true", children: forgedSymbolTiles.map((tile, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-    "img",
-    {
-      alt: "",
-      className: "forged-symbol",
-      src: forgedBrandSymbols[index % forgedBrandSymbols.length],
-      style: {
-        "--symbol-opacity": tile.opacity,
-        "--symbol-rotate": `${tile.rotate}deg`,
-        "--symbol-size": `${tile.size}px`,
-        "--symbol-x": `${tile.x}%`,
-        "--symbol-y": `${tile.y}%`
-      }
-    },
-    `${tile.x}-${tile.y}-${index}`
-  )) });
-}
 var conditions = [
   "Near Mint",
   "Lightly Played",
@@ -32252,7 +32277,9 @@ function isStringBooleanRecord(value) {
   return Object.values(value).every((item) => typeof item === "boolean");
 }
 function App() {
-  const isDesktopShell = typeof window !== "undefined" && Boolean(window.cardVaultDesktop);
+  const isDesktopShell = typeof window !== "undefined" && Boolean(window.cardVaultDesktop?.platform);
+  const canMirrorCamera = isDesktopShell && typeof navigator !== "undefined" && !/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  const canShowAndroidAppPromo = isDesktopShell;
   const videoRef = (0, import_react4.useRef)(null);
   const canvasRef = (0, import_react4.useRef)(null);
   const streamRef = (0, import_react4.useRef)(null);
@@ -32300,6 +32327,7 @@ function App() {
   const [isRefreshingResults, setIsRefreshingResults] = (0, import_react4.useState)(false);
   const [isScanning, setIsScanning] = (0, import_react4.useState)(false);
   const [isCameraOn, setIsCameraOn] = (0, import_react4.useState)(false);
+  const [isCameraMirrored, setIsCameraMirrored] = (0, import_react4.useState)(false);
   const [scannerState, setScannerState] = (0, import_react4.useState)("idle");
   const [capturedFrame, setCapturedFrame] = (0, import_react4.useState)("");
   const [previewCard, setPreviewCard] = (0, import_react4.useState)(null);
@@ -32327,6 +32355,7 @@ function App() {
   const [coachComboRefinement, setCoachComboRefinement] = (0, import_react4.useState)(null);
   const [coachBuildRefinement, setCoachBuildRefinement] = (0, import_react4.useState)(null);
   const [commanderSuggestions, setCommanderSuggestions] = (0, import_react4.useState)([]);
+  const [coachCredits, setCoachCredits] = (0, import_react4.useState)(null);
   const [isSuggestingCommander, setIsSuggestingCommander] = (0, import_react4.useState)(false);
   const [openGameMenu, setOpenGameMenu] = (0, import_react4.useState)(null);
   const [openCollectionItemMenu, setOpenCollectionItemMenu] = (0, import_react4.useState)(
@@ -32340,6 +32369,8 @@ function App() {
   const [accountSession, setAccountSession] = (0, import_react4.useState)(null);
   const [accountMode, setAccountMode] = (0, import_react4.useState)("login");
   const [accountDialogOpen, setAccountDialogOpen] = (0, import_react4.useState)(true);
+  const [purchaseDialogOpen, setPurchaseDialogOpen] = (0, import_react4.useState)(false);
+  const [purchaseStatus, setPurchaseStatus] = (0, import_react4.useState)("");
   const [isAndroidAppPanelOpen, setIsAndroidAppPanelOpen] = (0, import_react4.useState)(false);
   const [isAccountBooting, setIsAccountBooting] = (0, import_react4.useState)(true);
   const [accountStatus, setAccountStatus] = (0, import_react4.useState)("");
@@ -32369,6 +32400,9 @@ function App() {
   (0, import_react4.useEffect)(() => {
     if (accountSession) {
       void syncStoredScanIssueReports(accountSession.token);
+      void loadCoachCredits(accountSession.token);
+    } else {
+      setCoachCredits(null);
     }
   }, [accountSession]);
   (0, import_react4.useEffect)(() => {
@@ -33557,6 +33591,7 @@ function App() {
       });
       const suggestions = await requestCommanderSuggestions(
         {
+          requestId: crypto.randomUUID(),
           colors: coachBuildRefinement.colors,
           style: coachBuildRefinement.style,
           collectionCards: gameCollection.map(
@@ -33565,6 +33600,7 @@ function App() {
         },
         accountSession?.token ?? ""
       );
+      void loadCoachCredits(accountSession?.token);
       setCommanderSuggestions(suggestions);
       if (suggestions.length === 0) {
         setCoachError(
@@ -33578,6 +33614,31 @@ function App() {
     } finally {
       setIsSuggestingCommander(false);
     }
+  }
+  async function loadCoachCredits(token = accountSession?.token) {
+    if (!token) {
+      setCoachCredits(null);
+      return;
+    }
+    try {
+      setCoachCredits(await requestCoachCreditStatus(token));
+    } catch {
+    }
+  }
+  function openPurchaseDialog() {
+    if (!accountSession) {
+      setAccountDialogOpen(true);
+      setStatus("Sign in first so purchases can attach to your profile.");
+      return;
+    }
+    setPurchaseStatus("");
+    setPurchaseDialogOpen(true);
+  }
+  function beginCoachPurchase(product) {
+    const platform = isDesktopShell ? "Microsoft Store" : /Android/i.test(navigator.userAgent) ? "Google Play" : "the web checkout";
+    setPurchaseStatus(
+      `${product.title} is ready for ${platform} wiring. Next step is connecting receipt verification before taking payment.`
+    );
   }
   function askCoachForRefinedCombos(skipFilters = false) {
     if (!coachDraft || !coachComboRefinement) {
@@ -33707,6 +33768,7 @@ function App() {
       }
       const result = await requestCoach(
         {
+          requestId: crypto.randomUUID(),
           game: draft.game,
           scope: draft.scope,
           mode,
@@ -33724,6 +33786,9 @@ function App() {
         },
         accountSession?.token ?? ""
       );
+      if (result.credits) {
+        setCoachCredits(result.credits);
+      }
       setCoachResult(result);
       setCoachMessages(
         (current) => capCoachMessages([
@@ -33743,6 +33808,7 @@ function App() {
         await loadDeckData();
       }
     } catch (error) {
+      void loadCoachCredits();
       setCoachError(
         error instanceof DOMException && error.name === "AbortError" ? "Coach took too long to answer. Deterministic checks remain available after retry." : error instanceof Error ? error.message : `Coach could not analyze this ${draft.scope}.`
       );
@@ -35389,6 +35455,7 @@ function App() {
     );
     const comboColorOptions = getCoachComboColorOptions(coachDraft.game);
     const buildColorOptions = getCoachBuildColorOptions(coachDraft.game);
+    const coachCost = coachCreditCosts[coachDraft.mode] ?? coachCreditCosts.ask;
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "div",
       {
@@ -35442,6 +35509,22 @@ function App() {
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Coach" }),
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: deck?.name ?? `${getGameLabel(coachDraft.game)} Library` })
                 ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-credit-strip", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "Unlimited Coach" : `${coachCredits?.balance ?? 0} Coach credits` }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "No credit spend" : `${coachCost} credit${coachCost === 1 ? "" : "s"} this request` }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  "button",
+                  {
+                    className: "coach-credit-action",
+                    onClick: openPurchaseDialog,
+                    type: "button",
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 15 }),
+                      "Add Credits"
+                    ]
+                  }
+                )
               ] }),
               coachDraft.scope === "deck" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-format-bar", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
@@ -36143,15 +36226,15 @@ function App() {
             ] }),
             accountStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status", children: accountStatus }),
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              canShowAndroidAppPromo && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                 "button",
                 {
                   className: "secondary android-app-button",
                   onClick: () => setIsAndroidAppPanelOpen(true),
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./google-play-symbol.svg" }),
-                    "Android App"
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { size: 18 }),
+                    "Android QR"
                   ]
                 }
               ),
@@ -36164,6 +36247,18 @@ function App() {
                   children: [
                     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LogOut, { size: 18 }),
                     "Sign Out"
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "button",
+                {
+                  className: "secondary",
+                  onClick: openPurchaseDialog,
+                  type: "button",
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 18 }),
+                    "Coach Credits"
                   ]
                 }
               ),
@@ -36276,15 +36371,15 @@ function App() {
                 ] }),
                 accountStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status", children: accountStatus }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  canShowAndroidAppPromo && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                     "button",
                     {
                       className: "secondary android-app-button",
                       onClick: () => setIsAndroidAppPanelOpen(true),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./google-play-symbol.svg" }),
-                        "Android App"
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { size: 18 }),
+                        "Android QR"
                       ]
                     }
                   ),
@@ -36304,7 +36399,7 @@ function App() {
               ]
             }
           ),
-          isAndroidAppPanelOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "android-app-panel", "aria-label": "Card Vault Android app", children: [
+          canShowAndroidAppPromo && isAndroidAppPanelOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "android-app-panel", "aria-label": "Card Vault Android app", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "android-app-panel-heading", children: [
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Phone scanner" }),
@@ -36352,15 +36447,97 @@ function App() {
       }
     ) });
   }
+  function renderPurchaseDialog() {
+    if (!purchaseDialogOpen) {
+      return null;
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "div",
+      {
+        className: "account-backdrop",
+        onClick: () => setPurchaseDialogOpen(false),
+        role: "presentation",
+        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "section",
+          {
+            "aria-modal": "true",
+            className: "purchase-dialog",
+            onClick: (event) => event.stopPropagation(),
+            role: "dialog",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  "aria-label": "Close Coach purchase options",
+                  className: "preview-close",
+                  onClick: () => setPurchaseDialogOpen(false),
+                  title: "Close",
+                  type: "button",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 22 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Coach access" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Add Credits or Go Unlimited" })
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-balance", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "Unlimited Coach active" : `${coachCredits?.balance ?? 0} credits available` }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "Windows uses Microsoft Store checkout. Android uses Google Play." })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "purchase-products", children: coachCreditProducts.map((product) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "article",
+                {
+                  className: product.kind === "subscription" ? "purchase-product subscription" : "purchase-product",
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-product-heading", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: product.title }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: product.subtitle })
+                      ] }),
+                      product.badge && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: product.badge })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-product-footer", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: product.price }),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                        "button",
+                        {
+                          className: product.kind === "subscription" ? "primary" : "secondary",
+                          onClick: () => beginCoachPurchase(product),
+                          type: "button",
+                          children: [
+                            product.kind === "subscription" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Crown, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 17 }),
+                            product.kind === "subscription" ? "Choose Plan" : "Buy Credits"
+                          ]
+                        }
+                      )
+                    ] })
+                  ]
+                },
+                product.id
+              )) }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-costs", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Ask 1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Review 2" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Combos 3" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Improve 3" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Build 8" })
+              ] }),
+              purchaseStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status purchase-status", children: purchaseStatus })
+            ]
+          }
+        )
+      }
+    );
+  }
   performAccountSyncRef.current = performAccountSync;
   const scanPreviewIndex = previewCard && activeTab === "scan" ? candidates.findIndex(
     (candidate) => candidate.game === previewCard.game && candidate.sourceId === previewCard.sourceId
   ) : -1;
   const hasScanPreviewNavigation = scanPreviewIndex >= 0 && candidates.length > 1;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: isDesktopShell ? "app-shell desktop-shell" : "app-shell", children: [
-    isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ForgedSymbolField, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "landscape-side-art landscape-side-art-left", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "landscape-side-art landscape-side-art-right", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "topbar", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-heading", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "brand-icon", src: "./card-vault-icon.png" }),
@@ -36455,11 +36632,29 @@ function App() {
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
             "video",
             {
-              className: isCameraOn ? "camera-video active" : "camera-video",
+              className: [
+                "camera-video",
+                isCameraOn ? "active" : "",
+                canMirrorCamera && isCameraMirrored ? "mirrored" : ""
+              ].filter(Boolean).join(" "),
               ref: videoRef,
               autoPlay: true,
               muted: true,
               playsInline: true
+            }
+          ),
+          canMirrorCamera && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            "button",
+            {
+              "aria-pressed": isCameraMirrored,
+              className: "mirror-camera-button",
+              onClick: () => setIsCameraMirrored((current) => !current),
+              title: isCameraMirrored ? "Unmirror camera preview" : "Mirror camera preview",
+              type: "button",
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 15 }),
+                isCameraMirrored ? "Unmirror" : "Mirror"
+              ]
             }
           ),
           !isCameraOn && capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "captured-frame", src: capturedFrame }),
@@ -37116,7 +37311,8 @@ function App() {
     ),
     renderSaveDeckDialog(),
     renderScanIssueDialog(),
-    renderAccountDialog()
+    renderAccountDialog(),
+    renderPurchaseDialog()
   ] });
 }
 function getDefaultCoachFormat(game) {
@@ -38214,6 +38410,8 @@ lucide-react/dist/esm/icons/chevron-down.mjs:
 lucide-react/dist/esm/icons/chevron-right.mjs:
 lucide-react/dist/esm/icons/chevron-up.mjs:
 lucide-react/dist/esm/icons/cloud.mjs:
+lucide-react/dist/esm/icons/credit-card.mjs:
+lucide-react/dist/esm/icons/crown.mjs:
 lucide-react/dist/esm/icons/database.mjs:
 lucide-react/dist/esm/icons/download.mjs:
 lucide-react/dist/esm/icons/ellipsis-vertical.mjs:
