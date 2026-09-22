@@ -32630,6 +32630,7 @@ function App() {
       if (result.changed) {
         await Promise.all([loadCollection(), loadDeckData()]);
       }
+      void loadCoachCredits(session.token);
       setAccountStatus(
         result.conflicts ? "Synced. A newer change from another device was kept." : "Collection and decks synced."
       );
