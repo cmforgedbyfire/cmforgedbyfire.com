@@ -32094,6 +32094,38 @@ var coachCreditCosts = {
   build: 8
 };
 var commanderSuggestionCreditCost = 1;
+var coachCreditChargeRows = [
+  {
+    label: "Ask Coach",
+    cost: coachCreditCosts.ask,
+    detail: "Quick card, rules, or collection questions."
+  },
+  {
+    label: "Deck review",
+    cost: coachCreditCosts.review,
+    detail: "Checks a saved deck for strengths and weak spots."
+  },
+  {
+    label: "Combos",
+    cost: coachCreditCosts.combos,
+    detail: "Finds useful card interactions you own."
+  },
+  {
+    label: "Improve deck",
+    cost: coachCreditCosts.improve,
+    detail: "Suggests owned swaps for a stronger deck."
+  },
+  {
+    label: "Build deck",
+    cost: coachCreditCosts.build,
+    detail: "Builds a full deck from cards you own."
+  },
+  {
+    label: "Commander suggestions",
+    cost: commanderSuggestionCreditCost,
+    detail: "Finds owned commanders that match your build filters."
+  }
+];
 var coachCreditProducts = [
   {
     id: "coach_credits_25",
@@ -32355,6 +32387,7 @@ function App() {
   const [coachBuildRefinement, setCoachBuildRefinement] = (0, import_react4.useState)(null);
   const [commanderSuggestions, setCommanderSuggestions] = (0, import_react4.useState)([]);
   const [coachCredits, setCoachCredits] = (0, import_react4.useState)(null);
+  const [isCoachCreditListOpen, setIsCoachCreditListOpen] = (0, import_react4.useState)(false);
   const [isSuggestingCommander, setIsSuggestingCommander] = (0, import_react4.useState)(false);
   const [openGameMenu, setOpenGameMenu] = (0, import_react4.useState)(null);
   const [openCollectionItemMenu, setOpenCollectionItemMenu] = (0, import_react4.useState)(
@@ -33468,6 +33501,7 @@ function App() {
       readCoachThreadMessages(nextDraft, accountSession?.profile.id ?? "")
     );
     setAreCoachPromptsOpen(false);
+    setIsCoachCreditListOpen(false);
     setCoachComboRefinement(null);
     setCoachBuildRefinement(null);
     setCommanderSuggestions([]);
@@ -33490,6 +33524,7 @@ function App() {
       readCoachThreadMessages(nextDraft, accountSession?.profile.id ?? "")
     );
     setAreCoachPromptsOpen(false);
+    setIsCoachCreditListOpen(false);
     setCoachComboRefinement(null);
     setCoachBuildRefinement(null);
     setCommanderSuggestions([]);
@@ -33766,6 +33801,7 @@ function App() {
     setIsCoachLoading(true);
     setCoachError("");
     setCoachResult(null);
+    setIsCoachCreditListOpen(false);
     const userMessage = {
       id: crypto.randomUUID(),
       role: "user",
@@ -35477,6 +35513,8 @@ function App() {
     const coachCost = coachCreditCosts[coachDraft.mode] ?? coachCreditCosts.ask;
     const isCoachOutOfCredits = Boolean(coachCredits) && !coachCredits?.unlimited && (coachCredits?.balance ?? 0) < coachCost;
     const coachCreditWarning = "You're out of Coach credits. Add credits or choose Unlimited Coach to keep using Coach.";
+    const latestCreditUsage = coachResult?.creditUsage;
+    const latestCreditChargeLabel = latestCreditUsage ? latestCreditUsage.unlimited || latestCreditUsage.deducted === 0 ? "No credits charged" : `${latestCreditUsage.deducted} credit${latestCreditUsage.deducted === 1 ? "" : "s"} charged` : "";
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
       "div",
       {
@@ -35533,7 +35571,16 @@ function App() {
               ] }),
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-credit-strip", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !coachCredits ? "Checking Coach credits" : coachCredits.unlimited ? "Unlimited Coach" : `${coachCredits.balance} Coach credits` }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "No credit spend" : `${coachCost} credit${coachCost === 1 ? "" : "s"} this request` }),
+                latestCreditUsage ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: latestCreditChargeLabel }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "button",
+                  {
+                    "aria-expanded": isCoachCreditListOpen,
+                    className: "coach-credit-list-button",
+                    onClick: () => setIsCoachCreditListOpen((current) => !current),
+                    type: "button",
+                    children: "Credit List"
+                  }
+                ),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                   "button",
                   {
@@ -35546,6 +35593,43 @@ function App() {
                     ]
                   }
                 )
+              ] }),
+              isCoachCreditListOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-credit-list-panel", "aria-label": "Coach credit list", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Coach credit list" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Charges appear after Coach confirms the request." })
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    "button",
+                    {
+                      "aria-label": "Close credit list",
+                      onClick: () => setIsCoachCreditListOpen(false),
+                      type: "button",
+                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 16 })
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-credit-list-rows", children: [
+                  coachCreditChargeRows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: row.label }),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: row.detail })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
+                      row.cost,
+                      " credit",
+                      row.cost === 1 ? "" : "s"
+                    ] })
+                  ] }, row.label)),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Unlimited Coach" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "No credit spend while the subscription is active." })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "No spend" })
+                  ] })
+                ] })
               ] }),
               isCoachOutOfCredits && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-alert warning", role: "alert", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { size: 18 }),
