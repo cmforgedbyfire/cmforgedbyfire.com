@@ -2835,6 +2835,11 @@ img {
   border-color: #2d7d63;
   color: #b9f5df;
 }
+.coach-alert.warning {
+  background: #332711;
+  border-color: #8f6a22;
+  color: #ffe3a8;
+}
 .coach-result-heading {
   align-items: start;
   display: flex;
