@@ -32279,7 +32279,6 @@ function isStringBooleanRecord(value) {
 }
 function App() {
   const isDesktopShell = typeof window !== "undefined" && Boolean(window.cardVaultDesktop?.platform);
-  const canMirrorCamera = isDesktopShell && typeof navigator !== "undefined" && !/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
   const canShowAndroidAppPromo = isDesktopShell;
   const videoRef = (0, import_react4.useRef)(null);
   const canvasRef = (0, import_react4.useRef)(null);
@@ -32328,7 +32327,6 @@ function App() {
   const [isRefreshingResults, setIsRefreshingResults] = (0, import_react4.useState)(false);
   const [isScanning, setIsScanning] = (0, import_react4.useState)(false);
   const [isCameraOn, setIsCameraOn] = (0, import_react4.useState)(false);
-  const [isCameraMirrored, setIsCameraMirrored] = (0, import_react4.useState)(false);
   const [scannerState, setScannerState] = (0, import_react4.useState)("idle");
   const [capturedFrame, setCapturedFrame] = (0, import_react4.useState)("");
   const [previewCard, setPreviewCard] = (0, import_react4.useState)(null);
@@ -36661,27 +36659,12 @@ function App() {
             {
               className: [
                 "camera-video",
-                isCameraOn ? "active" : "",
-                canMirrorCamera && isCameraMirrored ? "mirrored" : ""
+                isCameraOn ? "active" : ""
               ].filter(Boolean).join(" "),
               ref: videoRef,
               autoPlay: true,
               muted: true,
               playsInline: true
-            }
-          ),
-          canMirrorCamera && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-            "button",
-            {
-              "aria-pressed": isCameraMirrored,
-              className: "mirror-camera-button",
-              onClick: () => setIsCameraMirrored((current) => !current),
-              title: isCameraMirrored ? "Unmirror camera preview" : "Mirror camera preview",
-              type: "button",
-              children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 15 }),
-                isCameraMirrored ? "Unmirror" : "Mirror"
-              ]
             }
           ),
           !isCameraOn && capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "captured-frame", src: capturedFrame }),

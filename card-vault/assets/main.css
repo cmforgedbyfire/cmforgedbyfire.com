@@ -698,9 +698,6 @@ img {
   overflow: hidden;
   white-space: nowrap;
 }
-.app-shell:not(.desktop-shell) .mirror-camera-button {
-  display: none;
-}
 .android-app-panel {
   background:
     linear-gradient(
@@ -977,35 +974,12 @@ img {
 .camera-frame video.active {
   visibility: visible;
 }
-.camera-frame video.mirrored {
-  transform: scaleX(-1);
-}
 .captured-frame {
   height: 100%;
   inset: 0;
   object-fit: cover;
   position: absolute;
   width: 100%;
-}
-.mirror-camera-button {
-  background: rgba(10, 16, 18, 0.78);
-  border-color: rgba(255, 255, 255, 0.28);
-  color: #fff;
-  font-size: 12px;
-  gap: 5px;
-  min-height: 31px;
-  padding: 5px 8px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  z-index: 3;
-}
-.mirror-camera-button[aria-pressed=true] {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-.mirror-camera-button:hover:not(:disabled) {
-  border-color: rgba(255, 255, 255, 0.72);
 }
 .camera-empty {
   align-items: center;
