@@ -29904,7 +29904,7 @@ function cleanPokemonTitleLine(line, game) {
     return line;
   }
   return repairPokemonTitle(
-    trimPokemonTrailingNoise(line).replace(
+    trimPokemonNoise(line).replace(
       /^(?:BASIC|BASIG|BASICG|BASlC|BASIO|BASIC0|BASlO|BASI|BAS1C|B4SIC)\s*/i,
       " "
     ).replace(
@@ -29926,24 +29926,56 @@ function repairPokemonTitle(line) {
   }
   return line;
 }
+function trimPokemonNoise(line) {
+  return trimPokemonTrailingNoise(stripPokemonLeadingNoise(line));
+}
+function stripPokemonLeadingNoise(line) {
+  const repaired = line.replace(/\b([a-z])([A-Z][a-z]{3,})\b/g, "$2").replace(/\s+/g, " ").trim();
+  const words = repaired.split(/\s+/).filter(Boolean);
+  while (words.length > 1 && pokemonLeadingNoise.has(cleanPokemonNoiseToken(words[0])) && hasPokemonTitleToken(words.slice(1))) {
+    words.shift();
+  }
+  return words.join(" ");
+}
 function trimPokemonTrailingNoise(line) {
   const words = line.split(/\s+/).filter(Boolean);
-  if (words.length <= 1) {
-    return line;
+  while (words.length > 1 && pokemonTrailingNoise.has(cleanPokemonNoiseToken(words[words.length - 1])) && hasPokemonTitleToken(words.slice(0, -1))) {
+    words.pop();
   }
-  const lastWord = words[words.length - 1].replace(/[^a-zA-Z]/g, "").toLowerCase();
-  const pokemonTrailingNoise = /* @__PURE__ */ new Set([
-    "pra",
-    "pre",
-    "pro",
-    "pod",
-    "pd",
-    "ny",
-    "hp",
-    "ht",
-    "wt"
-  ]);
-  return pokemonTrailingNoise.has(lastWord) ? words.slice(0, -1).join(" ") : line;
+  return words.join(" ");
+}
+var pokemonLeadingNoise = /* @__PURE__ */ new Set([
+  "f",
+  "go",
+  "j",
+  "s",
+  "sh",
+  "x",
+  "y"
+]);
+var pokemonTrailingNoise = /* @__PURE__ */ new Set([
+  "a",
+  "ac",
+  "hp",
+  "ht",
+  "i",
+  "io",
+  "j",
+  "ny",
+  "pd",
+  "pod",
+  "pra",
+  "pre",
+  "pro",
+  "wio",
+  "wt",
+  "yy"
+]);
+function cleanPokemonNoiseToken(token) {
+  return token.replace(/[^a-zA-Z]/g, "").toLowerCase();
+}
+function hasPokemonTitleToken(words) {
+  return words.some((word) => /^[A-Z][a-z]{2,}$/.test(word.replace(/[^a-zA-Z]/g, "")));
 }
 function hasNameShape(line, options = {}) {
   const letters = line.replace(/[^a-zA-Z]/g, "");
@@ -30543,7 +30575,7 @@ function pokemonSearchQueries(query) {
   };
   addQuery(query);
   const cleaned = repairPokemonTitle(
-    trimPokemonTrailingNoise(
+    trimPokemonNoise(
       query.replace(/[^a-zA-Z0-9,' -]+/g, " ").replace(/\s+/g, " ").trim()
     )
   );
