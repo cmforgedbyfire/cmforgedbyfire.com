@@ -233,6 +233,9 @@ img {
 .scan-results-empty {
   display: none;
 }
+.desktop-shell .scan-results-empty {
+  display: none !important;
+}
 .topbar,
 .workspace,
 .button-row,
@@ -264,7 +267,7 @@ img {
   flex-wrap: wrap;
   gap: 8px;
 }
-.brand-title-row span {
+.brand-title-row .brand-badge {
   border: 1px solid var(--accent);
   border-radius: 999px;
   color: var(--accent);
@@ -273,6 +276,12 @@ img {
   line-height: 1;
   padding: 5px 8px;
   text-transform: uppercase;
+}
+.brand-title-row .version-badge {
+  border-color: var(--line);
+  color: var(--muted);
+  letter-spacing: 0;
+  text-transform: none;
 }
 .brand-icon {
   border-radius: 8px;
@@ -490,6 +499,9 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.feedback-button {
+  max-width: 128px;
 }
 .account-backdrop {
   align-items: center;
@@ -710,6 +722,30 @@ img {
 .account-actions button {
   justify-content: center;
   min-width: 0;
+}
+.feedback-dialog {
+  position: relative;
+}
+.feedback-dialog textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+.feedback-kind-row {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.feedback-kind-row button {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  color: var(--text);
+  min-width: 0;
+}
+.feedback-kind-row button.selected,
+.feedback-nudge-actions button.selected {
+  background: #1e3a8a;
+  border-color: #2563eb;
+  color: #ffffff;
 }
 .android-app-button {
   overflow: hidden;
@@ -3268,7 +3304,7 @@ img {
   .app-shell:not(.desktop-shell) .brand-title-row h1 {
     font-size: clamp(24px, 6.7vw, 31px);
   }
-  .brand-title-row span {
+  .brand-title-row .brand-badge {
     font-size: 9px;
     padding: 4px 6px;
   }
@@ -3538,7 +3574,7 @@ img {
   .brand-title-row h1 {
     font-size: 25px;
   }
-  .brand-title-row span {
+  .brand-title-row .brand-badge:not(.version-badge) {
     display: none;
   }
   .tabbar {

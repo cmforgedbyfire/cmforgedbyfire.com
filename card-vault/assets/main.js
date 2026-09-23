@@ -29496,12 +29496,24 @@ var __iconNode17 = [
 ];
 var LogOut = createLucideIcon("log-out", __iconNode17);
 
+// node_modules/lucide-react/dist/esm/icons/message-square.mjs
+var __iconNode18 = [
+  [
+    "path",
+    {
+      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
+      key: "18887p"
+    }
+  ]
+];
+var MessageSquare = createLucideIcon("message-square", __iconNode18);
+
 // node_modules/lucide-react/dist/esm/icons/minus.mjs
-var __iconNode18 = [["path", { d: "M5 12h14", key: "1ays0h" }]];
-var Minus = createLucideIcon("minus", __iconNode18);
+var __iconNode19 = [["path", { d: "M5 12h14", key: "1ays0h" }]];
+var Minus = createLucideIcon("minus", __iconNode19);
 
 // node_modules/lucide-react/dist/esm/icons/pencil.mjs
-var __iconNode19 = [
+var __iconNode20 = [
   [
     "path",
     {
@@ -29511,26 +29523,26 @@ var __iconNode19 = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-var Pencil = createLucideIcon("pencil", __iconNode19);
+var Pencil = createLucideIcon("pencil", __iconNode20);
 
 // node_modules/lucide-react/dist/esm/icons/plus.mjs
-var __iconNode20 = [
+var __iconNode21 = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-var Plus = createLucideIcon("plus", __iconNode20);
+var Plus = createLucideIcon("plus", __iconNode21);
 
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconNode21 = [
+var __iconNode22 = [
   ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
   ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
   ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
   ["path", { d: "M8 16H3v5", key: "1cv678" }]
 ];
-var RefreshCw = createLucideIcon("refresh-cw", __iconNode21);
+var RefreshCw = createLucideIcon("refresh-cw", __iconNode22);
 
 // node_modules/lucide-react/dist/esm/icons/save.mjs
-var __iconNode22 = [
+var __iconNode23 = [
   [
     "path",
     {
@@ -29541,27 +29553,27 @@ var __iconNode22 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-var Save = createLucideIcon("save", __iconNode22);
+var Save = createLucideIcon("save", __iconNode23);
 
 // node_modules/lucide-react/dist/esm/icons/scan-line.mjs
-var __iconNode23 = [
+var __iconNode24 = [
   ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
   ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
   ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
   ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }],
   ["path", { d: "M7 12h10", key: "b7w52i" }]
 ];
-var ScanLine = createLucideIcon("scan-line", __iconNode23);
+var ScanLine = createLucideIcon("scan-line", __iconNode24);
 
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconNode24 = [
+var __iconNode25 = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-var Search = createLucideIcon("search", __iconNode24);
+var Search = createLucideIcon("search", __iconNode25);
 
 // node_modules/lucide-react/dist/esm/icons/send.mjs
-var __iconNode25 = [
+var __iconNode26 = [
   [
     "path",
     {
@@ -29571,10 +29583,10 @@ var __iconNode25 = [
   ],
   ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ];
-var Send = createLucideIcon("send", __iconNode25);
+var Send = createLucideIcon("send", __iconNode26);
 
 // node_modules/lucide-react/dist/esm/icons/sparkles.mjs
-var __iconNode26 = [
+var __iconNode27 = [
   [
     "path",
     {
@@ -29586,20 +29598,20 @@ var __iconNode26 = [
   ["path", { d: "M22 4h-4", key: "gwowj6" }],
   ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
 ];
-var Sparkles = createLucideIcon("sparkles", __iconNode26);
+var Sparkles = createLucideIcon("sparkles", __iconNode27);
 
 // node_modules/lucide-react/dist/esm/icons/trash-2.mjs
-var __iconNode27 = [
+var __iconNode28 = [
   ["path", { d: "M10 11v6", key: "nco0om" }],
   ["path", { d: "M14 11v6", key: "outv1u" }],
   ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
   ["path", { d: "M3 6h18", key: "d0wm0j" }],
   ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
 ];
-var Trash2 = createLucideIcon("trash-2", __iconNode27);
+var Trash2 = createLucideIcon("trash-2", __iconNode28);
 
 // node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
-var __iconNode28 = [
+var __iconNode29 = [
   [
     "path",
     {
@@ -29610,21 +29622,21 @@ var __iconNode28 = [
   ["path", { d: "M12 9v4", key: "juzpu7" }],
   ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-var TriangleAlert = createLucideIcon("triangle-alert", __iconNode28);
+var TriangleAlert = createLucideIcon("triangle-alert", __iconNode29);
 
 // node_modules/lucide-react/dist/esm/icons/user-round.mjs
-var __iconNode29 = [
+var __iconNode30 = [
   ["circle", { cx: "12", cy: "8", r: "5", key: "1hypcn" }],
   ["path", { d: "M20 21a8 8 0 0 0-16 0", key: "rfgkzh" }]
 ];
-var UserRound = createLucideIcon("user-round", __iconNode29);
+var UserRound = createLucideIcon("user-round", __iconNode30);
 
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconNode30 = [
+var __iconNode31 = [
   ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
-var X = createLucideIcon("x", __iconNode30);
+var X = createLucideIcon("x", __iconNode31);
 
 // src/runtime.ts
 var PUBLIC_API_BASE = "https://api.cmforgedbyfire.com/card-vault";
@@ -30697,6 +30709,36 @@ async function requestCoachCreditStatus(accountToken) {
   const payload = await response.json();
   if (!response.ok || !payload.ok || !payload.credits) {
     throw new Error(payload.error || "Could not load Coach credits.");
+  }
+  return payload.credits;
+}
+async function recordMicrosoftStoreCoachPurchase(accountToken, purchase) {
+  const response = await fetch(getApiUrl("/api/purchases/microsoft-store"), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accountToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(purchase)
+  });
+  const payload = await response.json();
+  if (!response.ok || !payload.ok || !payload.credits) {
+    throw new Error(payload.error || "Could not apply Microsoft Store purchase.");
+  }
+  return payload.credits;
+}
+async function recordGooglePlayCoachPurchase(accountToken, purchase) {
+  const response = await fetch(getApiUrl("/api/purchases/google-play"), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accountToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(purchase)
+  });
+  const payload = await response.json();
+  if (!response.ok || !payload.ok || !payload.credits) {
+    throw new Error(payload.error || "Could not apply Google Play purchase.");
   }
   return payload.credits;
 }
@@ -32193,6 +32235,50 @@ var coachCreditProducts = [
     badge: "Best for builders"
   }
 ];
+function requestAndroidCoachPurchase(productId) {
+  const androidBridge = window.CardVaultAndroid;
+  if (!androidBridge?.purchaseCoachProduct) {
+    return Promise.resolve({
+      ok: false,
+      error: "Google Play checkout is not available in this app build."
+    });
+  }
+  const requestId = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return new Promise((resolve) => {
+    const timeoutId = window.setTimeout(() => {
+      if (window.__cardVaultAndroidPurchaseResult === handleResult) {
+        window.__cardVaultAndroidPurchaseResult = void 0;
+      }
+      resolve({
+        ok: false,
+        error: "Google Play checkout timed out. Please try again."
+      });
+    }, 120001);
+    const previousHandler = window.__cardVaultAndroidPurchaseResult;
+    const handleResult = (payload) => {
+      if (payload.requestId && payload.requestId !== requestId) {
+        previousHandler?.(payload);
+        return;
+      }
+      window.clearTimeout(timeoutId);
+      window.__cardVaultAndroidPurchaseResult = previousHandler === handleResult ? void 0 : previousHandler;
+      resolve(payload);
+    };
+    window.__cardVaultAndroidPurchaseResult = handleResult;
+    androidBridge.purchaseCoachProduct(productId, requestId);
+  });
+}
+function completeAndroidCoachPurchase(product, purchase) {
+  const androidBridge = window.CardVaultAndroid;
+  if (!purchase.purchaseToken || !androidBridge?.completeCoachPurchase) {
+    return;
+  }
+  androidBridge.completeCoachPurchase(
+    product.id,
+    purchase.purchaseToken,
+    product.kind
+  );
+}
 var cardVaultSkins = [
   { label: "Vault", value: "vault" },
   { label: "Arcane Table", value: "mana" },
@@ -32335,6 +32421,15 @@ function isOneOf(value, options) {
 function isSupportedGame(value) {
   return isOneOf(value, gameFilters);
 }
+function feedbackKindForChoice(choice) {
+  if (choice === "Broke") {
+    return "bug";
+  }
+  if (choice === "Worked well") {
+    return "suggestion";
+  }
+  return "other";
+}
 function isStringBooleanRecord(value) {
   if (!isPlainObject(value)) {
     return false;
@@ -32343,6 +32438,7 @@ function isStringBooleanRecord(value) {
 }
 function App() {
   const isDesktopShell = typeof window !== "undefined" && Boolean(window.cardVaultDesktop?.platform);
+  const isAndroidShell = typeof window !== "undefined" && Boolean(window.CardVaultAndroid?.purchaseCoachProduct);
   const canShowAndroidAppPromo = isDesktopShell;
   const videoRef = (0, import_react4.useRef)(null);
   const canvasRef = (0, import_react4.useRef)(null);
@@ -32434,6 +32530,7 @@ function App() {
   const [accountMode, setAccountMode] = (0, import_react4.useState)("login");
   const [accountDialogOpen, setAccountDialogOpen] = (0, import_react4.useState)(true);
   const [purchaseDialogOpen, setPurchaseDialogOpen] = (0, import_react4.useState)(false);
+  const [feedbackDialogOpen, setFeedbackDialogOpen] = (0, import_react4.useState)(false);
   const [purchaseStatus, setPurchaseStatus] = (0, import_react4.useState)("");
   const [isAndroidAppPanelOpen, setIsAndroidAppPanelOpen] = (0, import_react4.useState)(false);
   const [isAccountBooting, setIsAccountBooting] = (0, import_react4.useState)(true);
@@ -32448,6 +32545,7 @@ function App() {
   const [feedbackDraft, setFeedbackDraft] = (0, import_react4.useState)({
     note: "",
     choice: "",
+    email: "",
     error: "",
     dismissed: window.localStorage.getItem("card-vault-feedback-nudge-dismissed") === "1",
     isSaving: false
@@ -33704,7 +33802,59 @@ function App() {
     setPurchaseStatus("");
     setPurchaseDialogOpen(true);
   }
-  function beginCoachPurchase(product) {
+  async function beginCoachPurchase(product) {
+    if (!accountSession) {
+      setAccountDialogOpen(true);
+      setStatus("Sign in first so purchases can attach to your profile.");
+      return;
+    }
+    if (isDesktopShell && window.cardVaultDesktop?.purchaseCoachProduct) {
+      setPurchaseStatus(`Opening Microsoft Store checkout for ${product.title}...`);
+      const purchase = await window.cardVaultDesktop.purchaseCoachProduct(product.id);
+      if (!purchase.ok) {
+        setPurchaseStatus(purchase.error || "Microsoft Store purchase was not completed.");
+        return;
+      }
+      try {
+        const updatedCredits = await recordMicrosoftStoreCoachPurchase(
+          accountSession.token,
+          purchase
+        );
+        setCoachCredits(updatedCredits);
+        setPurchaseStatus(
+          product.kind === "subscription" ? "Unlimited Coach is active on this account." : `${product.title} added to this account.`
+        );
+      } catch (error) {
+        setPurchaseStatus(
+          error instanceof Error ? error.message : "Purchase finished, but credits could not be applied."
+        );
+      }
+      return;
+    }
+    if (isAndroidShell && window.CardVaultAndroid?.purchaseCoachProduct) {
+      setPurchaseStatus(`Opening Google Play checkout for ${product.title}...`);
+      const purchase = await requestAndroidCoachPurchase(product.id);
+      if (!purchase.ok) {
+        setPurchaseStatus(purchase.error || "Google Play purchase was not completed.");
+        return;
+      }
+      try {
+        const updatedCredits = await recordGooglePlayCoachPurchase(
+          accountSession.token,
+          purchase
+        );
+        setCoachCredits(updatedCredits);
+        completeAndroidCoachPurchase(product, purchase);
+        setPurchaseStatus(
+          product.kind === "subscription" ? "Unlimited Coach is active on this account." : `${product.title} added to this account.`
+        );
+      } catch (error) {
+        setPurchaseStatus(
+          error instanceof Error ? error.message : "Purchase finished, but credits could not be applied."
+        );
+      }
+      return;
+    }
     const platform = isDesktopShell ? "Microsoft Store" : /Android/i.test(navigator.userAgent) ? "Google Play" : "the web checkout";
     setPurchaseStatus(
       `${product.title} is ready for ${platform} wiring. Next step is connecting receipt verification before taking payment.`
@@ -34321,56 +34471,92 @@ function App() {
     setFeedbackDraft((current) => ({ ...current, dismissed: true }));
   }
   async function sendFeedbackNote(choice = feedbackDraft.choice) {
-    if (!accountSession) {
-      setAccountDialogOpen(true);
-      setStatus("Sign in first so feedback can be saved to your profile.");
-      return;
-    }
     const note = feedbackDraft.note.trim();
-    if (!note && !choice) {
+    if (!note) {
       setFeedbackDraft((current) => ({
         ...current,
-        error: "Enter feedback or choose a quick button before sending."
+        error: "Enter a feedback note before sending."
       }));
-      setStatus("Enter feedback or choose a quick button.");
+      setStatus("Enter a feedback note before sending.");
       return;
     }
-    setFeedbackDraft((current) => ({ ...current, choice, error: "", isSaving: true }));
+    const nextChoice = choice || "Other";
+    const kind = feedbackKindForChoice(nextChoice);
+    setFeedbackDraft((current) => ({
+      ...current,
+      choice: nextChoice,
+      error: "",
+      isSaving: true
+    }));
     try {
-      const response = await fetch(getApiUrl("/api/feedback"), {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accountSession.token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          version: appVersionLabel,
-          kind: choice || "early_access_feedback",
+      if (isDesktopShell && window.cardVaultDesktop?.sendFeedback) {
+        const desktopVersion = window.cardVaultDesktop.version || appVersionLabel;
+        const payload = await window.cardVaultDesktop.sendFeedback({
           body: [
-            "Early access feedback:",
-            choice ? `Quick choice: ${choice}` : "",
-            note ? `Enter feedback: ${note}` : "",
+            note,
+            "",
+            `Category: ${nextChoice}`,
+            `Version: ${desktopVersion}`,
             `Tab: ${activeTab}`,
-            `Game: ${game}`,
-            `Search: ${query.trim() || selectedTerm || "none"}`,
-            `Profile: ${accountSession.profile.displayName}`,
-            `Phone/browser: ${navigator.userAgent}`
-          ].filter(Boolean).join("\n"),
-          context: {
-            activeTab,
-            game,
-            hasScanResult: Boolean(scanResult),
-            collectionCount: collection.length,
-            deckCount: decks.length
-          }
-        })
-      });
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.ok) {
-        throw new Error(payload.error || "Could not save feedback.");
+            `Game: ${game}`
+          ].join("\n"),
+          email: feedbackDraft.email,
+          kind
+        });
+        if (!payload.ok) {
+          throw new Error(payload.error || "Could not save feedback.");
+        }
+      } else {
+        if (!accountSession) {
+          setAccountDialogOpen(true);
+          setStatus("Sign in first so feedback can be saved to your profile.");
+          setFeedbackDraft((current) => ({ ...current, isSaving: false }));
+          return;
+        }
+        const response = await fetch(getApiUrl("/api/feedback"), {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accountSession.token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            version: appVersionLabel,
+            kind,
+            body: [
+              "Early access feedback:",
+              `Category: ${nextChoice}`,
+              `Feedback: ${note}`,
+              `Tab: ${activeTab}`,
+              `Game: ${game}`,
+              `Search: ${query.trim() || selectedTerm || "none"}`,
+              `Profile: ${accountSession.profile.displayName}`,
+              `Phone/browser: ${navigator.userAgent}`
+            ].filter(Boolean).join("\n"),
+            context: {
+              activeTab,
+              game,
+              hasScanResult: Boolean(scanResult),
+              collectionCount: collection.length,
+              deckCount: decks.length,
+              ...feedbackDraft.email.trim() ? { reply_email: feedbackDraft.email.trim() } : {}
+            }
+          })
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || "Could not save feedback.");
+        }
       }
       dismissFeedbackNudge();
-      setFeedbackDraft({ note: "", choice: "", error: "", dismissed: true, isSaving: false });
+      setFeedbackDialogOpen(false);
+      setFeedbackDraft({
+        note: "",
+        choice: "",
+        email: "",
+        error: "",
+        dismissed: true,
+        isSaving: false
+      });
       setStatus("Feedback saved. Thank you.");
     } catch (error) {
       setFeedbackDraft((current) => ({ ...current, isSaving: false }));
@@ -36588,6 +36774,126 @@ function App() {
       }
     ) });
   }
+  function renderFeedbackDialog() {
+    if (!feedbackDialogOpen) {
+      return null;
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "div",
+      {
+        className: "account-backdrop",
+        onClick: () => setFeedbackDialogOpen(false),
+        role: "presentation",
+        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "section",
+          {
+            "aria-modal": "true",
+            className: "account-dialog feedback-dialog",
+            onClick: (event) => event.stopPropagation(),
+            role: "dialog",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  "aria-label": "Close feedback",
+                  className: "preview-close",
+                  onClick: () => setFeedbackDialogOpen(false),
+                  title: "Close",
+                  type: "button",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { size: 23 }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Card Vault feedback" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Send Feedback" })
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "feedback-kind-row", "aria-label": "Feedback category", children: ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "button",
+                {
+                  className: feedbackDraft.choice === choice ? "selected" : "",
+                  disabled: feedbackDraft.isSaving,
+                  onClick: () => setFeedbackDraft((current) => ({
+                    ...current,
+                    choice,
+                    error: ""
+                  })),
+                  type: "button",
+                  children: choice
+                },
+                choice
+              )) }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                "Feedback note",
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "textarea",
+                  {
+                    "aria-invalid": Boolean(feedbackDraft.error),
+                    onChange: (event) => setFeedbackDraft((current) => ({
+                      ...current,
+                      error: "",
+                      note: event.target.value
+                    })),
+                    placeholder: "Tell me what happened or what you want changed",
+                    rows: 5,
+                    value: feedbackDraft.note
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                "Reply email",
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "input",
+                  {
+                    autoComplete: "email",
+                    onChange: (event) => setFeedbackDraft((current) => ({
+                      ...current,
+                      email: event.target.value,
+                      error: ""
+                    })),
+                    placeholder: "Optional",
+                    type: "email",
+                    value: feedbackDraft.email
+                  }
+                )
+              ] }),
+              feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  "button",
+                  {
+                    className: "secondary",
+                    disabled: feedbackDraft.isSaving,
+                    onClick: () => setFeedbackDialogOpen(false),
+                    type: "button",
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 18 }),
+                      "Close"
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  "button",
+                  {
+                    className: "primary",
+                    disabled: feedbackDraft.isSaving,
+                    onClick: () => void sendFeedbackNote(),
+                    type: "button",
+                    children: [
+                      feedbackDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 18 }),
+                      "Send"
+                    ]
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      }
+    );
+  }
   function renderPurchaseDialog() {
     if (!purchaseDialogOpen) {
       return null;
@@ -36646,7 +36952,7 @@ function App() {
                         "button",
                         {
                           className: product.kind === "subscription" ? "primary" : "secondary",
-                          onClick: () => beginCoachPurchase(product),
+                          onClick: () => void beginCoachPurchase(product),
                           type: "button",
                           children: [
                             product.kind === "subscription" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Crown, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 17 }),
@@ -36678,6 +36984,7 @@ function App() {
     (candidate) => candidate.game === previewCard.game && candidate.sourceId === previewCard.sourceId
   ) : -1;
   const hasScanPreviewNavigation = scanPreviewIndex >= 0 && candidates.length > 1;
+  const visibleAppVersion = isDesktopShell && window.cardVaultDesktop?.version ? window.cardVaultDesktop.version : appVersionLabel;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: isDesktopShell ? "app-shell desktop-shell" : "app-shell", children: [
     /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "topbar", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-heading", children: [
@@ -36686,7 +36993,11 @@ function App() {
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "MTG + Pokemon collection tracker" }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-title-row", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Card Vault" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Early Access" })
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "brand-badge", children: "Early Access" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "brand-badge version-badge", children: [
+              "v",
+              visibleAppVersion
+            ] })
           ] })
         ] })
       ] }),
@@ -36703,6 +37014,19 @@ function App() {
             }
           )
         ] }),
+        isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: "account-button feedback-button",
+            onClick: () => setFeedbackDialogOpen(true),
+            title: "Send feedback",
+            type: "button",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Feedback" })
+            ]
+          }
+        ),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
           "button",
           {
@@ -36840,7 +37164,7 @@ function App() {
         !feedbackDraft.dismissed && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "feedback-nudge", "aria-label": "Quick feedback", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-title", children: "Quick feedback?" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-copy", children: "Type feedback here, or pick one quick button." })
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-copy", children: "Pick a category, add a note, then send." })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
             "textarea",
@@ -36851,7 +37175,7 @@ function App() {
                 error: "",
                 note: event.target.value
               })),
-              placeholder: "Enter feedback",
+              placeholder: "Enter feedback note",
               rows: 2,
               value: feedbackDraft.note
             }
@@ -36861,10 +37185,14 @@ function App() {
             ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "button",
               {
+                className: feedbackDraft.choice === choice ? "selected" : "",
                 disabled: feedbackDraft.isSaving,
                 onClick: () => {
-                  setFeedbackDraft((current) => ({ ...current, error: "" }));
-                  void sendFeedbackNote(choice);
+                  setFeedbackDraft((current) => ({
+                    ...current,
+                    choice,
+                    error: ""
+                  }));
                 },
                 type: "button",
                 children: choice === "Worked well" ? "Worked" : choice
@@ -37438,6 +37766,7 @@ function App() {
     renderSaveDeckDialog(),
     renderScanIssueDialog(),
     renderAccountDialog(),
+    renderFeedbackDialog(),
     renderPurchaseDialog()
   ] });
 }
@@ -38546,6 +38875,7 @@ lucide-react/dist/esm/icons/folder-kanban.mjs:
 lucide-react/dist/esm/icons/layers.mjs:
 lucide-react/dist/esm/icons/loader-circle.mjs:
 lucide-react/dist/esm/icons/log-out.mjs:
+lucide-react/dist/esm/icons/message-square.mjs:
 lucide-react/dist/esm/icons/minus.mjs:
 lucide-react/dist/esm/icons/pencil.mjs:
 lucide-react/dist/esm/icons/plus.mjs:
