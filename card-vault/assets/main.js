@@ -31788,7 +31788,7 @@ function adaptiveThresholdCanvas(context, width, height) {
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
 var scannerVersion = "ocr-2026-07-26-accuracy-01";
-var appVersionLabel = "1.0.0";
+var appVersionLabel = "0.57";
 var pokemonReportedNameCorrections = {
   "airy can": "Clefairy",
   clofai: "Clefairy",
