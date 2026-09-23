@@ -286,6 +286,23 @@ img {
   flex: 0 0 auto;
   gap: 10px;
 }
+.desktop-shell .topbar {
+  align-items: start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.desktop-shell .brand-heading {
+  align-self: end;
+  margin-top: 22px;
+  min-width: 0;
+}
+.desktop-shell .topbar-actions {
+  align-self: start;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  justify-self: end;
+  max-width: min(48vw, 430px);
+}
 .skin-picker {
   align-items: center;
   background: var(--surface);
