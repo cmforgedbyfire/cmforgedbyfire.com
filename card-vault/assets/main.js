@@ -29658,6 +29658,9 @@ var basicLandNames = /* @__PURE__ */ new Set([
   "swamp",
   "wastes"
 ]);
+var pokemonExactTitleCorrections = {
+  sieesaarnewll: "Ampharos"
+};
 function extractLikelyCardTerms(rawText, options = {}) {
   const rejected = [
     /^(basic|stage|stage1|stage2|trainer|item|instant|sorcery|creature|artifact|enchantment|planeswalker|land)\b/i,
@@ -29930,6 +29933,10 @@ function cleanPokemonTitleLine(line, game) {
 }
 function repairPokemonTitle(line) {
   const normalized = line.replace(/[^a-zA-Z]/g, "").toLowerCase();
+  const exactCorrection = pokemonExactTitleCorrections[normalized];
+  if (exactCorrection) {
+    return exactCorrection;
+  }
   if (/energyswatter/.test(normalized)) {
     return "Energy Swatter";
   }
@@ -31787,7 +31794,7 @@ function adaptiveThresholdCanvas(context, width, height) {
 // src/App.tsx
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
-var scannerVersion = "ocr-2026-07-26-accuracy-01";
+var scannerVersion = "ocr-2026-09-24-pokemon-01";
 var appVersionLabel = "0.57";
 var pokemonReportedNameCorrections = {
   "airy can": "Clefairy",
