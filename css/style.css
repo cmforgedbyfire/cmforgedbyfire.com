@@ -356,6 +356,21 @@ button.btn{
   cursor: not-allowed;
 }
 
+.btn.store-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+}
+
+.store-logo{
+  width: 18px;
+  height: 18px;
+  display:inline-block;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
 .price-line{
   margin: 8px 0 0 0;
   color: var(--brass);
