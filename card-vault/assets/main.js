@@ -30645,6 +30645,27 @@ function normalizeName(value) {
   return value.normalize("NFD").replace(/\p{M}+/gu, "").toLowerCase().replace(/[\u2018\u2019`\u00b4]/g, "'").replace(/'s\b/g, "s").replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
+// src/appMetadata.ts
+var cardVaultAppVersion = "0.57";
+function getCardVaultClientMetadata() {
+  if (typeof window !== "undefined" && window.CardVaultAndroid) {
+    return {
+      clientPlatform: "android",
+      clientVersion: cardVaultAppVersion
+    };
+  }
+  if (typeof window !== "undefined" && window.cardVaultDesktop) {
+    return {
+      clientPlatform: "windows",
+      clientVersion: window.cardVaultDesktop.version || cardVaultAppVersion
+    };
+  }
+  return {
+    clientPlatform: "web",
+    clientVersion: cardVaultAppVersion
+  };
+}
+
 // src/coach.ts
 function buildCoachCardInput(card, quantity) {
   return {
@@ -30865,7 +30886,8 @@ async function createAccount(username, displayName, password, remember) {
   const response = await accountRequest("/api/account/create", {
     username,
     displayName,
-    password
+    password,
+    ...getCardVaultClientMetadata()
   });
   return saveAccountSession({
     profile: response.profile,
@@ -31795,7 +31817,7 @@ function adaptiveThresholdCanvas(context, width, height) {
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
 var scannerVersion = "ocr-2026-09-24-pokemon-01";
-var appVersionLabel = "0.57";
+var appVersionLabel = cardVaultAppVersion;
 var pokemonReportedNameCorrections = {
   "airy can": "Clefairy",
   clofai: "Clefairy",
