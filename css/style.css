@@ -431,6 +431,14 @@ button.btn{
   color: var(--steel);
 }
 
+.section-lead{
+  max-width: 780px;
+  margin: 0 auto;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
 .muted{color: var(--muted); line-height: 1.6}
 .small-top{margin-top: 12px;}
 
@@ -495,6 +503,61 @@ button.btn{
 
 .project-title{margin: 0 0 8px 0; font-size: 1.2rem;}
 .project-subtitle{margin: 0 0 12px 0; color: var(--muted); line-height: 1.5;}
+
+#cartrev-towers > .project-kicker{
+  text-align: center;
+}
+
+.game-feature-panel{
+  margin-top: 18px;
+}
+
+.game-feature-panel .software-preview img{
+  height: 520px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.humans-panel{
+  padding: 22px;
+  background:
+    radial-gradient(700px 320px at 15% 0%, rgba(96,123,91,.24), transparent 70%),
+    linear-gradient(180deg, rgba(28,47,45,.96), rgba(18,32,34,.96));
+  border-color: rgba(209,163,90,.32);
+}
+
+.humans-heading{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.humans-heading h2{
+  margin: 2px 0 3px 0;
+  font-size: 2rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.humans-monogram{
+  width: 78px;
+  height: 78px;
+  flex: 0 0 78px;
+  display: grid;
+  place-items: center;
+  color: #e0c47f;
+  background: linear-gradient(145deg, #334a40, #162827);
+  border: 1px solid #d1a35a;
+  box-shadow: inset 0 0 0 5px rgba(15,14,12,.35), var(--shadow);
+  font: 2.5rem Georgia, 'Times New Roman', serif;
+}
+
+.humans-tagline{
+  margin: 0;
+  color: #e0c47f;
+  font: 1.05rem Georgia, 'Times New Roman', serif;
+}
 
 .feature-list{
   margin: 0;
@@ -1115,6 +1178,15 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .product-hero-media img{
     width: 216px;
     height: 216px;
+  }
+  .humans-heading{
+    align-items: flex-start;
+  }
+  .humans-heading h2{
+    font-size: 1.6rem;
+  }
+  .game-feature-panel .software-preview img{
+    height: 280px;
   }
   .screenshot-grid img,
   .shot img{
