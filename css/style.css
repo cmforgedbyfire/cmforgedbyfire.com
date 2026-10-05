@@ -757,6 +757,15 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   object-position: top left;
 }
 
+.product-art-preview img{
+  object-fit: contain;
+  object-position: center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255,122,24,.16), transparent 62%),
+    #14120e;
+}
+
 .software-list{
   grid-template-columns: 1fr;
   gap: 10px;
@@ -775,6 +784,11 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   grid-column: 1;
 }
 
+.software-list .pill-row,
+.software-list .development-note{
+  grid-column: 1;
+}
+
 .software-list .software-preview{
   grid-column: 2;
   grid-row: 1 / span 3;
@@ -783,6 +797,16 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 
 .software-list .software-preview img{
   aspect-ratio: 4 / 3;
+}
+
+.portfolio-links .card{
+  display:flex;
+  flex-direction:column;
+}
+
+.portfolio-links .card-actions{
+  margin-top:auto;
+  padding-top:14px;
 }
 
 .grid{
