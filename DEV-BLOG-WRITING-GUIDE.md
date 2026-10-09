@@ -1,30 +1,47 @@
 # DEV Blog writing guide
 
-The public index is `dev-blog.html`. Individual entries live in `dev-blog/` and use a date-first filename such as:
+The public reader is `dev-blog.html`. All current entries live in one content file:
 
-`2026-10-08-welcome.html`
+`js/dev-blog-posts.js`
+
+The page automatically builds the large reading area, Recent Entries rail, project filters, article count, and archive cards from that file. A normal new post does not require editing `dev-blog.html`.
 
 ## Fastest way to add an entry
 
-1. Copy the newest post in `dev-blog/` and give the copy a new `YYYY-MM-DD-short-title.html` filename.
-2. Replace the page title, meta description, canonical URL, heading, date, project labels, and article text.
-3. Add one new card at the top of **All Entries** in `dev-blog.html`.
-4. Replace the **Latest From the Forge** card when the new post should be featured.
-5. Add the post URL to `sitemap.xml` with its publication date.
-6. Open the blog index and post at desktop and mobile widths before publishing.
-7. Commit and push the website `main` branch.
+1. Open `js/dev-blog-posts.js`.
+2. Copy one complete post object, including its opening and closing braces.
+3. Paste the copy at the top of `window.DEV_BLOG_POSTS` and keep a comma between entries.
+4. Give it a unique lowercase `slug` using words and hyphens.
+5. Replace its title, project, category, dates, status, summary, image, introduction, sections, and takeaway.
+6. Keep `productUrl` and `productLabel` empty when the project has no public product page.
+7. Open `dev-blog.html#your-new-slug` at desktop and mobile widths.
+8. Commit and push the website `main` branch.
+
+The first object is treated as the newest post. Its title appears at the top of Recent Entries and it opens by default when the page has no article in its URL.
+
+## The fields that control a post
+
+- `slug`: the shareable address after `dev-blog.html#`
+- `title`: the article headline
+- `project`: the app or project name shown above the headline
+- `category`: used by the filter buttons; reuse `Software`, `Games`, `AI`, or `Creative Work` when possible
+- `date` and `displayDate`: machine-readable and reader-friendly publication dates
+- `status`: an honest description such as `In development` or `Fixed and verified`
+- `readTime`: a short estimate such as `4 min read`
+- `summary`: the archive-card preview
+- `image` and `imageAlt`: a website-relative product image and its accessible description
+- `intro`: the opening paragraph in the reading pane
+- `sections`: article headings and their paragraph lists
+- `takeaway`: the highlighted closing thought
 
 ## Recommended entry structure
 
-- Project and development status
-- Clear title and publication date
-- What changed
-- Why it changed
-- What was tested and where
-- Results and evidence
-- Known limitations or unfinished work
-- What comes next
-- Screenshots only when they help explain the update
+- Open with the interesting human problem, not a file list.
+- Explain why the work mattered before describing how it was done.
+- Keep one or two concrete facts that make the result believable.
+- Include the setback, limitation, or unresolved edge when it shaped the story.
+- End with the lesson or the next meaningful question.
+- Translate technical evidence into plain language instead of pasting test output.
 
 ## Writing with your voice
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>DEV Blog - Forged By Fire Software LLC</title>
-  <meta name="description" content="Follow the real development work behind Forged By Fire software, games, and AI—from early ideas and testing to release preparation." />
+  <meta name="description" content="Read the stories behind Forged By Fire software, games, and AI—from stubborn bugs and honest tests to art, releases, and lessons from the forge." />
   <link rel="canonical" href="https://cmforgedbyfire.com/dev-blog.html" />
 
   <link rel="stylesheet" href="css/style.css" />
@@ -22,7 +22,7 @@
         <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
         <div class="brand-text">
           <h1 class="brand-title">DEV Blog</h1>
-          <p class="brand-subtitle">Notes from inside the forge</p>
+          <p class="brand-subtitle">Stories from inside the forge</p>
         </div>
       </div>
       <nav class="nav">
@@ -37,77 +37,90 @@
   </header>
 
   <main class="page" id="main-content">
-    <section class="hero hero-foundry">
+    <section class="hero hero-foundry blog-hero">
       <div class="hero-inner">
-        <p class="hero-kicker">Building in Public</p>
-        <h2>The work behind the releases.</h2>
-        <p class="lead">Real development notes about Forged By Fire software, games, and AI—what changed, why it changed, what passed testing, what still needs work, and what comes next.</p>
-        <div class="pill-row">
-          <span class="pill">Software</span>
-          <span class="pill">Games</span>
-          <span class="pill">AI</span>
-          <span class="pill">Testing</span>
-          <span class="pill">Release Work</span>
-        </div>
+        <p class="hero-kicker">The Week in the Forge • October 1–7, 2026</p>
+        <h2>Not a changelog. The story behind the work.</h2>
+        <p class="lead">Read about the strange bugs, hard choices, near wins, and small discoveries shaping Forged By Fire software, games, and AI.</p>
+        <a class="blog-start-link" href="#master-generator-marketing-kit">Start with the newest entry <span aria-hidden="true">↓</span></a>
       </div>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">Latest From the Forge</h2>
-      <article class="card blog-feature">
-        <div class="card-top">
-          <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire anvil logo" class="product-logo" width="128" height="128" />
-          <div>
-            <p class="project-kicker">DEV Blog • October 8, 2026</p>
-            <h3 class="card-title">Welcome to the DEV Blog</h3>
-            <p class="card-subtitle">An honest record of what is being built and learned.</p>
+    <section class="section blog-workspace-section" aria-label="DEV Blog reader">
+      <div class="blog-intro-strip">
+        <div>
+          <p class="blog-overline">Development journal</p>
+          <h2>Choose a story and settle in.</h2>
+          <p>Recent entries stay at the left on larger screens. The full article opens in the reading area without sending you through a maze of separate pages.</p>
+        </div>
+        <details class="blog-publishing-help">
+          <summary>How do I add a new post?</summary>
+          <ol>
+            <li>Open <code>js/dev-blog-posts.js</code>.</li>
+            <li>Copy the example post object and put the new entry at the top.</li>
+            <li>Change the story fields, save, commit, and push <code>main</code>.</li>
+          </ol>
+          <p>The reader, recent list, filters, and archive rebuild themselves from that one entry.</p>
+        </details>
+      </div>
+
+      <div class="blog-filter-row" id="blog-filters" aria-label="Filter entries by project type"></div>
+
+      <div class="blog-layout">
+        <aside class="blog-sidebar" aria-label="Recent DEV Blog entries">
+          <div class="blog-sidebar-panel">
+            <div class="blog-sidebar-heading">
+              <p class="blog-overline">Fresh from the forge</p>
+              <h2>Recent Entries</h2>
+            </div>
+            <nav class="blog-recent-list" id="blog-recent-list"></nav>
+            <a class="blog-archive-jump" href="#all-entries">Browse all entries <span aria-hidden="true">↓</span></a>
           </div>
+        </aside>
+
+        <div class="blog-reading-column">
+          <article class="blog-reader" id="blog-reader" aria-live="polite">
+            <header class="blog-reader-header">
+              <img class="blog-reader-image" src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire anvil logo" />
+              <div class="blog-reader-heading">
+                <p class="blog-entry-project">DEV Blog</p>
+                <h2 class="blog-reader-title">Loading the newest entry…</h2>
+              </div>
+            </header>
+            <p class="blog-reader-intro">The stories are being pulled from the forge.</p>
+          </article>
+
+          <nav class="blog-reader-nav" aria-label="Move between blog entries">
+            <button class="btn btn-ghost" id="blog-newer" type="button">← Newer entry</button>
+            <button class="btn btn-ghost" id="blog-older" type="button">Older entry →</button>
+          </nav>
+
+          <noscript>
+            <div class="panel blog-noscript">
+              <h2>JavaScript is needed for the blog reader.</h2>
+              <p>You can still read the original <a href="dev-blog/2026-10-08-welcome.html">welcome entry</a>, or enable JavaScript to browse the full journal.</p>
+            </div>
+          </noscript>
         </div>
-        <p class="card-body">This journal will follow products from early development through testing and release preparation, including the decisions, setbacks, and evidence that shape the finished work.</p>
-        <div class="pill-row blog-pill-row"><span class="pill">Site Update</span><span class="pill">Welcome</span></div>
-        <div class="card-actions"><a class="btn btn-primary" href="dev-blog/2026-10-08-welcome.html">Read the First Entry</a></div>
-      </article>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">All Entries</h2>
-      <div class="cards blog-post-grid">
-        <article class="card blog-post-card">
-          <p class="project-kicker"><time datetime="2026-10-08">October 8, 2026</time></p>
-          <h3 class="card-title">Welcome to the DEV Blog</h3>
-          <p class="card-body">Why this journal exists, what will be shared, and how development status will be described honestly.</p>
-          <div class="pill-row blog-pill-row"><span class="pill">Site Update</span><span class="pill">Welcome</span></div>
-          <div class="card-actions"><a class="btn btn-ghost" href="dev-blog/2026-10-08-welcome.html">Read Entry</a></div>
-        </article>
       </div>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">What You Will Find Here</h2>
-      <div class="cards">
-        <article class="card">
-          <h3 class="card-title">Development Notes</h3>
-          <p class="card-body">New features, design decisions, difficult bugs, experiments, and lessons learned while products take shape.</p>
-        </article>
-        <article class="card">
-          <h3 class="card-title">Testing Evidence</h3>
-          <p class="card-body">What was tested, where it was tested, what passed, and which limitations or release gates still remain.</p>
-        </article>
-        <article class="card">
-          <h3 class="card-title">Screenshots and Progress</h3>
-          <p class="card-body">Visual progress from apps and games when an image helps explain the work better than words alone.</p>
-        </article>
-        <article class="card">
-          <h3 class="card-title">Release Preparation</h3>
-          <p class="card-body">Store submissions, packaging, privacy work, platform requirements, and the difference between development and availability.</p>
-        </article>
+    <section class="section blog-archive-section" id="all-entries">
+      <div class="blog-section-heading">
+        <div>
+          <p class="blog-overline">The shelf</p>
+          <h2 class="section-title">All Entries</h2>
+        </div>
+        <span class="blog-entry-count" id="blog-entry-count"></span>
       </div>
+      <div class="blog-archive" id="blog-archive"></div>
     </section>
 
     <section class="section">
-      <div class="panel empty-state">
-        <h2>Honest status, every time.</h2>
-        <p class="muted">An experiment is not a finished feature. A passing build is not a public release. Posts will say clearly when something is an idea, in development, being tested, in certification, or available.</p>
+      <div class="blog-editorial-note">
+        <p class="blog-overline">The promise</p>
+        <h2>Progress without the victory fog.</h2>
+        <p>An experiment is not a feature. A successful build is not a public release. A near win is not a promotion. Every entry keeps those lines visible while telling the human story behind the work.</p>
       </div>
     </section>
   </main>
@@ -121,6 +134,8 @@
         <span class="dot">•</span> <a href="https://www.facebook.com/profile.php?id=61594003411493" target="_blank" rel="noopener">Facebook</a></p>
     </div>
   </footer>
+  <script src="js/dev-blog-posts.js"></script>
+  <script src="js/dev-blog.js"></script>
   <script src="js/cursor-trail.js"></script>
 </body>
 </html>
