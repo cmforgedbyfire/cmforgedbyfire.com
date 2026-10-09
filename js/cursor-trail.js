@@ -43,3 +43,14 @@
 
   animate();
 })();
+
+(() => {
+  if (document.querySelector('script[data-forge-analytics]')) return;
+  const loader = document.currentScript;
+  if (!loader || !loader.src) return;
+  const script = document.createElement('script');
+  script.src = new URL('site-analytics.js', loader.src).href;
+  script.defer = true;
+  script.dataset.forgeAnalytics = 'anonymous';
+  document.head.appendChild(script);
+})();
