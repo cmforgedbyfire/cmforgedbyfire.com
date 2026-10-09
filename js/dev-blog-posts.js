@@ -7,6 +7,169 @@
  */
 window.DEV_BLOG_POSTS = [
   {
+    slug: "i-just-wanted-my-own-qr-codes",
+    title: "I Just Wanted My Own QR Codes",
+    project: "Creative QR",
+    category: "Software",
+    date: "2026-10-08",
+    displayDate: "October 8, 2026",
+    status: "Released on Microsoft Store; Android development underway",
+    readTime: "3 min read",
+    summary: "Creative QR began with one simple frustration: why should making a QR code require somebody else’s website or an internet connection?",
+    image: "assets/logos/creative_qr.png",
+    imageAlt: "Creative QR logo",
+    productUrl: "creative-qr.html",
+    productLabel: "Explore Creative QR",
+    intro: "Creative QR didn't start with a business plan or some grand idea to revolutionize QR codes.",
+    sections: [
+      {
+        heading: "The problem was mine",
+        paragraphs: [
+          "I needed QR codes for my own company.",
+          "I knew there were websites that could generate them, but I didn't want to depend on someone else's website every time I needed one. What if I didn't have internet? Why should something so simple require me to open another service?",
+          "Eventually, I got annoyed enough to build my own."
+        ]
+      },
+      {
+        heading: "That is how the forge often starts",
+        paragraphs: [
+          "That's how a lot of Forged by Fire software begins. I encounter a problem, look at the existing solutions, and start wondering why I can't make something that works the way I want.",
+          "Creative QR became a local tool for generating and customizing QR codes without relying on an online generator."
+        ]
+      },
+      {
+        heading: "Then other people found it",
+        paragraphs: [
+          "The surprising part came after publication.",
+          "On Microsoft Store, Creative QR recorded 14 installs from its first 36 page views. That's a small audience, but it showed me that other people were willing to try something I'd originally built for myself.",
+          "Now I'm working toward bringing it to Android."
+        ]
+      },
+      {
+        heading: "A simple frustration can be enough",
+        paragraphs: [
+          "I don't know how big Creative QR will become. But it represents something important about Forged by Fire: sometimes a useful product starts with a very simple frustration."
+        ]
+      }
+    ],
+    takeaway: "See a need. Fill a need."
+  },
+  {
+    slug: "seven-dollars-and-fifty-cents",
+    title: "Seven Dollars and Fifty Cents",
+    project: "Founder's Journal",
+    category: "Founder's Journal",
+    date: "2026-10-08",
+    displayDate: "October 8, 2026",
+    status: "Building the business",
+    readTime: "4 min read",
+    summary: "The first Forged by Fire software payout was not financial stability. It was $7.50—and proof that somebody had paid for something the company made.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "",
+    productLabel: "",
+    intro: "My first software payout was $7.50.",
+    sections: [
+      {
+        heading: "Small, but real",
+        paragraphs: [
+          "Not exactly the kind of paycheck that changes someone's financial situation.",
+          "But it was real. Somebody had paid for software that my company produced."
+        ]
+      },
+      {
+        heading: "Why I started Forged by Fire",
+        paragraphs: [
+          "I started Forged by Fire in December 2025 because I needed to find a different way forward. My circumstances had changed, traditional employment was no longer something I could manage, and I wanted to find a way to provide financial stability for myself and my children.",
+          "I had experience working with artificial intelligence, but I wasn't a trained software developer. I was learning by building, experimenting, making mistakes, and using AI coding tools to accomplish things I didn't yet know how to do myself."
+        ]
+      },
+      {
+        heading: "Building is not the same as arriving",
+        paragraphs: [
+          "Since then, I've published applications, built a commercial game, and started experimenting with training my own AI models.",
+          "None of that means I've achieved my financial goal.",
+          "I haven't."
+        ]
+      },
+      {
+        heading: "What I did with the first payout",
+        paragraphs: [
+          "But when that first $7.50 arrived, I paid 75 cents in tithing, gave $1.50 in fast offerings, and put the remaining $5.25 toward advertising.",
+          "I believe in building useful software without burying people in subscriptions and advertisements. Some of my products are free because I want them to be accessible. Others are paid because this company eventually needs to support itself."
+        ]
+      },
+      {
+        heading: "Something to keep building",
+        paragraphs: [
+          "I don't know which product, if any, will become financially successful.",
+          "What I do know is that I have something to keep building."
+        ]
+      }
+    ],
+    takeaway: "Seven dollars and fifty cents isn't financial stability. But it is a beginning."
+  },
+  {
+    slug: "finding-scripture-without-knowing-the-words",
+    title: "Finding Scripture Without Knowing the Words",
+    project: "Latter-day Lens",
+    category: "Software",
+    date: "2026-10-08",
+    displayDate: "October 8, 2026",
+    status: "Semantic search in development",
+    readTime: "5 min read",
+    summary: "Semantic scripture search is learning to find the passage you mean—and, just as importantly, to recognize when it has not found a good answer.",
+    image: "assets/logos/latterday_lens.png",
+    imageAlt: "Latter-day Lens logo",
+    productUrl: "latterday-lens.html",
+    productLabel: "Explore Latter-day Lens",
+    intro: "Sometimes you remember what a scripture teaches, but you can't remember the words.",
+    sections: [
+      {
+        heading: "Searching for meaning",
+        paragraphs: [
+          "You might remember a lesson about forgiveness, suffering, faith, or repentance without remembering which book or chapter contains it.",
+          "That's the problem we're trying to address with semantic search in Latter-day Lens.",
+          "The application already includes scripture reading, conventional text search, Bible comparison, notes, bookmarks, and other study tools. But searching for meaning is a different challenge from searching for exact words."
+        ]
+      },
+      {
+        heading: "The first larger evaluation",
+        paragraphs: [
+          "Our first larger evaluation exposed how difficult that challenge really is.",
+          "We started with eight test questions that the search engine handled well. When we expanded to 100 unfamiliar questions, the results were much less impressive.",
+          "The engine frequently found the right book or chapter but missed the intended verse. Sometimes a nearby passage outranked the actual answer."
+        ]
+      },
+      {
+        heading: "Changing how passages are ranked",
+        paragraphs: [
+          "So we changed how it retrieves and ranks passages.",
+          "After several development rounds, the search engine found the expected passage within its first five results for 315 of 400 benchmark questions.",
+          "That was encouraging, but it wasn't the end of the testing."
+        ]
+      },
+      {
+        heading: "Knowing when there is no good answer",
+        paragraphs: [
+          "A separate audit discovered another weakness: the engine could return loosely related scriptures even when a question had nothing to do with scripture study.",
+          "That revealed an important lesson.",
+          "We're continuing to improve that behavior before releasing the feature."
+        ]
+      },
+      {
+        heading: "Keeping the purpose intact",
+        paragraphs: [
+          "The goal isn't to have software tell people what to believe. It's to help readers discover actual scripture passages, examine their context, and reach their own understanding.",
+          "And we're working to keep that research available offline, with the study data remaining on the user's device.",
+          "Latter-day Lens is free because I wanted to create something people could use in their personal scripture study.",
+          "Making it more useful is part of keeping that original purpose."
+        ]
+      }
+    ],
+    takeaway: "A good search engine needs to know when it hasn't found a good answer."
+  },
+  {
     slug: "master-generator-marketing-kit",
     title: "The Marketing Kit Had to Tell the Truth",
     project: "Master Generator",
