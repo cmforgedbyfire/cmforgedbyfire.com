@@ -7,6 +7,225 @@
  */
 window.DEV_BLOG_POSTS = [
   {
+    slug: "ten-days-in-the-forge",
+    title: "Ten Days in the Forge",
+    project: "Forged Model Lab",
+    category: "AI",
+    date: "2026-10-10",
+    displayDate: "October 10, 2026",
+    status: "Training in progress",
+    readTime: "4 min read",
+    summary: "A new 124-million-parameter candidate began a ten-day training run with random weights, a larger corpus, and an official name it still has to earn.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "ai.html",
+    productLabel: "Explore the AI projects",
+    intro: "The original Pikachu experiment taught me something important: training an AI model and creating a useful AI are two very different accomplishments.",
+    sections: [
+      {
+        heading: "Starting again",
+        paragraphs: [
+          "After training our first 124-million-parameter foundation on 2.5 billion tokens, we tried several approaches to improving its capabilities. Some experiments produced encouraging results, but none met the requirements for promotion.",
+          "Rather than continuing to patch the same model, I decided to start over."
+        ]
+      },
+      {
+        heading: "A fresh candidate",
+        paragraphs: [
+          "Our new candidate is called BM-Evo-125M-C001. It has 124,668,672 parameters, begins with completely random weights, and is scheduled to train on 5.5 billion tokens.",
+          "Before training began, we expanded the available training corpus to approximately 9.375 billion tokens across 14 data shards. That gives the new foundation a much larger collection of material to learn from."
+        ]
+      },
+      {
+        heading: "Ten days of training",
+        paragraphs: [
+          "The training run began October 9. At the measured processing speed, it should take approximately ten days.",
+          "On October 10, the model reached its first recovery checkpoint at step 500. Its training loss continued declining afterward, which was encouraging to see."
+        ]
+      },
+      {
+        heading: "The name has to be earned",
+        paragraphs: [
+          "The candidate doesn't automatically receive an official BM-Evo release name when training finishes. It must demonstrate that it meets our evaluation requirements.",
+          "If it qualifies, it will become BM-Evo-125M-001.",
+          "If it doesn't, we'll preserve the evidence and learn from the attempt."
+        ]
+      },
+      {
+        heading: "The timeline had other ideas",
+        paragraphs: [
+          "For now, the model is in the forge.",
+          "And apparently, an early calculation bug thought it wouldn't finish until the year 2201."
+        ]
+      }
+    ],
+    takeaway: "I'm hoping ten days of training will produce something useful long before then."
+  },
+  {
+    slug: "from-a-small-annoyance-to-two-app-stores",
+    title: "From a Small Annoyance to Two App Stores",
+    project: "Creative QR",
+    category: "Software",
+    date: "2026-10-10",
+    displayDate: "October 10, 2026",
+    status: "Released on Microsoft Store and Google Play",
+    readTime: "4 min read",
+    summary: "Creative QR began as a way to make one company's QR codes offline and grew into a free application available through two app stores.",
+    image: "assets/logos/creative_qr.png",
+    imageAlt: "Creative QR logo",
+    productUrl: "creative-qr.html",
+    productLabel: "Explore Creative QR",
+    intro: "Creative QR started because I wanted to make QR codes for my own business.",
+    sections: [
+      {
+        heading: "A problem I wanted to solve",
+        paragraphs: [
+          "There were plenty of websites offering QR generators, but I didn't want to depend on an online service for something I thought my own computer should be able to handle.",
+          "So I built one."
+        ]
+      },
+      {
+        heading: "A free offline tool",
+        paragraphs: [
+          "Creative QR became a free, offline QR code generator with customization options for colors, designs, and different types of information.",
+          "It was released on Microsoft Store first, where it became one of Forged by Fire's most encouraging early applications."
+        ]
+      },
+      {
+        heading: "Reaching a second store",
+        paragraphs: [
+          "On October 10, 2026, Creative QR officially reached Google Play.",
+          "The Android version required additional work to make the design options usable on a phone. We separated app appearance from QR design settings, improved the controls, and tested 32 QR-style combinations on a physical Samsung device."
+        ]
+      },
+      {
+        heading: "Available to other people",
+        paragraphs: [
+          "Creative QR is free, without advertisements or required subscriptions.",
+          "I don't know how many people will eventually use it. But it's satisfying to see something I originally built to solve my own problem become available to other people.",
+          "Sometimes a useful application begins with a very simple question:"
+        ]
+      }
+    ],
+    takeaway: "Why can't I just do this myself?"
+  },
+  {
+    slug: "building-software-is-easier-than-getting-people-to-see-it",
+    title: "Building Software Is Easier Than Getting People to See It",
+    project: "Founder's Journal",
+    category: "Founder's Journal",
+    date: "2026-10-10",
+    displayDate: "October 10, 2026",
+    status: "Learning product discovery",
+    readTime: "5 min read",
+    summary: "A small CarTrev Towers advertising experiment exposed a gap between two dashboards—and inspired another tool inside Fire Line Powerboard.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "",
+    productLabel: "",
+    intro: "I've discovered something about running a software company that I didn't fully appreciate when I started.",
+    sections: [
+      {
+        heading: "Discovery may be harder than building",
+        paragraphs: [
+          "Building the applications isn't necessarily the hardest part anymore.",
+          "Getting people to discover them might be."
+        ]
+      },
+      {
+        heading: "A small advertising experiment",
+        paragraphs: [
+          "This week, I tried paid Facebook advertising for CarTrev Towers, my tower defense game on Microsoft Store.",
+          "I started with a small budget of $2 per day. I'm not working with a large marketing budget, so every dollar matters."
+        ]
+      },
+      {
+        heading: "Two dashboards, two different numbers",
+        paragraphs: [
+          "As the campaign ran, Facebook reported increasing numbers of landing-page views. But Microsoft's reporting showed considerably fewer page views for the game.",
+          "By the time I paused the original advertisement, Meta reported 21 landing-page views while Microsoft showed four.",
+          "That discrepancy frustrated me. I couldn't independently establish why the numbers were different."
+        ]
+      },
+      {
+        heading: "So I built another tool",
+        paragraphs: [
+          "So I decided to build another tool.",
+          "We added a privacy-focused website analytics system to Fire Line Powerboard, my internal operations dashboard. It can report website visits, page views, traffic sources, product interest, and clicks to application stores.",
+          "The goal isn't to collect personal information about visitors. It's to understand whether people are finding the website and which products interest them.",
+          "The first recorded traffic also reminded me that automated checks can inflate activity, so the analytics need to distinguish genuine interest from background requests."
+        ]
+      },
+      {
+        heading: "Promoting the whole forge",
+        paragraphs: [
+          "I eventually changed my advertising approach. Instead of promoting only CarTrev Towers, I started promoting Forged by Fire as a whole.",
+          "I would much rather build software than manage advertising campaigns, Facebook groups, and social media posts.",
+          "But I also understand that people can't use software they've never heard of.",
+          "I'm still learning how to handle that side of running a business."
+        ]
+      }
+    ],
+    takeaway: "And apparently, when I encounter a business problem, my first instinct is still to build something to solve it."
+  },
+  {
+    slug: "the-work-nobody-sees-inside-a-pdf",
+    title: "The Work Nobody Sees Inside a PDF",
+    project: "Creative PDF",
+    category: "Software",
+    date: "2026-10-10",
+    displayDate: "October 10, 2026",
+    status: "In development",
+    readTime: "5 min read",
+    summary: "Creative PDF's less visible work is about preservation: supporting protected documents without damaging the originals people trust it to handle.",
+    image: "assets/logos/creative_pdf.png",
+    imageAlt: "Creative PDF logo",
+    productUrl: "paid-software.html#creative-pdf",
+    productLabel: "View Creative PDF",
+    intro: "When I started developing Creative PDF, I knew I wanted a practical document application that could work locally without unnecessary online services.",
+    sections: [
+      {
+        heading: "PDFs hide a lot",
+        paragraphs: [
+          "What I didn't know was how complicated PDF documents could become.",
+          "A PDF might contain ordinary text and images, but it can also contain annotations, layers, attachments, digital signatures, encryption, and structures that behave differently between readers.",
+          "And if someone trusts my application with an important document, I don't want that document damaged because we overlooked something."
+        ]
+      },
+      {
+        heading: "Preservation before more buttons",
+        paragraphs: [
+          "That's why so much of Creative PDF's development has focused on preservation rather than simply adding more buttons.",
+          "Recently, we added real signed-document and layered-PDF test cases. We also expanded independent validation using multiple PDF readers."
+        ]
+      },
+      {
+        heading: "Protected documents on Windows and Android",
+        paragraphs: [
+          "On October 10, another major development milestone was completed: password-protected PDF support across Windows and Android.",
+          "Users can now open protected documents and use them in supported Insert and Combine operations. Password prompts support retries and cancellation, and credentials are kept out of saved drafts and recovery records."
+        ]
+      },
+      {
+        heading: "Proving it holds together",
+        paragraphs: [
+          "The latest development report confirmed passing Windows reliability checks, Android builds, and a full 12-test Android instrumentation suite.",
+          "The original documents remain unchanged during these operations."
+        ]
+      },
+      {
+        heading: "What comes next",
+        paragraphs: [
+          "Next comes another deceptively complicated feature: searching and copying text from PDF documents while keeping the process offline.",
+          "Creative PDF isn't ready for release yet.",
+          "But every successful preservation test gives me more confidence that we're building something worth releasing.",
+          "I've learned that making software capable of editing a document is one challenge."
+        ]
+      }
+    ],
+    takeaway: "Making software that people can trust with their documents is another."
+  },
+  {
     slug: "i-just-wanted-my-own-qr-codes",
     title: "I Just Wanted My Own QR Codes",
     project: "Creative QR",
