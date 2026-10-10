@@ -233,8 +233,6 @@
 
   document.addEventListener("click", linkEvent, { capture: true });
 
-  if (isNotFoundPage) send("not_found");
-
   function pageIsActive() {
     var focused = typeof document.hasFocus !== "function" || document.hasFocus();
     return document.visibilityState !== "hidden" && focused;
@@ -247,10 +245,14 @@
   }
 
   function confirmVisit(fromTrustedInteraction) {
-    if (confirmed || isNotFoundPage || likelyAutomation) return;
+    if (confirmed || likelyAutomation) return;
     if (!fromTrustedInteraction && (requiresInteraction || !pageIsActive())) return;
     confirmed = true;
     if (confirmationTimer) window.clearTimeout(confirmationTimer);
+    if (isNotFoundPage) {
+      send("not_found");
+      return;
+    }
     send("page_view");
     if (!ownReferrer) send("visit");
     sendBlogView();
@@ -258,7 +260,7 @@
   }
 
   function schedulePassiveConfirmation() {
-    if (confirmed || isNotFoundPage || likelyAutomation || requiresInteraction || !pageIsActive()) return;
+    if (confirmed || likelyAutomation || requiresInteraction || !pageIsActive()) return;
     if (confirmationTimer) window.clearTimeout(confirmationTimer);
     confirmationTimer = window.setTimeout(function () { confirmVisit(false); }, 5000);
   }
