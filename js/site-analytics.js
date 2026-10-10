@@ -9,6 +9,10 @@
   var hiddenAt = 0;
   var hiddenTime = 0;
   var engagementSent = false;
+  var confirmed = false;
+  var confirmationTimer = 0;
+  var pendingLoadValue = null;
+  var loadMetricSent = false;
 
   function storageGet(key) {
     try { return window.localStorage.getItem(key); } catch (_error) { return null; }
@@ -78,9 +82,9 @@
     catch (_error) { return "other"; }
   }
 
-  function campaignValue(name) {
-    return new URLSearchParams(window.location.search).get(name) || "";
-  }
+  var queryParameters = new URLSearchParams(window.location.search);
+
+  function campaignValue(name) { return queryParameters.get(name) || ""; }
 
   var context = {
     page: window.location.pathname || "/",
@@ -92,6 +96,13 @@
     browser: browserName(),
     os: operatingSystem()
   };
+  var ownReferrer = SITE_HOSTS.indexOf(context.referrer) !== -1;
+  var isNotFoundPage = /404/i.test(document.title) || /\/404(?:\.html)?$/i.test(context.page);
+  var isFacebookReferrer = /(^|\.)facebook\.com$/i.test(context.referrer);
+  var hasFacebookClickSignal = queryParameters.has("fbclid") || /^facebook$/i.test(context.source);
+  var likelyAutomation = navigator.webdriver === true;
+  var requiresInteraction = (isFacebookReferrer && !hasFacebookClickSignal) ||
+    (context.referrer === "direct" && context.browser === "other" && context.os === "other");
 
   function send(eventName, details, finalDelivery) {
     if (excluded) return;
@@ -154,6 +165,8 @@
   function linkEvent(event) {
     var link = event.target.closest("a[href]");
     if (!link || link.href.indexOf("mailto:") === 0 || link.href.indexOf("tel:") === 0) return;
+    if (!event.isTrusted) return;
+    confirmVisit(true);
     var destination;
     try { destination = new URL(link.href, window.location.href); }
     catch (_error) { return; }
@@ -196,7 +209,7 @@
   }
 
   function sendEngagement() {
-    if (engagementSent) return;
+    if (!confirmed || engagementSent) return;
     engagementSent = true;
     var activeTime = Math.max(0, Date.now() - startedAt - hiddenTime);
     send("engagement", { engagement: engagementBucket(activeTime) }, true);
@@ -220,13 +233,47 @@
 
   document.addEventListener("click", linkEvent, { capture: true });
 
-  var ownReferrer = SITE_HOSTS.indexOf(context.referrer) !== -1;
-  send("page_view");
-  if (!ownReferrer) send("visit");
-  if (/404/i.test(document.title) || /\/404(?:\.html)?$/i.test(context.page)) send("not_found");
+  if (isNotFoundPage) send("not_found");
+
+  function pageIsActive() {
+    var focused = typeof document.hasFocus !== "function" || document.hasFocus();
+    return document.visibilityState !== "hidden" && focused;
+  }
+
+  function flushLoadMetric() {
+    if (!confirmed || loadMetricSent || pendingLoadValue === null) return;
+    loadMetricSent = true;
+    send("performance", { metric: "load", value: pendingLoadValue });
+  }
+
+  function confirmVisit(fromTrustedInteraction) {
+    if (confirmed || isNotFoundPage || likelyAutomation) return;
+    if (!fromTrustedInteraction && (requiresInteraction || !pageIsActive())) return;
+    confirmed = true;
+    if (confirmationTimer) window.clearTimeout(confirmationTimer);
+    send("page_view");
+    if (!ownReferrer) send("visit");
+    sendBlogView();
+    flushLoadMetric();
+  }
+
+  function schedulePassiveConfirmation() {
+    if (confirmed || isNotFoundPage || likelyAutomation || requiresInteraction || !pageIsActive()) return;
+    if (confirmationTimer) window.clearTimeout(confirmationTimer);
+    confirmationTimer = window.setTimeout(function () { confirmVisit(false); }, 5000);
+  }
+
+  function confirmFromInput(event) {
+    if (event.isTrusted) confirmVisit(true);
+  }
+
+  ["pointerdown", "touchstart", "keydown", "wheel"].forEach(function (eventName) {
+    document.addEventListener(eventName, confirmFromInput, { capture: true, passive: true });
+  });
+  schedulePassiveConfirmation();
 
   function sendBlogView() {
-    if (context.page.indexOf("dev-blog") !== -1 && window.location.hash.length > 1) {
+    if (confirmed && context.page.indexOf("dev-blog") !== -1 && window.location.hash.length > 1) {
       send("blog_view", { target: slug(window.location.hash.slice(1)) });
     }
   }
@@ -234,6 +281,7 @@
   window.addEventListener("hashchange", sendBlogView);
 
   window.addEventListener("scroll", function () {
+    if (!confirmed) return;
     var documentHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
     var percent = Math.min(100, Math.round((window.scrollY / documentHeight) * 100));
     [25, 50, 75, 100].forEach(function (depth) {
@@ -244,20 +292,26 @@
     });
   }, { passive: true });
 
-  window.addEventListener("error", function () { send("js_error", { target: "script-error" }); });
-  window.addEventListener("unhandledrejection", function () { send("js_error", { target: "promise-rejection" }); });
+  window.addEventListener("error", function () { if (confirmed) send("js_error", { target: "script-error" }); });
+  window.addEventListener("unhandledrejection", function () { if (confirmed) send("js_error", { target: "promise-rejection" }); });
 
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "hidden") hiddenAt = Date.now();
-    else if (hiddenAt) { hiddenTime += Date.now() - hiddenAt; hiddenAt = 0; }
+    else if (hiddenAt) {
+      hiddenTime += Date.now() - hiddenAt;
+      hiddenAt = 0;
+      schedulePassiveConfirmation();
+    }
   });
+  window.addEventListener("focus", schedulePassiveConfirmation);
   window.addEventListener("pagehide", sendEngagement);
 
   function reportPageLoad() {
     window.setTimeout(function () {
       var navigation = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
       if (navigation && Number.isFinite(navigation.loadEventEnd)) {
-        send("performance", { metric: "load", value: Math.round(navigation.loadEventEnd) });
+        pendingLoadValue = Math.round(navigation.loadEventEnd);
+        flushLoadMetric();
       }
     }, 0);
   }
@@ -273,7 +327,7 @@
       });
       lcpObserver.observe({ type: "largest-contentful-paint", buffered: true });
       window.addEventListener("pagehide", function () {
-        if (lcp) send("performance", { metric: "lcp", value: Math.round(lcp) }, true);
+        if (confirmed && lcp) send("performance", { metric: "lcp", value: Math.round(lcp) }, true);
       });
     } catch (_error) { /* Metric is not supported in this browser. */ }
 
@@ -284,7 +338,7 @@
       });
       clsObserver.observe({ type: "layout-shift", buffered: true });
       window.addEventListener("pagehide", function () {
-        send("performance", { metric: "cls", value: Math.round(cls * 1000) / 1000 }, true);
+        if (confirmed) send("performance", { metric: "cls", value: Math.round(cls * 1000) / 1000 }, true);
       });
     } catch (_error) { /* Metric is not supported in this browser. */ }
   }
