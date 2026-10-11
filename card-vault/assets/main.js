@@ -37713,6 +37713,18 @@ function App() {
               },
               choice
             )) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "scan-game-picker", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Scan as" }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "select",
+                {
+                  "aria-label": "Card game",
+                  onChange: (event) => setGame(event.target.value),
+                  value: game,
+                  children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: choice, children: getGameLabel(choice) }, choice))
+                }
+              )
+            ] }),
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "camera-frame", children: [
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
                 "video",

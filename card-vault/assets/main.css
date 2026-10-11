@@ -1018,6 +1018,9 @@ img {
   border-color: var(--border-strong);
   color: var(--text);
 }
+.scan-game-picker {
+  display: none;
+}
 .camera-frame {
   align-items: center;
   aspect-ratio: 2.5 / 3.5;
@@ -3380,7 +3383,7 @@ img {
   }
   .app-shell:not(.desktop-shell) {
     min-height: 100dvh;
-    padding: calc(8px + env(safe-area-inset-top, 0px)) 8px calc(76px + env(safe-area-inset-bottom, 0px));
+    padding: calc(8px + env(safe-area-inset-top, 0px)) 8px calc(8px + env(safe-area-inset-bottom, 0px));
   }
   .app-body {
     display: block;
@@ -3456,23 +3459,20 @@ img {
   }
   .tabbar {
     gap: 3px;
-    bottom: max(6px, env(safe-area-inset-bottom, 0px));
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    left: 8px;
-    margin: 0;
+    margin: 0 0 8px;
     padding: 3px;
-    position: fixed;
-    right: 8px;
-    top: auto;
-    width: auto;
+    position: sticky;
+    top: max(6px, env(safe-area-inset-top, 0px));
+    width: 100%;
     z-index: 80;
   }
   .tabbar button {
     font-size: 11px;
     gap: 4px;
     justify-content: center;
-    min-height: 39px;
-    padding: 6px 3px;
+    min-height: 34px;
+    padding: 4px 3px;
   }
   .app-shell:not(.desktop-shell) .tabbar {
     z-index: 80;
@@ -3493,6 +3493,25 @@ img {
   }
   .scan-workspace .tool-panel {
     max-width: 100%;
+  }
+  .scanner-station > .segmented {
+    display: none;
+  }
+  .scan-game-picker {
+    align-items: center;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .scan-game-picker span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .scan-game-picker select {
+    min-height: 34px;
+    padding: 5px 30px 5px 9px;
   }
   .stats-strip,
   .search-form,
@@ -3705,15 +3724,15 @@ img {
   .tabbar {
     gap: 3px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin: 0;
+    margin: 0 0 8px;
     padding: 3px;
   }
   .tabbar button {
-    font-size: 13px;
-    gap: 5px;
+    font-size: 11px;
+    gap: 4px;
     justify-content: center;
-    min-height: 38px;
-    padding: 6px 4px;
+    min-height: 34px;
+    padding: 4px 3px;
   }
   .tool-panel,
   .collection-panel {
