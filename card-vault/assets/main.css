@@ -1021,6 +1021,15 @@ img {
 .scan-game-picker {
   display: none;
 }
+.sports-review {
+  display: grid;
+  gap: 10px;
+}
+.sports-scan-reference {
+  max-height: 220px;
+  max-width: 100%;
+  object-fit: contain;
+}
 .camera-frame {
   align-items: center;
   aspect-ratio: 2.5 / 3.5;

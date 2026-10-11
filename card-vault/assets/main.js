@@ -21458,6 +21458,275 @@ var require_client = __commonJS({
   }
 });
 
+// node_modules/react/cjs/react-jsx-runtime.development.js
+var require_react_jsx_runtime_development = __commonJS({
+  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+    "use strict";
+    (function() {
+      function getComponentNameFromType(type) {
+        if (null == type) return null;
+        if ("function" === typeof type)
+          return type.$$typeof === REACT_CLIENT_REFERENCE ? null : type.displayName || type.name || null;
+        if ("string" === typeof type) return type;
+        switch (type) {
+          case REACT_FRAGMENT_TYPE:
+            return "Fragment";
+          case REACT_PROFILER_TYPE:
+            return "Profiler";
+          case REACT_STRICT_MODE_TYPE:
+            return "StrictMode";
+          case REACT_SUSPENSE_TYPE:
+            return "Suspense";
+          case REACT_SUSPENSE_LIST_TYPE:
+            return "SuspenseList";
+          case REACT_ACTIVITY_TYPE:
+            return "Activity";
+        }
+        if ("object" === typeof type)
+          switch ("number" === typeof type.tag && console.error(
+            "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
+          ), type.$$typeof) {
+            case REACT_PORTAL_TYPE:
+              return "Portal";
+            case REACT_CONTEXT_TYPE:
+              return type.displayName || "Context";
+            case REACT_CONSUMER_TYPE:
+              return (type._context.displayName || "Context") + ".Consumer";
+            case REACT_FORWARD_REF_TYPE:
+              var innerType = type.render;
+              type = type.displayName;
+              type || (type = innerType.displayName || innerType.name || "", type = "" !== type ? "ForwardRef(" + type + ")" : "ForwardRef");
+              return type;
+            case REACT_MEMO_TYPE:
+              return innerType = type.displayName || null, null !== innerType ? innerType : getComponentNameFromType(type.type) || "Memo";
+            case REACT_LAZY_TYPE:
+              innerType = type._payload;
+              type = type._init;
+              try {
+                return getComponentNameFromType(type(innerType));
+              } catch (x) {
+              }
+          }
+        return null;
+      }
+      function testStringCoercion(value) {
+        return "" + value;
+      }
+      function checkKeyStringCoercion(value) {
+        try {
+          testStringCoercion(value);
+          var JSCompiler_inline_result = false;
+        } catch (e) {
+          JSCompiler_inline_result = true;
+        }
+        if (JSCompiler_inline_result) {
+          JSCompiler_inline_result = console;
+          var JSCompiler_temp_const = JSCompiler_inline_result.error;
+          var JSCompiler_inline_result$jscomp$0 = "function" === typeof Symbol && Symbol.toStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+          JSCompiler_temp_const.call(
+            JSCompiler_inline_result,
+            "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
+            JSCompiler_inline_result$jscomp$0
+          );
+          return testStringCoercion(value);
+        }
+      }
+      function getTaskName(type) {
+        if (type === REACT_FRAGMENT_TYPE) return "<>";
+        if ("object" === typeof type && null !== type && type.$$typeof === REACT_LAZY_TYPE)
+          return "<...>";
+        try {
+          var name = getComponentNameFromType(type);
+          return name ? "<" + name + ">" : "<...>";
+        } catch (x) {
+          return "<...>";
+        }
+      }
+      function getOwner() {
+        var dispatcher = ReactSharedInternals.A;
+        return null === dispatcher ? null : dispatcher.getOwner();
+      }
+      function UnknownOwner() {
+        return Error("react-stack-top-frame");
+      }
+      function hasValidKey(config) {
+        if (hasOwnProperty.call(config, "key")) {
+          var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+          if (getter && getter.isReactWarning) return false;
+        }
+        return void 0 !== config.key;
+      }
+      function defineKeyPropWarningGetter(props, displayName) {
+        function warnAboutAccessingKey() {
+          specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
+            "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
+            displayName
+          ));
+        }
+        warnAboutAccessingKey.isReactWarning = true;
+        Object.defineProperty(props, "key", {
+          get: warnAboutAccessingKey,
+          configurable: true
+        });
+      }
+      function elementRefGetterWithDeprecationWarning() {
+        var componentName = getComponentNameFromType(this.type);
+        didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
+          "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
+        ));
+        componentName = this.props.ref;
+        return void 0 !== componentName ? componentName : null;
+      }
+      function ReactElement(type, key, props, owner, debugStack, debugTask) {
+        var refProp = props.ref;
+        type = {
+          $$typeof: REACT_ELEMENT_TYPE,
+          type,
+          key,
+          props,
+          _owner: owner
+        };
+        null !== (void 0 !== refProp ? refProp : null) ? Object.defineProperty(type, "ref", {
+          enumerable: false,
+          get: elementRefGetterWithDeprecationWarning
+        }) : Object.defineProperty(type, "ref", { enumerable: false, value: null });
+        type._store = {};
+        Object.defineProperty(type._store, "validated", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: 0
+        });
+        Object.defineProperty(type, "_debugInfo", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: null
+        });
+        Object.defineProperty(type, "_debugStack", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: debugStack
+        });
+        Object.defineProperty(type, "_debugTask", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: debugTask
+        });
+        Object.freeze && (Object.freeze(type.props), Object.freeze(type));
+        return type;
+      }
+      function jsxDEVImpl(type, config, maybeKey, isStaticChildren, debugStack, debugTask) {
+        var children = config.children;
+        if (void 0 !== children)
+          if (isStaticChildren)
+            if (isArrayImpl(children)) {
+              for (isStaticChildren = 0; isStaticChildren < children.length; isStaticChildren++)
+                validateChildKeys(children[isStaticChildren]);
+              Object.freeze && Object.freeze(children);
+            } else
+              console.error(
+                "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
+              );
+          else validateChildKeys(children);
+        if (hasOwnProperty.call(config, "key")) {
+          children = getComponentNameFromType(type);
+          var keys = Object.keys(config).filter(function(k) {
+            return "key" !== k;
+          });
+          isStaticChildren = 0 < keys.length ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
+          didWarnAboutKeySpread[children + isStaticChildren] || (keys = 0 < keys.length ? "{" + keys.join(": ..., ") + ": ...}" : "{}", console.error(
+            'A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />',
+            isStaticChildren,
+            children,
+            keys,
+            children
+          ), didWarnAboutKeySpread[children + isStaticChildren] = true);
+        }
+        children = null;
+        void 0 !== maybeKey && (checkKeyStringCoercion(maybeKey), children = "" + maybeKey);
+        hasValidKey(config) && (checkKeyStringCoercion(config.key), children = "" + config.key);
+        if ("key" in config) {
+          maybeKey = {};
+          for (var propName in config)
+            "key" !== propName && (maybeKey[propName] = config[propName]);
+        } else maybeKey = config;
+        children && defineKeyPropWarningGetter(
+          maybeKey,
+          "function" === typeof type ? type.displayName || type.name || "Unknown" : type
+        );
+        return ReactElement(
+          type,
+          children,
+          maybeKey,
+          getOwner(),
+          debugStack,
+          debugTask
+        );
+      }
+      function validateChildKeys(node) {
+        isValidElement(node) ? node._store && (node._store.validated = 1) : "object" === typeof node && null !== node && node.$$typeof === REACT_LAZY_TYPE && ("fulfilled" === node._payload.status ? isValidElement(node._payload.value) && node._payload.value._store && (node._payload.value._store.validated = 1) : node._store && (node._store.validated = 1));
+      }
+      function isValidElement(object) {
+        return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+      }
+      var React = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        return null;
+      };
+      React = {
+        react_stack_bottom_frame: function(callStackForError) {
+          return callStackForError();
+        }
+      };
+      var specialPropKeyWarningShown;
+      var didWarnAboutElementRef = {};
+      var unknownOwnerDebugStack = React.react_stack_bottom_frame.bind(
+        React,
+        UnknownOwner
+      )();
+      var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
+      var didWarnAboutKeySpread = {};
+      exports.Fragment = REACT_FRAGMENT_TYPE;
+      exports.jsx = function(type, config, maybeKey) {
+        var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        return jsxDEVImpl(
+          type,
+          config,
+          maybeKey,
+          false,
+          trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
+          trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
+        );
+      };
+      exports.jsxs = function(type, config, maybeKey) {
+        var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        return jsxDEVImpl(
+          type,
+          config,
+          maybeKey,
+          true,
+          trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
+          trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
+        );
+      };
+    })();
+  }
+});
+
+// node_modules/react/jsx-runtime.js
+var require_jsx_runtime = __commonJS({
+  "node_modules/react/jsx-runtime.js"(exports, module) {
+    "use strict";
+    if (false) {
+      module.exports = null;
+    } else {
+      module.exports = require_react_jsx_runtime_development();
+    }
+  }
+});
+
 // node_modules/dexie/dist/dexie.js
 var require_dexie = __commonJS({
   "node_modules/dexie/dist/dexie.js"(exports, module) {
@@ -28794,15 +29063,15 @@ var require_createWorker = __commonJS({
 var require_Tesseract = __commonJS({
   "node_modules/tesseract.js/src/Tesseract.js"(exports, module) {
     "use strict";
-    var createWorker2 = require_createWorker();
+    var createWorker3 = require_createWorker();
     var recognize = async (image, langs, options) => {
-      const worker = await createWorker2(langs, 1, options);
+      const worker = await createWorker3(langs, 1, options);
       return worker.recognize(image).finally(async () => {
         await worker.terminate();
       });
     };
     var detect = async (image, options) => {
-      const worker = await createWorker2("osd", 0, options);
+      const worker = await createWorker3("osd", 0, options);
       return worker.detect(image).finally(async () => {
         await worker.terminate();
       });
@@ -28954,7 +29223,7 @@ var require_src = __commonJS({
     "use strict";
     require_runtime();
     var createScheduler = require_createScheduler();
-    var createWorker2 = require_createWorker();
+    var createWorker3 = require_createWorker();
     var Tesseract = require_Tesseract();
     var languages = require_languages();
     var OEM = require_OEM();
@@ -28965,279 +29234,10 @@ var require_src = __commonJS({
       OEM,
       PSM,
       createScheduler,
-      createWorker: createWorker2,
+      createWorker: createWorker3,
       setLogging,
       ...Tesseract
     };
-  }
-});
-
-// node_modules/react/cjs/react-jsx-runtime.development.js
-var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
-    "use strict";
-    (function() {
-      function getComponentNameFromType(type) {
-        if (null == type) return null;
-        if ("function" === typeof type)
-          return type.$$typeof === REACT_CLIENT_REFERENCE ? null : type.displayName || type.name || null;
-        if ("string" === typeof type) return type;
-        switch (type) {
-          case REACT_FRAGMENT_TYPE:
-            return "Fragment";
-          case REACT_PROFILER_TYPE:
-            return "Profiler";
-          case REACT_STRICT_MODE_TYPE:
-            return "StrictMode";
-          case REACT_SUSPENSE_TYPE:
-            return "Suspense";
-          case REACT_SUSPENSE_LIST_TYPE:
-            return "SuspenseList";
-          case REACT_ACTIVITY_TYPE:
-            return "Activity";
-        }
-        if ("object" === typeof type)
-          switch ("number" === typeof type.tag && console.error(
-            "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
-          ), type.$$typeof) {
-            case REACT_PORTAL_TYPE:
-              return "Portal";
-            case REACT_CONTEXT_TYPE:
-              return type.displayName || "Context";
-            case REACT_CONSUMER_TYPE:
-              return (type._context.displayName || "Context") + ".Consumer";
-            case REACT_FORWARD_REF_TYPE:
-              var innerType = type.render;
-              type = type.displayName;
-              type || (type = innerType.displayName || innerType.name || "", type = "" !== type ? "ForwardRef(" + type + ")" : "ForwardRef");
-              return type;
-            case REACT_MEMO_TYPE:
-              return innerType = type.displayName || null, null !== innerType ? innerType : getComponentNameFromType(type.type) || "Memo";
-            case REACT_LAZY_TYPE:
-              innerType = type._payload;
-              type = type._init;
-              try {
-                return getComponentNameFromType(type(innerType));
-              } catch (x) {
-              }
-          }
-        return null;
-      }
-      function testStringCoercion(value) {
-        return "" + value;
-      }
-      function checkKeyStringCoercion(value) {
-        try {
-          testStringCoercion(value);
-          var JSCompiler_inline_result = false;
-        } catch (e) {
-          JSCompiler_inline_result = true;
-        }
-        if (JSCompiler_inline_result) {
-          JSCompiler_inline_result = console;
-          var JSCompiler_temp_const = JSCompiler_inline_result.error;
-          var JSCompiler_inline_result$jscomp$0 = "function" === typeof Symbol && Symbol.toStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
-          JSCompiler_temp_const.call(
-            JSCompiler_inline_result,
-            "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-            JSCompiler_inline_result$jscomp$0
-          );
-          return testStringCoercion(value);
-        }
-      }
-      function getTaskName(type) {
-        if (type === REACT_FRAGMENT_TYPE) return "<>";
-        if ("object" === typeof type && null !== type && type.$$typeof === REACT_LAZY_TYPE)
-          return "<...>";
-        try {
-          var name = getComponentNameFromType(type);
-          return name ? "<" + name + ">" : "<...>";
-        } catch (x) {
-          return "<...>";
-        }
-      }
-      function getOwner() {
-        var dispatcher = ReactSharedInternals.A;
-        return null === dispatcher ? null : dispatcher.getOwner();
-      }
-      function UnknownOwner() {
-        return Error("react-stack-top-frame");
-      }
-      function hasValidKey(config) {
-        if (hasOwnProperty.call(config, "key")) {
-          var getter = Object.getOwnPropertyDescriptor(config, "key").get;
-          if (getter && getter.isReactWarning) return false;
-        }
-        return void 0 !== config.key;
-      }
-      function defineKeyPropWarningGetter(props, displayName) {
-        function warnAboutAccessingKey() {
-          specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
-            "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
-            displayName
-          ));
-        }
-        warnAboutAccessingKey.isReactWarning = true;
-        Object.defineProperty(props, "key", {
-          get: warnAboutAccessingKey,
-          configurable: true
-        });
-      }
-      function elementRefGetterWithDeprecationWarning() {
-        var componentName = getComponentNameFromType(this.type);
-        didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
-          "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
-        ));
-        componentName = this.props.ref;
-        return void 0 !== componentName ? componentName : null;
-      }
-      function ReactElement(type, key, props, owner, debugStack, debugTask) {
-        var refProp = props.ref;
-        type = {
-          $$typeof: REACT_ELEMENT_TYPE,
-          type,
-          key,
-          props,
-          _owner: owner
-        };
-        null !== (void 0 !== refProp ? refProp : null) ? Object.defineProperty(type, "ref", {
-          enumerable: false,
-          get: elementRefGetterWithDeprecationWarning
-        }) : Object.defineProperty(type, "ref", { enumerable: false, value: null });
-        type._store = {};
-        Object.defineProperty(type._store, "validated", {
-          configurable: false,
-          enumerable: false,
-          writable: true,
-          value: 0
-        });
-        Object.defineProperty(type, "_debugInfo", {
-          configurable: false,
-          enumerable: false,
-          writable: true,
-          value: null
-        });
-        Object.defineProperty(type, "_debugStack", {
-          configurable: false,
-          enumerable: false,
-          writable: true,
-          value: debugStack
-        });
-        Object.defineProperty(type, "_debugTask", {
-          configurable: false,
-          enumerable: false,
-          writable: true,
-          value: debugTask
-        });
-        Object.freeze && (Object.freeze(type.props), Object.freeze(type));
-        return type;
-      }
-      function jsxDEVImpl(type, config, maybeKey, isStaticChildren, debugStack, debugTask) {
-        var children = config.children;
-        if (void 0 !== children)
-          if (isStaticChildren)
-            if (isArrayImpl(children)) {
-              for (isStaticChildren = 0; isStaticChildren < children.length; isStaticChildren++)
-                validateChildKeys(children[isStaticChildren]);
-              Object.freeze && Object.freeze(children);
-            } else
-              console.error(
-                "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
-              );
-          else validateChildKeys(children);
-        if (hasOwnProperty.call(config, "key")) {
-          children = getComponentNameFromType(type);
-          var keys = Object.keys(config).filter(function(k) {
-            return "key" !== k;
-          });
-          isStaticChildren = 0 < keys.length ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
-          didWarnAboutKeySpread[children + isStaticChildren] || (keys = 0 < keys.length ? "{" + keys.join(": ..., ") + ": ...}" : "{}", console.error(
-            'A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />',
-            isStaticChildren,
-            children,
-            keys,
-            children
-          ), didWarnAboutKeySpread[children + isStaticChildren] = true);
-        }
-        children = null;
-        void 0 !== maybeKey && (checkKeyStringCoercion(maybeKey), children = "" + maybeKey);
-        hasValidKey(config) && (checkKeyStringCoercion(config.key), children = "" + config.key);
-        if ("key" in config) {
-          maybeKey = {};
-          for (var propName in config)
-            "key" !== propName && (maybeKey[propName] = config[propName]);
-        } else maybeKey = config;
-        children && defineKeyPropWarningGetter(
-          maybeKey,
-          "function" === typeof type ? type.displayName || type.name || "Unknown" : type
-        );
-        return ReactElement(
-          type,
-          children,
-          maybeKey,
-          getOwner(),
-          debugStack,
-          debugTask
-        );
-      }
-      function validateChildKeys(node) {
-        isValidElement(node) ? node._store && (node._store.validated = 1) : "object" === typeof node && null !== node && node.$$typeof === REACT_LAZY_TYPE && ("fulfilled" === node._payload.status ? isValidElement(node._payload.value) && node._payload.value._store && (node._payload.value._store.validated = 1) : node._store && (node._store.validated = 1));
-      }
-      function isValidElement(object) {
-        return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
-      }
-      var React = require_react(), REACT_ELEMENT_TYPE = /* @__PURE__ */ Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = /* @__PURE__ */ Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = /* @__PURE__ */ Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = /* @__PURE__ */ Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = /* @__PURE__ */ Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = /* @__PURE__ */ Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = /* @__PURE__ */ Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = /* @__PURE__ */ Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = /* @__PURE__ */ Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = /* @__PURE__ */ Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = /* @__PURE__ */ Symbol.for("react.memo"), REACT_LAZY_TYPE = /* @__PURE__ */ Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = /* @__PURE__ */ Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = /* @__PURE__ */ Symbol.for("react.client.reference"), ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
-        return null;
-      };
-      React = {
-        react_stack_bottom_frame: function(callStackForError) {
-          return callStackForError();
-        }
-      };
-      var specialPropKeyWarningShown;
-      var didWarnAboutElementRef = {};
-      var unknownOwnerDebugStack = React.react_stack_bottom_frame.bind(
-        React,
-        UnknownOwner
-      )();
-      var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
-      var didWarnAboutKeySpread = {};
-      exports.Fragment = REACT_FRAGMENT_TYPE;
-      exports.jsx = function(type, config, maybeKey) {
-        var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
-        return jsxDEVImpl(
-          type,
-          config,
-          maybeKey,
-          false,
-          trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
-          trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
-        );
-      };
-      exports.jsxs = function(type, config, maybeKey) {
-        var trackActualOwner = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
-        return jsxDEVImpl(
-          type,
-          config,
-          maybeKey,
-          true,
-          trackActualOwner ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
-          trackActualOwner ? createTask(getTaskName(type)) : unknownOwnerDebugTask
-        );
-      };
-    })();
-  }
-});
-
-// node_modules/react/jsx-runtime.js
-var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
-    "use strict";
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_react_jsx_runtime_development();
-    }
   }
 });
 
@@ -29661,6 +29661,31 @@ var __iconNode33 = [
 ];
 var X = createLucideIcon("x", __iconNode33);
 
+// src/SportsDetailsEditor.tsx
+var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+var fields = [
+  ["name", "Player / card name"],
+  ["sport", "Sport"],
+  ["releaseYear", "Year"],
+  ["manufacturer", "Manufacturer"],
+  ["setName", "Set"],
+  ["collectorNumber", "Card number"],
+  ["parallelName", "Parallel / variant"],
+  ["gradingCompany", "Grading company"],
+  ["grade", "Grade"],
+  ["certificationNumber", "Certification number"]
+];
+function SportsDetailsEditor({ card, onChange }) {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "sports-review", "aria-label": "Review sports card details", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: "Check these details before saving. OCR and seller titles are suggestions; grades and certification numbers must match your own card." }),
+    card.sportsScanImageUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { className: "sports-scan-reference", src: card.sportsScanImageUrl, alt: "Your scanned card for comparison" }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "edit-grid", children: fields.map(([key, label]) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+      label,
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", { value: card[key] ?? "", onChange: (event) => onChange({ ...card, [key]: event.target.value }) })
+    ] }, key)) })
+  ] });
+}
+
 // src/runtime.ts
 var PUBLIC_API_BASE = "https://api.cmforgedbyfire.com/card-vault";
 var LOCAL_API_HOSTS = /* @__PURE__ */ new Set(["10.77.77.1", "127.0.0.1", "localhost"]);
@@ -30038,6 +30063,36 @@ function isTitleConnectorWord(word, index, wordCount) {
   return index > 0 && index < wordCount - 1 && titleConnectorWords.has(word);
 }
 
+// src/sportsMetadata.ts
+function readSportsMetadata(text) {
+  const manufacturer = text.match(/\b(Upper Deck|Topps|Bowman|Fleer|Donruss|Panini|O-Pee-Chee|Score|Leaf|Pacific)\b/i)?.[1];
+  const grading = text.match(/\b(PSA|BGS|BVG|SGC|CGC|CSG)\s*(?:GEM\s*(?:MINT|MT)|MINT|NM[- ]?MT|EX[- ]?MT|EX|VG[- ]?EX|VG|GOOD|FAIR|PRISTINE)?\s*(10|[1-9](?:\.5)?)\b/i);
+  const company = grading?.[1] ?? text.match(/\b(PSA|BGS|BVG|SGC|CGC|CSG)\b/i)?.[1];
+  const sport = text.match(/\b(baseball|basketball|football|hockey|soccer|golf|tennis|racing|wrestling|boxing|mma)\b/i)?.[1];
+  return {
+    releaseYear: text.match(/\b((?:19|20)\d{2})(?:[-/]\d{2,4})?\b/)?.[0] ?? "",
+    manufacturer: manufacturer ?? "",
+    collectorNumber: text.match(/(?:#|\b(?:card\s*(?:no\.?|number)|no\.)\s*)\s*([A-Z0-9]+(?:-[A-Z0-9]+)*)\b/i)?.[1] ?? "",
+    gradingCompany: company?.toUpperCase() ?? "",
+    grade: grading?.[2] ?? "",
+    certificationNumber: text.match(/\bcert(?:ification)?(?:\s*(?:no\.?|number))?\s*[:#]?\s*(\d{6,12})\b/i)?.[1] ?? "",
+    sport: sport ? sport[0].toUpperCase() + sport.slice(1).toLowerCase() : "Sports"
+  };
+}
+function sportsSearchTerms(text) {
+  const lines = Array.from(new Set(text.split(/\r?\n/).map((line) => line.trim().replace(/\s+/g, " ")).filter(Boolean)));
+  const names = lines.filter(
+    (line) => /^[A-Za-zÀ-ž.'’ -]{5,70}$/.test(line) && line.split(/\s+/).length >= 2 && !/\b(upper deck|gem|mint|cert|authentic|trading|copyright|professional|guaranteed|baseball|basketball|football|hockey)\b/i.test(line)
+  );
+  const metadata = readSportsMetadata(text);
+  const detail = [metadata.releaseYear, metadata.manufacturer, metadata.collectorNumber ? `#${metadata.collectorNumber}` : ""].filter(Boolean).join(" ");
+  return Array.from(new Set([
+    names[0] ? [names[0], detail].filter(Boolean).join(" ") : "",
+    ...names,
+    detail
+  ].filter((value) => value.length >= 3))).slice(0, 5);
+}
+
 // src/sports.ts
 var sportsSegments = [
   "baseball",
@@ -30054,39 +30109,37 @@ var sportsSegments = [
 ];
 async function searchSportsCards(query, options = {}) {
   const cleanQuery = query.trim().replace(/\s+/g, " ");
-  if (cleanQuery.length < 2 || (options.offset ?? 0) > 0) {
+  if (cleanQuery.length < 2) {
     return [];
   }
-  const sport = inferSportFromText(cleanQuery);
-  return [
-    {
-      sourceId: `local-sports-search-${localSearchKey(cleanQuery)}`,
+  const parameters = new URLSearchParams({ q: cleanQuery, limit: String(options.limit ?? 12), offset: String(options.offset ?? 0) });
+  const payload = await requestJson(
+    getApiUrl(`/api/sports/search?${parameters}`),
+    options.authToken
+  );
+  return payload.items.map((item) => {
+    const metadata = readSportsMetadata(item.title);
+    const sport = inferSportFromText(item.title);
+    return {
+      sourceId: `ebay-${item.id}`,
       game: "sports",
-      name: cleanQuery,
+      name: item.title,
       setName: "Details needed",
       setCode: "",
       collectorNumber: "",
       rarity: "Unconfirmed",
       colors: sport === "Sports" ? [] : [sport],
       category: sport,
-      imageUrl: "",
+      imageUrl: item.imageUrl,
       priceUsd: null,
-      priceLabel: "No price imported",
-      sourceUrl: buildSportsReferenceUrl(cleanQuery),
+      priceLabel: "Value unavailable",
+      sourceUrl: item.url,
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
       sport,
-      sportsPriceStatus: "unavailable"
-    }
-  ];
-}
-function buildSportsReferenceUrl(query) {
-  const cleanQuery = query.trim().replace(/\s+/g, " ");
-  if (!cleanQuery) {
-    return "";
-  }
-  const url = new URL("https://www.ebay.com/sch/i.html");
-  url.searchParams.set("_nkw", cleanQuery);
-  return url.toString();
+      sportsPriceStatus: "unavailable",
+      ...metadata
+    };
+  });
 }
 async function fetchSportsPriceUpdates(items, authToken, mode = "batch") {
   const sourceIds = Array.from(
@@ -30214,10 +30267,6 @@ function inferSportFromText(value) {
   const found = sportsSegments.find((sport) => normalized.includes(sport));
   return found ? found.replace(/^./, (letter) => letter.toUpperCase()) : "Sports";
 }
-function localSearchKey(value) {
-  const normalized = value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 96);
-  return normalized || "card";
-}
 function isCardSightId(value) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
     value
@@ -30257,6 +30306,9 @@ async function searchCards(game, query, options = {}) {
     searches.push(searchPokemon(cleanQuery, { limit, offset }));
   }
   if (game === "sports" || game === "all") {
+    if (game === "sports") {
+      return searchSportsCards(cleanQuery, { ...options, limit, offset });
+    }
     searches.push(searchSportsCards(cleanQuery, { ...options, limit, offset }));
   }
   const results = await Promise.allSettled(searches);
@@ -32059,8 +32111,41 @@ function adaptiveThresholdCanvas(context, width, height) {
   context.putImageData(imageData, 0, 0);
 }
 
+// src/sportsOcr.ts
+var import_tesseract2 = __toESM(require_src(), 1);
+async function recognizeSportsCard(canvas, onProgress) {
+  const worker = await (0, import_tesseract2.createWorker)("eng", void 0, {
+    logger: (message) => {
+      if (message.status) onProgress(`Reading sports card: ${Math.round((message.progress ?? 0) * 100)}%`);
+    }
+  });
+  const texts = [];
+  try {
+    await worker.setParameters({ tessedit_pageseg_mode: "11", preserve_interword_spaces: "1" });
+    for (const region of [{ y: 0, h: 1 }, { y: 0, h: 0.28 }, { y: 0.65, h: 0.35 }]) {
+      const crop = document.createElement("canvas");
+      const scale = region.h === 1 ? 1 : 2;
+      crop.width = canvas.width * scale;
+      crop.height = Math.round(canvas.height * region.h * scale);
+      const context = crop.getContext("2d");
+      if (!context) throw new Error("Could not prepare the sports card image.");
+      try {
+        context.drawImage(canvas, 0, canvas.height * region.y, canvas.width, canvas.height * region.h, 0, 0, crop.width, crop.height);
+        texts.push((await worker.recognize(crop)).data.text);
+      } finally {
+        crop.width = crop.height = 1;
+      }
+    }
+  } finally {
+    await worker.terminate();
+  }
+  const rawText = texts.join("\n").trim();
+  const metadata = readSportsMetadata(rawText);
+  return { rawText, terms: sportsSearchTerms(rawText), setCodes: [], collectorNumbers: metadata.collectorNumber ? [metadata.collectorNumber] : [], metadata };
+}
+
 // src/App.tsx
-var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
 var nameConnectorWords = /* @__PURE__ */ new Set(["a", "an", "and", "in", "of", "on", "or", "the", "to"]);
 var scannerVersion = "ocr-2026-09-24-pokemon-01";
 var appVersionLabel = cardVaultAppVersion;
@@ -33034,7 +33119,7 @@ function App() {
     () => Array.from(
       new Map(
         collection.filter(
-          (item) => item.game === "sports" && (!item.sportsPriceStatus || item.sportsPriceStatus === "pending") && item.sourceId
+          (item) => item.game === "sports" && (!item.sportsPriceStatus || item.sportsPriceStatus === "pending") && isCardSightId(item.sourceId)
         ).map((item) => [item.sourceId, item])
       ).values()
     ),
@@ -33494,9 +33579,12 @@ function App() {
       setCodes: [],
       collectorNumbers: []
     };
+    let metadata = {};
     try {
       setStatus("Reading the front of the sports card locally");
-      localResult = await recognizeCardCanvas(ocrCanvas, setStatus, "sports");
+      const result = await recognizeSportsCard(ocrCanvas, setStatus);
+      localResult = result;
+      metadata = result.metadata;
     } catch {
     } finally {
       ocrCanvas.width = 1;
@@ -33505,7 +33593,7 @@ function App() {
     if (activeScanIdRef.current !== scanId) {
       return;
     }
-    const name = localResult.terms[0]?.trim() || query.trim() || "Unidentified Sports Card";
+    const name = localResult.terms[0]?.trim() || "Unidentified Sports Card";
     const localCandidate = {
       sourceId: createLocalSportsSourceId(),
       game: "sports",
@@ -33519,14 +33607,13 @@ function App() {
       imageUrl: createLocalSportsThumbnail(canvas),
       priceUsd: null,
       priceLabel: "Price not requested",
-      sourceUrl: buildSportsReferenceUrl(
-        [name, localResult.setCodes[0], localResult.collectorNumbers[0]].filter(Boolean).join(" ")
-      ),
+      sourceUrl: "",
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
       sport: "Sports",
       sportsPriceStatus: "unavailable",
       scanOcrRawText: localResult.rawText,
-      scanOcrTerms: localResult.terms
+      scanOcrTerms: localResult.terms,
+      ...metadata
     };
     setScanResult(localResult);
     setCandidates([localCandidate]);
@@ -33534,7 +33621,29 @@ function App() {
     setResultOffset(0);
     setHasMoreResults(false);
     setQuery(name === "Unidentified Sports Card" ? "" : name);
-    setStatus("Front read locally with no identification or pricing API call. Check the details, then save.");
+    setStatus("Front read. Review the details or save your scan while matching cards are found.");
+    if (!localResult.terms.length) {
+      setStatus("Photo captured. Enter the card details to search, or open your scan to edit and save it.");
+      return;
+    }
+    try {
+      const matches = await searchSportsCards(name, { limit: resultBatchSize, authToken: accountSession?.token });
+      if (activeScanIdRef.current !== scanId) return;
+      setCandidates([localCandidate, ...matches.map((match) => ({
+        ...match,
+        // A seller's slab grade/certification must not become the scanned copy's.
+        gradingCompany: metadata.gradingCompany ?? "",
+        grade: metadata.grade ?? "",
+        certificationNumber: metadata.certificationNumber ?? "",
+        scanOcrRawText: localResult.rawText,
+        scanOcrTerms: localResult.terms,
+        sportsScanImageUrl: localCandidate.imageUrl
+      }))]);
+      setStatus(matches.length ? "Your scan is first; eBay matches follow. Compare the photo and details before saving." : "No online matches. Your scan can still be edited and saved.");
+    } catch (error) {
+      if (activeScanIdRef.current !== scanId) return;
+      setStatus(`${error instanceof Error ? error.message : "Online search is unavailable."} Your scanned photo is ready to save.`);
+    }
   }
   function openSaveDeckDialog(candidate, options = {}) {
     const gameDecks = decks.filter((deck) => deck.game === candidate.game);
@@ -33653,7 +33762,7 @@ function App() {
     );
     return parts.map((part, index) => {
       const cardRef = nameLookup.get(part.toLowerCase());
-      return cardRef ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      return cardRef ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "button",
         {
           className: "coach-inline-card-name",
@@ -33676,14 +33785,14 @@ function App() {
       coachDraft?.game ?? "mtg",
       collection
     );
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: renderCoachText(recommendation.title, message.result.cardRefs) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: renderCoachText(recommendation.reason, message.result.cardRefs) }),
-      groups.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-result-groups", children: groups.map((group) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: renderCoachText(recommendation.title, message.result.cardRefs) }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: renderCoachText(recommendation.reason, message.result.cardRefs) }),
+      groups.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-result-groups", children: groups.map((group) => {
         const groupKey = `coach-${message.id}-owned-${index}-${group.label}`;
         const isOpen = collapsedGroups[groupKey] === false;
-        return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-result-group", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-result-group", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "button",
             {
               "aria-expanded": isOpen,
@@ -33691,11 +33800,11 @@ function App() {
               onClick: () => toggleCollectionGroup(groupKey),
               type: "button",
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "group-title", children: [
-                  isOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronUp, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { size: 17 }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: group.label })
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "group-title", children: [
+                  isOpen ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronUp, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronDown, { size: 17 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: group.label })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                   formatDistinctCardCount(group.distinctCards),
                   " \xB7",
                   " ",
@@ -33706,18 +33815,18 @@ function App() {
               ]
             }
           ),
-          isOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-owned-matches coach-owned-group-matches", children: group.cards.map((change) => {
+          isOpen && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-owned-matches coach-owned-group-matches", children: group.cards.map((change) => {
             const cardRef = getCoachCardRef(
               message.result,
               change.name
             );
-            return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "button",
               {
                 onClick: () => openCoachCard(change.name, cardRef?.sourceId),
                 type: "button",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: change.quantity }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("b", { children: change.quantity }),
                   " ",
                   change.name
                 ]
@@ -33726,15 +33835,15 @@ function App() {
             );
           }) })
         ] }, group.label);
-      }) }) : recommendation.add.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-owned-matches", children: recommendation.add.map((change) => {
+      }) }) : recommendation.add.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-owned-matches", children: recommendation.add.map((change) => {
         const cardRef = getCoachCardRef(message.result, change.name);
-        return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             onClick: () => openCoachCard(change.name, cardRef?.sourceId),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: change.quantity }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("b", { children: change.quantity }),
               " ",
               change.name
             ]
@@ -33742,14 +33851,14 @@ function App() {
           `${message.id}-add-${change.name}`
         );
       }) }) : null,
-      coachDraft?.scope === "deck" && recommendation.remove.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      coachDraft?.scope === "deck" && recommendation.remove.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
         "button",
         {
           className: "secondary coach-apply-button",
           onClick: () => void applyCoachRecommendation(recommendation),
           type: "button",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { size: 17 }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Check, { size: 17 }),
             "Apply Changes"
           ]
         }
@@ -33839,7 +33948,7 @@ function App() {
     const savedLabel = `${cleanQuantity} card${cleanQuantity === 1 ? "" : "s"} saved`;
     let collectionItemId;
     const existing = await db.collection.filter(
-      (item) => item.game === candidate.game && item.sourceId === candidate.sourceId && item.condition === defaultCondition && (item.listKind ?? "collection") === listKind && item.notes === cleanNotes
+      (item) => item.game === candidate.game && item.sourceId === candidate.sourceId && (candidate.game !== "sports" || ["name", "setName", "collectorNumber", "releaseYear", "parallelName", "gradingCompany", "grade", "certificationNumber"].every((key) => (item[key] ?? "") === (candidate[key] ?? ""))) && item.condition === defaultCondition && (item.listKind ?? "collection") === listKind && item.notes === cleanNotes
     ).first();
     if (existing?.id) {
       await db.collection.update(existing.id, {
@@ -34790,7 +34899,7 @@ function App() {
       return;
     }
     if (item.game === "sports") {
-      setStatus("Sports prices are sent in deliberate batches of 100 cards.");
+      setStatus("Sold-price lookup is not available for this card yet. You can enter a value in Edit Card.");
       return;
     }
     setRefreshingId(item.id);
@@ -35093,9 +35202,9 @@ function App() {
   function renderCardImage(card) {
     const key = getImageKey(card);
     if (!card.imageUrl || failedImages.has(key)) {
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "card-thumb missing", "aria-hidden": "true" });
+      return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "card-thumb missing", "aria-hidden": "true" });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "img",
       {
         alt: "",
@@ -35139,7 +35248,7 @@ function App() {
       });
       deckUsageByItemId.set(entry.collectionItemId, usages);
     }
-    const renderCollectionItems = (groupItems) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "collection-list", children: groupItems.map((item) => {
+    const renderCollectionItems = (groupItems) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "collection-list", children: groupItems.map((item) => {
       const deckUsage = typeof item.id === "number" ? deckUsageByItemId.get(item.id) ?? [] : [];
       const deckQuantity = deckUsage.reduce(
         (total, usage) => total + usage.quantity,
@@ -35147,8 +35256,8 @@ function App() {
       );
       const deckUsageLabel = deckUsage.length === 1 ? `Deck: ${deckUsage[0].deckName}` : `Decks: ${deckUsage[0]?.deckName} +${deckUsage.length - 1}`;
       const itemMenuKey = `${item.game}-${item.id ?? item.sourceId}`;
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { className: "collection-item", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { className: "collection-item", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             "aria-label": `Preview ${item.name}`,
@@ -35158,57 +35267,57 @@ function App() {
             type: "button",
             children: [
               renderCardImage(item),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "item-main", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: item.name }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-meta", children: item.game === "sports" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "item-main", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: item.name }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "item-meta", children: item.game === "sports" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
                   [item.releaseYear, item.manufacturer, item.setName].filter(Boolean).join(" \xB7 "),
                   " ",
                   "#",
                   item.collectorNumber,
                   item.parallelName ? ` \xB7 ${item.parallelName}` : "",
                   item.gradingCompany ? ` \xB7 ${item.gradingCompany} ${item.grade}` : ` \xB7 ${item.condition}`
-                ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+                ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
                   item.setCode,
                   " #",
                   item.collectorNumber,
                   " \xB7 ",
                   item.condition
                 ] }) }),
-                item.notes && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-notes", children: item.notes }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "muted", children: item.game === "sports" && item.sportsPriceStatus === "pending" ? "Waiting for the 100-card price batch" : `Checked ${formatDate(item.lastPriceCheck)}` })
+                item.notes && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "item-notes", children: item.notes }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "muted", children: item.game === "sports" && item.sportsPriceStatus === "pending" ? "Waiting for the 100-card price batch" : `Checked ${formatDate(item.lastPriceCheck)}` })
               ] })
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "item-price", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: item.priceLabel }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: formatMoney((item.priceUsd ?? 0) * item.quantity) }),
-          deckQuantity > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "deck-usage", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "item-price", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: item.priceLabel }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: formatMoney((item.priceUsd ?? 0) * item.quantity) }),
+          deckQuantity > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "deck-usage", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "summary",
               {
                 "aria-label": `${deckQuantity} ${item.name} ${deckQuantity === 1 ? "copy" : "copies"} assigned to decks`,
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FolderKanban, { "aria-hidden": "true", size: 15 }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "deck-usage-label", children: deckUsageLabel })
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(FolderKanban, { "aria-hidden": "true", size: 15 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "deck-usage-label", children: deckUsageLabel })
                 ]
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "deck-usage-popover", children: deckUsage.map((usage) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: usage.deckName }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "deck-usage-popover", children: deckUsage.map((usage) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: usage.deckName }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
                 "\xD7",
                 usage.quantity
               ] })
             ] }, usage.deckId)) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "div",
             {
               "aria-label": `Collection quantity for ${item.name}`,
               className: "collection-quantity-stepper",
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-label": `Decrease ${item.name} quantity`,
@@ -35216,11 +35325,11 @@ function App() {
                     onClick: () => void adjustCollectionItemQuantity(item.id, -1),
                     title: "Decrease quantity",
                     type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Minus, { size: 17 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Minus, { size: 17 })
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("output", { "aria-live": "polite", children: item.quantity }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("output", { "aria-live": "polite", children: item.quantity }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-label": `Increase ${item.name} quantity`,
@@ -35228,14 +35337,14 @@ function App() {
                     onClick: () => void adjustCollectionItemQuantity(item.id, 1),
                     title: "Increase quantity",
                     type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 17 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Plus, { size: 17 })
                   }
                 )
               ]
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-item-menu", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-item-menu", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
               "button",
               {
                 "aria-expanded": openCollectionItemMenu === itemMenuKey,
@@ -35246,11 +35355,11 @@ function App() {
                 ),
                 title: "Card actions",
                 type: "button",
-                children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EllipsisVertical, { size: 18 })
+                children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(EllipsisVertical, { size: 18 })
               }
             ),
-            openCollectionItemMenu === itemMenuKey && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-item-menu-popover", role: "menu", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            openCollectionItemMenu === itemMenuKey && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-item-menu-popover", role: "menu", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   onClick: () => {
@@ -35260,12 +35369,12 @@ function App() {
                   role: "menuitem",
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { size: 17 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Pencil, { size: 17 }),
                     "Edit"
                   ]
                 }
               ),
-              item.sourceUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              item.sourceUrl && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "a",
                 {
                   href: item.sourceUrl,
@@ -35274,12 +35383,12 @@ function App() {
                   role: "menuitem",
                   target: "_blank",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 17 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExternalLink, { size: 17 }),
                     item.game === "sports" && item.sourceUrl.includes("ebay.com") ? "Compare on eBay" : "Open Webpage"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   disabled: refreshingId === item.id,
@@ -35290,12 +35399,12 @@ function App() {
                   role: "menuitem",
                   type: "button",
                   children: [
-                    refreshingId === item.id ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 17 }),
+                    refreshingId === item.id ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RefreshCw, { size: 17 }),
                     "Refresh Price"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   onClick: () => void moveItemToList(
@@ -35305,12 +35414,12 @@ function App() {
                   role: "menuitem",
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 17 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Heart, { size: 17 }),
                     activeListKind === "collection" ? "Move to Wishlist" : "Move to Collection"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   onClick: () => {
@@ -35320,7 +35429,7 @@ function App() {
                   role: "menuitem",
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 17 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trash2, { size: 17 }),
                     "Delete"
                   ]
                 }
@@ -35330,24 +35439,24 @@ function App() {
         ] })
       ] }, item.id);
     }) });
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "workspace game-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "collection-panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "panel-heading collection-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: gameLabel }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-summary", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "muted", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("section", { className: "workspace game-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "collection-panel", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "panel-heading collection-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: gameLabel }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-summary", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "muted", children: [
               items.length,
               " saved entries"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "collection-card-count", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "collection-card-count", children: [
               quantity,
               " cards - ",
               formatMoney(value)
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-heading-side", children: [
-          sectionGame !== "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-heading-side", children: [
+          sectionGame !== "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "button",
             {
               className: "collection-deck-button",
@@ -35360,15 +35469,15 @@ function App() {
               },
               type: "button",
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FolderKanban, { size: 17 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(FolderKanban, { size: 17 }),
                 "Deck Builder"
               ]
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-heading-actions", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "collection-search", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { "aria-hidden": "true", size: 17 }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-heading-actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "collection-search", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Search, { "aria-hidden": "true", size: 17 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "input",
                 {
                   "aria-label": `Search ${gameLabel} collection`,
@@ -35390,7 +35499,7 @@ function App() {
                 }
               )
             ] }),
-            sectionGame !== "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            sectionGame !== "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "button",
               {
                 className: "collection-coach-button",
@@ -35398,13 +35507,13 @@ function App() {
                 onClick: () => openLibraryCoach(sectionGame),
                 type: "button",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 17 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 17 }),
                   "Coach"
                 ]
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "game-menu", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "game-menu", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-expanded": openGameMenu === sectionGame,
@@ -35415,11 +35524,11 @@ function App() {
                   ),
                   title: `${gameLabel} actions`,
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EllipsisVertical, { size: 18 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(EllipsisVertical, { size: 18 })
                 }
               ),
-              openGameMenu === sectionGame && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "game-menu-popover", role: "menu", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              openGameMenu === sectionGame && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "game-menu-popover", role: "menu", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     disabled: !items.length || refreshingId === "all",
@@ -35430,12 +35539,12 @@ function App() {
                     role: "menuitem",
                     type: "button",
                     children: [
-                      refreshingId === "all" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 17 }),
+                      refreshingId === "all" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RefreshCw, { size: 17 }),
                       "Refresh Prices"
                     ]
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     disabled: !items.length,
@@ -35446,7 +35555,7 @@ function App() {
                     role: "menuitem",
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { size: 17 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Download, { size: 17 }),
                       "Save / Export"
                     ]
                   }
@@ -35456,8 +35565,8 @@ function App() {
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-list-tabs", "aria-label": "Saved card list", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-list-tabs", "aria-label": "Saved card list", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
           "button",
           {
             className: activeListKind === "collection" ? "active" : "",
@@ -35466,30 +35575,30 @@ function App() {
             children: "Collection"
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: activeListKind === "wishlist" ? "active" : "",
             onClick: () => setActiveListKind("wishlist"),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Heart, { size: 16 }),
               "Wishlist"
             ]
           }
         )
       ] }),
-      sectionGame === "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "sports-price-queue", "aria-label": "Sports pricing queue", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+      sectionGame === "sports" && activeListKind === "collection" && sportsPricingStatus?.configured && sportsPriceQueue.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "sports-price-queue", "aria-label": "Sports pricing queue", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("strong", { children: [
             "Pricing queue: ",
             Math.min(sportsPriceQueue.length, sportsPriceBatchTarget),
             "/",
             sportsPriceBatchTarget
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !sportsPricingStatus?.configured ? "Pricing is unavailable. Scanning and saving still work normally." : `Pricing runs only when you press the button. Scanning and saving make no provider call.` })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: !sportsPricingStatus?.configured ? "Pricing is unavailable. Scanning and saving still work normally." : `Pricing runs only when you press the button. Scanning and saving make no provider call.` })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: "primary",
@@ -35497,59 +35606,60 @@ function App() {
             onClick: () => void runSportsPriceBatch(),
             type: "button",
             children: [
-              isPricingSports ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 17 }),
+              isPricingSports ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RefreshCw, { size: 17 }),
               !sportsPriceQueue.length ? "No Cards Waiting" : sportsPriceQueue.length >= sportsPriceBatchTarget ? `Price ${sportsPriceBatchTarget} Cards` : `Price ${sportsPriceQueue.length} Now`
             ]
           }
         )
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-controls", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+      sectionGame === "sports" && (!sportsPricingStatus?.configured || !sportsPriceQueue.length) && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "muted", children: "Sold-price lookup is not connected for these cards. Scanning, saving and manual values are available." }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "collection-controls", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
           "Group",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "select",
             {
               onChange: (event) => setCollectionGroup(event.target.value),
               value: collectionGroup,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "color", children: sectionGame === "sports" ? "Sport" : "Color / Type" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "category", children: "Card Type" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "set", children: "Set" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "condition", children: "Condition" })
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "color", children: sectionGame === "sports" ? "Sport" : "Color / Type" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "category", children: "Card Type" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "set", children: "Set" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "condition", children: "Condition" })
               ]
             }
           )
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
           "Sort",
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "select",
             {
               onChange: (event) => setCollectionSort(event.target.value),
               value: collectionSort,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "name", children: "Name" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "value", children: "Value" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "quantity", children: "Quantity" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "newest", children: "Newest" })
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "name", children: "Name" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "value", children: "Value" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "quantity", children: "Quantity" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "newest", children: "Newest" })
               ]
             }
           )
         ] })
       ] }),
-      items.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "empty-state", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Database, { size: 32 }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { children: [
+      items.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "empty-state", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Database, { size: 32 }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h3", { children: [
           "No ",
           gameLabel,
           " cards saved yet"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Scan or search a card, check the match, then tap save." })
-      ] }) : visibleItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "empty-state", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 32 }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "No matching cards" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Try another card name, set, color, type, or note." }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "Scan or search a card, check the match, then tap save." })
+      ] }) : visibleItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "empty-state", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Search, { size: 32 }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: "No matching cards" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "Try another card name, set, color, type, or note." }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
           "button",
           {
             onClick: () => setCollectionQueries((current) => ({
@@ -35560,8 +35670,8 @@ function App() {
             children: "Clear Search"
           }
         )
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "grouped-collection", children: groups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "collection-group", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "grouped-collection", children: groups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "collection-group", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             "aria-expanded": isGroupOpen(group.label),
@@ -35569,11 +35679,11 @@ function App() {
             onClick: () => toggleCollectionGroup(getGroupKey(group.label)),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "group-title", children: [
-                isGroupOpen(group.label) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronUp, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { size: 18 }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: group.label })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "group-title", children: [
+                isGroupOpen(group.label) ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronUp, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronDown, { size: 18 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: group.label })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                 formatDistinctCardCount(group.distinctCards),
                 " \xB7",
                 " ",
@@ -35591,10 +35701,10 @@ function App() {
           "Multicolor",
           "Colorless",
           "Land"
-        ].includes(group.label) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "collection-subgroups", children: groupMtgColorSectionItems(group.label, group.items).map((subgroup) => {
+        ].includes(group.label) ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "collection-subgroups", children: groupMtgColorSectionItems(group.label, group.items).map((subgroup) => {
           const subgroupStateKey = `${group.label}/${subgroup.label}`;
-          return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "collection-subgroup", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "collection-subgroup", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "button",
               {
                 "aria-expanded": isGroupOpen(subgroupStateKey),
@@ -35602,11 +35712,11 @@ function App() {
                 onClick: () => toggleCollectionGroup(getGroupKey(subgroupStateKey)),
                 type: "button",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "group-title", children: [
-                    isGroupOpen(subgroupStateKey) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronUp, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { size: 17 }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: subgroup.label })
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "group-title", children: [
+                    isGroupOpen(subgroupStateKey) ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronUp, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronDown, { size: 17 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: subgroup.label })
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                     formatDistinctCardCount(subgroup.distinctCards),
                     " \xB7",
                     " ",
@@ -35638,7 +35748,7 @@ function App() {
       999,
       Math.max(1, Math.floor(Number(saveDeckDraft.quantity) || 1))
     );
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
@@ -35649,13 +35759,13 @@ function App() {
           }
         },
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             className: "save-deck-popout",
             onClick: (event) => event.stopPropagation(),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close save options",
@@ -35664,21 +35774,21 @@ function App() {
                   onClick: () => setSaveDeckDraft(null),
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: typeof saveDeckDraft.collectionItemId === "number" ? "Add to Deck" : "Save Card" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "muted", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: typeof saveDeckDraft.collectionItemId === "number" ? "Add to Deck" : "Save Card" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "muted", children: [
                   candidate.name,
                   " \xB7 ",
                   getGameLabel(candidate.game)
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-quantity-row", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Quantity" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-quantity-stepper", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "save-quantity-row", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Quantity" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "save-quantity-stepper", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       "aria-label": "Decrease save quantity",
@@ -35686,11 +35796,11 @@ function App() {
                       onClick: () => updateSaveDeckDraft({ quantity: String(saveQuantity - 1) }),
                       title: "Decrease quantity",
                       type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Minus, { size: 17 })
+                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Minus, { size: 17 })
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("output", { "aria-live": "polite", children: saveQuantity }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("output", { "aria-live": "polite", children: saveQuantity }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       "aria-label": "Increase save quantity",
@@ -35698,13 +35808,13 @@ function App() {
                       onClick: () => updateSaveDeckDraft({ quantity: String(saveQuantity + 1) }),
                       title: "Increase quantity",
                       type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 17 })
+                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Plus, { size: 17 })
                     }
                   )
                 ] })
               ] }),
-              typeof saveDeckDraft.collectionItemId !== "number" && candidate.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-choice", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              typeof saveDeckDraft.collectionItemId !== "number" && candidate.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "save-choice", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "active",
@@ -35712,26 +35822,26 @@ function App() {
                     onClick: () => void saveDraftWithoutDeck(),
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
                       "Add to Collection"
                     ]
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     disabled: saveDeckDraft.isSaving,
                     onClick: () => void saveDraftToWishlist(),
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Heart, { size: 18 }),
                       "Add to Wishlist"
                     ]
                   }
                 )
               ] }),
-              typeof saveDeckDraft.collectionItemId !== "number" && candidate.game !== "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-choice", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              typeof saveDeckDraft.collectionItemId !== "number" && candidate.game !== "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "save-choice", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: !saveDeckDraft.addToDeck ? "active" : "",
@@ -35739,12 +35849,12 @@ function App() {
                     onClick: () => void saveDraftWithoutDeck(),
                     type: "button",
                     children: [
-                      saveDeckDraft.isSaving && !saveDeckDraft.addToDeck ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                      saveDeckDraft.isSaving && !saveDeckDraft.addToDeck ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
                       "No, just save"
                     ]
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     className: saveDeckDraft.addToDeck ? "active" : "",
@@ -35758,25 +35868,25 @@ function App() {
                   }
                 )
               ] }),
-              saveDeckDraft.addToDeck && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-save-fields", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+              saveDeckDraft.addToDeck && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-save-fields", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Deck",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "select",
                     {
                       disabled: saveDeckDraft.isSaving,
                       onChange: (event) => updateSaveDeckDraft({ deckId: event.target.value }),
                       value: gameDecks.length === 0 ? createNewDeckValue : saveDeckDraft.deckId,
                       children: [
-                        gameDecks.map((deck) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: String(deck.id), children: deck.name }, deck.id)),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: createNewDeckValue, children: "Create new deck" })
+                        gameDecks.map((deck) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: String(deck.id), children: deck.name }, deck.id)),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: createNewDeckValue, children: "Create new deck" })
                       ]
                     }
                   )
                 ] }),
-                isCreatingDeck && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                isCreatingDeck && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "New deck name",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       disabled: saveDeckDraft.isSaving,
@@ -35787,8 +35897,8 @@ function App() {
                   )
                 ] })
               ] }),
-              saveDeckDraft.addToDeck && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "edit-actions", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              saveDeckDraft.addToDeck && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "edit-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     className: "secondary",
@@ -35798,7 +35908,7 @@ function App() {
                     children: "Cancel"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "primary",
@@ -35806,7 +35916,7 @@ function App() {
                     onClick: () => void confirmSaveDeckDraft(),
                     type: "button",
                     children: [
-                      saveDeckDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                      saveDeckDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
                       isCreatingDeck ? "Create Deck and Add" : "Add to Deck"
                     ]
                   }
@@ -35843,7 +35953,7 @@ function App() {
       );
       const getDeckGroupKey = (label) => `deck-${selectedDeck.id}-${label}`;
       const isDeckGroupOpen = (label) => collapsedGroups[getDeckGroupKey(label)] === false;
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "div",
         {
           "aria-modal": "true",
@@ -35854,13 +35964,13 @@ function App() {
             setIsRenamingDeck(false);
           },
           role: "dialog",
-          children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "section",
             {
               className: "deck-popout deck-detail-popout",
               onClick: (event) => event.stopPropagation(),
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-label": "Close deck builder",
@@ -35872,11 +35982,11 @@ function App() {
                     },
                     title: "Close",
                     type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-detail-heading", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-detail-heading", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       "aria-label": "Back to decks",
@@ -35887,12 +35997,12 @@ function App() {
                       },
                       title: "Back to decks",
                       type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { size: 20 })
+                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronLeft, { size: 20 })
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    isRenamingDeck ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-name-editor", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    isRenamingDeck ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-name-editor", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         "input",
                         {
                           "aria-label": "Deck name",
@@ -35906,19 +36016,19 @@ function App() {
                           value: deckNameDraft
                         }
                       ),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         "button",
                         {
                           "aria-label": "Save deck name",
                           onClick: () => void saveDeckName(selectedDeck),
                           title: "Save deck name",
                           type: "button",
-                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 })
+                          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 })
                         }
                       )
-                    ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-title-row", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: selectedDeck.name }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-title-row", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: selectedDeck.name }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         "button",
                         {
                           "aria-label": "Rename deck",
@@ -35928,10 +36038,10 @@ function App() {
                           },
                           title: "Rename deck",
                           type: "button",
-                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pencil, { size: 17 })
+                          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Pencil, { size: 17 })
                         }
                       ),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         "button",
                         {
                           "aria-label": `Delete ${selectedDeck.name}`,
@@ -35939,47 +36049,47 @@ function App() {
                           onClick: () => setDeckDeleteDraft(selectedDeck),
                           title: "Delete deck",
                           type: "button",
-                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 17 })
+                          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trash2, { size: 17 })
                         }
                       )
                     ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "muted", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "muted", children: [
                       getGameLabel(gameName),
                       " deck"
                     ] })
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-stats", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: totalCards2 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-stats", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: totalCards2 }),
                     "Cards"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: entries.length }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: entries.length }),
                     "Unique"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: formatMoney(estimatedValue) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: formatMoney(estimatedValue) }),
                     "Est. value"
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "coach-launch-button",
                     onClick: () => openCoach(selectedDeck),
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 18 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 18 }),
                       "Coach"
                     ]
                   }
                 ),
-                entries.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mini-empty-state", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FolderKanban, { size: 24 }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "This deck is empty." })
-                ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "deck-category-list", children: deckGroups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "deck-category", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                entries.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "mini-empty-state", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(FolderKanban, { size: 24 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "This deck is empty." })
+                ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "deck-category-list", children: deckGroups.map((group) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "deck-category", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       "aria-expanded": isDeckGroupOpen(group.label),
@@ -35987,11 +36097,11 @@ function App() {
                       onClick: () => toggleCollectionGroup(getDeckGroupKey(group.label)),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "group-title", children: [
-                          isDeckGroupOpen(group.label) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronUp, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronDown, { size: 18 }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: group.label })
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "group-title", children: [
+                          isDeckGroupOpen(group.label) ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronUp, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronDown, { size: 18 }),
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: group.label })
                         ] }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                           group.entries.length,
                           " different \xB7 ",
                           group.quantity,
@@ -36001,12 +36111,12 @@ function App() {
                       ]
                     }
                   ),
-                  isDeckGroupOpen(group.label) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "collection-list deck-card-list", children: group.entries.map(({ entry, item }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  isDeckGroupOpen(group.label) && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "collection-list deck-card-list", children: group.entries.map(({ entry, item }) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "article",
                     {
                       className: "collection-item deck-card-item",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                           "button",
                           {
                             "aria-label": `Open ${item.name}`,
@@ -36017,26 +36127,26 @@ function App() {
                             children: renderCardImage(item)
                           }
                         ),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "item-main", children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: item.name }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "item-main", children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: item.name }),
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
                             item.setCode,
                             " #",
                             item.collectorNumber
                           ] }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "muted", children: item.category })
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "muted", children: item.category })
                         ] }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "item-price", children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: item.priceLabel }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: formatMoney((item.priceUsd ?? 0) * entry.quantity) }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-card-actions", children: [
-                            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "item-price", children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: item.priceLabel }),
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: formatMoney((item.priceUsd ?? 0) * entry.quantity) }),
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-card-actions", children: [
+                            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                               "div",
                               {
                                 "aria-label": `Deck quantity for ${item.name}`,
                                 className: "deck-quantity-stepper",
                                 children: [
-                                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                                     "button",
                                     {
                                       "aria-label": `Decrease ${item.name} quantity`,
@@ -36044,11 +36154,11 @@ function App() {
                                       onClick: () => void adjustDeckCardQuantity(entry.id, -1),
                                       title: "Decrease quantity",
                                       type: "button",
-                                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Minus, { size: 16 })
+                                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Minus, { size: 16 })
                                     }
                                   ),
-                                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("output", { "aria-live": "polite", children: entry.quantity }),
-                                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("output", { "aria-live": "polite", children: entry.quantity }),
+                                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                                     "button",
                                     {
                                       "aria-label": `Increase ${item.name} quantity`,
@@ -36056,14 +36166,14 @@ function App() {
                                       onClick: () => void adjustDeckCardQuantity(entry.id, 1),
                                       title: "Increase quantity",
                                       type: "button",
-                                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 16 })
+                                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Plus, { size: 16 })
                                     }
                                   )
                                 ]
                               }
                             ),
-                            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "icon-actions", children: [
-                              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "icon-actions", children: [
+                              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                                 "a",
                                 {
                                   "aria-label": `Open source for ${item.name}`,
@@ -36071,16 +36181,16 @@ function App() {
                                   rel: "noreferrer",
                                   target: "_blank",
                                   title: "Open source",
-                                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 17 })
+                                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExternalLink, { size: 17 })
                                 }
                               ),
-                              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                                 "button",
                                 {
                                   onClick: () => void removeCardFromDeck(entry.id),
                                   title: "Remove from deck",
                                   type: "button",
-                                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 17 })
+                                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trash2, { size: 17 })
                                 }
                               )
                             ] })
@@ -36097,7 +36207,7 @@ function App() {
         }
       );
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
@@ -36108,13 +36218,13 @@ function App() {
           setNewDeckNameDraft(null);
         },
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             className: "deck-popout",
             onClick: (event) => event.stopPropagation(),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close deck builder",
@@ -36126,18 +36236,18 @@ function App() {
                   },
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-list-heading", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-list-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h2", { children: [
                     getGameLabel(gameName),
                     " Decks"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: "Select a deck to view and edit its cards." })
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "muted", children: "Select a deck to view and edit its cards." })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-label": "Add new deck",
@@ -36145,11 +36255,11 @@ function App() {
                     onClick: () => setNewDeckNameDraft(""),
                     title: "Add new deck",
                     type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 20 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Plus, { size: 20 })
                   }
                 )
               ] }),
-              newDeckNameDraft !== null && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              newDeckNameDraft !== null && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "form",
                 {
                   className: "deck-create-row",
@@ -36158,7 +36268,7 @@ function App() {
                     void createDeckFromBuilder(gameName);
                   },
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         "aria-label": "New deck name",
@@ -36168,7 +36278,7 @@ function App() {
                         value: newDeckNameDraft
                       }
                     ),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         "aria-label": "Cancel new deck",
@@ -36176,32 +36286,32 @@ function App() {
                         onClick: () => setNewDeckNameDraft(null),
                         title: "Cancel",
                         type: "button",
-                        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 18 })
+                        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 18 })
                       }
                     ),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         "aria-label": "Create deck",
                         className: "primary",
                         title: "Create deck",
                         type: "submit",
-                        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 })
+                        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 })
                       }
                     )
                   ]
                 }
               ),
-              gameDecks.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mini-empty-state", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FolderKanban, { size: 24 }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+              gameDecks.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "mini-empty-state", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(FolderKanban, { size: 24 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                   "No ",
                   getGameLabel(gameName),
                   " decks yet."
                 ] })
-              ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "deck-list", children: gameDecks.map((deck) => {
+              ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "deck-list", children: gameDecks.map((deck) => {
                 const cardsInDeck = deckCards.filter((entry) => entry.deckId === deck.id).reduce((total, entry) => total + entry.quantity, 0);
-                return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "deck-row",
@@ -36213,17 +36323,17 @@ function App() {
                     },
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: deck.name }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "muted", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: deck.name }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "muted", children: [
                           "Updated ",
                           formatDate(deck.updatedAt)
                         ] })
                       ] }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "deck-row-count", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: cardsInDeck }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "deck-row-count", children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: cardsInDeck }),
                         "cards",
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { size: 18 })
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronRight, { size: 18 })
                       ] })
                     ]
                   },
@@ -36241,20 +36351,20 @@ function App() {
       return null;
     }
     const assignedQuantity = deckCards.filter((entry) => entry.deckId === deckDeleteDraft.id).reduce((total, entry) => total + entry.quantity, 0);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
         className: "card-preview-backdrop deck-delete-backdrop",
         onClick: () => setDeckDeleteDraft(null),
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             className: "save-deck-popout deck-delete-popout",
             onClick: (event) => event.stopPropagation(),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Cancel deck deletion",
@@ -36262,21 +36372,21 @@ function App() {
                   onClick: () => setDeckDeleteDraft(null),
                   title: "Cancel",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-delete-heading", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 22 }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-delete-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trash2, { size: 22 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h2", { children: [
                     "Delete ",
                     deckDeleteDraft.name,
                     "?"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: "This cannot be undone." })
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "muted", children: "This cannot be undone." })
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
                 "The deck and its ",
                 assignedQuantity,
                 " assigned",
@@ -36284,8 +36394,8 @@ function App() {
                 assignedQuantity === 1 ? "card" : "cards",
                 " will be removed. Your collection cards will remain saved and become available to other decks."
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-delete-actions", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-delete-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     className: "secondary",
@@ -36294,14 +36404,14 @@ function App() {
                     children: "Cancel"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "danger-action",
                     onClick: () => void deleteDeck(deckDeleteDraft),
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 18 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trash2, { size: 18 }),
                       "Delete Deck"
                     ]
                   }
@@ -36339,7 +36449,7 @@ function App() {
     const coachCreditWarning = "You're out of Coach credits. Add credits or choose Unlimited Coach to keep using Coach.";
     const latestCreditUsage = coachResult?.creditUsage;
     const latestCreditChargeLabel = latestCreditUsage ? latestCreditUsage.unlimited || latestCreditUsage.deducted === 0 ? "No credits charged" : `${latestCreditUsage.deducted} credit${latestCreditUsage.deducted === 1 ? "" : "s"} charged` : "";
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
@@ -36352,13 +36462,13 @@ function App() {
           }
         },
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             className: "coach-popout",
             onClick: (event) => event.stopPropagation(),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close Coach",
@@ -36371,10 +36481,10 @@ function App() {
                   },
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Clear Coach thread",
@@ -36383,19 +36493,19 @@ function App() {
                   onClick: clearCurrentCoachThread,
                   title: "Clear thread",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { size: 18 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trash2, { size: 18 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "coach-heading", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 22 }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Coach" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: deck?.name ?? `${getGameLabel(coachDraft.game)} Library` })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("header", { className: "coach-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-mark", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 22 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "Coach" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "muted", children: deck?.name ?? `${getGameLabel(coachDraft.game)} Library` })
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-credit-strip", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !coachCredits ? "Checking Coach credits" : coachCredits.unlimited ? "Unlimited Coach" : `${coachCredits.balance} Coach credits` }),
-                latestCreditUsage ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: latestCreditChargeLabel }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-credit-strip", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: !coachCredits ? "Checking Coach credits" : coachCredits.unlimited ? "Unlimited Coach" : `${coachCredits.balance} Coach credits` }),
+                latestCreditUsage ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: latestCreditChargeLabel }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-expanded": isCoachCreditListOpen,
@@ -36405,64 +36515,64 @@ function App() {
                     children: "Credit List"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "coach-credit-action",
                     onClick: openPurchaseDialog,
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 15 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(CreditCard, { size: 15 }),
                       "Add Credits"
                     ]
                   }
                 )
               ] }),
-              isCoachCreditListOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-credit-list-panel", "aria-label": "Coach credit list", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Coach credit list" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Charges appear after Coach confirms the request." })
+              isCoachCreditListOpen && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-credit-list-panel", "aria-label": "Coach credit list", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("header", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "Coach credit list" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Charges appear after Coach confirms the request." })
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       "aria-label": "Close credit list",
                       onClick: () => setIsCoachCreditListOpen(false),
                       type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 16 })
+                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 16 })
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-credit-list-rows", children: [
-                  coachCreditChargeRows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: row.label }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: row.detail })
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-credit-list-rows", children: [
+                  coachCreditChargeRows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: row.label }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("small", { children: row.detail })
                     ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("b", { children: [
                       row.cost,
                       " credit",
                       row.cost === 1 ? "" : "s"
                     ] })
                   ] }, row.label)),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Unlimited Coach" }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "No credit spend while the subscription is active." })
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "Unlimited Coach" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("small", { children: "No credit spend while the subscription is active." })
                     ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "No spend" })
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("b", { children: "No spend" })
                   ] })
                 ] })
               ] }),
-              isCoachOutOfCredits && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-alert warning", role: "alert", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { size: 18 }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCreditWarning })
+              isCoachOutOfCredits && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-alert warning", role: "alert", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TriangleAlert, { size: 18 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: coachCreditWarning })
               ] }),
-              coachDraft.scope === "deck" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-format-bar", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+              coachDraft.scope === "deck" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-format-bar", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Deck format",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "select",
                     {
                       disabled: isCoachLoading,
@@ -36471,13 +36581,13 @@ function App() {
                         commanderName: event.target.value === "commander" ? coachDraft.commanderName : ""
                       }),
                       value: coachDraft.format,
-                      children: formatOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: option.value, children: option.label }, option.value))
+                      children: formatOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: option.value, children: option.label }, option.value))
                     }
                   )
                 ] }),
-                coachDraft.game === "mtg" && coachDraft.format === "commander" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                coachDraft.game === "mtg" && coachDraft.format === "commander" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Commander",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       disabled: isCoachLoading,
@@ -36488,20 +36598,20 @@ function App() {
                   )
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-chat", "aria-live": "polite", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-message assistant", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 16 }) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-body", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "What do you need help with?" }) })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-chat", "aria-live": "polite", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-message assistant", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 16 }) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-message-body", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "What do you need help with?" }) })
                 ] }),
-                coachMessages.map((message) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                coachMessages.map((message) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "div",
                   {
                     className: `coach-message ${message.role}`,
                     children: [
-                      message.role === "assistant" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 16 }) }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-message-body", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: message.role === "assistant" ? renderCoachText(message.text, message.result?.cardRefs) : message.text }),
-                        message.result?.mode === "build" && message.result.ownedRecommendations.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-save-deck-action", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                      message.role === "assistant" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 16 }) }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-message-body", children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: message.role === "assistant" ? renderCoachText(message.text, message.result?.cardRefs) : message.text }),
+                        message.result?.mode === "build" && message.result.ownedRecommendations.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-save-deck-action", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                           "button",
                           {
                             className: "coach-save-deck-button",
@@ -36510,18 +36620,18 @@ function App() {
                             title: "Save this generated deck",
                             type: "button",
                             children: [
-                              savingCoachDeckMessageId === message.id ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 17 }),
+                              savingCoachDeckMessageId === message.id ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Plus, { size: 17 }),
                               savedCoachDeckNames[message.id] ? `Saved as ${savedCoachDeckNames[message.id]}` : "Save as New Deck"
                             ]
                           }
                         ) }),
-                        message.result?.synergies.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-answer-cards", children: message.result.synergies.map((synergy, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
-                          synergy.tier && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "coach-synergy-tier", children: synergy.tier }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-card-name-row", children: synergy.cards.map((cardName, cardIndex) => {
+                        message.result?.synergies.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-answer-cards", children: message.result.synergies.map((synergy, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { children: [
+                          synergy.tier && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "coach-synergy-tier", children: synergy.tier }),
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-card-name-row", children: synergy.cards.map((cardName, cardIndex) => {
                             const cardRef = getCoachCardRef(message.result, cardName);
-                            return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                              cardIndex > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { children: "+" }),
-                              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                            return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                              cardIndex > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("i", { children: "+" }),
+                              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                                 "button",
                                 {
                                   onClick: () => openCoachCard(cardName, cardRef?.sourceId),
@@ -36531,25 +36641,25 @@ function App() {
                               )
                             ] }, `${message.id}-${cardName}`);
                           }) }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: renderCoachText(
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: renderCoachText(
                             synergy.explanation,
                             message.result.cardRefs
                           ) })
                         ] }, `${message.id}-synergy-${index}`)) }) : null,
-                        message.result?.ownedRecommendations.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-answer-cards", children: message.result.ownedRecommendations.map(
+                        message.result?.ownedRecommendations.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-answer-cards", children: message.result.ownedRecommendations.map(
                           (recommendation, index) => renderCoachOwnedRecommendation(
                             message,
                             recommendation,
                             index
                           )
                         ) }) : null,
-                        message.result && message.result.synergies.length === 0 && message.result.ownedRecommendations.length === 0 && (message.result.strengths.length > 0 || message.result.concerns.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { className: "coach-answer-points", children: [
+                        message.result && message.result.synergies.length === 0 && message.result.ownedRecommendations.length === 0 && (message.result.strengths.length > 0 || message.result.concerns.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("ul", { className: "coach-answer-points", children: [
                           ...message.result.strengths,
                           ...message.result.concerns
-                        ].map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: renderCoachText(item, message.result.cardRefs) }, `${message.id}-${item}`)) }),
-                        message.result && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "coach-answer-details", children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: "Answer details" }),
-                          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: message.result.mode === "build" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+                        ].map((item) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("li", { children: renderCoachText(item, message.result.cardRefs) }, `${message.id}-${item}`)) }),
+                        message.result && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "coach-answer-details", children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("summary", { children: "Answer details" }),
+                          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: message.result.mode === "build" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
                             countCoachAdditions(message.result),
                             " nonland cards selected. Coach searched",
                             " ",
@@ -36559,7 +36669,7 @@ function App() {
                             " ",
                             message.result.analysisScope.collectionCardsHydrated,
                             "."
-                          ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+                          ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
                             "Coach searched",
                             " ",
                             message.result.analysisScope.collectionCardsMatched ?? message.result.analysisScope.collectionCardsHydrated,
@@ -36569,9 +36679,9 @@ function App() {
                             message.result.analysisScope.collectionCardsHydrated || message.result.analysisScope.collectionCardsModeled,
                             "."
                           ] }) }),
-                          message.result.deterministic.legalityIssues.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: message.result.deterministic.legalityIssues.map(
-                            (issue, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-                              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
+                          message.result.deterministic.legalityIssues.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("ul", { children: message.result.deterministic.legalityIssues.map(
+                            (issue, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("li", { children: [
+                              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("b", { children: [
                                 issue.card,
                                 ":"
                               ] }),
@@ -36585,37 +36695,37 @@ function App() {
                   },
                   message.id
                 )),
-                isCoachLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-message assistant thinking", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 16 }) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-message-body", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Checking your cards and their exact rules..." }) })
+                isCoachLoading && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-message assistant thinking", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-message-mark", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 16 }) }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-message-body", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "Checking your cards and their exact rules..." }) })
                 ] }),
-                isCoachDeckBuildRunning && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-build-wait coach-build-wait-chat", role: "status", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { "aria-hidden": "true", size: 18 }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Building a full deck takes longer. Coach is checking your collection." })
+                isCoachDeckBuildRunning && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-build-wait coach-build-wait-chat", role: "status", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TriangleAlert, { "aria-hidden": "true", size: 18 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Building a full deck takes longer. Coach is checking your collection." })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { ref: coachChatEndRef })
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { ref: coachChatEndRef })
               ] }),
-              coachComboRefinement ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-combo-refinement", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Useful combo filters" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Only cards you own will be checked." })
+              coachComboRefinement ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-combo-refinement", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("header", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "Useful combo filters" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Only cards you own will be checked." })
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       "aria-label": "Close combo filters",
                       onClick: () => setCoachComboRefinement(null),
                       title: "Close filters",
                       type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 17 })
+                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 17 })
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: coachDraft.game === "pokemon" ? "Pokemon types" : "Colors" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-filter-chips", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: coachDraft.game === "pokemon" ? "Pokemon types" : "Colors" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-filter-chips", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         className: coachComboRefinement.colors.length === 0 ? "active" : "",
@@ -36626,7 +36736,7 @@ function App() {
                         children: "Any"
                       }
                     ),
-                    comboColorOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    comboColorOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         className: coachComboRefinement.colors.includes(option.value) ? "active" : "",
@@ -36638,9 +36748,9 @@ function App() {
                     ))
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: "Combo type" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-filter-chips", children: getCoachComboKinds().map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: "Combo type" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-filter-chips", children: getCoachComboKinds().map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       className: coachComboRefinement.kind === option.value ? "active" : "",
@@ -36653,12 +36763,12 @@ function App() {
                     option.value
                   )) })
                 ] }),
-                coachDraft.scope === "deck" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: "Search area" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-filter-chips", children: [
+                coachDraft.scope === "deck" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: "Search area" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-filter-chips", children: [
                     { label: "This deck", value: "deck" },
                     { label: "Whole collection", value: "collection" }
-                  ].map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  ].map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       className: coachComboRefinement.area === option.value ? "active" : "",
@@ -36671,8 +36781,8 @@ function App() {
                     option.value
                   )) })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-filter-actions", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-filter-actions", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       disabled: isCoachLoading || isCoachOutOfCredits,
@@ -36681,7 +36791,7 @@ function App() {
                       children: "Skip filters"
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       className: "primary",
@@ -36689,33 +36799,33 @@ function App() {
                       onClick: () => askCoachForRefinedCombos(),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 17 }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 17 }),
                         "Ask Coach"
                       ]
                     }
                   )
                 ] })
-              ] }) : coachBuildRefinement ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-combo-refinement", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Deck build options" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Coach will build only from cards you own." })
+              ] }) : coachBuildRefinement ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-combo-refinement", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("header", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: "Deck build options" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Coach will build only from cards you own." })
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       "aria-label": "Close deck build options",
                       onClick: () => setCoachBuildRefinement(null),
                       title: "Close options",
                       type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 17 })
+                      children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 17 })
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: coachDraft.game === "pokemon" ? "Pokemon types" : "Colors" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-filter-chips", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: coachDraft.game === "pokemon" ? "Pokemon types" : "Colors" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-filter-chips", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         className: coachBuildRefinement.colors.length === 0 ? "active" : "",
@@ -36729,7 +36839,7 @@ function App() {
                         children: "Any"
                       }
                     ),
-                    buildColorOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    buildColorOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         className: coachBuildRefinement.colors.includes(option.value) ? "active" : "",
@@ -36741,9 +36851,9 @@ function App() {
                     ))
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: "Deck style" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-filter-chips", children: getCoachBuildStyles(coachDraft.game).map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: "Deck style" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-filter-chips", children: getCoachBuildStyles(coachDraft.game).map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       className: coachBuildRefinement.style === option.value ? "active" : "",
@@ -36759,9 +36869,9 @@ function App() {
                     option.value
                   )) })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("fieldset", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("legend", { children: "Deck format" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-filter-chips", children: formatOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("fieldset", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("legend", { children: "Deck format" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-filter-chips", children: formatOptions.map((option) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       className: coachDraft.format === option.value ? "active" : "",
@@ -36777,23 +36887,23 @@ function App() {
                     },
                     option.value
                   )) }),
-                  coachDraft.game === "mtg" && coachDraft.format === "commander" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-build-commander", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-commander-label-row", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Commander card" }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  coachDraft.game === "mtg" && coachDraft.format === "commander" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-build-commander", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-commander-label-row", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Commander card" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                         "button",
                         {
                           disabled: isCoachLoading || isSuggestingCommander || Boolean(coachCredits) && !coachCredits?.unlimited && (coachCredits?.balance ?? 0) < commanderSuggestionCreditCost,
                           onClick: () => void suggestCoachCommander(),
                           type: "button",
                           children: [
-                            isSuggestingCommander ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 15 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 15 }),
+                            isSuggestingCommander ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 15 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 15 }),
                             "Suggest a Commander"
                           ]
                         }
                       )
                     ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         disabled: isCoachLoading,
@@ -36805,12 +36915,12 @@ function App() {
                         value: coachDraft.commanderName
                       }
                     ),
-                    commanderSuggestions.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-commander-suggestions", children: commanderSuggestions.map((suggestion) => {
+                    commanderSuggestions.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-commander-suggestions", children: commanderSuggestions.map((suggestion) => {
                       const card = collection.find(
                         (item) => item.sourceId === suggestion.sourceId
                       );
-                      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                      return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                           "button",
                           {
                             className: "coach-commander-preview",
@@ -36818,22 +36928,22 @@ function App() {
                             title: `View ${suggestion.name}`,
                             type: "button",
                             children: [
-                              card?.imageUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: card.imageUrl }),
-                              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: suggestion.name }),
-                                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: suggestion.reason })
+                              card?.imageUrl && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { alt: "", src: card.imageUrl }),
+                              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: suggestion.name }),
+                                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("small", { children: suggestion.reason })
                               ] })
                             ]
                           }
                         ),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                           "button",
                           {
                             className: "coach-use-commander",
                             onClick: () => updateCoachDraft({ commanderName: suggestion.name }),
                             type: "button",
                             children: [
-                              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { size: 15 }),
+                              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Check, { size: 15 }),
                               "Use Commander"
                             ]
                           }
@@ -36842,8 +36952,8 @@ function App() {
                     }) })
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-filter-actions", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-filter-actions", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       disabled: isCoachLoading || isCoachOutOfCredits,
@@ -36852,7 +36962,7 @@ function App() {
                       children: "Skip options"
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       className: "primary",
@@ -36860,14 +36970,14 @@ function App() {
                       onClick: () => askCoachForRefinedBuild(),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 17 }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 17 }),
                         "Build Deck"
                       ]
                     }
                   )
                 ] })
-              ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-quick-section", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-quick-section", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     "aria-expanded": areCoachPromptsOpen,
@@ -36876,8 +36986,8 @@ function App() {
                     onClick: () => setAreCoachPromptsOpen((current) => !current),
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Common questions" }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Common questions" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         ChevronDown,
                         {
                           className: areCoachPromptsOpen ? "is-open" : "",
@@ -36887,7 +36997,7 @@ function App() {
                     ]
                   }
                 ),
-                areCoachPromptsOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-quick-prompts", children: quickPrompts.map((prompt) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                areCoachPromptsOpen && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-quick-prompts", children: quickPrompts.map((prompt) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     disabled: isCoachLoading,
@@ -36898,7 +37008,7 @@ function App() {
                   prompt.label
                 )) })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "form",
                 {
                   className: "coach-composer",
@@ -36907,7 +37017,7 @@ function App() {
                     void runCoach();
                   },
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "textarea",
                       {
                         "aria-label": "Ask Coach",
@@ -36927,66 +37037,66 @@ function App() {
                         value: coachQuestion
                       }
                     ),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         "aria-label": "Send question",
                         disabled: isCoachLoading || isCoachOutOfCredits || !coachQuestion.trim(),
                         title: "Send",
                         type: "submit",
-                        children: isCoachLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 19 })
+                        children: isCoachLoading ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 19 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Send, { size: 19 })
                       }
                     )
                   ]
                 }
               ),
-              coachError && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-alert error", role: "alert", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { size: 18 }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachError })
+              coachError && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-alert error", role: "alert", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TriangleAlert, { size: 18 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: coachError })
               ] }),
-              coachResult && !isCoachLoading && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "coach-full-analysis", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: "Full deck analysis" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-results", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-result-heading", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              coachResult && !isCoachLoading && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "coach-full-analysis", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("summary", { children: "Full deck analysis" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-results", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-result-heading", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "span",
                       {
                         className: `coach-status ${coachResult.modelStatus}`,
                         children: coachResult.modelStatus === "ready" ? "Coach ready" : coachResult.modelStatus === "partial" ? "Coach checked" : coachResult.modelStatus === "busy" ? "Checks only" : "Model offline"
                       }
                     ),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: renderCoachText(coachResult.summary, coachResult.cardRefs) })
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: renderCoachText(coachResult.summary, coachResult.cardRefs) })
                   ] }) }),
-                  deterministic && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-metrics", children: Object.entries(deterministic.metrics).map(([key, value]) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: value }),
+                  deterministic && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-metrics", children: Object.entries(deterministic.metrics).map(([key, value]) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: value }),
                     formatMetricLabel(key)
                   ] }, key)) }),
-                  deterministic?.legalityIssues.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-section coach-legality", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { size: 18 }),
+                  deterministic?.legalityIssues.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-section coach-legality", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("h3", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TriangleAlert, { size: 18 }),
                       "Deck Checks"
                     ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-list", children: deterministic.legalityIssues.map((issue, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: renderCoachText(issue.card, coachResult.cardRefs) }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: issue.issue })
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-list", children: deterministic.legalityIssues.map((issue, index) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("article", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: renderCoachText(issue.card, coachResult.cardRefs) }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: issue.issue })
                     ] }, `${issue.card}-${index}`)) })
-                  ] }) : deterministic && coachDraft.scope === "deck" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-alert success", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { size: 18 }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Deck checks passed." })
+                  ] }) : deterministic && coachDraft.scope === "deck" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-alert success", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Check, { size: 18 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Deck checks passed." })
                   ] }) : null,
-                  (strengths.length > 0 || concerns.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "coach-summary-grid", children: [
-                    strengths.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-section", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Working Well" }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: strengths.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: renderCoachText(item, coachResult.cardRefs) }, item)) })
+                  (strengths.length > 0 || concerns.length > 0) && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "coach-summary-grid", children: [
+                    strengths.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-section", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: "Working Well" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("ul", { children: strengths.map((item) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("li", { children: renderCoachText(item, coachResult.cardRefs) }, item)) })
                     ] }),
-                    concerns.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "coach-section", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Needs Attention" }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: concerns.map((item) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: renderCoachText(item, coachResult.cardRefs) }, item)) })
+                    concerns.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "coach-section", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: "Needs Attention" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("ul", { children: concerns.map((item) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("li", { children: renderCoachText(item, coachResult.cardRefs) }, item)) })
                     ] })
                   ] }),
-                  coachResult.warnings.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "coach-notes", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: "Analysis notes" }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: coachResult.warnings.map((warning) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: warning }, warning)) })
+                  coachResult.warnings.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "coach-notes", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("summary", { children: "Analysis notes" }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("ul", { children: coachResult.warnings.map((warning) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("li", { children: warning }, warning)) })
                   ] })
                 ] })
               ] })
@@ -37000,7 +37110,7 @@ function App() {
     if (!scanIssueDraft) {
       return null;
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
@@ -37011,13 +37121,13 @@ function App() {
           }
         },
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             className: "scan-issue-popout",
             onClick: (event) => event.stopPropagation(),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close scan issue report",
@@ -37026,14 +37136,14 @@ function App() {
                   onClick: () => setScanIssueDraft(null),
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Report Scan Issue" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: "This saves the captured image and scan details locally." })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "Report Scan Issue" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "muted", children: "This saves the captured image and scan details locally." })
               ] }),
-              capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "img",
                 {
                   alt: "",
@@ -37041,10 +37151,10 @@ function App() {
                   src: capturedFrame
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "deck-save-fields", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "deck-save-fields", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Correct card name",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       autoComplete: "off",
@@ -37055,17 +37165,17 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Wrong result shown",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "select",
                     {
                       disabled: scanIssueDraft.isSaving || candidates.length === 0,
                       onChange: (event) => updateScanIssueDraft({ wrongCandidateSourceId: event.target.value }),
                       value: scanIssueDraft.wrongCandidateSourceId,
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "", children: "No wrong result selected" }),
-                        candidates.map((candidate) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "", children: "No wrong result selected" }),
+                        candidates.map((candidate) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                           "option",
                           {
                             value: candidate.sourceId,
@@ -37077,9 +37187,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Notes",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       disabled: scanIssueDraft.isSaving,
@@ -37090,12 +37200,12 @@ function App() {
                   )
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-report-context", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: getGameLabel(game) }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedTerm || query.trim() || "No search term" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "scan-report-context", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: getGameLabel(game) }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: selectedTerm || query.trim() || "No search term" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "edit-actions", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "edit-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     className: "secondary",
@@ -37105,7 +37215,7 @@ function App() {
                     children: "Cancel"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "primary",
@@ -37113,7 +37223,7 @@ function App() {
                     onClick: () => void saveScanIssueReport(),
                     type: "button",
                     children: [
-                      scanIssueDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                      scanIssueDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
                       "Save Report"
                     ]
                   }
@@ -37129,98 +37239,98 @@ function App() {
     if (!accountDialogOpen) {
       return null;
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "account-backdrop", role: "presentation", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "account-backdrop", role: "presentation", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
       "section",
       {
         "aria-modal": "true",
         className: "account-dialog",
         role: "dialog",
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-heading", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 23 }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Card Vault profile" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: accountSession ? accountSession.profile.displayName : accountMode === "create" ? "Create Profile" : "Sign In" })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-heading", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(UserRound, { size: 23 }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "eyebrow", children: "Card Vault profile" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: accountSession ? accountSession.profile.displayName : accountMode === "create" ? "Create Profile" : "Sign In" })
             ] })
           ] }),
-          isAccountBooting ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-loading", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 21 }),
+          isAccountBooting ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-loading", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 21 }),
             "Checking this device"
-          ] }) : accountSession ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-profile-row", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: accountSession.profile.displayName }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          ] }) : accountSession ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-profile-row", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: accountSession.profile.displayName }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                   "@",
                   accountSession.profile.username
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cloud, { size: 21 })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Cloud, { size: 21 })
             ] }),
-            accountStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status", children: accountStatus }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
-              canShowAndroidAppPromo && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            accountStatus && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "account-status", children: accountStatus }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-actions", children: [
+              canShowAndroidAppPromo && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "secondary android-app-button",
                   onClick: () => setIsAndroidAppPanelOpen(true),
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { size: 18 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ScanLine, { size: 18 }),
                     "Android QR"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "secondary",
                   onClick: () => void signOutAccount(),
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LogOut, { size: 18 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LogOut, { size: 18 }),
                     "Sign Out"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "secondary",
                   onClick: openPurchaseDialog,
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 18 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(CreditCard, { size: 18 }),
                     "Coach Credits"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "secondary",
                   onClick: () => void performAccountSync(true),
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cloud, { size: 18 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Cloud, { size: 18 }),
                     "Sync Now"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "primary",
                   onClick: () => setAccountDialogOpen(false),
                   type: "button",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { size: 18 }),
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Check, { size: 18 }),
                     "Done"
                   ]
                 }
               )
             ] })
-          ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          ] }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "form",
             {
               onSubmit: (event) => {
@@ -37228,8 +37338,8 @@ function App() {
                 void submitAccount();
               },
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-mode", "aria-label": "Account action", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-mode", "aria-label": "Account action", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       className: accountMode === "login" ? "active" : "",
@@ -37241,7 +37351,7 @@ function App() {
                       children: "Sign In"
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "button",
                     {
                       className: accountMode === "create" ? "active" : "",
@@ -37254,9 +37364,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Username",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       autoCapitalize: "none",
@@ -37266,9 +37376,9 @@ function App() {
                     }
                   )
                 ] }),
-                accountMode === "create" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                accountMode === "create" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Preferred name",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       autoComplete: "name",
@@ -37278,9 +37388,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Password",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       autoComplete: accountMode === "create" ? "new-password" : "current-password",
@@ -37290,9 +37400,9 @@ function App() {
                     }
                   )
                 ] }),
-                accountMode === "create" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-note", children: "At least 5 characters. No symbol or capitalization rules." }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "account-remember", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                accountMode === "create" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "account-note", children: "At least 5 characters. No symbol or capitalization rules." }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "account-remember", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       checked: accountDraft.remember,
@@ -37302,28 +37412,28 @@ function App() {
                   ),
                   "Remember this device"
                 ] }),
-                accountStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status", children: accountStatus }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
-                  canShowAndroidAppPromo && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                accountStatus && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "account-status", children: accountStatus }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-actions", children: [
+                  canShowAndroidAppPromo && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       className: "secondary android-app-button",
                       onClick: () => setIsAndroidAppPanelOpen(true),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { size: 18 }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ScanLine, { size: 18 }),
                         "Android QR"
                       ]
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       className: "primary",
                       disabled: accountDraft.isSaving,
                       type: "submit",
                       children: [
-                        accountDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 18 }),
+                        accountDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(UserRound, { size: 18 }),
                         accountMode === "create" ? "Create Profile" : "Sign In"
                       ]
                     }
@@ -37332,24 +37442,24 @@ function App() {
               ]
             }
           ),
-          canShowAndroidAppPromo && isAndroidAppPanelOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "android-app-panel", "aria-label": "Card Vault Android app", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "android-app-panel-heading", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Phone scanner" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "Get Card Vault for Android" })
+          canShowAndroidAppPromo && isAndroidAppPanelOpen && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "android-app-panel", "aria-label": "Card Vault Android app", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "android-app-panel-heading", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "eyebrow", children: "Phone scanner" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: "Get Card Vault for Android" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close Android app QR",
                   onClick: () => setIsAndroidAppPanelOpen(false),
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 17 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 17 })
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: "Scan cards on your phone, review and organize on Windows." }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: "Scan cards on your phone, review and organize on Windows." }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
               "img",
               {
                 alt: "QR code for Card Vault on Google Play",
@@ -37357,7 +37467,7 @@ function App() {
                 src: "./card-vault-android-qr.png"
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "a",
               {
                 className: "android-app-store-link",
@@ -37365,16 +37475,16 @@ function App() {
                 rel: "noreferrer",
                 target: "_blank",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 17 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExternalLink, { size: 17 }),
                   "Open Play Store"
                 ]
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", { className: "account-policy-links", "aria-label": "Account help and policies", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://cmforgedbyfire.com/privacy.html", children: "Privacy" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://cmforgedbyfire.com/support.html", children: "Support" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", { href: "https://cmforgedbyfire.com/delete-account.html", children: "Delete account" })
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("nav", { className: "account-policy-links", "aria-label": "Account help and policies", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://cmforgedbyfire.com/privacy.html", children: "Privacy" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://cmforgedbyfire.com/support.html", children: "Support" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("a", { href: "https://cmforgedbyfire.com/delete-account.html", children: "Delete account" })
           ] })
         ]
       }
@@ -37384,13 +37494,13 @@ function App() {
     if (!feedbackDialogOpen) {
       return null;
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         className: "account-backdrop",
         onClick: () => setFeedbackDialogOpen(false),
         role: "presentation",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             "aria-modal": "true",
@@ -37398,7 +37508,7 @@ function App() {
             onClick: (event) => event.stopPropagation(),
             role: "dialog",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close feedback",
@@ -37406,17 +37516,17 @@ function App() {
                   onClick: () => setFeedbackDialogOpen(false),
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-heading", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { size: 23 }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Card Vault feedback" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Send Feedback" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(MessageSquare, { size: 23 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "eyebrow", children: "Card Vault feedback" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "Send Feedback" })
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "feedback-kind-row", "aria-label": "Feedback category", children: ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "feedback-kind-row", "aria-label": "Feedback category", children: ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   className: feedbackDraft.choice === choice ? "selected" : "",
@@ -37431,9 +37541,9 @@ function App() {
                 },
                 choice
               )) }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                 "Feedback note",
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "textarea",
                   {
                     "aria-invalid": Boolean(feedbackDraft.error),
@@ -37448,9 +37558,9 @@ function App() {
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                 "Reply email",
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "input",
                   {
                     autoComplete: "email",
@@ -37465,9 +37575,9 @@ function App() {
                   }
                 )
               ] }),
-              feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "account-actions", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "account-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "secondary",
@@ -37475,12 +37585,12 @@ function App() {
                     onClick: () => setFeedbackDialogOpen(false),
                     type: "button",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 18 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 18 }),
                       "Close"
                     ]
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "button",
                   {
                     className: "primary",
@@ -37488,7 +37598,7 @@ function App() {
                     onClick: () => void sendFeedbackNote(),
                     type: "button",
                     children: [
-                      feedbackDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 18 }),
+                      feedbackDraft.isSaving ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Send, { size: 18 }),
                       "Send"
                     ]
                   }
@@ -37504,13 +37614,13 @@ function App() {
     if (!purchaseDialogOpen) {
       return null;
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         className: "account-backdrop",
         onClick: () => setPurchaseDialogOpen(false),
         role: "presentation",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             "aria-modal": "true",
@@ -37518,7 +37628,7 @@ function App() {
             onClick: (event) => event.stopPropagation(),
             role: "dialog",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close Coach purchase options",
@@ -37526,42 +37636,42 @@ function App() {
                   onClick: () => setPurchaseDialogOpen(false),
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-heading", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "coach-mark", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { size: 22 }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "Coach access" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Add Credits or Go Unlimited" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "purchase-heading", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "coach-mark", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Sparkles, { size: 22 }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "eyebrow", children: "Coach access" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "Add Credits or Go Unlimited" })
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-balance", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: coachCredits?.unlimited ? "Unlimited Coach active" : `${coachCredits?.balance ?? 0} credits available` }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: "Windows uses Microsoft Store checkout. Android uses Google Play." })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "purchase-balance", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: coachCredits?.unlimited ? "Unlimited Coach active" : `${coachCredits?.balance ?? 0} credits available` }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("small", { children: "Windows uses Microsoft Store checkout. Android uses Google Play." })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "purchase-products", children: coachCreditProducts.map((product) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "purchase-products", children: coachCreditProducts.map((product) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "article",
                 {
                   className: product.kind === "subscription" ? "purchase-product subscription" : "purchase-product",
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-product-heading", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: product.title }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: product.subtitle })
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "purchase-product-heading", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: product.title }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: product.subtitle })
                       ] }),
-                      product.badge && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: product.badge })
+                      product.badge && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: product.badge })
                     ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-product-footer", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: product.price }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "purchase-product-footer", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: product.price }),
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                         "button",
                         {
                           className: product.kind === "subscription" ? "primary" : "secondary",
                           onClick: () => void beginCoachPurchase(product),
                           type: "button",
                           children: [
-                            product.kind === "subscription" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Crown, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { size: 17 }),
+                            product.kind === "subscription" ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Crown, { size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(CreditCard, { size: 17 }),
                             product.kind === "subscription" ? "Choose Plan" : "Buy Credits"
                           ]
                         }
@@ -37571,14 +37681,14 @@ function App() {
                 },
                 product.id
               )) }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "purchase-costs", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Ask 1" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Review 2" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Combos 3" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Improve 3" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Build 8" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "purchase-costs", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Ask 1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Review 2" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Combos 3" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Improve 3" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Build 8" })
               ] }),
-              purchaseStatus && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "account-status purchase-status", children: purchaseStatus })
+              purchaseStatus && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "account-status purchase-status", children: purchaseStatus })
             ]
           }
         )
@@ -37591,36 +37701,36 @@ function App() {
   ) : -1;
   const hasScanPreviewNavigation = scanPreviewIndex >= 0 && candidates.length > 1;
   const visibleAppVersion = isDesktopShell && window.cardVaultDesktop?.version ? window.cardVaultDesktop.version : appVersionLabel;
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", { className: isDesktopShell ? "app-shell desktop-shell" : "app-shell", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "topbar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-heading", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "brand-icon", src: "./card-vault-icon.png" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "MTG + Pokemon + Sports collection tracker" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-title-row", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Card Vault" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "brand-badge", children: "Early Access" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "brand-badge version-badge", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("main", { className: isDesktopShell ? "app-shell desktop-shell" : "app-shell", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("header", { className: "topbar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "brand-heading", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { alt: "", className: "brand-icon", src: "./card-vault-icon.png" }),
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "eyebrow", children: "MTG + Pokemon + Sports collection tracker" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "brand-title-row", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h1", { children: "Card Vault" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "brand-badge", children: "Early Access" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { className: "brand-badge version-badge", children: [
               "v",
               visibleAppVersion
             ] })
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "topbar-actions", children: [
-        isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "skin-picker", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Skin" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "topbar-actions", children: [
+        isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "skin-picker", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Skin" }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
             "select",
             {
               "aria-label": "Desktop skin",
               onChange: (event) => setCardVaultSkin(event.target.value),
               value: cardVaultSkin,
-              children: cardVaultSkins.map((skin) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: skin.value, children: skin.label }, skin.value))
+              children: cardVaultSkins.map((skin) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: skin.value, children: skin.label }, skin.value))
             }
           )
         ] }),
-        isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        isDesktopShell && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: "account-button feedback-button",
@@ -37628,12 +37738,12 @@ function App() {
             title: "Send feedback",
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageSquare, { size: 18 }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Feedback" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(MessageSquare, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Feedback" })
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: "account-button",
@@ -37641,69 +37751,69 @@ function App() {
             title: accountSession ? "Profile and sync" : "Sign in",
             type: "button",
             children: [
-              accountSession ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cloud, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UserRound, { size: 18 }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: accountSession?.profile.displayName ?? "Profile" })
+              accountSession ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Cloud, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(UserRound, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: accountSession?.profile.displayName ?? "Profile" })
             ]
           }
         )
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "app-body", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", { className: "tabbar", "aria-label": "Main views", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "app-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("nav", { className: "tabbar", "aria-label": "Main views", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: activeTab === "scan" ? "active" : "",
             onClick: () => setActiveTab("scan"),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Camera, { size: 18 }),
               "Scan"
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: activeTab === "mtg" ? "active" : "",
             onClick: () => setActiveTab("mtg"),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layers, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Layers, { size: 18 }),
               "MTG"
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: activeTab === "pokemon" ? "active" : "",
             onClick: () => setActiveTab("pokemon"),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Database, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Database, { size: 18 }),
               "Pokemon"
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             className: activeTab === "sports" ? "active" : "",
             onClick: () => setActiveTab("sports"),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trophy, { size: 18 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Trophy, { size: 18 }),
               "Sports"
             ]
           }
         )
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "app-content", children: [
-        activeTab === "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "workspace scan-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "tool-panel", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel-heading", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Scan or Search" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scanner-station", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "segmented", "aria-label": "Card game", children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "app-content", children: [
+        activeTab === "scan" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("section", { className: "workspace scan-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "tool-panel", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "panel-heading", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "Scan or Search" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "scanner-station", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "segmented", "aria-label": "Card game", children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
               "button",
               {
                 className: game === choice ? "active" : "",
@@ -37713,20 +37823,20 @@ function App() {
               },
               choice
             )) }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "scan-game-picker", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Scan as" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "scan-game-picker", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Scan as" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "select",
                 {
                   "aria-label": "Card game",
                   onChange: (event) => setGame(event.target.value),
                   value: game,
-                  children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: choice, children: getGameLabel(choice) }, choice))
+                  children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: choice, children: getGameLabel(choice) }, choice))
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "camera-frame", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "camera-frame", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "video",
                 {
                   className: [
@@ -37739,20 +37849,20 @@ function App() {
                   playsInline: true
                 }
               ),
-              !isCameraOn && capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "captured-frame", src: capturedFrame }),
-              !isCameraOn && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: capturedFrame ? "camera-empty hidden-empty" : "camera-empty", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Camera ready" })
+              !isCameraOn && capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { alt: "", className: "captured-frame", src: capturedFrame }),
+              !isCameraOn && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: capturedFrame ? "camera-empty hidden-empty" : "camera-empty", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { alt: "", src: "./card-vault-icon.png" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Camera ready" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-guide", "aria-hidden": "true" })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "scan-guide", "aria-hidden": "true" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-border-hint", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { "aria-hidden": "true", size: 17 }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: game === "sports" ? "Photograph the front only. Keep the full card or graded slab and label visible." : "Keep the full black card border visible on all four sides." })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "scan-border-hint", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ScanLine, { "aria-hidden": "true", size: 17 }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: game === "sports" ? "Photograph the front only. Keep the full card or graded slab and label visible." : "Keep the full black card border visible on all four sides." })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("canvas", { ref: canvasRef, className: "hidden-canvas" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "button-row", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("canvas", { ref: canvasRef, className: "hidden-canvas" }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "button-row", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "secondary",
@@ -37760,12 +37870,12 @@ function App() {
                   onClick: startCamera,
                   type: "button",
                   children: [
-                    isCameraOn ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { size: 18 }),
+                    isCameraOn ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Camera, { size: 18 }),
                     isCameraOn ? "Stop" : "Camera"
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "button",
                 {
                   className: "primary",
@@ -37773,14 +37883,14 @@ function App() {
                   onClick: () => void captureCard(),
                   type: "button",
                   children: [
-                    isScanning ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 18 }),
+                    isScanning ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Search, { size: 18 }),
                     "Capture"
                   ]
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scanner-status", "aria-live": "polite", children: status }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "scanner-status", "aria-live": "polite", children: status }),
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "button",
               {
                 className: "report-scan-button",
@@ -37788,17 +37898,17 @@ function App() {
                 onClick: openScanIssueReport,
                 type: "button",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 18 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Send, { size: 18 }),
                   "Report Scan Issue"
                 ]
               }
             ),
-            !feedbackDraft.dismissed && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "feedback-nudge", "aria-label": "Quick feedback", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-title", children: "Quick feedback?" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-copy", children: "Pick a category, add a note, then send." })
+            !feedbackDraft.dismissed && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("section", { className: "feedback-nudge", "aria-label": "Quick feedback", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "feedback-nudge-title", children: "Quick feedback?" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "feedback-nudge-copy", children: "Pick a category, add a note, then send." })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "textarea",
                 {
                   "aria-invalid": Boolean(feedbackDraft.error),
@@ -37812,9 +37922,9 @@ function App() {
                   value: feedbackDraft.note
                 }
               ),
-              feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "feedback-nudge-actions", children: [
-                ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "feedback-nudge-actions", children: [
+                ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     className: feedbackDraft.choice === choice ? "selected" : "",
@@ -37831,7 +37941,7 @@ function App() {
                   },
                   choice
                 )),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     disabled: feedbackDraft.isSaving,
@@ -37840,7 +37950,7 @@ function App() {
                     children: feedbackDraft.isSaving ? "Sending" : "Send"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     disabled: feedbackDraft.isSaving,
@@ -37852,7 +37962,7 @@ function App() {
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "form",
             {
               className: "search-form",
@@ -37861,9 +37971,9 @@ function App() {
                 void runSearchAndScroll();
               },
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Card name",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       autoComplete: "off",
@@ -37875,19 +37985,37 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { disabled: isSearching, type: "submit", children: [
-                  isSearching ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 18 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { disabled: isSearching, type: "submit", children: [
+                  isSearching ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Search, { size: 18 }),
                   "Search"
                 ] })
               ]
             }
           ),
-          scanResult && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-output", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-output-header", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "OCR terms" }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedTerm || "No search yet" })
+          game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { className: "secondary", type: "button", onClick: () => setPreviewCard({
+            sourceId: createLocalSportsSourceId(),
+            game: "sports",
+            name: query.trim() || "Unidentified Sports Card",
+            setName: "",
+            setCode: "",
+            collectorNumber: "",
+            rarity: "Unconfirmed",
+            colors: [],
+            category: "Sports",
+            imageUrl: "",
+            priceUsd: null,
+            priceLabel: "Value unavailable",
+            sourceUrl: "",
+            updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+            sport: "Sports",
+            sportsPriceStatus: "unavailable"
+          }), children: "Enter a sports card manually" }),
+          scanResult && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "scan-output", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "scan-output-header", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "OCR terms" }),
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: selectedTerm || "No search yet" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "term-list", children: scanResult.terms.map((term) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "term-list", children: scanResult.terms.map((term) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
               "button",
               {
                 onClick: () => {
@@ -37900,14 +38028,14 @@ function App() {
               term
             )) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
             "div",
             {
               ref: scanResultsRef,
               className: `candidate-list scan-results${candidates.length === 0 ? " empty" : ""}`,
               children: [
-                candidates.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-results-empty", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
-                candidates.map((candidate) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                candidates.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "scan-results-empty", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
+                candidates.map((candidate) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                   "article",
                   {
                     className: "candidate",
@@ -37923,22 +38051,22 @@ function App() {
                     title: `Open ${candidate.name}`,
                     children: [
                       renderCardImage(candidate),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "candidate-main", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: candidate.name }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "card-meta", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "candidate-main", children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h3", { children: candidate.name }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "card-meta", children: [
                           getGameLabel(candidate.game),
                           " \xB7 ",
                           candidate.setName,
                           " #",
                           candidate.collectorNumber
                         ] }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
                           candidate.rarity,
                           " - ",
                           candidate.priceLabel
                         ] })
                       ] }),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         "button",
                         {
                           "aria-label": `Save ${candidate.name}`,
@@ -37948,10 +38076,10 @@ function App() {
                           },
                           title: "Save card",
                           type: "button",
-                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 })
+                          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 })
                         }
                       ),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                         "button",
                         {
                           "aria-label": `Add ${candidate.name} to wishlist`,
@@ -37961,7 +38089,7 @@ function App() {
                           },
                           title: "Add to wishlist",
                           type: "button",
-                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 })
+                          children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Heart, { size: 18 })
                         }
                       )
                     ]
@@ -37971,8 +38099,8 @@ function App() {
               ]
             }
           ),
-          (candidates.length > 0 || selectedTerm) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "more-results-pull", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          (candidates.length > 0 || selectedTerm) && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "more-results-pull", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
               "button",
               {
                 className: "secondary",
@@ -37980,41 +38108,41 @@ function App() {
                 onClick: () => void loadNextResultBatch(),
                 type: "button",
                 children: [
-                  isRefreshingResults ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 18 }),
+                  isRefreshingResults ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(RefreshCw, { size: 18 }),
                   hasMoreResults ? "More Matches" : "No More Matches"
                 ]
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Show the next batch of card options for this search." })
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: "Show the next batch of card options for this search." })
           ] })
         ] }) }),
         activeTab === "mtg" && renderGameTab("mtg"),
         activeTab === "pokemon" && renderGameTab("pokemon"),
         activeTab === "sports" && renderGameTab("sports"),
-        activeTab !== "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", { className: "bottom-summary", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "stats-strip", "aria-label": "Collection summary", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: activeGameTotals.cards }),
+        activeTab !== "scan" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("footer", { className: "bottom-summary", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "stats-strip", "aria-label": "Collection summary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: activeGameTotals.cards }),
             " cards"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: formatMoney(activeGameTotals.value) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: formatMoney(activeGameTotals.value) }),
             " value"
           ] })
         ] }) })
       ] })
     ] }),
-    saveNotice && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-toast", role: "status", "aria-live": "polite", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+    saveNotice && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "save-toast", role: "status", "aria-live": "polite", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
       saveNotice
     ] }),
-    editDraft && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    editDraft && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
         className: "card-preview-backdrop",
         onClick: () => setEditDraft(null),
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "form",
           {
             className: "edit-popout",
@@ -38024,7 +38152,7 @@ function App() {
               void saveEditDraft();
             },
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close editor",
@@ -38032,17 +38160,17 @@ function App() {
                   onClick: () => setEditDraft(null),
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Edit Card" }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "muted", children: editDraft.name })
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: "Edit Card" }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { className: "muted", children: editDraft.name })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "edit-grid", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "edit-grid", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "wide-field", children: [
                   "Card name",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("name", event.target.value),
@@ -38050,24 +38178,24 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Game",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "select",
                     {
                       onChange: (event) => updateEditDraft("game", event.target.value),
                       value: editDraft.game,
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "mtg", children: "MTG" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "pokemon", children: "Pokemon" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "sports", children: "Sports" })
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "mtg", children: "MTG" }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "pokemon", children: "Pokemon" }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "sports", children: "Sports" })
                       ]
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Saved list",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "select",
                     {
                       onChange: (event) => updateEditDraft(
@@ -38076,15 +38204,15 @@ function App() {
                       ),
                       value: editDraft.listKind,
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "collection", children: "Collection" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "wishlist", children: "Wishlist" })
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "collection", children: "Collection" }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { value: "wishlist", children: "Wishlist" })
                       ]
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Quantity",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       min: "1",
@@ -38094,20 +38222,20 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Condition",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "select",
                     {
                       onChange: (event) => updateEditDraft("condition", event.target.value),
                       value: editDraft.condition,
-                      children: conditions.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: entry }, entry))
+                      children: conditions.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("option", { children: entry }, entry))
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Set name",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("setName", event.target.value),
@@ -38115,9 +38243,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Set code",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("setCode", event.target.value),
@@ -38125,9 +38253,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Card number",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("collectorNumber", event.target.value),
@@ -38135,9 +38263,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Rarity",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("rarity", event.target.value),
@@ -38145,9 +38273,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Type / Category",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("category", event.target.value),
@@ -38155,9 +38283,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Colors / Types",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("colors", event.target.value),
@@ -38166,9 +38294,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Price USD",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("priceUsd", event.target.value),
@@ -38178,9 +38306,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Price label",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("priceLabel", event.target.value),
@@ -38188,9 +38316,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "wide-field", children: [
                   "Notes",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("notes", event.target.value),
@@ -38199,10 +38327,10 @@ function App() {
                     }
                   )
                 ] }),
-                editDraft.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                editDraft.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_jsx_runtime2.Fragment, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Sport",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("sport", event.target.value),
@@ -38210,9 +38338,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Manufacturer",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("manufacturer", event.target.value),
@@ -38220,9 +38348,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Release / Product",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("releaseName", event.target.value),
@@ -38230,9 +38358,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Year",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("releaseYear", event.target.value),
@@ -38240,9 +38368,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Parallel",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("parallelName", event.target.value),
@@ -38250,9 +38378,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Numbered to",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         min: "1",
@@ -38262,9 +38390,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Grading company",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("gradingCompany", event.target.value),
@@ -38273,9 +38401,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Grade",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("grade", event.target.value),
@@ -38284,9 +38412,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Certification number",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("certificationNumber", event.target.value),
@@ -38294,9 +38422,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Grade qualifier",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("gradeQualifier", event.target.value),
@@ -38305,9 +38433,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                     "Autograph grade",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("autographGrade", event.target.value),
@@ -38315,9 +38443,9 @@ function App() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "wide-field", children: [
                     "CardSight parallel ID",
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "input",
                       {
                         onChange: (event) => updateEditDraft("parallelId", event.target.value),
@@ -38326,9 +38454,9 @@ function App() {
                     )
                   ] })
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "wide-field", children: [
                   "Image URL",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("imageUrl", event.target.value),
@@ -38336,9 +38464,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { className: "wide-field", children: [
                   "Source URL",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("sourceUrl", event.target.value),
@@ -38346,9 +38474,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Source ID",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("sourceId", event.target.value),
@@ -38356,9 +38484,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Updated at",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("updatedAt", event.target.value),
@@ -38366,9 +38494,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Added at",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("addedAt", event.target.value),
@@ -38376,9 +38504,9 @@ function App() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("label", { children: [
                   "Last price check",
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                     "input",
                     {
                       onChange: (event) => updateEditDraft("lastPriceCheck", event.target.value),
@@ -38387,8 +38515,8 @@ function App() {
                   )
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "edit-actions", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "edit-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     className: "secondary",
@@ -38397,8 +38525,8 @@ function App() {
                     children: "Cancel"
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { className: "primary", type: "submit", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("button", { className: "primary", type: "submit", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
                   "Save Changes"
                 ] })
               ] })
@@ -38410,7 +38538,7 @@ function App() {
     deckBuilderGame && renderDeckBuilder(deckBuilderGame),
     renderDeckDeleteDialog(),
     renderCoachDialog(),
-    previewCard && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    previewCard && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
       "div",
       {
         "aria-modal": "true",
@@ -38420,7 +38548,7 @@ function App() {
           setPreviewCard(null);
         },
         role: "dialog",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "section",
           {
             className: "card-preview",
@@ -38428,7 +38556,7 @@ function App() {
             onTouchEnd: handlePreviewTouchEnd,
             onTouchStart: handlePreviewTouchStart,
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                 "button",
                 {
                   "aria-label": "Close card preview",
@@ -38439,15 +38567,15 @@ function App() {
                   },
                   title: "Close",
                   type: "button",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                 "div",
                 {
                   className: `preview-menu ${previewCard.game === "sports" ? "sports-hidden" : ""}`,
                   children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                       "button",
                       {
                         "aria-expanded": previewMenuOpen,
@@ -38457,30 +38585,30 @@ function App() {
                         onClick: () => setPreviewMenuOpen((current) => !current),
                         title: "Card actions",
                         type: "button",
-                        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EllipsisVertical, { size: 20 })
+                        children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(EllipsisVertical, { size: 20 })
                       }
                     ),
-                    previewMenuOpen && previewCard.game !== "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-menu-popover", role: "menu", children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    previewMenuOpen && previewCard.game !== "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "preview-menu-popover", role: "menu", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                         "button",
                         {
                           onClick: () => openPreviewDeckAction(false),
                           role: "menuitem",
                           type: "button",
                           children: [
-                            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layers, { size: 18 }),
+                            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Layers, { size: 18 }),
                             "Add to deck"
                           ]
                         }
                       ),
-                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                         "button",
                         {
                           onClick: () => openPreviewDeckAction(true),
                           role: "menuitem",
                           type: "button",
                           children: [
-                            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 18 }),
+                            /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Plus, { size: 18 }),
                             "New deck"
                           ]
                         }
@@ -38489,8 +38617,8 @@ function App() {
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-image-shell", children: [
-                hasScanPreviewNavigation && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "preview-image-shell", children: [
+                hasScanPreviewNavigation && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-label": "Previous card",
@@ -38499,10 +38627,10 @@ function App() {
                     onClick: () => navigateScanPreview(-1),
                     title: "Previous card",
                     type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { size: 24 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronLeft, { size: 24 })
                   }
                 ),
-                previewCard.imageUrl && !failedImages.has(getImageKey(previewCard)) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                previewCard.imageUrl && !failedImages.has(getImageKey(previewCard)) ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "img",
                   {
                     alt: "",
@@ -38510,8 +38638,8 @@ function App() {
                     onError: () => markImageFailed(previewCard),
                     src: previewCard.imageUrl
                   }
-                ) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "preview-image missing" }),
-                hasScanPreviewNavigation && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                ) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "preview-image missing" }),
+                hasScanPreviewNavigation && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
                   "button",
                   {
                     "aria-label": "Next card",
@@ -38520,92 +38648,93 @@ function App() {
                     onClick: () => navigateScanPreview(1),
                     title: "Next card",
                     type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { size: 24 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ChevronRight, { size: 24 })
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-details", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: previewCard.name }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "card-meta", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "preview-details", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("h2", { children: previewCard.name }),
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { className: "card-meta", children: [
                   getGameLabel(previewCard.game),
                   " \xB7 ",
                   previewCard.setName,
                   " #",
                   previewCard.collectorNumber
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("p", { children: [
                   previewCard.rarity,
                   " - ",
                   previewCard.priceLabel
                 ] }),
-                previewCard.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "sports-card-details", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.sport || "Sports" }),
-                  previewCard.releaseYear && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.releaseYear }),
-                  previewCard.manufacturer && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.manufacturer }),
-                  previewCard.parallelName && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.parallelName }),
-                  previewCard.numberedTo && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                previewCard.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(SportsDetailsEditor, { card: previewCard, onChange: setPreviewCard }),
+                previewCard.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "sports-card-details", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: previewCard.sport || "Sports" }),
+                  previewCard.releaseYear && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: previewCard.releaseYear }),
+                  previewCard.manufacturer && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: previewCard.manufacturer }),
+                  previewCard.parallelName && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: previewCard.parallelName }),
+                  previewCard.numberedTo && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                     "/",
                     previewCard.numberedTo
                   ] }),
-                  previewCard.gradingCompany && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                  previewCard.gradingCompany && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                     previewCard.gradingCompany,
                     " ",
                     previewCard.grade
                   ] }),
-                  previewCard.certificationNumber && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                  previewCard.certificationNumber && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("span", { children: [
                     "Cert ",
                     previewCard.certificationNumber
                   ] })
                 ] }),
-                previewCard.game === "sports" && previewCard.sportsPriceComparables?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "sports-price-details", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("summary", { children: [
+                previewCard.game === "sports" && previewCard.sportsPriceComparables?.length ? /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("details", { className: "sports-price-details", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("summary", { children: [
                     previewCard.sportsPriceComparables.length,
                     " completed-sale source",
                     previewCard.sportsPriceComparables.length === 1 ? "" : "s"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: previewCard.sportsPriceComparables.map((comparable) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { children: previewCard.sportsPriceComparables.map((comparable) => /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "a",
                     {
                       href: comparable.url || void 0,
                       rel: "noreferrer",
                       target: "_blank",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: comparable.source }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: formatMoney(comparable.price) }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: comparable.date ? formatDate(comparable.date) : "" })
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { children: comparable.source }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("strong", { children: formatMoney(comparable.price) }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("small", { children: comparable.date ? formatDate(comparable.date) : "" })
                       ]
                     },
                     `${comparable.source}-${comparable.date}-${comparable.price}`
                   )) })
                 ] }) : null,
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-actions", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "preview-actions", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       className: "primary",
                       onClick: () => openSaveDeckDialog(previewCard),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Save, { size: 18 }),
                         "Add to Library"
                       ]
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
                     "button",
                     {
                       className: "secondary",
                       onClick: () => void saveCandidateToWishlist(previewCard),
                       type: "button",
                       children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 }),
+                        /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Heart, { size: 18 }),
                         "Wishlist"
                       ]
                     }
                   ),
-                  previewCard.sourceUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: previewCard.sourceUrl, rel: "noreferrer", target: "_blank", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 18 }),
-                    previewCard.game === "sports" && previewCard.sourceUrl.includes("ebay.com") ? "Compare on eBay" : "Source"
+                  previewCard.sourceUrl && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("a", { href: previewCard.sourceUrl, rel: "noreferrer", target: "_blank", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(ExternalLink, { size: 18 }),
+                    previewCard.game === "sports" && previewCard.sourceUrl.includes("ebay.com") ? "View eBay listing" : "Source"
                   ] })
                 ] })
               ] })
@@ -39614,7 +39743,7 @@ function getMtgColorCombinationSortKey(colors) {
 var App_default = App;
 
 // src/main.tsx
-var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
 installKeyboardViewportGuard();
 void startApp();
 function installKeyboardViewportGuard() {
@@ -39656,7 +39785,7 @@ async function startApp() {
   }
   window.sessionStorage.removeItem(reloadKey);
   (0, import_client.createRoot)(document.getElementById("root")).render(
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react5.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_react5.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(App_default, {}) })
   );
 }
 async function clearDevelopmentCaches() {
