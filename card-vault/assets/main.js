@@ -35632,7 +35632,7 @@ function App() {
             type: "button",
             children: [
               isPricingSports ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 17 }),
-              sportsPriceQueue.length >= sportsPriceBatchTarget ? `Price ${sportsPriceBatchTarget} Cards` : `Price ${sportsPriceQueue.length} Now`
+              !sportsPriceQueue.length ? "No Cards Waiting" : sportsPriceQueue.length >= sportsPriceBatchTarget ? `Price ${sportsPriceBatchTarget} Cards` : `Price ${sportsPriceQueue.length} Now`
             ]
           }
         )
