@@ -30053,29 +30053,40 @@ var sportsSegments = [
   "wrestling"
 ];
 async function searchSportsCards(query, options = {}) {
-  const url = new URL(getApiUrl("/api/cardsight/search"), window.location.href);
-  url.searchParams.set("q", query.trim());
-  url.searchParams.set("limit", String(options.limit ?? 12));
-  url.searchParams.set("offset", String(options.offset ?? 0));
-  const payload = await requestJson(url, options.authToken);
-  return (payload.results ?? []).filter((result) => result.type === "card" && isSportsSegment(result.segmentName)).map(mapSearchResult);
-}
-async function identifySportsCard(imageDataUrl, authToken) {
-  const payload = await requestJson(
-    getApiUrl("/api/cardsight/identify"),
-    authToken,
+  const cleanQuery = query.trim().replace(/\s+/g, " ");
+  if (cleanQuery.length < 2 || (options.offset ?? 0) > 0) {
+    return [];
+  }
+  const sport = inferSportFromText(cleanQuery);
+  return [
     {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ imageDataUrl })
+      sourceId: `local-sports-search-${localSearchKey(cleanQuery)}`,
+      game: "sports",
+      name: cleanQuery,
+      setName: "Details needed",
+      setCode: "",
+      collectorNumber: "",
+      rarity: "Unconfirmed",
+      colors: sport === "Sports" ? [] : [sport],
+      category: sport,
+      imageUrl: "",
+      priceUsd: null,
+      priceLabel: "No price imported",
+      sourceUrl: buildSportsReferenceUrl(cleanQuery),
+      updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      sport,
+      sportsPriceStatus: "unavailable"
     }
-  );
-  return (payload.detections ?? []).flatMap((detection) => {
-    if (!detection.card?.id || !detection.card.name) {
-      return [];
-    }
-    return [mapIdentification(detection.card, detection.grading)];
-  });
+  ];
+}
+function buildSportsReferenceUrl(query) {
+  const cleanQuery = query.trim().replace(/\s+/g, " ");
+  if (!cleanQuery) {
+    return "";
+  }
+  const url = new URL("https://www.ebay.com/sch/i.html");
+  url.searchParams.set("_nkw", cleanQuery);
+  return url.toString();
 }
 async function fetchSportsPriceUpdates(items, authToken, mode = "batch") {
   const sourceIds = Array.from(
@@ -30165,71 +30176,6 @@ function buildPriceUpdate(item, pricing, now = /* @__PURE__ */ new Date()) {
     sportsPriceExpiresAt: expiresAt
   };
 }
-function mapSearchResult(result) {
-  const parallelName = result.parallelName ?? "";
-  return {
-    sourceId: result.id,
-    game: "sports",
-    name: result.name,
-    setName: result.setName ?? result.releaseName ?? "Unknown Set",
-    setCode: result.manufacturerName ?? result.year ?? "",
-    collectorNumber: result.cardNumber ?? "",
-    rarity: parallelName || "Base",
-    colors: result.segmentName ? [result.segmentName] : [],
-    category: result.segmentName ?? "Sports",
-    imageUrl: cardImageUrl(result.id),
-    priceUsd: null,
-    priceLabel: "Pricing queued",
-    sourceUrl: "https://cardsight.ai/",
-    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-    sport: result.segmentName ?? "Sports",
-    manufacturer: result.manufacturerName ?? "",
-    releaseName: result.releaseName ?? "",
-    releaseYear: result.year ?? "",
-    parallelName,
-    numberedTo: result.numberedTo,
-    sportsPriceStatus: "pending"
-  };
-}
-function mapIdentification(card, grading) {
-  const parallelOptions = card.parallelSuggestions ?? [];
-  const exactParallel = parallelOptions.length === 1 && parallelOptions[0].confidence === "High" ? parallelOptions[0] : void 0;
-  const sport = inferSport(card.releaseName ?? "");
-  return {
-    sourceId: card.id,
-    game: "sports",
-    name: card.name,
-    setName: card.setName ?? card.releaseName ?? "Unknown Set",
-    setCode: card.manufacturer ?? card.year ?? "",
-    collectorNumber: card.number ?? "",
-    rarity: exactParallel?.name ?? "Base",
-    colors: sport === "Sports" ? [] : [sport],
-    category: sport,
-    imageUrl: cardImageUrl(card.id),
-    priceUsd: null,
-    priceLabel: "Pricing queued",
-    sourceUrl: "https://cardsight.ai/",
-    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
-    rulesText: card.description ?? "",
-    sport,
-    manufacturer: card.manufacturer ?? "",
-    releaseName: card.releaseName ?? "",
-    releaseYear: card.year ?? "",
-    parallelId: exactParallel?.id,
-    parallelName: exactParallel?.name ?? "",
-    parallelOptions,
-    numberedTo: exactParallel?.numberedTo ?? card.numberedTo,
-    attributes: card.attributes ?? [],
-    gradingCompanyId: grading?.company?.id,
-    gradingCompany: grading?.company?.name ?? "",
-    gradeId: grading?.grade?.id,
-    grade: grading?.grade?.value ?? grading?.grade?.condition ?? "",
-    certificationNumber: grading?.certNumber ?? "",
-    gradeQualifier: grading?.qualifier?.code ?? "",
-    autographGrade: grading?.autoGrade?.value ?? "",
-    sportsPriceStatus: "pending"
-  };
-}
 function selectPricingRecords(item, pricing) {
   let records = [];
   if (item.gradingCompany || item.grade || item.gradeId) {
@@ -30263,17 +30209,14 @@ async function requestJson(input, authToken = "", init = {}) {
   }
   return payload;
 }
-function isSportsSegment(value) {
-  const normalized = value?.trim().toLowerCase() ?? "";
-  return sportsSegments.some((sport) => normalized.includes(sport));
-}
-function inferSport(releaseName) {
-  const normalized = releaseName.toLowerCase();
+function inferSportFromText(value) {
+  const normalized = value.trim().toLowerCase();
   const found = sportsSegments.find((sport) => normalized.includes(sport));
   return found ? found.replace(/^./, (letter) => letter.toUpperCase()) : "Sports";
 }
-function cardImageUrl(cardId) {
-  return `https://api.cardsight.ai/v1/images/cards/${encodeURIComponent(cardId)}?default=true`;
+function localSearchKey(value) {
+  const normalized = value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 96);
+  return normalized || "card";
 }
 function isCardSightId(value) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
@@ -32482,7 +32425,6 @@ var mtgReportedWrongPrintingIds = {
 };
 var resultBatchSize = 12;
 var sportsPriceBatchTarget = 15;
-var sportsIntroPriceLimit = 5;
 var uiStateStorageKey = "card-vault-ui-state-v1";
 var coachThreadsStorageKey = "card-vault-coach-threads-v1";
 var coachThreadMessageLimit = 20;
@@ -32754,11 +32696,6 @@ function isOneOf(value, options) {
 }
 function isSupportedGame(value) {
   return isOneOf(value, gameFilters);
-}
-function isCardSightSourceId(value) {
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
-    value
-  );
 }
 function expireStaleSportsPrice(item, now) {
   if (item.game !== "sports" || item.sportsPriceStatus === "pending" || !item.sportsPriceExpiresAt) {
@@ -33504,45 +33441,7 @@ function App() {
   }
   async function readCapturedCard(canvas, scanId) {
     if (game === "sports") {
-      if (!accountSession) {
-        await showLocalSportsScanFallback(
-          canvas,
-          scanId,
-          "Sports identification is offline while signed out."
-        );
-        return;
-      }
-      try {
-        setStatus("Identifying sports card and grading label");
-        const results = await identifySportsCard(
-          canvas.toDataURL("image/jpeg", 0.95),
-          accountSession.token
-        );
-        if (activeScanIdRef.current !== scanId) {
-          return;
-        }
-        setScanResult(null);
-        setCandidates(results);
-        setSelectedTerm(results[0]?.name ?? "");
-        setResultOffset(0);
-        setHasMoreResults(false);
-        setQuery(results[0]?.name ?? "");
-        if (results.length) {
-          setStatus(`Matched "${results[0].name}". Check the card and grading details.`);
-        } else {
-          await showLocalSportsScanFallback(
-            canvas,
-            scanId,
-            "The card was visible but could not be identified online."
-          );
-        }
-      } catch (error) {
-        await showLocalSportsScanFallback(
-          canvas,
-          scanId,
-          error instanceof Error ? error.message : "Sports-card identification is unavailable."
-        );
-      }
+      await readSportsCardLocally(canvas, scanId);
       return;
     }
     const ocrCanvas = createOcrCanvas(canvas);
@@ -33587,7 +33486,7 @@ function App() {
       ocrCanvas.height = 1;
     }
   }
-  async function showLocalSportsScanFallback(canvas, scanId, reason) {
+  async function readSportsCardLocally(canvas, scanId) {
     const ocrCanvas = createOcrCanvas(canvas);
     let localResult = {
       rawText: "",
@@ -33596,7 +33495,7 @@ function App() {
       collectorNumbers: []
     };
     try {
-      setStatus("Online identification is unavailable. Reading the card locally.");
+      setStatus("Reading the front of the sports card locally");
       localResult = await recognizeCardCanvas(ocrCanvas, setStatus, "sports");
     } catch {
     } finally {
@@ -33612,18 +33511,22 @@ function App() {
       game: "sports",
       name,
       setName: "Details needed",
-      setCode: "",
-      collectorNumber: "",
+      setCode: localResult.setCodes[0] ?? "",
+      collectorNumber: localResult.collectorNumbers[0] ?? "",
       rarity: "Unconfirmed",
       colors: [],
       category: "Sports",
       imageUrl: createLocalSportsThumbnail(canvas),
       priceUsd: null,
-      priceLabel: "Pricing unavailable",
-      sourceUrl: "",
+      priceLabel: "Price not requested",
+      sourceUrl: buildSportsReferenceUrl(
+        [name, localResult.setCodes[0], localResult.collectorNumbers[0]].filter(Boolean).join(" ")
+      ),
       updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
       sport: "Sports",
-      sportsPriceStatus: "unavailable"
+      sportsPriceStatus: "unavailable",
+      scanOcrRawText: localResult.rawText,
+      scanOcrTerms: localResult.terms
     };
     setScanResult(localResult);
     setCandidates([localCandidate]);
@@ -33631,7 +33534,7 @@ function App() {
     setResultOffset(0);
     setHasMoreResults(false);
     setQuery(name === "Unidentified Sports Card" ? "" : name);
-    setStatus(`${reason} The scan is ready to save locally; edit its details anytime.`);
+    setStatus("Front read locally with no identification or pricing API call. Check the details, then save.");
   }
   function openSaveDeckDialog(candidate, options = {}) {
     const gameDecks = decks.filter((deck) => deck.game === candidate.game);
@@ -33969,9 +33872,6 @@ function App() {
       deckName ? `${savedLabel} to ${deckName}: ${candidate.name}` : listKind === "wishlist" ? `Added to wishlist: ${candidate.name}` : `${savedLabel}: ${candidate.name}`
     );
     await Promise.all([loadCollection(), loadDeckData()]);
-    if (candidate.game === "sports" && listKind === "collection" && typeof collectionItemId === "number") {
-      void tryIntroSportsPrice(collectionItemId);
-    }
   }
   async function saveCandidateToWishlist(candidate) {
     try {
@@ -34962,40 +34862,6 @@ function App() {
       setRefreshingId(null);
     }
   }
-  async function tryIntroSportsPrice(collectionItemId) {
-    const session = accountSession;
-    if (!session) {
-      return;
-    }
-    let pricingState = sportsPricingStatus;
-    if (!pricingState) {
-      try {
-        pricingState = await getSportsPricingStatus(session.token);
-        setSportsPricingStatus(pricingState);
-      } catch {
-        return;
-      }
-    }
-    if (!pricingState.configured || pricingState.introRemaining <= 0) {
-      return;
-    }
-    const item = await db.collection.get(collectionItemId);
-    if (!item || item.game !== "sports" || !isCardSightSourceId(item.sourceId)) {
-      return;
-    }
-    try {
-      const updates = await fetchSportsPriceUpdates([item], session.token, "intro");
-      await applySportsPriceUpdates(updates);
-      await refreshSportsPricingState(session.token);
-      const update = updates.get(item.sourceId);
-      setStatus(
-        update?.sportsPriceStatus === "priced" ? `Saved and priced ${item.name}` : `Saved ${item.name}. No matching sold comps were found.`
-      );
-    } catch {
-      await refreshSportsPricingState(session.token);
-      setStatus(`Saved ${item.name}. Pricing is unavailable, so the card remains saved.`);
-    }
-  }
   async function applySportsPriceUpdates(updates) {
     const sourceIds = new Set(updates.keys());
     const storedItems = await db.collection.toArray();
@@ -35399,7 +35265,7 @@ function App() {
                   ]
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              item.sourceUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                 "a",
                 {
                   href: item.sourceUrl,
@@ -35409,7 +35275,7 @@ function App() {
                   target: "_blank",
                   children: [
                     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 17 }),
-                    "Open Webpage"
+                    item.game === "sports" && item.sourceUrl.includes("ebay.com") ? "Compare on eBay" : "Open Webpage"
                   ]
                 }
               ),
@@ -35621,7 +35487,7 @@ function App() {
             "/",
             sportsPriceBatchTarget
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !sportsPricingStatus?.configured ? "Pricing is unavailable. Scanning and saving still work normally." : sportsPricingStatus.introRemaining > 0 ? `${sportsPricingStatus.introRemaining} of ${sportsIntroPriceLimit} introductory one-card prices remain.` : `Cards wait for a ${sportsPriceBatchTarget}-card batch. You can request the smaller queue anytime.` })
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !sportsPricingStatus?.configured ? "Pricing is unavailable. Scanning and saving still work normally." : `Pricing runs only when you press the button. Scanning and saving make no provider call.` })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
           "button",
@@ -37782,345 +37648,349 @@ function App() {
         )
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", { className: "tabbar", "aria-label": "Main views", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "button",
-        {
-          className: activeTab === "scan" ? "active" : "",
-          onClick: () => setActiveTab("scan"),
-          type: "button",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { size: 18 }),
-            "Scan"
-          ]
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "button",
-        {
-          className: activeTab === "mtg" ? "active" : "",
-          onClick: () => setActiveTab("mtg"),
-          type: "button",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layers, { size: 18 }),
-            "MTG"
-          ]
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "button",
-        {
-          className: activeTab === "pokemon" ? "active" : "",
-          onClick: () => setActiveTab("pokemon"),
-          type: "button",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Database, { size: 18 }),
-            "Pokemon"
-          ]
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "button",
-        {
-          className: activeTab === "sports" ? "active" : "",
-          onClick: () => setActiveTab("sports"),
-          type: "button",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trophy, { size: 18 }),
-            "Sports"
-          ]
-        }
-      )
-    ] }),
-    activeTab === "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "workspace scan-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "tool-panel", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel-heading", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Scan or Search" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scanner-station", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "segmented", "aria-label": "Card game", children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "button",
-          {
-            className: game === choice ? "active" : "",
-            onClick: () => setGame(choice),
-            type: "button",
-            children: getGameLabel(choice)
-          },
-          choice
-        )) }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "camera-frame", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "video",
-            {
-              className: [
-                "camera-video",
-                isCameraOn ? "active" : ""
-              ].filter(Boolean).join(" "),
-              ref: videoRef,
-              autoPlay: true,
-              muted: true,
-              playsInline: true
-            }
-          ),
-          !isCameraOn && capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "captured-frame", src: capturedFrame }),
-          !isCameraOn && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: capturedFrame ? "camera-empty hidden-empty" : "camera-empty", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Camera ready" })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-guide", "aria-hidden": "true" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-border-hint", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { "aria-hidden": "true", size: 17 }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: game === "sports" ? "Keep the full card or graded slab visible, including the grading label." : "Keep the full black card border visible on all four sides." })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("canvas", { ref: canvasRef, className: "hidden-canvas" }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "button-row", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-            "button",
-            {
-              className: "secondary",
-              disabled: isScanning,
-              onClick: startCamera,
-              type: "button",
-              children: [
-                isCameraOn ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { size: 18 }),
-                isCameraOn ? "Stop" : "Camera"
-              ]
-            }
-          ),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-            "button",
-            {
-              className: "primary",
-              disabled: !isCameraOn || isScanning || scannerState === "capturing",
-              onClick: () => void captureCard(),
-              type: "button",
-              children: [
-                isScanning ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 18 }),
-                "Capture"
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scanner-status", "aria-live": "polite", children: status }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "app-body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", { className: "tabbar", "aria-label": "Main views", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
           "button",
           {
-            className: "report-scan-button",
-            disabled: !capturedFrame || Boolean(scanIssueDraft),
-            onClick: openScanIssueReport,
+            className: activeTab === "scan" ? "active" : "",
+            onClick: () => setActiveTab("scan"),
             type: "button",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 18 }),
-              "Report Scan Issue"
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { size: 18 }),
+              "Scan"
             ]
           }
         ),
-        !feedbackDraft.dismissed && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "feedback-nudge", "aria-label": "Quick feedback", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-title", children: "Quick feedback?" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-copy", children: "Pick a category, add a note, then send." })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "textarea",
-            {
-              "aria-invalid": Boolean(feedbackDraft.error),
-              onChange: (event) => setFeedbackDraft((current) => ({
-                ...current,
-                error: "",
-                note: event.target.value
-              })),
-              placeholder: "Enter feedback note",
-              rows: 2,
-              value: feedbackDraft.note
-            }
-          ),
-          feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "feedback-nudge-actions", children: [
-            ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: activeTab === "mtg" ? "active" : "",
+            onClick: () => setActiveTab("mtg"),
+            type: "button",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layers, { size: 18 }),
+              "MTG"
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: activeTab === "pokemon" ? "active" : "",
+            onClick: () => setActiveTab("pokemon"),
+            type: "button",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Database, { size: 18 }),
+              "Pokemon"
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: activeTab === "sports" ? "active" : "",
+            onClick: () => setActiveTab("sports"),
+            type: "button",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trophy, { size: 18 }),
+              "Sports"
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "app-content", children: [
+        activeTab === "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "workspace scan-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "tool-panel", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "panel-heading", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: "Scan or Search" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scanner-station", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "segmented", "aria-label": "Card game", children: gameFilters.map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
               "button",
               {
-                className: feedbackDraft.choice === choice ? "selected" : "",
-                disabled: feedbackDraft.isSaving,
-                onClick: () => {
-                  setFeedbackDraft((current) => ({
-                    ...current,
-                    choice,
-                    error: ""
-                  }));
-                },
+                className: game === choice ? "active" : "",
+                onClick: () => setGame(choice),
                 type: "button",
-                children: choice === "Worked well" ? "Worked" : choice
+                children: getGameLabel(choice)
               },
               choice
-            )),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-              "button",
-              {
-                disabled: feedbackDraft.isSaving,
-                onClick: () => void sendFeedbackNote(),
-                type: "button",
-                children: feedbackDraft.isSaving ? "Sending" : "Send"
-              }
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-              "button",
-              {
-                disabled: feedbackDraft.isSaving,
-                onClick: dismissFeedbackNudge,
-                type: "button",
-                children: "No thanks"
-              }
-            )
-          ] })
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "form",
-        {
-          className: "search-form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            void runSearchAndScroll();
-          },
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
-              "Card name",
+            )) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "camera-frame", children: [
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                "input",
+                "video",
                 {
-                  autoComplete: "off",
-                  onChange: (event) => setQuery(event.target.value),
-                  onClick: (event) => selectInputContents(event.currentTarget),
-                  onFocus: (event) => selectInputContents(event.currentTarget),
-                  placeholder: game === "sports" ? "Player, year, set, card number..." : "Lightning Bolt, Charizard...",
-                  value: query
+                  className: [
+                    "camera-video",
+                    isCameraOn ? "active" : ""
+                  ].filter(Boolean).join(" "),
+                  ref: videoRef,
+                  autoPlay: true,
+                  muted: true,
+                  playsInline: true
+                }
+              ),
+              !isCameraOn && capturedFrame && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "captured-frame", src: capturedFrame }),
+              !isCameraOn && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: capturedFrame ? "camera-empty hidden-empty" : "camera-empty", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Camera ready" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-guide", "aria-hidden": "true" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-border-hint", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { "aria-hidden": "true", size: 17 }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: game === "sports" ? "Photograph the front only. Keep the full card or graded slab and label visible." : "Keep the full black card border visible on all four sides." })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("canvas", { ref: canvasRef, className: "hidden-canvas" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "button-row", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "button",
+                {
+                  className: "secondary",
+                  disabled: isScanning,
+                  onClick: startCamera,
+                  type: "button",
+                  children: [
+                    isCameraOn ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Camera, { size: 18 }),
+                    isCameraOn ? "Stop" : "Camera"
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "button",
+                {
+                  className: "primary",
+                  disabled: !isCameraOn || isScanning || scannerState === "capturing",
+                  onClick: () => void captureCard(),
+                  type: "button",
+                  children: [
+                    isScanning ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 18 }),
+                    "Capture"
+                  ]
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { disabled: isSearching, type: "submit", children: [
-              isSearching ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 18 }),
-              "Search"
-            ] })
-          ]
-        }
-      ),
-      scanResult && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-output", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-output-header", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "OCR terms" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedTerm || "No search yet" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "term-list", children: scanResult.terms.map((term) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "button",
-          {
-            onClick: () => {
-              setQuery(term);
-              void runSearchAndScroll(term);
-            },
-            type: "button",
-            children: term
-          },
-          term
-        )) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-        "div",
-        {
-          ref: scanResultsRef,
-          className: `candidate-list scan-results${candidates.length === 0 ? " empty" : ""}`,
-          children: [
-            candidates.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-results-empty", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
-            candidates.map((candidate) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-              "article",
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scanner-status", "aria-live": "polite", children: status }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              "button",
               {
-                className: "candidate",
-                onClick: () => setPreviewCard(candidate),
-                onKeyDown: (event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setPreviewCard(candidate);
-                  }
-                },
-                role: "button",
-                tabIndex: 0,
-                title: `Open ${candidate.name}`,
+                className: "report-scan-button",
+                disabled: !capturedFrame || Boolean(scanIssueDraft),
+                onClick: openScanIssueReport,
+                type: "button",
                 children: [
-                  renderCardImage(candidate),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "candidate-main", children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: candidate.name }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "card-meta", children: [
-                      getGameLabel(candidate.game),
-                      " \xB7 ",
-                      candidate.setName,
-                      " #",
-                      candidate.collectorNumber
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
-                      candidate.rarity,
-                      " - ",
-                      candidate.priceLabel
-                    ] })
-                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Send, { size: 18 }),
+                  "Report Scan Issue"
+                ]
+              }
+            ),
+            !feedbackDraft.dismissed && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "feedback-nudge", "aria-label": "Quick feedback", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-title", children: "Quick feedback?" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-copy", children: "Pick a category, add a note, then send." })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "textarea",
+                {
+                  "aria-invalid": Boolean(feedbackDraft.error),
+                  onChange: (event) => setFeedbackDraft((current) => ({
+                    ...current,
+                    error: "",
+                    note: event.target.value
+                  })),
+                  placeholder: "Enter feedback note",
+                  rows: 2,
+                  value: feedbackDraft.note
+                }
+              ),
+              feedbackDraft.error ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "feedback-nudge-error", role: "alert", children: feedbackDraft.error }) : null,
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "feedback-nudge-actions", children: [
+                ["Worked well", "Confusing", "Broke"].map((choice) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "button",
+                  {
+                    className: feedbackDraft.choice === choice ? "selected" : "",
+                    disabled: feedbackDraft.isSaving,
+                    onClick: () => {
+                      setFeedbackDraft((current) => ({
+                        ...current,
+                        choice,
+                        error: ""
+                      }));
+                    },
+                    type: "button",
+                    children: choice === "Worked well" ? "Worked" : choice
+                  },
+                  choice
+                )),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "button",
+                  {
+                    disabled: feedbackDraft.isSaving,
+                    onClick: () => void sendFeedbackNote(),
+                    type: "button",
+                    children: feedbackDraft.isSaving ? "Sending" : "Send"
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                  "button",
+                  {
+                    disabled: feedbackDraft.isSaving,
+                    onClick: dismissFeedbackNudge,
+                    type: "button",
+                    children: "No thanks"
+                  }
+                )
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            "form",
+            {
+              className: "search-form",
+              onSubmit: (event) => {
+                event.preventDefault();
+                void runSearchAndScroll();
+              },
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  "Card name",
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                    "button",
+                    "input",
                     {
-                      "aria-label": `Save ${candidate.name}`,
-                      onClick: (event) => {
-                        event.stopPropagation();
-                        openSaveDeckDialog(candidate);
-                      },
-                      title: "Save card",
-                      type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 })
-                    }
-                  ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                    "button",
-                    {
-                      "aria-label": `Add ${candidate.name} to wishlist`,
-                      onClick: (event) => {
-                        event.stopPropagation();
-                        void saveCandidateToWishlist(candidate);
-                      },
-                      title: "Add to wishlist",
-                      type: "button",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 })
+                      autoComplete: "off",
+                      onChange: (event) => setQuery(event.target.value),
+                      onClick: (event) => selectInputContents(event.currentTarget),
+                      onFocus: (event) => selectInputContents(event.currentTarget),
+                      placeholder: game === "sports" ? "Player, year, set, card number..." : "Lightning Bolt, Charizard...",
+                      value: query
                     }
                   )
-                ]
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { disabled: isSearching, type: "submit", children: [
+                  isSearching ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { size: 18 }),
+                  "Search"
+                ] })
+              ]
+            }
+          ),
+          scanResult && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-output", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-output-header", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "OCR terms" }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: selectedTerm || "No search yet" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "term-list", children: scanResult.terms.map((term) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "button",
+              {
+                onClick: () => {
+                  setQuery(term);
+                  void runSearchAndScroll(term);
+                },
+                type: "button",
+                children: term
               },
-              `${candidate.game}-${candidate.sourceId}`
-            ))
-          ]
-        }
-      ),
-      (candidates.length > 0 || selectedTerm) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "more-results-pull", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-          "button",
-          {
-            className: "secondary",
-            disabled: isRefreshingResults || isSearching || !hasMoreResults,
-            onClick: () => void loadNextResultBatch(),
-            type: "button",
-            children: [
-              isRefreshingResults ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 18 }),
-              hasMoreResults ? "More Matches" : "No More Matches"
-            ]
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Show the next batch of card options for this search." })
+              term
+            )) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            "div",
+            {
+              ref: scanResultsRef,
+              className: `candidate-list scan-results${candidates.length === 0 ? " empty" : ""}`,
+              children: [
+                candidates.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "scan-results-empty", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", src: "./card-vault-icon.png" }) }),
+                candidates.map((candidate) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  "article",
+                  {
+                    className: "candidate",
+                    onClick: () => setPreviewCard(candidate),
+                    onKeyDown: (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setPreviewCard(candidate);
+                      }
+                    },
+                    role: "button",
+                    tabIndex: 0,
+                    title: `Open ${candidate.name}`,
+                    children: [
+                      renderCardImage(candidate),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "candidate-main", children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: candidate.name }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "card-meta", children: [
+                          getGameLabel(candidate.game),
+                          " \xB7 ",
+                          candidate.setName,
+                          " #",
+                          candidate.collectorNumber
+                        ] }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+                          candidate.rarity,
+                          " - ",
+                          candidate.priceLabel
+                        ] })
+                      ] }),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                        "button",
+                        {
+                          "aria-label": `Save ${candidate.name}`,
+                          onClick: (event) => {
+                            event.stopPropagation();
+                            openSaveDeckDialog(candidate);
+                          },
+                          title: "Save card",
+                          type: "button",
+                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 })
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                        "button",
+                        {
+                          "aria-label": `Add ${candidate.name} to wishlist`,
+                          onClick: (event) => {
+                            event.stopPropagation();
+                            void saveCandidateToWishlist(candidate);
+                          },
+                          title: "Add to wishlist",
+                          type: "button",
+                          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 })
+                        }
+                      )
+                    ]
+                  },
+                  `${candidate.game}-${candidate.sourceId}`
+                ))
+              ]
+            }
+          ),
+          (candidates.length > 0 || selectedTerm) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "more-results-pull", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+              "button",
+              {
+                className: "secondary",
+                disabled: isRefreshingResults || isSearching || !hasMoreResults,
+                onClick: () => void loadNextResultBatch(),
+                type: "button",
+                children: [
+                  isRefreshingResults ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 18 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 18 }),
+                  hasMoreResults ? "More Matches" : "No More Matches"
+                ]
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Show the next batch of card options for this search." })
+          ] })
+        ] }) }),
+        activeTab === "mtg" && renderGameTab("mtg"),
+        activeTab === "pokemon" && renderGameTab("pokemon"),
+        activeTab === "sports" && renderGameTab("sports"),
+        activeTab !== "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", { className: "bottom-summary", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "stats-strip", "aria-label": "Collection summary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: activeGameTotals.cards }),
+            " cards"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: formatMoney(activeGameTotals.value) }),
+            " value"
+          ] })
+        ] }) })
       ] })
-    ] }) }),
-    activeTab === "mtg" && renderGameTab("mtg"),
-    activeTab === "pokemon" && renderGameTab("pokemon"),
-    activeTab === "sports" && renderGameTab("sports"),
-    activeTab !== "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", { className: "bottom-summary", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "stats-strip", "aria-label": "Collection summary", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: activeGameTotals.cards }),
-        " cards"
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: formatMoney(activeGameTotals.value) }),
-        " value"
-      ] })
-    ] }) }),
+    ] }),
     saveNotice && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-toast", role: "status", "aria-live": "polite", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
       saveNotice
@@ -38721,9 +38591,9 @@ function App() {
                       ]
                     }
                   ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: previewCard.sourceUrl, rel: "noreferrer", target: "_blank", children: [
+                  previewCard.sourceUrl && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", { href: previewCard.sourceUrl, rel: "noreferrer", target: "_blank", children: [
                     /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { size: 18 }),
-                    "Source"
+                    previewCard.game === "sports" && previewCard.sourceUrl.includes("ebay.com") ? "Compare on eBay" : "Source"
                   ] })
                 ] })
               ] })

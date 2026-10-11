@@ -230,6 +230,21 @@ img {
   position: relative;
   z-index: 1;
 }
+.app-body {
+  align-items: start;
+  display: grid;
+  flex: 1 1 auto;
+  gap: 10px;
+  grid-template-columns: 84px minmax(0, 1360px) 84px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1548px;
+  width: 100%;
+}
+.app-content {
+  min-width: 0;
+  width: 100%;
+}
 .scan-results-empty {
   display: none;
 }
@@ -834,17 +849,23 @@ img {
   border-radius: 8px;
   display: grid;
   gap: 4px;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 0 auto 18px;
-  max-width: 1360px;
+  grid-template-columns: 1fr;
+  margin: 0;
   padding: 4px;
+  position: sticky;
+  top: 14px;
   width: 100%;
 }
 .tabbar button {
   background: transparent;
   border-color: transparent;
   color: var(--muted);
+  font-size: 12px;
+  gap: 5px;
+  justify-content: flex-start;
   min-height: 44px;
+  padding-inline: 5px;
+  white-space: nowrap;
 }
 .tabbar button.active {
   background: var(--soft);
@@ -3361,6 +3382,9 @@ img {
     min-height: 100dvh;
     padding: calc(8px + env(safe-area-inset-top, 0px)) 8px calc(76px + env(safe-area-inset-bottom, 0px));
   }
+  .app-body {
+    display: block;
+  }
   .topbar {
     gap: 9px;
     margin-bottom: 10px;
@@ -3432,17 +3456,26 @@ img {
   }
   .tabbar {
     gap: 3px;
-    margin-bottom: 10px;
+    bottom: max(6px, env(safe-area-inset-bottom, 0px));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    left: 8px;
+    margin: 0;
     padding: 3px;
+    position: fixed;
+    right: 8px;
+    top: auto;
+    width: auto;
+    z-index: 80;
   }
   .tabbar button {
-    font-size: 13px;
+    font-size: 11px;
+    gap: 4px;
+    justify-content: center;
     min-height: 39px;
-    padding: 6px 7px;
+    padding: 6px 3px;
   }
   .app-shell:not(.desktop-shell) .tabbar {
-    position: relative;
-    z-index: 1;
+    z-index: 80;
   }
   .workspace {
     gap: 10px;
@@ -3671,8 +3704,8 @@ img {
   }
   .tabbar {
     gap: 3px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-bottom: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
     padding: 3px;
   }
   .tabbar button {
