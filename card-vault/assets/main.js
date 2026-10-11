@@ -29458,8 +29458,20 @@ var __iconNode14 = [
 ];
 var FolderKanban = createLucideIcon("folder-kanban", __iconNode14);
 
-// node_modules/lucide-react/dist/esm/icons/layers.mjs
+// node_modules/lucide-react/dist/esm/icons/heart.mjs
 var __iconNode15 = [
+  [
+    "path",
+    {
+      d: "M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5",
+      key: "mvr1a0"
+    }
+  ]
+];
+var Heart = createLucideIcon("heart", __iconNode15);
+
+// node_modules/lucide-react/dist/esm/icons/layers.mjs
+var __iconNode16 = [
   [
     "path",
     {
@@ -29482,22 +29494,22 @@ var __iconNode15 = [
     }
   ]
 ];
-var Layers = createLucideIcon("layers", __iconNode15);
+var Layers = createLucideIcon("layers", __iconNode16);
 
 // node_modules/lucide-react/dist/esm/icons/loader-circle.mjs
-var __iconNode16 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-var LoaderCircle = createLucideIcon("loader-circle", __iconNode16);
+var __iconNode17 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+var LoaderCircle = createLucideIcon("loader-circle", __iconNode17);
 
 // node_modules/lucide-react/dist/esm/icons/log-out.mjs
-var __iconNode17 = [
+var __iconNode18 = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-var LogOut = createLucideIcon("log-out", __iconNode17);
+var LogOut = createLucideIcon("log-out", __iconNode18);
 
 // node_modules/lucide-react/dist/esm/icons/message-square.mjs
-var __iconNode18 = [
+var __iconNode19 = [
   [
     "path",
     {
@@ -29506,14 +29518,14 @@ var __iconNode18 = [
     }
   ]
 ];
-var MessageSquare = createLucideIcon("message-square", __iconNode18);
+var MessageSquare = createLucideIcon("message-square", __iconNode19);
 
 // node_modules/lucide-react/dist/esm/icons/minus.mjs
-var __iconNode19 = [["path", { d: "M5 12h14", key: "1ays0h" }]];
-var Minus = createLucideIcon("minus", __iconNode19);
+var __iconNode20 = [["path", { d: "M5 12h14", key: "1ays0h" }]];
+var Minus = createLucideIcon("minus", __iconNode20);
 
 // node_modules/lucide-react/dist/esm/icons/pencil.mjs
-var __iconNode20 = [
+var __iconNode21 = [
   [
     "path",
     {
@@ -29523,26 +29535,26 @@ var __iconNode20 = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-var Pencil = createLucideIcon("pencil", __iconNode20);
+var Pencil = createLucideIcon("pencil", __iconNode21);
 
 // node_modules/lucide-react/dist/esm/icons/plus.mjs
-var __iconNode21 = [
+var __iconNode22 = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-var Plus = createLucideIcon("plus", __iconNode21);
+var Plus = createLucideIcon("plus", __iconNode22);
 
 // node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs
-var __iconNode22 = [
+var __iconNode23 = [
   ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
   ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
   ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
   ["path", { d: "M8 16H3v5", key: "1cv678" }]
 ];
-var RefreshCw = createLucideIcon("refresh-cw", __iconNode22);
+var RefreshCw = createLucideIcon("refresh-cw", __iconNode23);
 
 // node_modules/lucide-react/dist/esm/icons/save.mjs
-var __iconNode23 = [
+var __iconNode24 = [
   [
     "path",
     {
@@ -29553,27 +29565,27 @@ var __iconNode23 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-var Save = createLucideIcon("save", __iconNode23);
+var Save = createLucideIcon("save", __iconNode24);
 
 // node_modules/lucide-react/dist/esm/icons/scan-line.mjs
-var __iconNode24 = [
+var __iconNode25 = [
   ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
   ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
   ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
   ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }],
   ["path", { d: "M7 12h10", key: "b7w52i" }]
 ];
-var ScanLine = createLucideIcon("scan-line", __iconNode24);
+var ScanLine = createLucideIcon("scan-line", __iconNode25);
 
 // node_modules/lucide-react/dist/esm/icons/search.mjs
-var __iconNode25 = [
+var __iconNode26 = [
   ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
   ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-var Search = createLucideIcon("search", __iconNode25);
+var Search = createLucideIcon("search", __iconNode26);
 
 // node_modules/lucide-react/dist/esm/icons/send.mjs
-var __iconNode26 = [
+var __iconNode27 = [
   [
     "path",
     {
@@ -29583,10 +29595,10 @@ var __iconNode26 = [
   ],
   ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ];
-var Send = createLucideIcon("send", __iconNode26);
+var Send = createLucideIcon("send", __iconNode27);
 
 // node_modules/lucide-react/dist/esm/icons/sparkles.mjs
-var __iconNode27 = [
+var __iconNode28 = [
   [
     "path",
     {
@@ -29598,20 +29610,20 @@ var __iconNode27 = [
   ["path", { d: "M22 4h-4", key: "gwowj6" }],
   ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
 ];
-var Sparkles = createLucideIcon("sparkles", __iconNode27);
+var Sparkles = createLucideIcon("sparkles", __iconNode28);
 
 // node_modules/lucide-react/dist/esm/icons/trash-2.mjs
-var __iconNode28 = [
+var __iconNode29 = [
   ["path", { d: "M10 11v6", key: "nco0om" }],
   ["path", { d: "M14 11v6", key: "outv1u" }],
   ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
   ["path", { d: "M3 6h18", key: "d0wm0j" }],
   ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
 ];
-var Trash2 = createLucideIcon("trash-2", __iconNode28);
+var Trash2 = createLucideIcon("trash-2", __iconNode29);
 
 // node_modules/lucide-react/dist/esm/icons/triangle-alert.mjs
-var __iconNode29 = [
+var __iconNode30 = [
   [
     "path",
     {
@@ -29622,21 +29634,32 @@ var __iconNode29 = [
   ["path", { d: "M12 9v4", key: "juzpu7" }],
   ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-var TriangleAlert = createLucideIcon("triangle-alert", __iconNode29);
+var TriangleAlert = createLucideIcon("triangle-alert", __iconNode30);
+
+// node_modules/lucide-react/dist/esm/icons/trophy.mjs
+var __iconNode31 = [
+  ["path", { d: "M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978", key: "1n3hpd" }],
+  ["path", { d: "M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978", key: "rfe1zi" }],
+  ["path", { d: "M18 9h1.5a1 1 0 0 0 0-5H18", key: "7xy6bh" }],
+  ["path", { d: "M4 22h16", key: "57wxv0" }],
+  ["path", { d: "M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z", key: "1mhfuq" }],
+  ["path", { d: "M6 9H4.5a1 1 0 0 1 0-5H6", key: "tex48p" }]
+];
+var Trophy = createLucideIcon("trophy", __iconNode31);
 
 // node_modules/lucide-react/dist/esm/icons/user-round.mjs
-var __iconNode30 = [
+var __iconNode32 = [
   ["circle", { cx: "12", cy: "8", r: "5", key: "1hypcn" }],
   ["path", { d: "M20 21a8 8 0 0 0-16 0", key: "rfgkzh" }]
 ];
-var UserRound = createLucideIcon("user-round", __iconNode30);
+var UserRound = createLucideIcon("user-round", __iconNode32);
 
 // node_modules/lucide-react/dist/esm/icons/x.mjs
-var __iconNode31 = [
+var __iconNode33 = [
   ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
-var X = createLucideIcon("x", __iconNode31);
+var X = createLucideIcon("x", __iconNode33);
 
 // src/runtime.ts
 var PUBLIC_API_BASE = "https://api.cmforgedbyfire.com/card-vault";
@@ -30015,6 +30038,256 @@ function isTitleConnectorWord(word, index, wordCount) {
   return index > 0 && index < wordCount - 1 && titleConnectorWords.has(word);
 }
 
+// src/sports.ts
+var sportsSegments = [
+  "baseball",
+  "basketball",
+  "boxing",
+  "football",
+  "golf",
+  "hockey",
+  "mma",
+  "racing",
+  "soccer",
+  "tennis",
+  "wrestling"
+];
+async function searchSportsCards(query, options = {}) {
+  const url = new URL(getApiUrl("/api/cardsight/search"), window.location.href);
+  url.searchParams.set("q", query.trim());
+  url.searchParams.set("limit", String(options.limit ?? 12));
+  url.searchParams.set("offset", String(options.offset ?? 0));
+  const payload = await requestJson(url, options.authToken);
+  return (payload.results ?? []).filter((result) => result.type === "card" && isSportsSegment(result.segmentName)).map(mapSearchResult);
+}
+async function identifySportsCard(imageDataUrl, authToken) {
+  const payload = await requestJson(
+    getApiUrl("/api/cardsight/identify"),
+    authToken,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ imageDataUrl })
+    }
+  );
+  return (payload.detections ?? []).flatMap((detection) => {
+    if (!detection.card?.id || !detection.card.name) {
+      return [];
+    }
+    return [mapIdentification(detection.card, detection.grading)];
+  });
+}
+async function fetchSportsPriceUpdates(items, authToken, mode = "batch") {
+  const sourceIds = Array.from(
+    new Set(
+      items.filter((item) => item.game === "sports" && isCardSightId(item.sourceId)).map((item) => item.sourceId)
+    )
+  ).slice(0, 100);
+  if (!sourceIds.length) {
+    return /* @__PURE__ */ new Map();
+  }
+  const payload = await requestJson(
+    getApiUrl("/api/cardsight/pricing/bulk"),
+    authToken,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cardIds: sourceIds, mode })
+    }
+  );
+  const providerResults = new Map(
+    (payload.results ?? []).map((result) => [result.card_id, result])
+  );
+  const updates = /* @__PURE__ */ new Map();
+  const now = /* @__PURE__ */ new Date();
+  for (const item of items) {
+    if (item.game !== "sports" || updates.has(item.sourceId)) {
+      continue;
+    }
+    const providerResult = providerResults.get(item.sourceId);
+    updates.set(
+      item.sourceId,
+      buildPriceUpdate(item, providerResult?.success ? providerResult.data : void 0, now)
+    );
+  }
+  return updates;
+}
+async function getSportsPricingStatus(authToken) {
+  return requestJson(
+    getApiUrl("/api/cardsight/status"),
+    authToken
+  );
+}
+function buildPriceUpdate(item, pricing, now = /* @__PURE__ */ new Date()) {
+  const comparableRecords = selectPricingRecords(item, pricing).filter(
+    (record) => record.listing_type !== "fixed" && Number.isFinite(record.price) && record.price > 0
+  ).sort((left, right) => dateValue(right.date) - dateValue(left.date));
+  const seen = /* @__PURE__ */ new Set();
+  const comparables = [];
+  for (const record of comparableRecords) {
+    const key = record.url || `${record.title ?? ""}|${record.price}|${record.date ?? ""}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    comparables.push({
+      title: record.title?.trim() || `${record.source} completed sale`,
+      price: record.price,
+      date: record.date ?? "",
+      source: record.source,
+      url: record.url ?? ""
+    });
+    if (comparables.length === 3) {
+      break;
+    }
+  }
+  const checkedAt = now.toISOString();
+  const expiresAt = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1e3).toISOString();
+  if (!comparables.length) {
+    return {
+      priceUsd: null,
+      priceLabel: "No sold comps",
+      updatedAt: checkedAt,
+      lastPriceCheck: checkedAt,
+      sportsPriceStatus: "unavailable",
+      sportsPriceComparables: [],
+      sportsPriceExpiresAt: expiresAt
+    };
+  }
+  const average2 = comparables.reduce((total, comp) => total + comp.price, 0) / comparables.length;
+  return {
+    priceUsd: average2,
+    priceLabel: `Sold avg $${average2.toFixed(2)}`,
+    updatedAt: checkedAt,
+    lastPriceCheck: checkedAt,
+    sportsPriceStatus: "priced",
+    sportsPriceComparables: comparables,
+    sportsPriceExpiresAt: expiresAt
+  };
+}
+function mapSearchResult(result) {
+  const parallelName = result.parallelName ?? "";
+  return {
+    sourceId: result.id,
+    game: "sports",
+    name: result.name,
+    setName: result.setName ?? result.releaseName ?? "Unknown Set",
+    setCode: result.manufacturerName ?? result.year ?? "",
+    collectorNumber: result.cardNumber ?? "",
+    rarity: parallelName || "Base",
+    colors: result.segmentName ? [result.segmentName] : [],
+    category: result.segmentName ?? "Sports",
+    imageUrl: cardImageUrl(result.id),
+    priceUsd: null,
+    priceLabel: "Pricing queued",
+    sourceUrl: "https://cardsight.ai/",
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+    sport: result.segmentName ?? "Sports",
+    manufacturer: result.manufacturerName ?? "",
+    releaseName: result.releaseName ?? "",
+    releaseYear: result.year ?? "",
+    parallelName,
+    numberedTo: result.numberedTo,
+    sportsPriceStatus: "pending"
+  };
+}
+function mapIdentification(card, grading) {
+  const parallelOptions = card.parallelSuggestions ?? [];
+  const exactParallel = parallelOptions.length === 1 && parallelOptions[0].confidence === "High" ? parallelOptions[0] : void 0;
+  const sport = inferSport(card.releaseName ?? "");
+  return {
+    sourceId: card.id,
+    game: "sports",
+    name: card.name,
+    setName: card.setName ?? card.releaseName ?? "Unknown Set",
+    setCode: card.manufacturer ?? card.year ?? "",
+    collectorNumber: card.number ?? "",
+    rarity: exactParallel?.name ?? "Base",
+    colors: sport === "Sports" ? [] : [sport],
+    category: sport,
+    imageUrl: cardImageUrl(card.id),
+    priceUsd: null,
+    priceLabel: "Pricing queued",
+    sourceUrl: "https://cardsight.ai/",
+    updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+    rulesText: card.description ?? "",
+    sport,
+    manufacturer: card.manufacturer ?? "",
+    releaseName: card.releaseName ?? "",
+    releaseYear: card.year ?? "",
+    parallelId: exactParallel?.id,
+    parallelName: exactParallel?.name ?? "",
+    parallelOptions,
+    numberedTo: exactParallel?.numberedTo ?? card.numberedTo,
+    attributes: card.attributes ?? [],
+    gradingCompanyId: grading?.company?.id,
+    gradingCompany: grading?.company?.name ?? "",
+    gradeId: grading?.grade?.id,
+    grade: grading?.grade?.value ?? grading?.grade?.condition ?? "",
+    certificationNumber: grading?.certNumber ?? "",
+    gradeQualifier: grading?.qualifier?.code ?? "",
+    autographGrade: grading?.autoGrade?.value ?? "",
+    sportsPriceStatus: "pending"
+  };
+}
+function selectPricingRecords(item, pricing) {
+  let records = [];
+  if (item.gradingCompany || item.grade || item.gradeId) {
+    const company = (pricing?.graded ?? []).find(
+      (entry) => item.gradingCompanyId && entry.company_id === item.gradingCompanyId || sameText(entry.company_name, item.gradingCompany)
+    );
+    const grade = company?.grades?.find(
+      (entry) => item.gradeId && entry.grade_id === item.gradeId || sameText(entry.grade_value, item.grade)
+    );
+    records = grade?.records ?? [];
+  } else {
+    records = pricing?.raw?.records ?? [];
+  }
+  if (item.parallelId) {
+    return records.filter((record) => record.parallel_id === item.parallelId);
+  }
+  if (item.parallelName) {
+    return records.filter((record) => sameText(record.parallel_name, item.parallelName));
+  }
+  return records.filter((record) => !record.parallel_id && !record.parallel_name);
+}
+async function requestJson(input, authToken = "", init = {}) {
+  const headers = new Headers(init.headers);
+  if (authToken) {
+    headers.set("Authorization", `Bearer ${authToken}`);
+  }
+  const response = await fetch(input, { ...init, headers });
+  const payload = await response.json();
+  if (!response.ok || payload.error) {
+    throw new Error(payload.error || "Sports-card provider request failed.");
+  }
+  return payload;
+}
+function isSportsSegment(value) {
+  const normalized = value?.trim().toLowerCase() ?? "";
+  return sportsSegments.some((sport) => normalized.includes(sport));
+}
+function inferSport(releaseName) {
+  const normalized = releaseName.toLowerCase();
+  const found = sportsSegments.find((sport) => normalized.includes(sport));
+  return found ? found.replace(/^./, (letter) => letter.toUpperCase()) : "Sports";
+}
+function cardImageUrl(cardId) {
+  return `https://api.cardsight.ai/v1/images/cards/${encodeURIComponent(cardId)}?default=true`;
+}
+function isCardSightId(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    value
+  );
+}
+function sameText(left, right) {
+  return Boolean(left && right && left.trim().toLowerCase() === right.trim().toLowerCase());
+}
+function dateValue(value) {
+  const parsed = value ? new Date(value).getTime() : 0;
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
 // src/api.ts
 var scryfallBase = "https://api.scryfall.com";
 var pokemonBase = "https://api.pokemontcg.io/v2";
@@ -30040,12 +30313,23 @@ async function searchCards(game, query, options = {}) {
   if (game === "pokemon" || game === "all") {
     searches.push(searchPokemon(cleanQuery, { limit, offset }));
   }
+  if (game === "sports" || game === "all") {
+    searches.push(searchSportsCards(cleanQuery, { ...options, limit, offset }));
+  }
   const results = await Promise.allSettled(searches);
   return dedupeCards(
     results.flatMap((result) => result.status === "fulfilled" ? result.value : [])
   ).slice(0, limit);
 }
 async function refreshCandidatePrice(item) {
+  if (item.game === "sports") {
+    return {
+      priceUsd: item.priceUsd,
+      priceLabel: item.priceLabel || "Pricing queued",
+      updatedAt: item.updatedAt,
+      lastPriceCheck: item.lastPriceCheck
+    };
+  }
   const candidate = item.game === "mtg" ? await getMtgCard(item.sourceId) : await getPokemonCard(item.sourceId);
   return {
     priceUsd: candidate.priceUsd,
@@ -30823,6 +31107,13 @@ var CardVaultDatabase = class extends import_wrapper_default {
       scanIssueReports: "++id, game, correctName, createdAt",
       syncState: "&id, profileId"
     });
+    this.version(5).stores({
+      collection: "++id, &syncId, game, listKind, name, sport, manufacturer, releaseYear, setName, setCode, collectorNumber, gradingCompany, grade, sportsPriceStatus, addedAt, lastPriceCheck",
+      decks: "++id, &syncId, game, name, createdAt, updatedAt",
+      deckCards: "++id, &syncId, deckId, collectionItemId, [deckId+collectionItemId], addedAt",
+      scanIssueReports: "++id, game, correctName, createdAt",
+      syncState: "&id, profileId"
+    });
   }
 };
 var db = new CardVaultDatabase();
@@ -31261,6 +31552,18 @@ function matchesCollectionSearch(item, query) {
       item.notes,
       item.typeLine ?? "",
       item.rulesText ?? "",
+      item.sport ?? "",
+      item.manufacturer ?? "",
+      item.releaseName ?? "",
+      item.releaseYear ?? "",
+      item.parallelName ?? "",
+      item.numberedTo === void 0 ? "" : String(item.numberedTo),
+      Array.isArray(item.attributes) ? item.attributes.join(" ") : "",
+      item.gradingCompany ?? "",
+      item.grade ?? "",
+      item.certificationNumber ?? "",
+      item.gradeQualifier ?? "",
+      item.autographGrade ?? "",
       Array.isArray(item.subtypes) ? item.subtypes.join(" ") : "",
       Array.isArray(item.attacks) ? item.attacks.map((attack) => `${attack.name} ${attack.text}`).join(" ") : "",
       Array.isArray(item.abilities) ? item.abilities.map((ability) => `${ability.name} ${ability.text}`).join(" ") : ""
@@ -32178,13 +32481,15 @@ var mtgReportedWrongPrintingIds = {
   "plains pains": "6620b5f4-b1e5-4d1b-bbf2-c6ad9c8284c5"
 };
 var resultBatchSize = 12;
+var sportsPriceBatchTarget = 15;
+var sportsIntroPriceLimit = 5;
 var uiStateStorageKey = "card-vault-ui-state-v1";
 var coachThreadsStorageKey = "card-vault-coach-threads-v1";
 var coachThreadMessageLimit = 20;
 var coachThreadFallbackMessageLimit = 10;
 var createNewDeckValue = "__new__";
-var appTabs = ["scan", "mtg", "pokemon"];
-var gameFilters = ["mtg", "pokemon"];
+var appTabs = ["scan", "mtg", "pokemon", "sports"];
+var gameFilters = ["mtg", "pokemon", "sports"];
 var collectionGroups = ["color", "set", "condition", "category"];
 var collectionSorts = ["name", "value", "quantity", "newest"];
 var cardVaultSkinStorageKey = "card-vault-desktop-skin";
@@ -32450,6 +32755,28 @@ function isOneOf(value, options) {
 function isSupportedGame(value) {
   return isOneOf(value, gameFilters);
 }
+function isCardSightSourceId(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    value
+  );
+}
+function expireStaleSportsPrice(item, now) {
+  if (item.game !== "sports" || item.sportsPriceStatus === "pending" || !item.sportsPriceExpiresAt) {
+    return item;
+  }
+  const expiresAt = Date.parse(item.sportsPriceExpiresAt);
+  if (!Number.isFinite(expiresAt) || expiresAt > now) {
+    return item;
+  }
+  return {
+    ...item,
+    priceUsd: null,
+    priceLabel: "Pricing queued",
+    sportsPriceStatus: "pending",
+    sportsPriceComparables: [],
+    sportsPriceExpiresAt: ""
+  };
+}
 function feedbackKindForChoice(choice) {
   if (choice === "Broke") {
     return "bug";
@@ -32500,8 +32827,10 @@ function App() {
   );
   const [collectionQueries, setCollectionQueries] = (0, import_react4.useState)({
     mtg: "",
-    pokemon: ""
+    pokemon: "",
+    sports: ""
   });
+  const [activeListKind, setActiveListKind] = (0, import_react4.useState)("collection");
   const [collection, setCollection] = (0, import_react4.useState)([]);
   const [decks, setDecks] = (0, import_react4.useState)([]);
   const [deckCards, setDeckCards] = (0, import_react4.useState)([]);
@@ -32514,6 +32843,8 @@ function App() {
   const [status, setStatus] = (0, import_react4.useState)("Ready");
   const [isSearching, setIsSearching] = (0, import_react4.useState)(false);
   const [isRefreshingResults, setIsRefreshingResults] = (0, import_react4.useState)(false);
+  const [isPricingSports, setIsPricingSports] = (0, import_react4.useState)(false);
+  const [sportsPricingStatus, setSportsPricingStatus] = (0, import_react4.useState)(null);
   const [isScanning, setIsScanning] = (0, import_react4.useState)(false);
   const [isCameraOn, setIsCameraOn] = (0, import_react4.useState)(false);
   const [scannerState, setScannerState] = (0, import_react4.useState)("idle");
@@ -32737,11 +33068,11 @@ function App() {
     setOpenCollectionItemMenu(null);
   }, [activeTab]);
   const totalCards = (0, import_react4.useMemo)(
-    () => collection.reduce((total, item) => total + item.quantity, 0),
+    () => collection.filter((item) => (item.listKind ?? "collection") === "collection").reduce((total, item) => total + item.quantity, 0),
     [collection]
   );
   const totalValue = (0, import_react4.useMemo)(
-    () => collection.reduce(
+    () => collection.filter((item) => (item.listKind ?? "collection") === "collection").reduce(
       (total, item) => total + (item.priceUsd ?? 0) * item.quantity,
       0
     ),
@@ -32751,7 +33082,9 @@ function App() {
     if (activeTab === "scan") {
       return { cards: totalCards, value: totalValue };
     }
-    const items = collection.filter((item) => item.game === activeTab);
+    const items = collection.filter(
+      (item) => item.game === activeTab && (item.listKind ?? "collection") === activeListKind
+    );
     return {
       cards: items.reduce((total, item) => total + item.quantity, 0),
       value: items.reduce(
@@ -32759,10 +33092,26 @@ function App() {
         0
       )
     };
-  }, [activeTab, collection, totalCards, totalValue]);
+  }, [activeListKind, activeTab, collection, totalCards, totalValue]);
+  const sportsPriceQueue = (0, import_react4.useMemo)(
+    () => Array.from(
+      new Map(
+        collection.filter(
+          (item) => item.game === "sports" && (!item.sportsPriceStatus || item.sportsPriceStatus === "pending") && item.sourceId
+        ).map((item) => [item.sourceId, item])
+      ).values()
+    ),
+    [collection]
+  );
   async function loadCollection() {
     const items = await db.collection.orderBy("addedAt").reverse().toArray();
-    setCollection(items.filter((item) => isSupportedGame(item.game)));
+    const now = Date.now();
+    const normalizedItems = items.map((item) => expireStaleSportsPrice(item, now));
+    const expiredItems = normalizedItems.filter((item, index) => item !== items[index]);
+    if (expiredItems.length) {
+      await db.collection.bulkPut(expiredItems);
+    }
+    setCollection(normalizedItems.filter((item) => isSupportedGame(item.game)));
   }
   async function loadDeckData() {
     const [deckItems, deckCardItems] = await Promise.all([
@@ -32785,6 +33134,7 @@ function App() {
       }
       setAccountSession(restored);
       setAccountDialogOpen(false);
+      void refreshSportsPricingState(restored.token);
       try {
         await prepareAccountData(restored.profile.id);
         accountSyncReadyRef.current = true;
@@ -32806,6 +33156,13 @@ function App() {
       return;
     }
     await synchronizeSession(accountSession, announce);
+  }
+  async function refreshSportsPricingState(token) {
+    try {
+      setSportsPricingStatus(await getSportsPricingStatus(token));
+    } catch {
+      setSportsPricingStatus(null);
+    }
   }
   async function synchronizeSession(session, announce) {
     if (accountSyncRunningRef.current) {
@@ -32862,6 +33219,7 @@ function App() {
       );
       await prepareAccountData(session.profile.id);
       setAccountSession(session);
+      void refreshSportsPricingState(session.token);
       await synchronizeSession(session, true);
       accountSyncReadyRef.current = true;
       setAccountDraft((current) => ({ ...current, password: "", isSaving: false }));
@@ -32883,6 +33241,7 @@ function App() {
     accountSyncReadyRef.current = false;
     await logoutAccount(session);
     setAccountSession(null);
+    setSportsPricingStatus(null);
     setAccountMode("login");
     setAccountDraft((current) => ({
       ...current,
@@ -32906,6 +33265,7 @@ function App() {
     setStatus(`Searching for "${cleanTerm}"`);
     try {
       const results = await searchCards(game, cleanTerm, {
+        authToken: accountSession?.token,
         limit: resultBatchSize,
         offset: 0
       });
@@ -32914,8 +33274,10 @@ function App() {
       setHasMoreResults(results.length >= resultBatchSize);
       setStatus(results.length ? `${results.length} possible matches` : "No matches found");
       return results.length;
-    } catch {
-      setStatus("Search failed. Check your connection and try again.");
+    } catch (error) {
+      setStatus(
+        error instanceof Error ? error.message : "Search failed. Check your connection and try again."
+      );
       return 0;
     } finally {
       setIsSearching(false);
@@ -32958,6 +33320,7 @@ function App() {
       for (const term of cleanTerms) {
         setStatus(`Checking "${term}"`);
         const results = await searchCards(game, term, {
+          authToken: accountSession?.token,
           limit: resultBatchSize,
           offset: 0
         });
@@ -33020,6 +33383,7 @@ function App() {
     setStatus(`Loading more matches for "${cleanTerm}"`);
     try {
       const results = await searchCards(game, cleanTerm, {
+        authToken: accountSession?.token,
         limit: resultBatchSize,
         offset: nextOffset
       });
@@ -33139,6 +33503,48 @@ function App() {
     }
   }
   async function readCapturedCard(canvas, scanId) {
+    if (game === "sports") {
+      if (!accountSession) {
+        await showLocalSportsScanFallback(
+          canvas,
+          scanId,
+          "Sports identification is offline while signed out."
+        );
+        return;
+      }
+      try {
+        setStatus("Identifying sports card and grading label");
+        const results = await identifySportsCard(
+          canvas.toDataURL("image/jpeg", 0.95),
+          accountSession.token
+        );
+        if (activeScanIdRef.current !== scanId) {
+          return;
+        }
+        setScanResult(null);
+        setCandidates(results);
+        setSelectedTerm(results[0]?.name ?? "");
+        setResultOffset(0);
+        setHasMoreResults(false);
+        setQuery(results[0]?.name ?? "");
+        if (results.length) {
+          setStatus(`Matched "${results[0].name}". Check the card and grading details.`);
+        } else {
+          await showLocalSportsScanFallback(
+            canvas,
+            scanId,
+            "The card was visible but could not be identified online."
+          );
+        }
+      } catch (error) {
+        await showLocalSportsScanFallback(
+          canvas,
+          scanId,
+          error instanceof Error ? error.message : "Sports-card identification is unavailable."
+        );
+      }
+      return;
+    }
     const ocrCanvas = createOcrCanvas(canvas);
     try {
       const result = await recognizeCardCanvas(ocrCanvas, setStatus, game);
@@ -33180,6 +33586,52 @@ function App() {
       ocrCanvas.width = 1;
       ocrCanvas.height = 1;
     }
+  }
+  async function showLocalSportsScanFallback(canvas, scanId, reason) {
+    const ocrCanvas = createOcrCanvas(canvas);
+    let localResult = {
+      rawText: "",
+      terms: [],
+      setCodes: [],
+      collectorNumbers: []
+    };
+    try {
+      setStatus("Online identification is unavailable. Reading the card locally.");
+      localResult = await recognizeCardCanvas(ocrCanvas, setStatus, "sports");
+    } catch {
+    } finally {
+      ocrCanvas.width = 1;
+      ocrCanvas.height = 1;
+    }
+    if (activeScanIdRef.current !== scanId) {
+      return;
+    }
+    const name = localResult.terms[0]?.trim() || query.trim() || "Unidentified Sports Card";
+    const localCandidate = {
+      sourceId: createLocalSportsSourceId(),
+      game: "sports",
+      name,
+      setName: "Details needed",
+      setCode: "",
+      collectorNumber: "",
+      rarity: "Unconfirmed",
+      colors: [],
+      category: "Sports",
+      imageUrl: createLocalSportsThumbnail(canvas),
+      priceUsd: null,
+      priceLabel: "Pricing unavailable",
+      sourceUrl: "",
+      updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      sport: "Sports",
+      sportsPriceStatus: "unavailable"
+    };
+    setScanResult(localResult);
+    setCandidates([localCandidate]);
+    setSelectedTerm(name);
+    setResultOffset(0);
+    setHasMoreResults(false);
+    setQuery(name === "Unidentified Sports Card" ? "" : name);
+    setStatus(`${reason} The scan is ready to save locally; edit its details anytime.`);
   }
   function openSaveDeckDialog(candidate, options = {}) {
     const gameDecks = decks.filter((deck) => deck.game === candidate.game);
@@ -33464,19 +33916,33 @@ function App() {
       updateSaveDeckDraft({ isSaving: false });
     }
   }
-  async function saveCandidate(candidate, deckTarget, quantity = 1) {
+  async function saveDraftToWishlist() {
+    if (!saveDeckDraft) {
+      return;
+    }
+    updateSaveDeckDraft({ addToDeck: false, isSaving: true });
+    try {
+      await saveCandidate(saveDeckDraft.candidate, void 0, 1, "wishlist");
+      setSaveDeckDraft(null);
+    } catch {
+      setStatus("Could not add that card to the wishlist.");
+      updateSaveDeckDraft({ isSaving: false });
+    }
+  }
+  async function saveCandidate(candidate, deckTarget, quantity = 1, listKind = "collection") {
     const now = (/* @__PURE__ */ new Date()).toISOString();
     const cleanNotes = "";
     const cleanQuantity = Math.min(999, Math.max(1, Math.floor(quantity)));
     const savedLabel = `${cleanQuantity} card${cleanQuantity === 1 ? "" : "s"} saved`;
     let collectionItemId;
     const existing = await db.collection.filter(
-      (item) => item.game === candidate.game && item.sourceId === candidate.sourceId && item.condition === defaultCondition && item.notes === cleanNotes
+      (item) => item.game === candidate.game && item.sourceId === candidate.sourceId && item.condition === defaultCondition && (item.listKind ?? "collection") === listKind && item.notes === cleanNotes
     ).first();
     if (existing?.id) {
       await db.collection.update(existing.id, {
         ...candidate,
         quantity: existing.quantity + cleanQuantity,
+        listKind,
         lastPriceCheck: now
       });
       collectionItemId = existing.id;
@@ -33485,6 +33951,7 @@ function App() {
       collectionItemId = await db.collection.add({
         ...candidate,
         quantity: cleanQuantity,
+        listKind,
         condition: defaultCondition,
         notes: cleanNotes,
         addedAt: now,
@@ -33499,9 +33966,20 @@ function App() {
       deckName = deck.name;
     }
     setSaveNotice(
-      deckName ? `${savedLabel} to ${deckName}: ${candidate.name}` : `${savedLabel}: ${candidate.name}`
+      deckName ? `${savedLabel} to ${deckName}: ${candidate.name}` : listKind === "wishlist" ? `Added to wishlist: ${candidate.name}` : `${savedLabel}: ${candidate.name}`
     );
     await Promise.all([loadCollection(), loadDeckData()]);
+    if (candidate.game === "sports" && listKind === "collection" && typeof collectionItemId === "number") {
+      void tryIntroSportsPrice(collectionItemId);
+    }
+  }
+  async function saveCandidateToWishlist(candidate) {
+    try {
+      await saveCandidate(candidate, void 0, 1, "wishlist");
+      setStatus(`Added ${candidate.name} to wishlist`);
+    } catch {
+      setStatus("Could not add that card to the wishlist.");
+    }
   }
   async function resolveDeckTarget(deckTarget, targetGame, now) {
     if (typeof deckTarget.deckId === "number") {
@@ -34273,6 +34751,20 @@ function App() {
     await loadCollection();
     setStatus("Card removed");
   }
+  async function moveItemToList(item, listKind) {
+    if (typeof item.id !== "number") {
+      return;
+    }
+    await db.collection.update(item.id, {
+      listKind,
+      updatedAt: (/* @__PURE__ */ new Date()).toISOString()
+    });
+    setOpenCollectionItemMenu(null);
+    await loadCollection();
+    setStatus(
+      listKind === "wishlist" ? `${item.name} moved to wishlist` : `${item.name} moved to collection`
+    );
+  }
   async function adjustCollectionItemQuantity(itemId, change) {
     if (typeof itemId !== "number" || !change) {
       return;
@@ -34322,7 +34814,22 @@ function App() {
       setName: item.setName,
       sourceId: item.sourceId,
       sourceUrl: item.sourceUrl,
-      updatedAt: item.updatedAt
+      updatedAt: item.updatedAt,
+      listKind: item.listKind ?? "collection",
+      sport: item.sport ?? "",
+      manufacturer: item.manufacturer ?? "",
+      releaseName: item.releaseName ?? "",
+      releaseYear: item.releaseYear ?? "",
+      parallelId: item.parallelId ?? "",
+      parallelName: item.parallelName ?? "",
+      numberedTo: item.numberedTo === void 0 ? "" : String(item.numberedTo),
+      gradingCompanyId: item.gradingCompanyId ?? "",
+      gradingCompany: item.gradingCompany ?? "",
+      gradeId: item.gradeId ?? "",
+      grade: item.grade ?? "",
+      certificationNumber: item.certificationNumber ?? "",
+      gradeQualifier: item.gradeQualifier ?? "",
+      autographGrade: item.autographGrade ?? ""
     });
   }
   function updateEditDraft(key, value) {
@@ -34336,6 +34843,7 @@ function App() {
     const priceText = editDraft.priceUsd.trim();
     const priceValue = priceText ? Number.parseFloat(priceText) : null;
     const priceUsd = priceValue !== null && Number.isFinite(priceValue) ? priceValue : null;
+    const numberedToValue = Number.parseInt(editDraft.numberedTo, 10);
     await db.collection.update(editDraft.id, {
       addedAt: editDraft.addedAt.trim(),
       category: editDraft.category.trim() || "Other",
@@ -34355,7 +34863,22 @@ function App() {
       setName: editDraft.setName.trim() || "Unknown Set",
       sourceId: editDraft.sourceId.trim(),
       sourceUrl: editDraft.sourceUrl.trim(),
-      updatedAt: editDraft.updatedAt.trim()
+      updatedAt: editDraft.updatedAt.trim(),
+      listKind: editDraft.listKind,
+      sport: editDraft.sport.trim(),
+      manufacturer: editDraft.manufacturer.trim(),
+      releaseName: editDraft.releaseName.trim(),
+      releaseYear: editDraft.releaseYear.trim(),
+      parallelId: editDraft.parallelId.trim(),
+      parallelName: editDraft.parallelName.trim(),
+      numberedTo: Number.isFinite(numberedToValue) ? numberedToValue : void 0,
+      gradingCompanyId: editDraft.gradingCompanyId.trim(),
+      gradingCompany: editDraft.gradingCompany.trim(),
+      gradeId: editDraft.gradeId.trim(),
+      grade: editDraft.grade.trim(),
+      certificationNumber: editDraft.certificationNumber.trim(),
+      gradeQualifier: editDraft.gradeQualifier.trim(),
+      autographGrade: editDraft.autographGrade.trim()
     });
     setFailedImages(/* @__PURE__ */ new Set());
     setEditDraft(null);
@@ -34364,6 +34887,10 @@ function App() {
   }
   async function refreshOne(item) {
     if (typeof item.id !== "number") {
+      return;
+    }
+    if (item.game === "sports") {
+      setStatus("Sports prices are sent in deliberate batches of 100 cards.");
       return;
     }
     setRefreshingId(item.id);
@@ -34378,6 +34905,10 @@ function App() {
     }
   }
   async function refreshGame(sectionGame) {
+    if (sectionGame === "sports") {
+      await runSportsPriceBatch();
+      return;
+    }
     const gameItems = collection.filter((item) => item.game === sectionGame);
     setRefreshingId("all");
     try {
@@ -34393,6 +34924,89 @@ function App() {
     } finally {
       setRefreshingId(null);
     }
+  }
+  async function runSportsPriceBatch() {
+    if (!sportsPriceQueue.length) {
+      setStatus("No sports cards are waiting for pricing.");
+      return;
+    }
+    if (!accountSession) {
+      setStatus("Sign in before sending the sports price batch.");
+      setAccountDialogOpen(true);
+      return;
+    }
+    const isFullBatch = sportsPriceQueue.length >= sportsPriceBatchTarget;
+    const batch = sportsPriceQueue.slice(0, sportsPriceBatchTarget);
+    const mode = isFullBatch ? "batch" : "manual";
+    setIsPricingSports(true);
+    setRefreshingId("all");
+    setStatus(
+      isFullBatch ? `Requesting completed-sale pricing for ${sportsPriceBatchTarget} sports cards` : `Requesting pricing for the ${batch.length} cards currently waiting`
+    );
+    try {
+      const updates = await fetchSportsPriceUpdates(batch, accountSession.token, mode);
+      await applySportsPriceUpdates(updates);
+      await refreshSportsPricingState(accountSession.token);
+      const pricedCount = Array.from(updates.values()).filter(
+        (update) => update.sportsPriceStatus === "priced"
+      ).length;
+      setStatus(
+        `Sports price batch complete: ${pricedCount} of ${batch.length} cards had matching sold comps.`
+      );
+    } catch (error) {
+      setStatus(
+        error instanceof Error ? error.message : "Sports price batch failed."
+      );
+    } finally {
+      setIsPricingSports(false);
+      setRefreshingId(null);
+    }
+  }
+  async function tryIntroSportsPrice(collectionItemId) {
+    const session = accountSession;
+    if (!session) {
+      return;
+    }
+    let pricingState = sportsPricingStatus;
+    if (!pricingState) {
+      try {
+        pricingState = await getSportsPricingStatus(session.token);
+        setSportsPricingStatus(pricingState);
+      } catch {
+        return;
+      }
+    }
+    if (!pricingState.configured || pricingState.introRemaining <= 0) {
+      return;
+    }
+    const item = await db.collection.get(collectionItemId);
+    if (!item || item.game !== "sports" || !isCardSightSourceId(item.sourceId)) {
+      return;
+    }
+    try {
+      const updates = await fetchSportsPriceUpdates([item], session.token, "intro");
+      await applySportsPriceUpdates(updates);
+      await refreshSportsPricingState(session.token);
+      const update = updates.get(item.sourceId);
+      setStatus(
+        update?.sportsPriceStatus === "priced" ? `Saved and priced ${item.name}` : `Saved ${item.name}. No matching sold comps were found.`
+      );
+    } catch {
+      await refreshSportsPricingState(session.token);
+      setStatus(`Saved ${item.name}. Pricing is unavailable, so the card remains saved.`);
+    }
+  }
+  async function applySportsPriceUpdates(updates) {
+    const sourceIds = new Set(updates.keys());
+    const storedItems = await db.collection.toArray();
+    await db.transaction("rw", db.collection, async () => {
+      for (const item of storedItems) {
+        if (typeof item.id === "number" && sourceIds.has(item.sourceId) && updates.has(item.sourceId)) {
+          await db.collection.update(item.id, updates.get(item.sourceId));
+        }
+      }
+    });
+    await loadCollection();
   }
   function openScanIssueReport() {
     if (!capturedFrame) {
@@ -34593,14 +35207,16 @@ function App() {
     }
   }
   function exportGameCollection(sectionGame) {
-    const gameItems = collection.filter((item) => item.game === sectionGame);
+    const gameItems = collection.filter(
+      (item) => item.game === sectionGame && (item.listKind ?? "collection") === activeListKind
+    );
     const blob = new Blob([JSON.stringify(gameItems, null, 2)], {
       type: "application/json"
     });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `card-vault-${sectionGame}-collection.json`;
+    link.download = `card-vault-${sectionGame}-${activeListKind}.json`;
     link.click();
     URL.revokeObjectURL(url);
   }
@@ -34624,7 +35240,9 @@ function App() {
     );
   }
   function renderGameTab(sectionGame) {
-    const items = collection.filter((item) => item.game === sectionGame);
+    const items = collection.filter(
+      (item) => item.game === sectionGame && (item.listKind ?? "collection") === activeListKind
+    );
     const collectionQuery = collectionQueries[sectionGame];
     const visibleItems = items.filter(
       (item) => matchesCollectionSearch(item, collectionQuery)
@@ -34676,18 +35294,22 @@ function App() {
               renderCardImage(item),
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "item-main", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: item.name }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "item-meta", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-meta", children: item.game === "sports" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+                  [item.releaseYear, item.manufacturer, item.setName].filter(Boolean).join(" \xB7 "),
+                  " ",
+                  "#",
+                  item.collectorNumber,
+                  item.parallelName ? ` \xB7 ${item.parallelName}` : "",
+                  item.gradingCompany ? ` \xB7 ${item.gradingCompany} ${item.grade}` : ` \xB7 ${item.condition}`
+                ] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
                   item.setCode,
                   " #",
                   item.collectorNumber,
                   " \xB7 ",
                   item.condition
-                ] }),
+                ] }) }),
                 item.notes && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "item-notes", children: item.notes }),
-                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "muted", children: [
-                  "Checked ",
-                  formatDate(item.lastPriceCheck)
-                ] })
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "muted", children: item.game === "sports" && item.sportsPriceStatus === "pending" ? "Waiting for the 100-card price batch" : `Checked ${formatDate(item.lastPriceCheck)}` })
               ] })
             ]
           }
@@ -34810,6 +35432,21 @@ function App() {
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                 "button",
                 {
+                  onClick: () => void moveItemToList(
+                    item,
+                    activeListKind === "collection" ? "wishlist" : "collection"
+                  ),
+                  role: "menuitem",
+                  type: "button",
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 17 }),
+                    activeListKind === "collection" ? "Move to Wishlist" : "Move to Collection"
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "button",
+                {
                   onClick: () => {
                     setOpenCollectionItemMenu(null);
                     void removeItem(item.id);
@@ -34844,7 +35481,7 @@ function App() {
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-heading-side", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          sectionGame !== "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
             "button",
             {
               className: "collection-deck-button",
@@ -34887,7 +35524,7 @@ function App() {
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+            sectionGame !== "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
               "button",
               {
                 className: "collection-coach-button",
@@ -34953,6 +35590,53 @@ function App() {
           ] })
         ] })
       ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-list-tabs", "aria-label": "Saved card list", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "button",
+          {
+            className: activeListKind === "collection" ? "active" : "",
+            onClick: () => setActiveListKind("collection"),
+            type: "button",
+            children: "Collection"
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: activeListKind === "wishlist" ? "active" : "",
+            onClick: () => setActiveListKind("wishlist"),
+            type: "button",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 16 }),
+              "Wishlist"
+            ]
+          }
+        )
+      ] }),
+      sectionGame === "sports" && activeListKind === "collection" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "sports-price-queue", "aria-label": "Sports pricing queue", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("strong", { children: [
+            "Pricing queue: ",
+            Math.min(sportsPriceQueue.length, sportsPriceBatchTarget),
+            "/",
+            sportsPriceBatchTarget
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: !sportsPricingStatus?.configured ? "Pricing is unavailable. Scanning and saving still work normally." : sportsPricingStatus.introRemaining > 0 ? `${sportsPricingStatus.introRemaining} of ${sportsIntroPriceLimit} introductory one-card prices remain.` : `Cards wait for a ${sportsPriceBatchTarget}-card batch. You can request the smaller queue anytime.` })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+          "button",
+          {
+            className: "primary",
+            disabled: !sportsPriceQueue.length || isPricingSports,
+            onClick: () => void runSportsPriceBatch(),
+            type: "button",
+            children: [
+              isPricingSports ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoaderCircle, { className: "spin", size: 17 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { size: 17 }),
+              sportsPriceQueue.length >= sportsPriceBatchTarget ? `Price ${sportsPriceBatchTarget} Cards` : `Price ${sportsPriceQueue.length} Now`
+            ]
+          }
+        )
+      ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "collection-controls", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
           "Group",
@@ -34962,7 +35646,7 @@ function App() {
               onChange: (event) => setCollectionGroup(event.target.value),
               value: collectionGroup,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "color", children: "Color / Type" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "color", children: sectionGame === "sports" ? "Sport" : "Color / Type" }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "category", children: "Card Type" }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "set", children: "Set" }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "condition", children: "Condition" })
@@ -35153,7 +35837,34 @@ function App() {
                   )
                 ] })
               ] }),
-              typeof saveDeckDraft.collectionItemId !== "number" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-choice", children: [
+              typeof saveDeckDraft.collectionItemId !== "number" && candidate.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-choice", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  "button",
+                  {
+                    className: "active",
+                    disabled: saveDeckDraft.isSaving,
+                    onClick: () => void saveDraftWithoutDeck(),
+                    type: "button",
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
+                      "Add to Collection"
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                  "button",
+                  {
+                    disabled: saveDeckDraft.isSaving,
+                    onClick: () => void saveDraftToWishlist(),
+                    type: "button",
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 }),
+                      "Add to Wishlist"
+                    ]
+                  }
+                )
+              ] }),
+              typeof saveDeckDraft.collectionItemId !== "number" && candidate.game !== "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "save-choice", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                   "button",
                   {
@@ -37019,7 +37730,7 @@ function App() {
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-heading", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { alt: "", className: "brand-icon", src: "./card-vault-icon.png" }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "MTG + Pokemon collection tracker" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "eyebrow", children: "MTG + Pokemon + Sports collection tracker" }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "brand-title-row", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Card Vault" }),
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "brand-badge", children: "Early Access" }),
@@ -37107,6 +37818,18 @@ function App() {
             "Pokemon"
           ]
         }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+        "button",
+        {
+          className: activeTab === "sports" ? "active" : "",
+          onClick: () => setActiveTab("sports"),
+          type: "button",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trophy, { size: 18 }),
+            "Sports"
+          ]
+        }
       )
     ] }),
     activeTab === "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", { className: "workspace scan-workspace", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "tool-panel", children: [
@@ -37145,7 +37868,7 @@ function App() {
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "scan-border-hint", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScanLine, { "aria-hidden": "true", size: 17 }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Keep the full black card border visible on all four sides." })
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: game === "sports" ? "Keep the full card or graded slab visible, including the grading label." : "Keep the full black card border visible on all four sides." })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("canvas", { ref: canvasRef, className: "hidden-canvas" }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "button-row", children: [
@@ -37267,7 +37990,7 @@ function App() {
                   onChange: (event) => setQuery(event.target.value),
                   onClick: (event) => selectInputContents(event.currentTarget),
                   onFocus: (event) => selectInputContents(event.currentTarget),
-                  placeholder: "Lightning Bolt, Charizard...",
+                  placeholder: game === "sports" ? "Player, year, set, card number..." : "Lightning Bolt, Charizard...",
                   value: query
                 }
               )
@@ -37347,6 +38070,19 @@ function App() {
                       type: "button",
                       children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 })
                     }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    "button",
+                    {
+                      "aria-label": `Add ${candidate.name} to wishlist`,
+                      onClick: (event) => {
+                        event.stopPropagation();
+                        void saveCandidateToWishlist(candidate);
+                      },
+                      title: "Add to wishlist",
+                      type: "button",
+                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 })
+                    }
                   )
                 ]
               },
@@ -37374,6 +38110,7 @@ function App() {
     ] }) }),
     activeTab === "mtg" && renderGameTab("mtg"),
     activeTab === "pokemon" && renderGameTab("pokemon"),
+    activeTab === "sports" && renderGameTab("sports"),
     activeTab !== "scan" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", { className: "bottom-summary", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "stats-strip", "aria-label": "Collection summary", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: activeGameTotals.cards }),
@@ -37440,7 +38177,25 @@ function App() {
                       value: editDraft.game,
                       children: [
                         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "mtg", children: "MTG" }),
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "pokemon", children: "Pokemon" })
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "pokemon", children: "Pokemon" }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "sports", children: "Sports" })
+                      ]
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                  "Saved list",
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    "select",
+                    {
+                      onChange: (event) => updateEditDraft(
+                        "listKind",
+                        event.target.value
+                      ),
+                      value: editDraft.listKind,
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "collection", children: "Collection" }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { value: "wishlist", children: "Wishlist" })
                       ]
                     }
                   )
@@ -37562,6 +38317,133 @@ function App() {
                     }
                   )
                 ] }),
+                editDraft.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Sport",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("sport", event.target.value),
+                        value: editDraft.sport
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Manufacturer",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("manufacturer", event.target.value),
+                        value: editDraft.manufacturer
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Release / Product",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("releaseName", event.target.value),
+                        value: editDraft.releaseName
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Year",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("releaseYear", event.target.value),
+                        value: editDraft.releaseYear
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Parallel",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("parallelName", event.target.value),
+                        value: editDraft.parallelName
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Numbered to",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        min: "1",
+                        onChange: (event) => updateEditDraft("numberedTo", event.target.value),
+                        type: "number",
+                        value: editDraft.numberedTo
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Grading company",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("gradingCompany", event.target.value),
+                        placeholder: "PSA, BGS, SGC...",
+                        value: editDraft.gradingCompany
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Grade",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("grade", event.target.value),
+                        placeholder: "10, 9.5...",
+                        value: editDraft.grade
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Certification number",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("certificationNumber", event.target.value),
+                        value: editDraft.certificationNumber
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Grade qualifier",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("gradeQualifier", event.target.value),
+                        placeholder: "OC, MC, PD...",
+                        value: editDraft.gradeQualifier
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
+                    "Autograph grade",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("autographGrade", event.target.value),
+                        value: editDraft.autographGrade
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
+                    "CardSight parallel ID",
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "input",
+                      {
+                        onChange: (event) => updateEditDraft("parallelId", event.target.value),
+                        value: editDraft.parallelId
+                      }
+                    )
+                  ] })
+                ] }),
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "wide-field", children: [
                   "Image URL",
                   /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
@@ -37678,47 +38560,53 @@ function App() {
                   children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { size: 20 })
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-menu", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                  "button",
-                  {
-                    "aria-expanded": previewMenuOpen,
-                    "aria-haspopup": "menu",
-                    "aria-label": "Card actions",
-                    className: "preview-menu-trigger",
-                    onClick: () => setPreviewMenuOpen((current) => !current),
-                    title: "Card actions",
-                    type: "button",
-                    children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EllipsisVertical, { size: 20 })
-                  }
-                ),
-                previewMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-menu-popover", role: "menu", children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                    "button",
-                    {
-                      onClick: () => openPreviewDeckAction(false),
-                      role: "menuitem",
-                      type: "button",
-                      children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layers, { size: 18 }),
-                        "Add to deck"
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-                    "button",
-                    {
-                      onClick: () => openPreviewDeckAction(true),
-                      role: "menuitem",
-                      type: "button",
-                      children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 18 }),
-                        "New deck"
-                      ]
-                    }
-                  )
-                ] })
-              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                "div",
+                {
+                  className: `preview-menu ${previewCard.game === "sports" ? "sports-hidden" : ""}`,
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                      "button",
+                      {
+                        "aria-expanded": previewMenuOpen,
+                        "aria-haspopup": "menu",
+                        "aria-label": "Card actions",
+                        className: "preview-menu-trigger",
+                        onClick: () => setPreviewMenuOpen((current) => !current),
+                        title: "Card actions",
+                        type: "button",
+                        children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EllipsisVertical, { size: 20 })
+                      }
+                    ),
+                    previewMenuOpen && previewCard.game !== "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-menu-popover", role: "menu", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                        "button",
+                        {
+                          onClick: () => openPreviewDeckAction(false),
+                          role: "menuitem",
+                          type: "button",
+                          children: [
+                            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Layers, { size: 18 }),
+                            "Add to deck"
+                          ]
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                        "button",
+                        {
+                          onClick: () => openPreviewDeckAction(true),
+                          role: "menuitem",
+                          type: "button",
+                          children: [
+                            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { size: 18 }),
+                            "New deck"
+                          ]
+                        }
+                      )
+                    ] })
+                  ]
+                }
+              ),
               /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-image-shell", children: [
                 hasScanPreviewNavigation && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
                   "button",
@@ -37768,6 +38656,46 @@ function App() {
                   " - ",
                   previewCard.priceLabel
                 ] }),
+                previewCard.game === "sports" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "sports-card-details", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.sport || "Sports" }),
+                  previewCard.releaseYear && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.releaseYear }),
+                  previewCard.manufacturer && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.manufacturer }),
+                  previewCard.parallelName && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: previewCard.parallelName }),
+                  previewCard.numberedTo && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                    "/",
+                    previewCard.numberedTo
+                  ] }),
+                  previewCard.gradingCompany && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                    previewCard.gradingCompany,
+                    " ",
+                    previewCard.grade
+                  ] }),
+                  previewCard.certificationNumber && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                    "Cert ",
+                    previewCard.certificationNumber
+                  ] })
+                ] }),
+                previewCard.game === "sports" && previewCard.sportsPriceComparables?.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", { className: "sports-price-details", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("summary", { children: [
+                    previewCard.sportsPriceComparables.length,
+                    " completed-sale source",
+                    previewCard.sportsPriceComparables.length === 1 ? "" : "s"
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: previewCard.sportsPriceComparables.map((comparable) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    "a",
+                    {
+                      href: comparable.url || void 0,
+                      rel: "noreferrer",
+                      target: "_blank",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: comparable.source }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: formatMoney(comparable.price) }),
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: comparable.date ? formatDate(comparable.date) : "" })
+                      ]
+                    },
+                    `${comparable.source}-${comparable.date}-${comparable.price}`
+                  )) })
+                ] }) : null,
                 /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "preview-actions", children: [
                   /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
                     "button",
@@ -37777,7 +38705,19 @@ function App() {
                       type: "button",
                       children: [
                         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { size: 18 }),
-                        "Save"
+                        "Add to Library"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    "button",
+                    {
+                      className: "secondary",
+                      onClick: () => void saveCandidateToWishlist(previewCard),
+                      type: "button",
+                      children: [
+                        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Heart, { size: 18 }),
+                        "Wishlist"
                       ]
                     }
                   ),
@@ -38094,7 +39034,13 @@ async function submitScanIssueReport(report, accountToken) {
   }
 }
 function getGameLabel(game) {
-  return game === "pokemon" ? "Pokemon" : "MTG";
+  if (game === "pokemon") {
+    return "Pokemon";
+  }
+  if (game === "sports") {
+    return "Sports";
+  }
+  return "MTG";
 }
 function namesLikelyMatch(term, cardName) {
   const normalizedTerm = normalizeName2(term);
@@ -38300,6 +39246,28 @@ function createOcrCanvas(source) {
   context.imageSmoothingQuality = "high";
   context.drawImage(source, 0, 0, canvas.width, canvas.height);
   return canvas;
+}
+function createLocalSportsSourceId() {
+  const id = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return `local-sports-${id}`;
+}
+function createLocalSportsThumbnail(source) {
+  const maximumLongEdge = 560;
+  const scale = Math.min(1, maximumLongEdge / Math.max(source.width, source.height));
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  if (!context) {
+    return "";
+  }
+  canvas.width = Math.max(1, Math.round(source.width * scale));
+  canvas.height = Math.max(1, Math.round(source.height * scale));
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = "high";
+  context.drawImage(source, 0, 0, canvas.width, canvas.height);
+  const image = canvas.toDataURL("image/jpeg", 0.78);
+  canvas.width = 1;
+  canvas.height = 1;
+  return image;
 }
 async function openHighDetailCameraStream() {
   let stream = await requestHighDetailCameraStream();
@@ -38571,6 +39539,9 @@ function getCollectionGroupLabel(item, groupBy) {
   }
   if (item.game === "pokemon") {
     return item.colors?.[0] ?? item.category ?? "Pokemon";
+  }
+  if (item.game === "sports") {
+    return item.sport || item.category || "Sports";
   }
   return getMtgColorLabel(item);
 }
@@ -38901,6 +39872,7 @@ lucide-react/dist/esm/icons/download.mjs:
 lucide-react/dist/esm/icons/ellipsis-vertical.mjs:
 lucide-react/dist/esm/icons/external-link.mjs:
 lucide-react/dist/esm/icons/folder-kanban.mjs:
+lucide-react/dist/esm/icons/heart.mjs:
 lucide-react/dist/esm/icons/layers.mjs:
 lucide-react/dist/esm/icons/loader-circle.mjs:
 lucide-react/dist/esm/icons/log-out.mjs:
@@ -38916,6 +39888,7 @@ lucide-react/dist/esm/icons/send.mjs:
 lucide-react/dist/esm/icons/sparkles.mjs:
 lucide-react/dist/esm/icons/trash-2.mjs:
 lucide-react/dist/esm/icons/triangle-alert.mjs:
+lucide-react/dist/esm/icons/trophy.mjs:
 lucide-react/dist/esm/icons/user-round.mjs:
 lucide-react/dist/esm/icons/x.mjs:
 lucide-react/dist/esm/lucide-react.mjs:

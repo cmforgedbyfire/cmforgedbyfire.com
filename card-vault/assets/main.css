@@ -834,7 +834,7 @@ img {
   border-radius: 8px;
   display: grid;
   gap: 4px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin: 0 auto 18px;
   max-width: 1360px;
   padding: 4px;
@@ -1412,6 +1412,98 @@ img {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-bottom: 14px;
   padding: 10px;
+}
+.collection-list-tabs {
+  display: flex;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+}
+.collection-list-tabs button {
+  align-items: center;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 0.35rem;
+  min-height: 2.35rem;
+  padding: 0.45rem 0.85rem;
+}
+.collection-list-tabs button.active {
+  background: color-mix(in srgb, var(--accent) 20%, var(--surface));
+  border-color: var(--accent);
+  color: var(--text);
+}
+.sports-price-queue {
+  align-items: center;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--border));
+  border-radius: 0.85rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+}
+.sports-price-queue > div {
+  display: grid;
+  gap: 0.2rem;
+}
+.sports-price-queue span {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+.sports-price-queue button {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.4rem;
+}
+.sports-card-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.sports-card-details span {
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.55rem;
+}
+.sports-price-details {
+  border-top: 1px solid var(--border);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+}
+.sports-price-details summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 700;
+}
+.sports-price-details > div {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+.sports-price-details a {
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  color: var(--text);
+  display: grid;
+  gap: 0.2rem;
+  grid-template-columns: 1fr auto;
+  padding: 0.55rem 0.65rem;
+  text-decoration: none;
+}
+.sports-price-details small {
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+.preview-menu.sports-hidden {
+  display: none;
 }
 .collection-game-list {
   display: grid;
@@ -3579,7 +3671,7 @@ img {
   }
   .tabbar {
     gap: 3px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-bottom: 10px;
     padding: 3px;
   }
