@@ -144,7 +144,7 @@
     var known = [
       "master-generator", "card-vault", "creative-qr", "latter-day-lens",
       "creative-pdf", "creative-image-tools", "cartrev-towers", "humans",
-      "otto", "vent", "trev", "coach", "forgeflix", "pc-purifier", "forge-audio-studio",
+      "otto", "trev", "coach", "forgeflix", "pc-purifier", "forge-audio-studio",
       "the-forge", "ship-studio"
     ];
     for (var index = 0; index < known.length; index += 1) {

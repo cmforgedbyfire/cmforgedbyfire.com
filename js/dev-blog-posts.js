@@ -618,9 +618,9 @@ window.DEV_BLOG_POSTS = [
     takeaway: "Shared code does not guarantee shared releases. When a fix matters, verify the version actually installed on every platform."
   },
   {
-    slug: "four-ais-four-jobs",
-    title: "Four AIs, Four Different Jobs",
-    project: "OTTO, V.E.N.T, TreV & Coach",
+    slug: "three-ais-three-jobs",
+    title: "Three AIs, Three Different Jobs",
+    project: "OTTO, TreV & Coach",
     category: "AI",
     date: "2026-10-05",
     displayDate: "October 5, 2026",
@@ -631,18 +631,12 @@ window.DEV_BLOG_POSTS = [
     imageAlt: "OTTO assistant thinking",
     productUrl: "ai.html",
     productLabel: "Explore the AI projects",
-    intro: "The phrase ‘AI product’ can flatten very different ideas into one vague promise. Looking closely at OTTO, V.E.N.T, TreV, and Coach revealed four assistants with four different responsibilities—and four different boundaries.",
+    intro: "The phrase ‘AI product’ can flatten very different ideas into one vague promise. Looking closely at OTTO, TreV, and Coach revealed three assistants with three different responsibilities—and three different boundaries.",
     sections: [
       {
         heading: "OTTO asks before it acts",
         paragraphs: [
           "OTTO is a local-first Windows assistant aimed at everyday technology and PC help. It can perform read-only diagnostics, but machine-changing work belongs behind an explicit plan and approval. The long-term ambition is broad; the current Store package is not ready, and the public description says so."
-        ]
-      },
-      {
-        heading: "V.E.N.T listens without pretending to be a therapist",
-        paragraphs: [
-          "V.E.N.T is a reflection and journaling companion with local-first storage and safety routing. Its most important feature may be the line it refuses to cross: it is not clinical care, an emergency service, or a substitute for trusted human support."
         ]
       },
       {
