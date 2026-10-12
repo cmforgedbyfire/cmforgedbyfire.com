@@ -363,6 +363,13 @@ button.btn{
   gap: 8px;
 }
 
+.store-status{
+  cursor: default;
+  border-style: dashed;
+  opacity: .9;
+  user-select: none;
+}
+
 .store-logo{
   width: 18px;
   height: 18px;
