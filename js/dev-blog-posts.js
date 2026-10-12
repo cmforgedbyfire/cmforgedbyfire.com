@@ -7,6 +7,166 @@
  */
 window.DEV_BLOG_POSTS = [
   {
+    slug: "c3po-finding-the-problems-behind-the-problems",
+    title: "C-3PO: Finding the Problems Behind the Problems",
+    project: "C-3PO",
+    category: "AI",
+    date: "2026-10-11",
+    displayDate: "October 11, 2026",
+    status: "Audit findings under review",
+    readTime: "3 min read",
+    summary: "Two independent audits uncovered concrete problems involving coding intent, code visibility, memory retrieval, conflicting instructions, outdated tests, and security.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "ai.html",
+    productLabel: "Explore the AI projects",
+    intro: "Yesterday was an eye-opening day for C-3PO.",
+    sections: [
+      {
+        heading: "Two audits, genuine problems",
+        paragraphs: [
+          "I had two different AI coding models audit the project because, after months of development, certain features still weren't behaving the way they should.",
+          "Both investigations uncovered genuine problems. Coding lessons were sometimes being mistaken for requests to modify files. Some generated code examples were being removed before I could even see them. Memory retrieval could bring back irrelevant information or leave out the very corrections it was supposed to remember.",
+          "The audits also uncovered conflicting instructions, outdated tests, and some security concerns."
+        ]
+      },
+      {
+        heading: "Why isolation matters",
+        paragraphs: [
+          "One particularly interesting discovery was that both auditing sessions had started modifying the project at the same time. That helped demonstrate how easily development work can become confused without proper isolation and version control."
+        ]
+      },
+      {
+        heading: "Specific problems are progress",
+        paragraphs: [
+          "These findings don't prove why every problem happened, but they give me something much more useful than another promise that everything is fixed: specific problems I can investigate and address.",
+          "Sometimes progress means finding out why the progress you thought you made wasn't holding."
+        ]
+      }
+    ],
+    takeaway: "Forged by Fire — Building practical, user-focused software."
+  },
+  {
+    slug: "project-r2-building-toward-independence",
+    title: "Project R2: Building Toward Independence",
+    project: "Project R2",
+    category: "AI",
+    date: "2026-10-11",
+    displayDate: "October 11, 2026",
+    status: "Investigation and planning",
+    readTime: "3 min read",
+    summary: "Project R2 explores a dedicated local AI software engineer that can understand projects, make meaningful changes, test its work, and diagnose failures.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "ai.html",
+    productLabel: "Explore the AI projects",
+    intro: "I've spent approximately 18 months experimenting with local AI, and one of my biggest goals hasn't changed: I want an AI assistant that can help build my company's software without depending on expensive commercial AI services.",
+    sections: [
+      {
+        heading: "A dedicated AI software engineer",
+        paragraphs: [
+          "Yesterday, I started reconsidering how to approach that goal.",
+          "Rather than continually expanding one assistant to perform every possible job, I'm exploring a dedicated AI software engineer called R2.",
+          "The objective isn't another chatbot that can produce snippets of code. I want an assistant that can understand projects, make meaningful changes, run tests, diagnose failures, and eventually handle substantial development work."
+        ]
+      },
+      {
+        heading: "Local and under my control",
+        paragraphs: [
+          "It needs to operate locally, use resources I already own wherever practical, and keep my company's software and information under my control.",
+          "This is still at the investigation and planning stage. I'm not announcing a working replacement for commercial coding assistants.",
+          "But I am refining what success should look like."
+        ]
+      },
+      {
+        heading: "What success means",
+        paragraphs: [
+          "The goal isn't to build something that sounds intelligent.",
+          "The goal is to build something that can reliably do the work."
+        ]
+      }
+    ],
+    takeaway: "Forged by Fire — Building practical, user-focused software."
+  },
+  {
+    slug: "creative-pdf-making-reliability-the-priority",
+    title: "Creative PDF: Making Reliability the Priority",
+    project: "Creative PDF",
+    category: "Software",
+    date: "2026-10-11",
+    displayDate: "October 11, 2026",
+    status: "In development",
+    readTime: "3 min read",
+    summary: "Creative PDF's Windows search work is testing whether highlights remain trustworthy as documents are zoomed, rotated, and viewed near cropped page boundaries.",
+    image: "assets/logos/creative_pdf.png",
+    imageAlt: "Creative PDF logo",
+    productUrl: "paid-software.html#creative-pdf",
+    productLabel: "View Creative PDF",
+    intro: "Development continued on Creative PDF yesterday, with particular attention on the Windows document-search experience.",
+    sections: [
+      {
+        heading: "When the document changes",
+        paragraphs: [
+          "One of the challenges with PDF software is that a feature can appear to work correctly until the document changes.",
+          "For example, finding a word isn't enough. Search highlights also need to remain correctly positioned when someone zooms, rotates a page, or changes the visible document area.",
+          "During testing, a problem appeared involving highlighted text near a cropped page boundary. That became another issue to investigate rather than something to ignore simply because the initial test looked successful."
+        ]
+      },
+      {
+        heading: "A paid application has to earn trust",
+        paragraphs: [
+          "Creative PDF is planned as a paid application with a straightforward, one-time purchase price. I want it to offer useful features without the subscriptions and intrusive advertising that have become so common.",
+          "But charging for software means taking its reliability seriously.",
+          "The important question isn't how many PDF features I can advertise. It's how many I can confidently deliver.",
+          "Development and verification are still underway."
+        ]
+      }
+    ],
+    takeaway: "Forged by Fire — Building practical, user-focused software."
+  },
+  {
+    slug: "bm-evo-the-cost-of-training-your-own-ai",
+    title: "BM-Evo: The Cost of Training Your Own AI",
+    project: "BM-Evo",
+    category: "AI",
+    date: "2026-10-11",
+    displayDate: "October 11, 2026",
+    status: "Training experiment",
+    readTime: "3 min read",
+    summary: "A 5.5-billion-token BM-Evo training run brings valuable lessons—and a real opportunity cost while the GPU cannot serve other local AI work.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "ai.html",
+    productLabel: "Explore the AI projects",
+    intro: "My local AI training experiment, BM-Evo, continued running yesterday.",
+    sections: [
+      {
+        heading: "A large local experiment",
+        paragraphs: [
+          "The current experiment involves training a roughly 125-million-parameter foundation model on a target of 5.5 billion tokens.",
+          "It's fascinating work, but it comes with a very real tradeoff.",
+          "While the training process occupies my GPU, I lose access to computing resources I could otherwise use for local assistants, programming experiments, and other development projects."
+        ]
+      },
+      {
+        heading: "Training is not the same as usefulness",
+        paragraphs: [
+          "And there's something important to understand about training a model this size: completing the training process doesn't automatically produce an assistant capable of holding sophisticated conversations or writing useful software.",
+          "I've learned a tremendous amount about datasets, checkpoints, training loss, and model behavior through these experiments. But I've also learned that technical progress and practical usefulness aren't necessarily the same thing."
+        ]
+      },
+      {
+        heading: "The opportunity cost",
+        paragraphs: [
+          "Yesterday, I found myself seriously considering whether continuing this run was worth the opportunity cost.",
+          "I haven't abandoned the goal of developing my own AI.",
+          "I'm learning to ask a harder question: Is this experiment moving me toward the technology I actually want to build?"
+        ]
+      }
+    ],
+    takeaway: "Forged by Fire — Building practical, user-focused software."
+  },
+  {
     slug: "ten-days-in-the-forge",
     title: "Ten Days in the Forge",
     project: "Forged Model Lab",
