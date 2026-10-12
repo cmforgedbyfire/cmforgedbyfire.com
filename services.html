@@ -3,225 +3,155 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Services - Forged By Fire Software LLC</title>
-  <meta name="description" content="Request custom software, AI tools, environments, or remote IT support from Forged By Fire Software LLC." />
-
+  <title>Request a Project - Forged By Fire Software LLC</title>
+  <meta name="description" content="Request custom software, apps, websites, AI tools, or automation from Forged By Fire Software LLC." />
+  <link rel="canonical" href="https://cmforgedbyfire.com/services.html" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/forgedbyfire-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/forgedbyfire-180.png" />
 </head>
 
-<body>
+<body class="request-page">
+  <a href="#main-content" class="skip-to-main">Skip to main content</a>
   <header class="site-header">
     <div class="container">
       <div class="brand-row">
         <img src="assets/logos/forgedbyfire.jpg" alt="Forged By Fire Software LLC logo" class="brand-logo" />
         <div class="brand-text">
-          <h1 class="brand-title">Services</h1>
-          <p class="brand-subtitle">Custom software - AI tools - Remote IT</p>
+          <h1 class="brand-title">Request a Project</h1>
+          <p class="brand-subtitle">Custom software · Apps · Websites · AI</p>
         </div>
       </div>
-      <nav class="nav">
+      <nav class="nav" aria-label="Main navigation">
         <a href="index.html" class="nav-link">Home</a>
         <a href="software.html" class="nav-link">Software (Free)</a>
         <a href="games.html" class="nav-link">Games</a>
         <a href="ai.html" class="nav-link">AI</a>
         <a href="paid-software.html" class="nav-link">Paid Software</a>
         <a href="dev-blog.html" class="nav-link">DEV Blog</a>
+        <a href="services.html" class="nav-link active" aria-current="page">Request a Project</a>
       </nav>
     </div>
   </header>
 
-  <main class="page">
-    <section class="section">
-      <h2 class="section-title">Order Custom Software</h2>
-      <p class="muted">
-        Tell us what you need and we will reply with cost and timeline options.
-        We specialize in custom software, automation, and AI tooling (local or hosted).
-        No work starts until payment is received, and the timeline begins after payment.
-      </p>
+  <main class="page" id="main-content">
+    <section class="request-hero" aria-labelledby="request-title">
+      <div class="request-hero-copy">
+        <p class="request-kicker">Have something useful in mind?</p>
+        <h2 id="request-title">Tell me what you want to build.</h2>
+        <p class="request-lead">Use this page to describe custom software, a mobile or desktop app, a website, an AI tool, automation, or changes to an existing project.</p>
+      </div>
+      <aside class="request-acceptance" aria-label="How requests are accepted">
+        <span class="request-acceptance-label">A clear promise</span>
+        <p><strong>Every request is reviewed individually.</strong> I only accept projects I am confident I can deliver well. Submitting a request does not guarantee acceptance.</p>
+      </aside>
+    </section>
 
-      <div class="panel">
-        <form id="serviceForm" class="service-form">
+    <section class="section request-options" aria-labelledby="request-types-title">
+      <div class="request-section-heading">
+        <div>
+          <p class="request-kicker">What I can review</p>
+          <h2 class="section-title" id="request-types-title">Choose the closest fit</h2>
+        </div>
+        <p class="muted">If your idea overlaps categories, choose the best match and explain the rest below.</p>
+      </div>
+      <div class="request-type-grid">
+        <article class="request-type-card"><span aria-hidden="true">01</span><h3>Software</h3><p>Windows tools, utilities, dashboards, workflows, APIs, and improvements to existing software.</p></article>
+        <article class="request-type-card"><span aria-hidden="true">02</span><h3>Apps</h3><p>Mobile or desktop applications, cross-platform planning, store-ready features, and app updates.</p></article>
+        <article class="request-type-card"><span aria-hidden="true">03</span><h3>Websites</h3><p>Business sites, product pages, portfolios, private dashboards, and focused web applications.</p></article>
+        <article class="request-type-card"><span aria-hidden="true">04</span><h3>AI &amp; Automation</h3><p>Local-first assistants, document tools, practical automations, and responsible AI integrations.</p></article>
+      </div>
+    </section>
+
+    <section class="section request-form-section" aria-labelledby="project-form-title">
+      <div class="request-form-intro">
+        <div><p class="request-kicker">Project request</p><h2 class="section-title" id="project-form-title">Give me the useful details</h2></div>
+        <p class="muted">This starts a conversation and helps me decide whether the project is a responsible fit. It is not a contract, quote, or promise that work will begin.</p>
+      </div>
+
+      <form id="projectRequestForm" class="project-request-form" novalidate>
+        <fieldset class="request-fieldset">
+          <legend><span>1</span> About you</legend>
           <div class="form-grid">
-            <div class="form-field">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
-            </div>
-            <div class="form-field">
-              <label for="company">Company (optional)</label>
-              <input id="company" name="company" type="text" placeholder="Company or studio" />
-            </div>
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@email.com" required />
-            </div>
-            <div class="form-field">
-              <label for="phone">Phone (optional)</label>
-              <input id="phone" name="phone" type="text" placeholder="Best number to reach you" />
-            </div>
-            <div class="form-field">
-              <label for="type">Project type</label>
-              <select id="type" name="type" required>
-                <option value="">Choose one</option>
-                <option>Remote IT support</option>
-                <option>AI tool / automation</option>
-                <option>Local AI setup (Ollama, model tuning, offline)</option>
-                <option>AI copilot / internal assistant</option>
-                <option>RAG knowledge base / document search</option>
-                <option>Workflow automation (scripts + dashboards)</option>
-                <option>Data cleanup / migration</option>
-                <option>Security review / hardening pass</option>
-                <option>Desktop app or launcher</option>
-                <option>Web app / dashboard</option>
-                <option>API / backend service</option>
-                <option>Integration (Zapier, Slack, Discord, email)</option>
-                <option>Code job (feature or fix)</option>
-                <option>Small contract (1-2 weeks)</option>
-                <option>Ongoing support / maintenance</option>
-                <option>Custom environment setup</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="budget">Budget range</label>
-              <select id="budget" name="budget" required>
-                <option value="">Select range</option>
-                <option>Under $250</option>
-                <option>$250 - $750</option>
-                <option>$750 - $2,000</option>
-                <option>$2,000 - $5,000</option>
-                <option>$5,000 - $10,000</option>
-                <option>$10,000 - $25,000</option>
-                <option>$25,000+</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="timeline">Timeline</label>
-              <select id="timeline" name="timeline" required>
-                <option value="">Select timeline</option>
-                <option>ASAP</option>
-                <option>1 week</option>
-                <option>1-2 weeks</option>
-                <option>2-4 weeks</option>
-                <option>1-3 months</option>
-                <option>3+ months</option>
-                <option>Flexible</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="environment">Environment</label>
-              <select id="environment" name="environment">
-                <option value="">Not sure</option>
-                <option>Windows</option>
-                <option>Linux</option>
-                <option>Mac</option>
-                <option>Mixed</option>
-                <option>Server + desktop</option>
-                <option>Cloud + on-prem</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="model">AI model preference</label>
-              <select id="model" name="model">
-                <option value="">No preference</option>
-                <option>Local only (Qwen/DeepSeek/Phi)</option>
-                <option>Local + hosted mix</option>
-                <option>Open to hosted models</option>
-                <option>Need model advice</option>
-                <option>Not sure</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="ai_focus">AI focus (optional)</label>
-              <select id="ai_focus" name="ai_focus">
-                <option value="">None</option>
-                <option>Automation / agents</option>
-                <option>Document understanding</option>
-                <option>Customer support / chat</option>
-                <option>Code assistance</option>
-                <option>Data extraction</option>
-                <option>Image or vision tools</option>
-                <option>Audio / transcription</option>
-                <option>Security or compliance review</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="contact">Preferred contact</label>
-              <select id="contact" name="contact">
-                <option>Email</option>
-                <option>Phone</option>
-                <option>Either</option>
-              </select>
-            </div>
+            <div class="form-field"><label for="name">Your name <span aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" maxlength="120" required /></div>
+            <div class="form-field"><label for="email">Reply email <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
+            <div class="form-field"><label for="company">Company or organization <span class="muted">(optional)</span></label><input id="company" name="company" type="text" autocomplete="organization" maxlength="160" /></div>
+            <div class="form-field"><label for="contactMethod">Preferred contact</label><select id="contactMethod" name="contactMethod"><option value="Email">Email</option><option value="Phone after email">Phone after an initial email</option><option value="Video call after email">Video call after an initial email</option></select></div>
           </div>
+        </fieldset>
 
-          <div class="form-field">
-            <label for="details">Project details</label>
-            <textarea id="details" name="details" rows="6" placeholder="Tell us what you want built, key goals, and any constraints." required></textarea>
+        <fieldset class="request-fieldset">
+          <legend><span>2</span> Project shape</legend>
+          <div class="form-grid">
+            <div class="form-field"><label for="projectCategory">Project category <span aria-hidden="true">*</span></label><select id="projectCategory" name="projectCategory" required><option value="">Choose one</option><option value="software">Software</option><option value="app">App</option><option value="website">Website</option><option value="ai_automation">AI or automation</option><option value="existing_project">Changes to an existing project</option><option value="other">Other</option></select></div>
+            <div class="form-field"><label for="projectStage">Where is it now? <span aria-hidden="true">*</span></label><select id="projectStage" name="projectStage" required><option value="">Choose one</option><option value="new">New project</option><option value="redesign">Redesign or rebuild</option><option value="fix_finish">Fix or finish an existing project</option><option value="maintenance">Ongoing maintenance</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="form-field request-conditional" data-category="software existing_project other" hidden><label for="softwarePlatform">Software platform</label><select id="softwarePlatform" name="softwarePlatform"><option value="">Choose if known</option><option>Windows</option><option>macOS</option><option>Linux</option><option>Cross-platform desktop</option><option>Web-based</option><option>Not sure yet</option></select></div>
+            <div class="form-field request-conditional" data-category="app existing_project other" hidden><label for="appPlatform">App platform</label><select id="appPlatform" name="appPlatform"><option value="">Choose if known</option><option>Android</option><option>iPhone or iPad</option><option>Windows desktop</option><option>Multiple platforms</option><option>Not sure yet</option></select></div>
+            <div class="form-field request-conditional" data-category="website existing_project other" hidden><label for="websiteType">Website type</label><select id="websiteType" name="websiteType"><option value="">Choose if known</option><option>Business or service website</option><option>Product or landing page</option><option>Portfolio</option><option>Dashboard or internal tool</option><option>Web application</option><option>Not sure yet</option></select></div>
+            <div class="form-field request-conditional" data-category="ai_automation existing_project other" hidden><label for="aiFocus">AI or automation focus</label><select id="aiFocus" name="aiFocus"><option value="">Choose if known</option><option>Local AI assistant</option><option>Document search or understanding</option><option>Business workflow automation</option><option>Text, image, or audio tools</option><option>AI added to existing software</option><option>Not sure yet</option></select></div>
+            <div class="form-field form-field-wide"><label for="audience">Who will use it?</label><input id="audience" name="audience" type="text" maxlength="500" placeholder="Customers, employees, family, a public audience, or just you" /></div>
           </div>
+        </fieldset>
 
-          <div class="form-actions">
-            <button type="button" class="btn btn-primary" onclick="sendServiceRequest()">Send request</button>
-            <span class="muted">Opens your email client with the details pre-filled.</span>
+        <fieldset class="request-fieldset">
+          <legend><span>3</span> What it needs to do</legend>
+          <div class="form-field"><label for="projectGoal">What problem should this solve? <span aria-hidden="true">*</span></label><textarea id="projectGoal" name="projectGoal" rows="5" maxlength="1800" required placeholder="Describe the outcome you want in your own words."></textarea></div>
+          <div class="form-field"><label for="mustHaveFeatures">What features are essential? <span aria-hidden="true">*</span></label><textarea id="mustHaveFeatures" name="mustHaveFeatures" rows="5" maxlength="2400" required placeholder="List the things it must do. A short bullet-style list is fine."></textarea></div>
+          <div class="form-grid">
+            <div class="form-field"><label for="integrations">Services or integrations <span class="muted">(optional)</span></label><textarea id="integrations" name="integrations" rows="3" maxlength="1200" placeholder="Payments, email, app stores, databases, existing APIs, local hardware, and so on."></textarea></div>
+            <div class="form-field"><label for="existingUrl">Existing site or project link <span class="muted">(optional)</span></label><input id="existingUrl" name="existingUrl" type="url" inputmode="url" maxlength="500" placeholder="https://" /></div>
           </div>
-        </form>
+        </fieldset>
+
+        <fieldset class="request-fieldset">
+          <legend><span>4</span> Practical limits</legend>
+          <div class="form-grid">
+            <div class="form-field"><label for="budget">Approximate budget <span aria-hidden="true">*</span></label><select id="budget" name="budget" required><option value="">Choose a range</option><option value="under_250">Under $250</option><option value="250_750">$250–$750</option><option value="750_2000">$750–$2,000</option><option value="2000_5000">$2,000–$5,000</option><option value="5000_10000">$5,000–$10,000</option><option value="over_10000">$10,000+</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="form-field"><label for="timeline">Desired timeline <span aria-hidden="true">*</span></label><select id="timeline" name="timeline" required><option value="">Choose a timeline</option><option value="asap">As soon as practical</option><option value="one_month">Within one month</option><option value="one_to_three_months">One to three months</option><option value="three_plus_months">More than three months</option><option value="flexible">Flexible</option><option value="unsure">Not sure yet</option></select></div>
+            <div class="form-field form-field-wide"><label for="additionalDetails">Anything else I should know? <span class="muted">(optional)</span></label><textarea id="additionalDetails" name="additionalDetails" rows="4" maxlength="2400" placeholder="Constraints, examples you like, accessibility needs, or questions you want answered."></textarea></div>
+          </div>
+        </fieldset>
+
+        <div class="form-honey" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
+
+        <div class="request-submit-panel">
+          <div>
+            <h3>Ready for review?</h3>
+            <p>Submitting sends these details securely to the private Forged By Fire project-request inbox in App Master. Do not include passwords, payment information, private keys, health records, or other sensitive information.</p>
+            <label class="request-consent" for="consent"><input id="consent" name="consent" type="checkbox" required /><span>I understand this is a request for review, not an acceptance, contract, quote, or guarantee of work. I agree that Forged By Fire may use these details to evaluate and reply to my request.</span></label>
+            <p class="request-verification-note">The form uses the existing Forged By Fire gateway, origin checks, a hidden spam trap, and short-lived rate limiting. It does not require an account.</p>
+          </div>
+          <div class="request-submit-actions">
+            <p><strong>I review each request individually and only accept work I am confident I can deliver well.</strong></p>
+            <button id="projectRequestSubmit" type="submit" class="btn btn-primary">Send project request</button>
+            <p id="projectRequestStatus" class="request-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section request-next" aria-labelledby="what-next-title">
+      <div class="panel">
+        <p class="request-kicker">What happens next</p>
+        <h2 id="what-next-title">A request is the beginning of a conversation.</h2>
+        <ol class="request-steps">
+          <li><span>1</span><div><strong>I review the fit.</strong><p>I consider the scope, schedule, technical requirements, and whether I can responsibly deliver it.</p></div></li>
+          <li><span>2</span><div><strong>I reply by email.</strong><p>If it looks workable, I may ask questions before discussing a written scope, price, and timeline.</p></div></li>
+          <li><span>3</span><div><strong>Work starts only after agreement.</strong><p>No project begins until both sides agree to the work, terms, schedule, and payment arrangements.</p></div></li>
+        </ol>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-inner container">
-
-      <p class="footer-support"><a href="support.html">Support / Feedback</a></p>
-      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved.
-        <span class="dot">•</span> <a href="https://www.facebook.com/profile.php?id=61594003411493" target="_blank" rel="noopener">Facebook</a></p>
-      <form class="donate-form" action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="hosted_button_id" value="2VRFMADCKZLRU" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-      </form>
+      <p class="footer-support"><a href="support.html">Support / Feedback</a> <span class="dot">•</span> <a href="privacy.html">Privacy</a></p>
+      <p>&copy; 2026 cmforgedbyfire.com - Forged By Fire Software LLC. All rights reserved. <span class="dot">•</span> <a href="https://www.facebook.com/profile.php?id=61594003411493" target="_blank" rel="noopener">Facebook</a></p>
     </div>
   </footer>
 
-  <script>
-    function supportInbox() {
-      return ['forgedbyfiresoftware', 'gmail.com'].join('@');
-    }
-
-    function sendServiceRequest() {
-      var form = document.getElementById('serviceForm');
-      var fields = [
-        ['Name', form.name.value],
-        ['Company', form.company.value],
-        ['Email', form.email.value],
-        ['Phone', form.phone.value],
-        ['Project type', form.type.value],
-        ['Budget', form.budget.value],
-        ['Timeline', form.timeline.value],
-        ['Environment', form.environment.value],
-        ['Model preference', form.model.value],
-        ['AI focus', form.ai_focus.value],
-        ['Preferred contact', form.contact.value],
-        ['Details', form.details.value]
-      ];
-
-      var body = fields.map(function(item) {
-        return item[0] + ': ' + (item[1] || '-');
-      }).join('\n');
-
-      var subject = 'Service Request - ' + (form.type.value || 'Custom Project');
-      var mailto = 'mailto:' + supportInbox()
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(body);
-
-      window.location.href = mailto;
-    }
-  </script>
+  <script src="js/project-request.js"></script>
   <script src="js/cursor-trail.js"></script>
 </body>
 </html>
-

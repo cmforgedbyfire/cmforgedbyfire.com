@@ -1640,6 +1640,212 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   flex-wrap: wrap;
 }
 
+/* Project request page */
+.request-page .page{
+  width:min(1180px, calc(100% - 32px));
+  margin:0 auto;
+}
+
+.request-hero{
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(300px, .85fr);
+  gap:28px;
+  align-items:center;
+  margin:28px 0 8px;
+  padding:clamp(28px, 5vw, 58px);
+  border:1px solid rgba(227,151,65,.34);
+  border-radius:24px;
+  background:
+    radial-gradient(680px 320px at 12% 20%, rgba(255,118,24,.2), transparent 68%),
+    linear-gradient(135deg, rgba(34,26,19,.96), rgba(17,20,18,.96));
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.request-kicker{
+  margin:0 0 9px;
+  color:var(--brass);
+  font-size:.76rem;
+  font-weight:900;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+.request-hero h2{
+  max-width:720px;
+  margin:0;
+  font-family:Georgia, 'Times New Roman', serif;
+  font-size:clamp(2.2rem, 5vw, 4.6rem);
+  line-height:.98;
+}
+
+.request-lead{
+  max-width:720px;
+  margin:20px 0 0;
+  color:var(--muted);
+  font-size:1.08rem;
+  line-height:1.7;
+}
+
+.request-acceptance{
+  padding:24px;
+  border:1px solid rgba(255,255,255,.1);
+  border-left:4px solid var(--ember);
+  border-radius:16px;
+  background:rgba(0,0,0,.25);
+}
+
+.request-acceptance-label{
+  display:block;
+  margin-bottom:10px;
+  color:var(--teal);
+  font-size:.74rem;
+  font-weight:900;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.request-acceptance p{margin:0; line-height:1.65}
+
+.request-section-heading,
+.request-form-intro{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(280px, .75fr);
+  gap:24px;
+  align-items:end;
+  margin-bottom:18px;
+}
+
+.request-section-heading .section-title,
+.request-form-intro .section-title{margin-bottom:0}
+
+.request-type-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+}
+
+.request-type-card{
+  min-height:190px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  background:linear-gradient(160deg, rgba(43,39,31,.94), rgba(24,25,22,.94));
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
+}
+
+.request-type-card > span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border:1px solid rgba(227,151,65,.45);
+  border-radius:10px;
+  color:var(--brass);
+  font-size:.78rem;
+  font-weight:900;
+}
+
+.request-type-card h3{margin:22px 0 8px; font-size:1.18rem}
+.request-type-card p{margin:0; color:var(--muted); line-height:1.55}
+
+.project-request-form{
+  display:grid;
+  gap:18px;
+}
+
+.request-fieldset{
+  margin:0;
+  padding:24px;
+  border:1px solid rgba(255,255,255,.085);
+  border-radius:16px;
+  background:var(--panel);
+  box-shadow:var(--shadow);
+}
+
+.request-fieldset legend{
+  padding:0 10px 0 0;
+  color:var(--text);
+  font-size:1.08rem;
+  font-weight:900;
+}
+
+.request-fieldset legend span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:32px;
+  margin-right:8px;
+  border-radius:9px;
+  color:#1b130b;
+  background:linear-gradient(135deg, var(--brass), var(--ember));
+}
+
+.request-fieldset .form-field + .form-field{margin-top:16px}
+.request-fieldset .form-grid .form-field + .form-field{margin-top:0}
+.form-field-wide{grid-column:1 / -1}
+.request-conditional[hidden]{display:none}
+
+.project-request-form input:focus,
+.project-request-form select:focus,
+.project-request-form textarea:focus{
+  outline:2px solid rgba(91,208,230,.58);
+  outline-offset:2px;
+  border-color:var(--teal);
+}
+
+.request-submit-panel{
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap:28px;
+  padding:26px;
+  border:1px solid rgba(227,151,65,.36);
+  border-radius:18px;
+  background:linear-gradient(140deg, rgba(43,35,25,.95), rgba(24,27,23,.96));
+  box-shadow:var(--shadow);
+}
+
+.request-submit-panel h3{margin:0 0 8px; font-size:1.35rem}
+.request-submit-panel p{line-height:1.55}
+
+.request-consent{
+  display:grid;
+  grid-template-columns:22px minmax(0, 1fr);
+  gap:10px;
+  align-items:start;
+  margin:18px 0;
+  color:var(--muted);
+  line-height:1.5;
+  cursor:pointer;
+}
+
+.request-consent input{width:18px; height:18px; margin-top:3px; accent-color:var(--ember)}
+.request-verification-note{padding:12px; border:1px dashed rgba(255,255,255,.16); border-radius:10px; color:var(--muted)}
+.request-submit-actions{padding:20px; border-radius:14px; background:rgba(0,0,0,.22)}
+.request-submit-actions .btn{width:100%; margin-top:10px}
+.request-submit-actions .btn:disabled{opacity:.62; cursor:wait}
+
+.request-status{
+  min-height:1.5em;
+  margin:14px 0 0;
+  padding:0;
+  color:var(--muted);
+  font-size:.93rem;
+}
+
+.request-status.is-success{padding:12px; border:1px solid rgba(104,192,126,.35); border-radius:10px; color:#a8e4b4; background:rgba(42,107,57,.18)}
+.request-status.is-error{padding:12px; border:1px solid rgba(255,112,90,.36); border-radius:10px; color:#ffb2a4; background:rgba(138,48,34,.18)}
+.request-status.is-working{color:var(--brass)}
+
+.request-next .panel{padding:28px}
+.request-next h2{margin:0 0 22px; font-family:Georgia, 'Times New Roman', serif}
+.request-steps{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px; margin:0; padding:0; list-style:none}
+.request-steps li{display:grid; grid-template-columns:38px minmax(0, 1fr); gap:12px; align-items:start}
+.request-steps li > span{display:flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid rgba(227,151,65,.4); border-radius:50%; color:var(--brass); font-weight:900}
+.request-steps p{margin:5px 0 0; color:var(--muted); line-height:1.5}
+
 .modal-overlay{
   position: fixed;
   inset: 0;
@@ -1775,6 +1981,13 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .warning-shot-grid{grid-template-columns: 1fr}
   .project-gallery{grid-template-columns: 1fr}
   .form-grid{grid-template-columns: 1fr}
+  .form-field-wide{grid-column:auto}
+  .request-hero,
+  .request-section-heading,
+  .request-form-intro,
+  .request-submit-panel{grid-template-columns:1fr}
+  .request-type-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .request-steps{grid-template-columns:1fr}
   .hero h2{font-size: 1.7rem}
   .brand-row{justify-content:center; text-align:center}
   .brand-text{text-align:center}
@@ -1833,6 +2046,12 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 }
 
 @media (max-width: 620px){
+  .request-page .page{width:min(100% - 20px, 1180px)}
+  .request-hero{padding:26px 20px; border-radius:18px}
+  .request-type-grid{grid-template-columns:1fr}
+  .request-type-card{min-height:0}
+  .request-fieldset,
+  .request-submit-panel{padding:18px}
   .blog-hero{padding:38px 16px 34px}
   .blog-filter-row{overflow-x:auto; flex-wrap:nowrap}
   .blog-filter{white-space:nowrap}
