@@ -950,10 +950,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 }
 
 .blog-intro-strip{
-  display:grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, .58fr);
-  gap:24px;
-  align-items:start;
   margin-bottom:18px;
 }
 
@@ -980,34 +976,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   letter-spacing:.15em;
   text-transform:uppercase;
 }
-
-.blog-publishing-help{
-  border:1px solid rgba(209,163,90,.28);
-  border-radius:var(--radius);
-  background:rgba(36,32,24,.7);
-  overflow:hidden;
-}
-
-.blog-publishing-help summary{
-  padding:14px 16px;
-  cursor:pointer;
-  color:var(--text);
-  font-weight:800;
-}
-
-.blog-publishing-help[open] summary{
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.blog-publishing-help ol,
-.blog-publishing-help p{
-  margin:14px 18px;
-  color:var(--muted);
-  line-height:1.55;
-}
-
-.blog-publishing-help ol{padding-left:20px}
-.blog-publishing-help code{color:var(--brass)}
 
 .blog-filter-row{
   display:flex;
@@ -2002,7 +1970,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 
 @media (max-width: 900px){
   .cards{grid-template-columns: 1fr}
-  .blog-intro-strip{grid-template-columns:1fr}
   .blog-layout{grid-template-columns:1fr}
   .blog-sidebar-panel{position:static}
   .blog-recent-list{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr))}
