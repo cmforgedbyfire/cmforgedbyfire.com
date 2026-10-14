@@ -7,6 +7,313 @@
  */
 window.DEV_BLOG_POSTS = [
   {
+    slug: "cartrev-towers-when-engagement-isnt-a-store-visit",
+    title: "CarTrev Towers: When Engagement Isn't a Store Visit",
+    project: "CarTrev Towers",
+    category: "Games / Marketing",
+    date: "2026-10-14",
+    displayDate: "October 14, 2026",
+    status: "Facebook campaign running; sales impact unknown",
+    readTime: "3 min read",
+    summary: "A direct-to-Store Facebook campaign produced encouraging engagement numbers, but only one additional reported Microsoft Store view.",
+    image: "assets/logos/cartrev-towers.png",
+    imageAlt: "CarTrev Towers game logo",
+    productUrl: "cartrev-towers.html",
+    productLabel: "Explore CarTrev Towers",
+    intro: "CarTrev Towers represents a huge amount of design work for me: towers, enemies, maps, progression systems, and sixteen battlefields across four realms. I wanted to give the finished Windows game another real chance to find players.",
+    sections: [
+      {
+        heading: "A direct path to the Store",
+        paragraphs: [
+          "This time I used a Facebook ad that links directly to the Microsoft Store listing. Unlike Master Generator, CarTrev Towers has only one store destination. Sending someone directly to the product page seemed like the simplest path to buying it.",
+          "The early numbers looked encouraging at first glance: $5.40 spent, 109 people reached, 114 views, and 56 post engagements. Then I looked at Microsoft Store analytics. Its reported views had moved from six to seven."
+        ]
+      },
+      {
+        heading: "Different numbers measure different actions",
+        paragraphs: [
+          "Those numbers aren't necessarily measuring the same actions. A Facebook post engagement isn't the same as an outbound link click, and a Microsoft Store view may be counted or reported differently. But the comparison is still a warning against celebrating the biggest number on the screen.",
+          "I haven't established that the campaign made a sale. What I do know is that I need to track outbound clicks, Store views, and actual purchases separately before deciding whether to spend more."
+        ]
+      }
+    ],
+    takeaway: "Attention is a starting point. A purchase is a different result, and the distance between them matters."
+  },
+  {
+    slug: "waiting-on-apple-again",
+    title: "Waiting on Apple, Again",
+    project: "Latter-day Lens / Creative QR",
+    category: "Software / Distribution",
+    date: "2026-10-14",
+    displayDate: "October 14, 2026",
+    status: "Apple submissions waiting for review",
+    readTime: "3 min read",
+    summary: "Two Apple submissions remained in review queues while a new agreement added another administrative step to the release process.",
+    image: "assets/logos/latterday_lens.png",
+    imageAlt: "Latter-day Lens app icon",
+    productUrl: "",
+    productLabel: "",
+    intro: "Publishing on three platforms has taught me that building the software and getting it into a store are two very different jobs.",
+    sections: [
+      {
+        heading: "Waiting without a rejection",
+        paragraphs: [
+          "As of this update, Latter-day Lens had been waiting about ten days in Apple's review queue, and Creative QR had been waiting roughly a week. Both still showed 'Waiting for Review.' There was no rejection to fix and no clear explanation for the delay.",
+          "Then a new Apple agreement appeared that had to be accepted before certain submissions or updates could move forward. I can't say whether that agreement caused either review delay, and I don't want to withdraw a submission without a reason. But another administrative hurdle arriving during an already long wait was frustrating."
+        ]
+      },
+      {
+        heading: "Useful software still has to clear the queue",
+        paragraphs: [
+          "Meanwhile, these are products intended to be useful, affordable, and straightforward. Creative QR is free. Latter-day Lens is built around private scripture study. I want people to be able to use the tools, not wait while I chase status screens."
+        ]
+      }
+    ],
+    takeaway: "'Submitted' isn't 'reviewed,' and 'reviewed' isn't 'available.' Every platform has its own version of that gap."
+  },
+  {
+    slug: "the-road-to-kubecon-an-unexpected-door-opens",
+    title: "The Road to KubeCon: An Unexpected Door Opens",
+    project: "Forged by Fire / Professional Development",
+    category: "Company / AI",
+    date: "2026-10-14",
+    displayDate: "October 14, 2026",
+    status: "Scholarship awarded; registration and lodging arranged",
+    readTime: "4 min read",
+    summary: "A complimentary KubeCon + CloudNativeCon pass opened an unexpected opportunity to learn from people working on familiar AI infrastructure problems.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "",
+    productLabel: "",
+    intro: "I've been working with AI for about eighteen months. Forged by Fire hasn't even reached its first anniversary. And now, unexpectedly, I'm preparing to attend KubeCon + CloudNativeCon North America in Salt Lake City, November 9–12.",
+    sections: [
+      {
+        heading: "An opportunity I wasn't looking for",
+        paragraphs: [
+          "The strange part is that I wasn't looking forward to going to a conference at all. After years of construction and engineering conferences in my previous career, I didn't particularly enjoy them. But the thought came to me to look for an AI conference. I found one coming to Salt Lake City in less than a month, applied for a registration scholarship, and prayed about whether it was the right opportunity for me and the business.",
+          "I was awarded a complimentary All-Access Pass. The registration screen showed a corporate pass price of $2,278; my total was $0. It isn't a cash award, but it opens the door to the main conference and Monday's specialized AI events. My parents then offered to help with a nearby hotel, and we arranged Sunday through Wednesday nights. That makes it possible to arrive before Monday's sessions without an exhausting early commute."
+        ]
+      },
+      {
+        heading: "Familiar problems with industry names",
+        paragraphs: [
+          "The more I read the agenda, the more surprised I became. AI inference. Model serving. MCP. Agentic systems. Autonomous workers. These are names for problems I have already spent months experimenting with through local models, memory systems, R2, and Forge Foreman. I didn't discover those ideas at the conference. I was trying to solve my own problems, and only afterward discovered how closely they overlap with what the industry is discussing."
+        ]
+      },
+      {
+        heading: "A responsibility to prepare",
+        paragraphs: [
+          "I see the Lord's hand in how this opportunity came together. I also see a responsibility to prepare, listen, ask good questions, and bring something useful home. I'm not attending as a senior engineer with a huge team. I'm attending as the founder of a small software company who is eager to learn."
+        ]
+      }
+    ],
+    takeaway: "Sometimes the next step isn't another month behind a computer. Sometimes it's getting into a room with people who have been solving the same problems."
+  },
+  {
+    slug: "from-the-council-to-the-round-table",
+    title: "From the Council to the Round Table",
+    project: "AI Research / Forge Foreman",
+    category: "AI",
+    date: "2026-10-14",
+    displayDate: "October 14, 2026",
+    status: "Long-term concept",
+    readTime: "3 min read",
+    summary: "An older multi-adviser experiment returns as the Round Table, a long-term concept for examining decisions from different viewpoints.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "",
+    productLabel: "",
+    intro: "Forge Foreman began as a practical idea: one AI manager coordinating coding workers. But as I considered where that could lead, it brought back an older experiment of mine—a program that combined several AI personalities into something I called the Council.",
+    sections: [
+      {
+        heading: "A better name for an older idea",
+        paragraphs: [
+          "I like the new name better: the Round Table.",
+          "The idea is to have several AI advisers with genuinely different responsibilities and viewpoints. One could focus on engineering, another on research, another on costs, another on questioning assumptions, and another on quality and safety. They wouldn't exist to agree with me. Their value would be in helping me see what one assistant—or I myself—might miss."
+        ]
+      },
+      {
+        heading: "Advice and execution are different jobs",
+        paragraphs: [
+          "The Foreman and the worker bees would handle execution. The Round Table would examine the larger decisions. I would remain responsible for choosing the direction."
+        ]
+      },
+      {
+        heading: "A concept that still needs evidence",
+        paragraphs: [
+          "This is a concept, not a finished feature, and a collection of different personalities isn't automatically a collection of independent minds. Shared models can still share blind spots. The system would need independent evaluations, transparent reasoning, and reliable evidence before any council vote meant much.",
+          "But it connects an idea from earlier in my AI experiments to something I'm building toward today."
+        ]
+      }
+    ],
+    takeaway: "Some projects return after months, not because I failed to finish the thought, but because I've learned enough to see the next part of it."
+  },
+  {
+    slug: "forge-foreman-building-a-manager-for-my-ai-workers",
+    title: "Forge Foreman: Building a Manager for My AI Workers",
+    project: "Forge Foreman",
+    category: "AI",
+    date: "2026-10-13",
+    displayDate: "October 13, 2026",
+    status: "Architecture investigation",
+    readTime: "3 min read",
+    summary: "Forge Foreman explores how one visible manager could coordinate AI coding workers, control costs, and return evidence instead of assurances.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "",
+    productLabel: "",
+    intro: "I regularly have more than one AI coding session working on Forged by Fire projects. The difficult part isn't always writing the next instruction. It's coordinating jobs, checking what actually finished, watching costs, and keeping two sessions from changing the same files.",
+    sections: [
+      {
+        heading: "A manager for the workers",
+        paragraphs: [
+          "That frustration sparked a new idea: Forge Foreman. I want to give one assistant an objective, have it divide the work between coding workers, monitor their progress, and come back to me with evidence—not just confident statements that everything is done."
+        ]
+      },
+      {
+        heading: "Using the tools I already have",
+        paragraphs: [
+          "The first proposed integration led toward separately billed API calls. That defeats an important purpose of this project: I'm trying to make better use of the tools I already pay for, not create another bill. So the investigation shifted toward local Codex tooling and account-authenticated command-line workers. It's a promising direction, but the details still need to be demonstrated on my actual setup."
+        ]
+      },
+      {
+        heading: "Visibility and control matter",
+        paragraphs: [
+          "I also want to see the workers' progress myself. A useful Foreman should give me visibility, separate project workspaces, and the ability to interrupt a task before it wastes time or changes something it shouldn't."
+        ]
+      }
+    ],
+    takeaway: "More agents aren't automatically more productive. Someone—or something—has to coordinate them, verify them, and know when to stop."
+  },
+  {
+    slug: "same-prompt-two-image-models-two-very-different-results",
+    title: "Same Prompt, Two Image Models, Two Very Different Results",
+    project: "Local Image Models",
+    category: "AI / Creative Work",
+    date: "2026-10-13",
+    displayDate: "October 13, 2026",
+    status: "Informal side-by-side testing",
+    readTime: "3 min read",
+    summary: "Three shared prompts revealed different strengths in composition, atmosphere, and instruction following across two local image models.",
+    image: "assets/logos/creative_image_tools.png",
+    imageAlt: "Creative Image Tools app icon",
+    productUrl: "",
+    productLabel: "",
+    intro: "I ran a simple experiment with two of my local image-generation setups: Z Image Turbo 6B and a RealVis-based model adapted with LoRA. I gave them the same prompts and compared what came out.",
+    sections: [
+      {
+        heading: "Different strengths from the same prompts",
+        paragraphs: [
+          "The differences were fascinating. For a colossal forge floating in deep space, Z Image Turbo did a stronger job showing the wider science-fiction scene and the artificial-intelligence core. The LoRA-adapted model created a moodier, more grounded image but lost much of the unusual setting. On an ancient-warrior scene, the adapter delivered a strong symbolic composition. For my Berserker Prime idea, Z Turbo gave me the more convincing mechanized warrior and ruined city.",
+          "Neither model won everything. And the prompts themselves influenced the output. When I described Viking-inspired battle gear, both models leaned into horned helmets—even though that detail wasn't what I was trying to test."
+        ]
+      },
+      {
+        heading: "An experiment, not a benchmark",
+        paragraphs: [
+          "This was not a controlled benchmark with identical settings across architectures, and I don't want to oversell what three images prove. But it was a good reminder that visual style, composition, and following instructions are different strengths."
+        ]
+      }
+    ],
+    takeaway: "A model that makes beautiful images isn't always the model that understands the assignment best."
+  },
+  {
+    slug: "one-app-three-stores-and-a-real-advertising-test",
+    title: "One App, Three Stores, and a Real Advertising Test",
+    project: "Master Generator",
+    category: "Business / Marketing",
+    date: "2026-10-12",
+    displayDate: "October 12, 2026",
+    status: "Advertising test underway",
+    readTime: "3 min read",
+    summary: "A multi-store product page and a measured Facebook campaign create a more honest test of whether advertising can lead people toward Master Generator.",
+    image: "assets/logos/master_generator.png",
+    imageAlt: "Master Generator app icon",
+    productUrl: "master-generator.html",
+    productLabel: "Explore Master Generator",
+    intro: "Master Generator has a useful problem: it is available for Windows, Android, and Apple devices, but a Facebook advertisement can only send someone to one destination. A direct store link would send some potential customers to the wrong platform.",
+    sections: [
+      {
+        heading: "One page for three stores",
+        paragraphs: [
+          "I decided to send people to Master Generator's page on the Forged by Fire website instead. That page explains the product and has buttons for all three stores, so visitors can make the choice themselves. It also gives me a chance to compare Facebook's reported traffic against my own website analytics.",
+          "The previous small ads had already taught me something. Facebook reported 34 landing-page views for one stretch while my own analytics showed 32. That's a much closer match than the discrepancies I'd seen with a direct Microsoft Store advertisement. It doesn't prove advertising makes sales, but at least I can measure real visits with more confidence."
+        ]
+      },
+      {
+        heading: "A bounded advertising test",
+        paragraphs: [
+          "I also reduced Master Generator's price from $9.99 to $5.99 on Microsoft and Google Play. Apple was not cooperating with the price change at the time, so I avoided putting a universal price on the website. The new campaign was set for eight days at $5 per day: a planned $40 test, not an assumption that clicks will become customers."
+        ]
+      }
+    ],
+    takeaway: "If I can't measure the path between an ad and a purchase, I can't honestly say whether the ad worked."
+  },
+  {
+    slug: "opening-the-door-to-custom-software-requests",
+    title: "Opening the Door to Custom Software Requests",
+    project: "Company Website",
+    category: "Business",
+    date: "2026-10-12",
+    displayDate: "October 12, 2026",
+    status: "Request-page development; availability subject to review",
+    readTime: "3 min read",
+    summary: "A custom software request page could let the company grow by carefully solving one person's specific problem at a time.",
+    image: "assets/logos/forgedbyfire.jpg",
+    imageAlt: "Forged By Fire Software LLC anvil logo",
+    productUrl: "services.html",
+    productLabel: "View custom project requests",
+    intro: "For most of this first year, Forged by Fire has been about building products I wanted to make available to other people. But there may be another path for the company: helping someone else solve a specific software problem.",
+    sections: [
+      {
+        heading: "A careful starting point",
+        paragraphs: [
+          "I started working on a custom software request page for the website. The idea is straightforward. Someone explains what they need—perhaps a small utility, a website, or a simple application—and I decide whether it's a project I can realistically handle.",
+          "I'm not trying to become a giant agency. I don't have employees, a big budget, or the capacity to take on ten projects at once. One carefully chosen customer might be a better starting point. Every request would need its own scope, price, expectations, and an honest assessment of whether I can deliver it."
+        ]
+      },
+      {
+        heading: "A different path to revenue",
+        paragraphs: [
+          "This also creates a different possibility for revenue. A small number of successful custom projects could matter more to the business than a large number of low-priced app downloads. But the form has to actually deliver the requests, and the work has to be something I can test and support."
+        ]
+      }
+    ],
+    takeaway: "Growth doesn't always mean reaching more people. Sometimes it means solving one person's problem well."
+  },
+  {
+    slug: "creative-pdf-a-test-that-windows-wouldnt-let-run",
+    title: "Creative PDF: A Test That Windows Wouldn't Let Run",
+    project: "Creative PDF",
+    category: "Software",
+    date: "2026-10-12",
+    displayDate: "October 12, 2026",
+    status: "Runtime stress test blocked; separate test environment under consideration",
+    readTime: "3 min read",
+    summary: "A 24-cycle stress test built successfully but could not launch under Windows Application Control, leaving an important reliability question unanswered.",
+    image: "assets/logos/creative_pdf.png",
+    imageAlt: "Creative PDF app icon",
+    productUrl: "paid-software.html#creative-pdf",
+    productLabel: "Read about Creative PDF",
+    intro: "Creative PDF is planned as a one-time-purchase application, and that's changing how I think about testing. It's not enough for a feature to look finished on screen. A customer has to be able to trust it with real documents.",
+    sections: [
+      {
+        heading: "A build that could not become a runtime test",
+        paragraphs: [
+          "A new stress test was designed to exercise repeated saves, renders, and canceled operations across 24 cycles. The software built, but Windows Application Control blocked the test executable from launching. That's an important distinction: passing a build doesn't prove the application can complete the workflow.",
+          "Rather than weakening Windows security to get a green result, the next proposal was to investigate a separate Windows testing environment. That may make the test possible without disrupting my working system, but it also needs resources and setup. At this stage, I hadn't accepted a new environment or treated the blocked test as a pass."
+        ]
+      },
+      {
+        heading: "Reliability work customers may never see",
+        paragraphs: [
+          "This is exactly the kind of work that is hard to advertise in an app listing: document preservation, recovery, repeated operations, and honest failure reporting. But it's the kind of work that determines whether software deserves to be sold."
+        ]
+      }
+    ],
+    takeaway: "A blocked test is an unanswered question, not a passing test and not proof of a broken product."
+  },
+  {
     slug: "c3po-finding-the-problems-behind-the-problems",
     title: "C-3PO: Finding the Problems Behind the Problems",
     project: "C-3PO",
