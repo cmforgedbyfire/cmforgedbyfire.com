@@ -609,6 +609,87 @@ button.btn{
   text-align: center;
 }
 
+.development-games-kicker{
+  text-align:center;
+}
+
+.development-games-grid{
+  display:grid;
+  gap:24px;
+  margin-top:24px;
+}
+
+.development-game-card{
+  display:grid;
+  grid-template-columns:minmax(300px, .78fr) minmax(0, 1.22fr);
+  padding:0;
+  overflow:hidden;
+}
+
+.development-game-copy{
+  padding:clamp(22px, 3vw, 36px);
+}
+
+.development-game-copy h3{
+  margin:0;
+  font-size:clamp(1.75rem, 3vw, 2.45rem);
+}
+
+.development-game-tagline{
+  margin:7px 0 16px;
+  color:var(--brass);
+  font-weight:800;
+  letter-spacing:.03em;
+}
+
+.development-store-row{
+  justify-content:flex-start;
+  margin-top:20px;
+}
+
+.development-build-note{
+  margin:16px 0 0;
+  font-size:.9rem;
+  line-height:1.55;
+}
+
+.development-game-media{
+  min-width:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(150deg, rgba(10,18,20,.96), rgba(25,22,17,.96));
+  border-left:1px solid rgba(255,255,255,.08);
+}
+
+.development-game-media img{
+  display:block;
+  width:100%;
+  min-height:0;
+  object-fit:contain;
+}
+
+.development-game-media-portrait img{
+  max-height:620px;
+  width:auto;
+  max-width:100%;
+}
+
+.development-game-media-landscape img{
+  padding:clamp(16px, 3vw, 34px);
+}
+
+.development-game-media figcaption{
+  width:100%;
+  padding:10px 16px;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:var(--muted);
+  font-size:.82rem;
+  text-align:center;
+}
+
 .game-feature-panel{
   margin-top: 18px;
 }
@@ -1970,6 +2051,8 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 
 @media (max-width: 900px){
   .cards{grid-template-columns: 1fr}
+  .development-game-card{grid-template-columns:1fr}
+  .development-game-media{border-left:0; border-top:1px solid rgba(255,255,255,.08)}
   .blog-layout{grid-template-columns:1fr}
   .blog-sidebar-panel{position:static}
   .blog-recent-list{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr))}
