@@ -366,6 +366,127 @@ main{display:block}
   justify-content: center;
 }
 
+.games-development-showcase{
+  width:min(1500px, calc(100% - 32px));
+  margin:26px auto 0;
+  display:grid;
+  grid-template-columns:minmax(240px, .78fr) minmax(420px, 1.25fr) minmax(300px, .92fr);
+  gap:18px;
+  padding:18px;
+  border:1px solid rgba(209,163,90,.3);
+  border-radius:var(--radius);
+  background:
+    radial-gradient(700px 300px at 50% 10%, rgba(209,163,90,.1), transparent 72%),
+    rgba(15,14,12,.9);
+  box-shadow:var(--shadow);
+}
+
+.games-development-showcase figure{
+  margin:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  background:#0c0d0d;
+}
+
+.games-development-showcase figure img{
+  display:block;
+  width:100%;
+}
+
+.games-development-showcase figcaption{
+  padding:8px 10px;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:var(--muted);
+  font-size:.76rem;
+  text-align:center;
+}
+
+.development-showcase-scrapline img{
+  height:310px;
+  object-fit:cover;
+  object-position:center 10%;
+}
+
+.development-showcase-copy{
+  align-self:center;
+  padding:8px clamp(4px, 1vw, 14px);
+}
+
+.development-showcase-copy h2{
+  margin:0;
+  color:var(--steel);
+  font-size:clamp(1.6rem, 2.4vw, 2.35rem);
+  line-height:1.08;
+}
+
+.development-showcase-copy > p:not(.project-kicker){
+  margin:12px 0 0;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.development-showcase-projects{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:10px;
+  margin-top:16px;
+}
+
+.development-showcase-projects a{
+  padding:11px 12px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  background:rgba(255,255,255,.035);
+  color:var(--text);
+  text-decoration:none;
+}
+
+.development-showcase-projects a:hover{
+  border-color:rgba(209,163,90,.48);
+  background:rgba(209,163,90,.08);
+}
+
+.development-showcase-projects strong,
+.development-showcase-projects span{
+  display:block;
+}
+
+.development-showcase-projects span{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.35;
+}
+
+.development-showcase-stores{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+}
+
+.development-showcase-stores .btn{
+  padding:9px 10px;
+  font-size:.7rem;
+}
+
+.development-showcase-note{
+  font-size:.78rem;
+}
+
+.development-showcase-pocket{
+  display:grid;
+  gap:14px;
+  align-content:center;
+}
+
+.development-showcase-pocket img{
+  aspect-ratio:915 / 412;
+  object-fit:cover;
+  object-position:top center;
+}
+
 .hero-precision{
   background:
     radial-gradient(900px 420px at 50% 0%, rgba(58,167,197,.24), transparent 70%),
@@ -2047,12 +2168,28 @@ img.brand-logo-square[src*="forge_audio_studio"]{
     grid-template-columns: minmax(160px, 210px) minmax(260px, .8fr) minmax(380px, 1.2fr);
     gap: 20px;
   }
+  .games-development-showcase{
+    grid-template-columns:minmax(220px, .7fr) minmax(400px, 1.3fr);
+  }
+  .development-showcase-pocket{
+    grid-column:1 / -1;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 900px){
   .cards{grid-template-columns: 1fr}
   .development-game-card{grid-template-columns:1fr}
   .development-game-media{border-left:0; border-top:1px solid rgba(255,255,255,.08)}
+  .games-development-showcase{
+    grid-template-columns:1fr;
+  }
+  .development-showcase-scrapline img{
+    height:min(72vw, 420px);
+  }
+  .development-showcase-pocket{
+    grid-column:auto;
+  }
   .blog-layout{grid-template-columns:1fr}
   .blog-sidebar-panel{position:static}
   .blog-recent-list{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr))}
