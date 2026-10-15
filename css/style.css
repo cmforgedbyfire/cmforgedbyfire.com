@@ -368,9 +368,10 @@ main{display:block}
 
 .games-development-showcase{
   width:min(1500px, calc(100% - 32px));
+  max-width:calc(100% - 32px);
   margin:26px auto 0;
   display:grid;
-  grid-template-columns:minmax(240px, .78fr) minmax(420px, 1.25fr) minmax(300px, .92fr);
+  grid-template-columns:minmax(0, .78fr) minmax(0, 1.25fr) minmax(0, .92fr);
   gap:18px;
   padding:18px;
   border:1px solid rgba(209,163,90,.3);
@@ -402,13 +403,23 @@ main{display:block}
   text-align:center;
 }
 
+.development-showcase-scrapline{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:12px;
+  align-self:center;
+}
+
 .development-showcase-scrapline img{
-  height:310px;
-  object-fit:cover;
-  object-position:center 10%;
+  height:auto;
+  aspect-ratio:1080 / 2340;
+  object-fit:contain;
+  background:#0c0d0d;
 }
 
 .development-showcase-copy{
+  min-width:0;
   align-self:center;
   padding:8px clamp(4px, 1vw, 14px);
 }
@@ -418,6 +429,7 @@ main{display:block}
   color:var(--steel);
   font-size:clamp(1.6rem, 2.4vw, 2.35rem);
   line-height:1.08;
+  overflow-wrap:anywhere;
 }
 
 .development-showcase-copy > p:not(.project-kicker){
@@ -434,6 +446,7 @@ main{display:block}
 }
 
 .development-showcase-projects a{
+  min-width:0;
   padding:11px 12px;
   border:1px solid rgba(255,255,255,.1);
   border-radius:10px;
@@ -476,6 +489,7 @@ main{display:block}
 }
 
 .development-showcase-pocket{
+  min-width:0;
   display:grid;
   gap:14px;
   align-content:center;
@@ -2169,7 +2183,7 @@ img.brand-logo-square[src*="forge_audio_studio"]{
     gap: 20px;
   }
   .games-development-showcase{
-    grid-template-columns:minmax(220px, .7fr) minmax(400px, 1.3fr);
+    grid-template-columns:minmax(0, .7fr) minmax(0, 1.3fr);
   }
   .development-showcase-pocket{
     grid-column:1 / -1;
@@ -2183,9 +2197,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .development-game-media{border-left:0; border-top:1px solid rgba(255,255,255,.08)}
   .games-development-showcase{
     grid-template-columns:1fr;
-  }
-  .development-showcase-scrapline img{
-    height:min(72vw, 420px);
   }
   .development-showcase-pocket{
     grid-column:auto;
