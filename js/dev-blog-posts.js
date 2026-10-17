@@ -7,6 +7,115 @@
  */
 window.DEV_BLOG_POSTS = [
   {
+    slug: "seven-apps-and-a-growing-game-network",
+    title: "Seven Apps and a Growing Game Network",
+    project: "Forged by Fire / Game Network",
+    category: "Company / Games",
+    date: "2026-10-16",
+    displayDate: "October 16, 2026",
+    status: "Five Play apps in production; two games in review or testing",
+    readTime: "4 min read",
+    summary: "Seven Google Play applications, a rapidly expanding Scrapline, and early shared gaming infrastructure mark another step in the company's growth.",
+    image: "assets/screenshots/scrapline/scrapline-gameplay-v010.png",
+    imageAlt: "Scrapline Android mech battle gameplay",
+    productUrl: "games.html#games-in-development",
+    productLabel: "Explore the Games",
+    intro: "Yesterday, we were exploring whether mobile gaming made sense for Forged by Fire Software. Today, our Google Play Console shows seven applications.",
+    sections: [
+      {
+        heading: "Seven apps on Google Play",
+        paragraphs: [
+          "Five are in production, while CarTrev Towers Pocket and Scrapline have review activity underway. Scrapline is currently in its internal-testing stage."
+        ]
+      },
+      {
+        heading: "Scrapline grows beyond the first concept",
+        paragraphs: [
+          "Scrapline has grown remarkably quickly. What started as a small wave-survival concept now includes three campaign missions, eleven-wave battles, an endless survival challenge, permanent workshop upgrades, and customizable combat mechs.",
+          "During testing, I noticed a progression problem: players could accumulate far more scrap than they could meaningfully spend once their upgrades reached their limits.",
+          "That observation led to the idea of a second, more powerful unlockable mech, giving players a significant long-term goal and another reason to continue playing. We're developing the progression carefully so the starting machine remains useful."
+        ]
+      },
+      {
+        heading: "A shared gaming foundation",
+        paragraphs: [
+          "Meanwhile, another major decision is shaping the future of our games.",
+          "Rather than building completely isolated online systems for every title, we've started creating a shared Forged by Fire gaming backend.",
+          "The goal is to support player identities, achievements, leaderboards, and eventually cross-platform competition between Android and Windows.",
+          "The initial backend has already passed local tests involving device pairing, duplicate submissions, score protection, and account deletion. Public deployment and live game integration are still ahead of us."
+        ]
+      },
+      {
+        heading: "The rest of the workshop keeps moving",
+        paragraphs: [
+          "Our non-gaming applications haven't stopped moving, either.",
+          "Creative PDF received a major interface redesign based on a new layout I sketched out. Its editing tools are being reorganized into collapsible side panels so the document itself can become the center of the workspace. Because Creative PDF will be a paid product, we're putting particular attention into usability and reliability.",
+          "Creative Image Tools is also expanding toward decorative photo frames and image enhancements across Windows and Android."
+        ]
+      },
+      {
+        heading: "Store progress and discoverability",
+        paragraphs: [
+          "On Apple's side, Latter-day Lens finally received approval after a twelve-day wait, while Creative QR required another review submission.",
+          "We also revisited the Google Play categories and tags for our Android catalog, hoping to improve how customers discover our software.",
+          "It has been a busy couple of days, but one thing is becoming clearer: Forged by Fire is no longer developing only individual utilities. We're building games, productivity tools, and the infrastructure to support them."
+        ]
+      }
+    ],
+    takeaway: "Growth creates new opportunities, but it also makes planning and organization increasingly important. The challenge is to build foundations that can grow without losing sight of quality."
+  },
+  {
+    slug: "the-mobile-turning-point",
+    title: "The Mobile Turning Point",
+    project: "CarTrev Towers Pocket / Scrapline",
+    category: "Games / Strategy",
+    date: "2026-10-15",
+    displayDate: "October 15, 2026",
+    status: "Mobile direction established; two phone-first games underway",
+    readTime: "3 min read",
+    summary: "A heavily mobile website audience changed the advertising plan and helped launch CarTrev Towers Pocket and Scrapline.",
+    image: "assets/screenshots/cartrev-towers-pocket/cartrev-towers-pocket-battle-v010.png",
+    imageAlt: "CarTrev Towers Pocket touch-first battlefield gameplay",
+    productUrl: "games.html#games-in-development",
+    productLabel: "Explore the Games",
+    intro: "Sometimes the numbers tell you something you weren't expecting.",
+    sections: [
+      {
+        heading: "A mobile audience changes the question",
+        paragraphs: [
+          "While reviewing our website advertising analytics, I noticed that approximately 99% of our visitors were using phones. That presented a fairly obvious problem: we were promoting a Windows game to an audience primarily browsing on mobile devices.",
+          "Instead of continuing to spend money on the same approach, I paused the CarTrev Towers advertisement and started considering a different direction.",
+          "Could we bring CarTrev Towers to Android?",
+          "It turns out the answer was yes, and considerably faster than I expected."
+        ]
+      },
+      {
+        heading: "CarTrev Towers becomes Pocket",
+        paragraphs: [
+          "Working with Codex, we began adapting the existing game into CarTrev Towers Pocket, a smaller, phone-first version using our established maps, artwork, towers, and gameplay mechanics. The initial version focuses on three battlefields and nine waves, with controls designed specifically for touchscreens.",
+          "We also began planning a free browser demonstration that would let website visitors try a battlefield before deciding whether to purchase the game."
+        ]
+      },
+      {
+        heading: "A second mobile idea takes shape",
+        paragraphs: [
+          "But the mobile opportunity sparked another idea.",
+          "What if we built an entirely new game specifically for phones?",
+          "That idea became Scrapline, a mech-based survival game where players fight enemy waves, collect scrap, and gradually transform a small machine into a heavily armed combat vehicle.",
+          "Drawing inspiration from the customization and mechanical depth of classic mech games, we began developing a system built around weapons, armor, upgrades, and individual component damage."
+        ]
+      },
+      {
+        heading: "From analytics to two active projects",
+        paragraphs: [
+          "By the end of the day, CarTrev Towers Pocket had progressed from an idea to an Android submission awaiting Google Play review, while Scrapline was rapidly becoming its own project.",
+          "We're still learning, still experimenting, and still building."
+        ]
+      }
+    ],
+    takeaway: "Sometimes the most important development decision isn't about writing code. It's about listening to what the data is telling you and being willing to change direction."
+  },
+  {
     slug: "cartrev-towers-when-engagement-isnt-a-store-visit",
     title: "CarTrev Towers: When Engagement Isn't a Store Visit",
     project: "CarTrev Towers",
