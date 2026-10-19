@@ -137,7 +137,24 @@
       .slice(0, 64);
   }
 
+  function analyticsTarget(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9:-]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 96);
+  }
+
+  function trackProductAction(target) {
+    var safeTarget = analyticsTarget(target);
+    if (safeTarget) send("product_click", { target: safeTarget });
+  }
+
+  window.ForgedAnalytics = Object.freeze({ trackProductAction: trackProductAction });
+
   function productFromLink(link, destination) {
+    var explicitProduct = analyticsTarget(link.getAttribute("data-analytics-product"));
+    if (explicitProduct) return explicitProduct;
     var card = link.closest("article, .panel, .hero, section");
     var heading = card && card.querySelector("h1, h2, h3, h4");
     var headingSlug = heading ? slug(heading.textContent) : "";
@@ -183,6 +200,11 @@
     }
     var store = storeName(destination);
     var product = productFromLink(link, destination);
+    var explicitTarget = link.getAttribute("data-analytics-target");
+    if (explicitTarget) {
+      trackProductAction(explicitTarget);
+      return;
+    }
     if (store) {
       send("store_click", { target: product + ":" + store });
       return;
@@ -256,6 +278,9 @@
     }
     send("page_view");
     if (!ownReferrer) send("visit");
+    if (/\/play\/cartrev-towers\/(?:index\.html)?$/i.test(context.page)) {
+      trackProductAction("cartrev-towers:browser-trial-opened");
+    }
     sendBlogView();
     flushLoadMetric();
   }
