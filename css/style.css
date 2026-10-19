@@ -370,9 +370,6 @@ main{display:block}
   width:min(1500px, calc(100% - 32px));
   max-width:calc(100% - 32px);
   margin:26px auto 0;
-  display:grid;
-  grid-template-columns:minmax(360px, .95fr) minmax(0, 1.05fr);
-  gap:18px;
   padding:18px;
   border:1px solid rgba(209,163,90,.3);
   border-radius:var(--radius);
@@ -403,25 +400,56 @@ main{display:block}
   text-align:center;
 }
 
-.development-showcase-scrapline{
-  min-width:0;
+.development-showcase-top{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:12px;
-  align-self:center;
+  grid-template-columns:minmax(300px, .68fr) minmax(0, 1.32fr);
+  gap:clamp(22px, 3vw, 46px);
+  align-items:center;
 }
 
-.development-showcase-scrapline img{
+.development-showcase-main-shot{
+  max-width:460px;
+  justify-self:center;
+}
+
+.development-showcase-main-shot img,
+.development-showcase-combat img{
   height:auto;
   aspect-ratio:1080 / 1920;
   object-fit:contain;
   background:#0c0d0d;
 }
 
+.development-showcase-combat{
+  min-width:0;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 360px));
+  justify-content:center;
+  gap:18px;
+  margin-top:22px;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.development-showcase-heading{
+  display:grid;
+  grid-template-columns:112px minmax(0, 1fr);
+  gap:18px;
+  align-items:center;
+}
+
+.development-showcase-icon{
+  display:block;
+  width:112px;
+  height:112px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+  background:#0c171b;
+}
+
 .development-showcase-copy{
   min-width:0;
-  align-self:center;
-  padding:8px clamp(4px, 1vw, 14px);
+  padding:8px clamp(4px, 1vw, 18px);
 }
 
 .development-showcase-copy h2{
@@ -438,38 +466,49 @@ main{display:block}
   line-height:1.55;
 }
 
-.development-showcase-projects{
+.development-showcase-tagline{
+  margin:5px 0 0;
+  color:var(--accent);
+  font-weight:800;
+  letter-spacing:.03em;
+}
+
+.development-showcase-features{
+  margin:18px 0 0;
+  padding:0;
+  list-style:none;
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:10px;
-  margin-top:16px;
+  gap:12px 24px;
 }
 
-.development-showcase-projects a{
-  min-width:0;
-  padding:11px 12px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;
-  background:rgba(255,255,255,.035);
-  color:var(--text);
-  text-decoration:none;
+.development-showcase-features li{
+  position:relative;
+  padding-left:17px;
 }
 
-.development-showcase-projects a:hover{
-  border-color:rgba(209,163,90,.48);
-  background:rgba(209,163,90,.08);
+.development-showcase-features li::before{
+  content:"";
+  position:absolute;
+  top:.48em;
+  left:0;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 10px rgba(255,122,24,.4);
 }
 
-.development-showcase-projects strong,
-.development-showcase-projects span{
+.development-showcase-features strong,
+.development-showcase-features span{
   display:block;
 }
 
-.development-showcase-projects span{
-  margin-top:4px;
+.development-showcase-features span{
+  margin-top:3px;
   color:var(--muted);
   font-size:.78rem;
-  line-height:1.35;
+  line-height:1.4;
 }
 
 .development-showcase-stores{
@@ -2187,8 +2226,8 @@ img.brand-logo-square[src*="forge_audio_studio"]{
     grid-template-columns: minmax(160px, 210px) minmax(260px, .8fr) minmax(380px, 1.2fr);
     gap: 20px;
   }
-  .games-development-showcase{
-    grid-template-columns:minmax(0, .7fr) minmax(0, 1.3fr);
+  .development-showcase-top{
+    grid-template-columns:minmax(270px, .75fr) minmax(0, 1.25fr);
   }
 }
 
@@ -2197,7 +2236,13 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .development-game-card{grid-template-columns:1fr}
   .development-game-media{border-left:0; border-top:1px solid rgba(255,255,255,.08)}
   .games-development-showcase{
+    padding:16px;
+  }
+  .development-showcase-top{
     grid-template-columns:1fr;
+  }
+  .development-showcase-main-shot{
+    max-width:380px;
   }
   .blog-layout{grid-template-columns:1fr}
   .blog-sidebar-panel{position:static}
@@ -2297,13 +2342,21 @@ img.brand-logo-square[src*="forge_audio_studio"]{
 }
 
 @media (max-width: 620px){
-  .development-showcase-scrapline{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
+  .development-showcase-heading{
+    grid-template-columns:82px minmax(0, 1fr);
+    gap:14px;
   }
-  .development-showcase-scrapline figure:last-child{
-    width:calc(50% - 6px);
-    grid-column:1 / -1;
-    justify-self:center;
+  .development-showcase-icon{
+    width:82px;
+    height:82px;
+    border-radius:17px;
+  }
+  .development-showcase-features{
+    grid-template-columns:1fr;
+  }
+  .development-showcase-combat{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
   }
   .master-generator-hero{
     padding: 24px 14px 28px;
