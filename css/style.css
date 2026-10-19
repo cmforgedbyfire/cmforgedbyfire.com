@@ -371,7 +371,7 @@ main{display:block}
   max-width:calc(100% - 32px);
   margin:26px auto 0;
   display:grid;
-  grid-template-columns:minmax(0, .78fr) minmax(0, 1.25fr) minmax(0, .92fr);
+  grid-template-columns:minmax(360px, .95fr) minmax(0, 1.05fr);
   gap:18px;
   padding:18px;
   border:1px solid rgba(209,163,90,.3);
@@ -413,7 +413,7 @@ main{display:block}
 
 .development-showcase-scrapline img{
   height:auto;
-  aspect-ratio:1080 / 2340;
+  aspect-ratio:1080 / 1920;
   object-fit:contain;
   background:#0c0d0d;
 }
@@ -486,19 +486,6 @@ main{display:block}
 
 .development-showcase-note{
   font-size:.78rem;
-}
-
-.development-showcase-pocket{
-  min-width:0;
-  display:grid;
-  gap:14px;
-  align-content:center;
-}
-
-.development-showcase-pocket img{
-  aspect-ratio:915 / 412;
-  object-fit:cover;
-  object-position:top center;
 }
 
 .hero-precision{
@@ -810,6 +797,24 @@ button.btn{
   max-height:620px;
   width:auto;
   max-width:100%;
+}
+
+.development-game-media-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:12px;
+  align-content:center;
+  padding:14px 14px 0;
+}
+
+.development-game-media-grid img{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+}
+
+.development-game-media-grid figcaption{
+  grid-column:1 / -1;
+  margin:0 -14px;
 }
 
 .development-game-media-landscape img{
@@ -2185,10 +2190,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .games-development-showcase{
     grid-template-columns:minmax(0, .7fr) minmax(0, 1.3fr);
   }
-  .development-showcase-pocket{
-    grid-column:1 / -1;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 900px){
@@ -2197,9 +2198,6 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .development-game-media{border-left:0; border-top:1px solid rgba(255,255,255,.08)}
   .games-development-showcase{
     grid-template-columns:1fr;
-  }
-  .development-showcase-pocket{
-    grid-column:auto;
   }
   .blog-layout{grid-template-columns:1fr}
   .blog-sidebar-panel{position:static}
