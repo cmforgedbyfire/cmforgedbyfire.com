@@ -100,8 +100,10 @@
   var isNotFoundPage = /404/i.test(document.title) || /\/404(?:\.html)?$/i.test(context.page);
   var isFacebookReferrer = /(^|\.)facebook\.com$/i.test(context.referrer);
   var hasFacebookClickSignal = queryParameters.has("fbclid") || /^facebook$/i.test(context.source);
+  var hasAdClickSignal = hasFacebookClickSignal || queryParameters.has("gclid") ||
+    queryParameters.has("dclid") || queryParameters.has("msclkid");
   var likelyAutomation = navigator.webdriver === true;
-  var requiresInteraction = (isFacebookReferrer && !hasFacebookClickSignal) ||
+  var requiresInteraction = isFacebookReferrer || hasAdClickSignal ||
     (context.referrer === "direct" && context.browser === "other" && context.os === "other");
 
   function send(eventName, details, finalDelivery) {
