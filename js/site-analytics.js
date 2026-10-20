@@ -86,10 +86,19 @@
 
   function campaignValue(name) { return queryParameters.get(name) || ""; }
 
+  function campaignSource() {
+    var taggedSource = campaignValue("utm_source");
+    if (taggedSource) return taggedSource;
+    if (queryParameters.has("fbclid")) return "facebook-click";
+    if (queryParameters.has("gclid") || queryParameters.has("dclid")) return "google-ads";
+    if (queryParameters.has("msclkid")) return "microsoft-ads";
+    return "";
+  }
+
   var context = {
     page: window.location.pathname || "/",
     referrer: referrerHost(),
-    source: campaignValue("utm_source"),
+    source: campaignSource(),
     medium: campaignValue("utm_medium"),
     campaign: campaignValue("utm_campaign"),
     device: deviceType(),
