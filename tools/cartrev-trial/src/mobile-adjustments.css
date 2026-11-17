@@ -1,0 +1,614 @@
+.tower-tray { min-width: 0; }
+.tower-tray button { flex: 1 1 0; min-width: 0; }
+.tower-tray button span { min-width: 0; }
+
+.tower-tray button.placing {
+  color: #201a13;
+  background: #e9ae72;
+  border-color: #ffd19f;
+  box-shadow: 0 0 0 2px #e9ae7238, 0 0 16px #e9ae7244;
+}
+
+.tower-tray button.placing small,
+.tower-tray button.placing .tower-target {
+  color: #3d3020;
+}
+
+.tower-tray button img {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 3px #0008);
+}
+
+.tower-tray .tower-target {
+  margin-top: 2px;
+  color: #83dedd;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.tower-selected-card {
+  display: grid;
+  grid-template-columns: 58px auto;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  column-gap: 7px;
+  padding: 5px 7px;
+  border: 1px solid #445542;
+  border-radius: 8px;
+  background: #172119ed;
+}
+
+.tower-selected-card img {
+  grid-row: 1 / 3;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 4px #0009);
+}
+
+.tower-selected-card span,
+.tower-selected-card b {
+  align-self: end;
+}
+
+.tower-selected-card b {
+  align-self: start;
+}
+
+.tower-stat-compare {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(27px, .8fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3px 2px;
+  margin-top: 5px;
+  padding-top: 6px;
+  border-top: 1px solid #52634e;
+  font-variant-numeric: tabular-nums;
+}
+
+.tower-stat-compare small,
+.tower-stat-compare em,
+.tower-stat-compare strong {
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.tower-stat-compare small {
+  color: #9eae99;
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tower-stat-compare em {
+  color: #aebba8;
+  font-size: 7px;
+  font-style: normal;
+  text-align: left;
+}
+
+.tower-stat-compare strong {
+  color: #e9efdf;
+  font-size: 8px;
+}
+
+.tower-stat-compare .improved {
+  color: #8ce0a8;
+}
+
+.start-wave > span,
+.start-wave small {
+  display: block;
+}
+
+.start-wave small {
+  margin-top: 2px;
+  font-size: 8px;
+  font-weight: 600;
+  opacity: 0.72;
+}
+
+.wave-controls .start-wave.auto-active {
+  color: #10271d;
+  background: #75d39f;
+  border-color: #a7efc2;
+  box-shadow: 0 0 0 2px #75d39f33, 0 0 16px #75d39f44;
+}
+
+.wave-controls .auto-wave-toggle > span,
+.wave-controls .auto-wave-toggle small {
+  display: block;
+}
+
+.wave-controls .auto-wave-toggle small {
+  margin-top: 2px;
+  color: #9eac99;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wave-controls .auto-wave-toggle.enabled {
+  color: #10271d;
+  background: #75d39f;
+  border-color: #a7efc2;
+  box-shadow: 0 0 12px #75d39f44;
+}
+
+.wave-controls .auto-wave-toggle.enabled small {
+  color: #173d2b;
+}
+
+.map-tabs button:disabled {
+  opacity: 0.48;
+  color: #82907d;
+  background: #18211a;
+  border-color: #303d31;
+}
+
+.placement-reminder {
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  top: 50%;
+  width: min(330px, calc(100% - 300px));
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  border: 1px solid #e8b878;
+  border-radius: 12px;
+  background: #172019f5;
+  color: #e8efdf;
+  text-align: center;
+  box-shadow: 0 12px 40px #000c, 0 0 0 9999px #07100b8c;
+}
+
+.placement-reminder strong,
+.placement-reminder span {
+  display: block;
+}
+
+.placement-reminder strong {
+  color: #f2ca91;
+  font: 22px Georgia, serif;
+}
+
+.placement-reminder span {
+  margin: 8px 0 13px;
+  color: #c8d2c0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.placement-reminder button {
+  min-width: 120px;
+  min-height: 48px;
+  border: 1px solid #f0bd86;
+  border-radius: 8px;
+  background: #dfa064;
+  color: #201a13;
+  font-weight: 800;
+}
+
+.restart-confirm > div {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+
+.restart-confirm button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.restart-confirm .restart-cancel {
+  border-color: #586657;
+  background: #263126;
+  color: #e1e9da;
+}
+
+@media (max-width: 1400px) and (orientation: landscape) {
+  .command-bar {
+    grid-template-columns: 134px 1fr 128px;
+  }
+
+  .tower-tray,
+  .tower-actions {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .tower-tray button {
+    min-height: 58px;
+    padding: 3px 6px;
+  }
+
+  .tower-tray button img {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+
+  .tower-selected-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 66px auto auto;
+    width: 120px;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .tower-selected-card img {
+    grid-row: 1;
+    width: 66px;
+    height: 66px;
+    margin: -4px auto 0;
+  }
+
+  .tower-selected-card span,
+  .tower-selected-card b {
+    text-align: center;
+  }
+
+  .wave-controls {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+.victory-confetti {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 46%, #f1c36c24 0 18%, transparent 52%);
+}
+
+.victory-confetti i {
+  position: absolute;
+  top: -18px;
+  width: 8px;
+  height: 15px;
+  border-radius: 2px;
+  background: #f6ca6a;
+  box-shadow: 0 0 7px #f6ca6a66;
+  animation: victory-confetti-fall 2.8s linear infinite;
+}
+
+.victory-confetti i:nth-child(4n+2) { background: #71d6b0; }
+.victory-confetti i:nth-child(4n+3) { background: #ef846a; }
+.victory-confetti i:nth-child(4n+4) { background: #83b7ee; }
+.victory-confetti i:nth-child(3n) { width: 6px; height: 11px; border-radius: 50%; }
+
+.result-card.victory-card {
+  z-index: 8;
+  top: 57%;
+  min-width: min(350px, calc(100% - 300px));
+  padding: 18px 24px 20px;
+  border-color: #f4cf83;
+  background: linear-gradient(155deg, #253b2df7, #111b16fa 66%);
+  box-shadow: 0 16px 50px #000d, 0 0 38px #eeb96355, inset 0 0 28px #efc16a13;
+  animation: victory-card-arrive .55s cubic-bezier(.2,.8,.25,1.15) both;
+}
+
+.victory-quick-actions {
+  position: sticky;
+  z-index: 4;
+  top: -18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  margin: -18px -16px 8px;
+  padding: 8px;
+  border-bottom: 1px solid #7c6a4c99;
+  border-radius: 11px 11px 0 0;
+  background: linear-gradient(180deg, #18271f, #18271ff8);
+  backdrop-filter: blur(7px);
+}
+
+.victory-card .victory-quick-actions button {
+  min-height: 38px;
+  margin: 0;
+  border-color: #8a7451;
+  color: #edf2e8;
+  background: #263528;
+}
+
+.victory-card .victory-quick-actions .victory-restart-icon {
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.victory-card .victory-quick-actions .victory-map-button {
+  min-width: 0;
+  padding: 6px 11px;
+  border-radius: 999px;
+  color: #261b10;
+  background: #e4a464;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.victory-card::before,
+.victory-card::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -14px;
+  border: 1px solid #efc57355;
+  border-radius: 18px;
+  animation: victory-ring 1.8s ease-out infinite;
+}
+
+.victory-card::after { animation-delay: .9s; }
+
+.victory-card .victory-trophy {
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  margin: -5px auto 4px;
+  border: 1px solid #f3ce7c;
+  border-radius: 50%;
+  color: #241909;
+  background: radial-gradient(circle at 35% 28%, #fff0ad, #e8aa45 68%, #9b5d22);
+  box-shadow: 0 0 24px #f2bc5e99;
+  animation: victory-trophy-pulse 1.25s ease-in-out infinite alternate;
+}
+
+.victory-card > small {
+  display: block;
+  margin: 3px 0 1px;
+  color: #f5d58f;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.victory-card > strong { font-size: 27px; }
+.victory-card > span { margin: 5px 0 12px; }
+
+@keyframes victory-card-arrive {
+  from { opacity: 0; transform: translate(-50%,-44%) scale(.78); }
+  to { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+
+@keyframes victory-confetti-fall {
+  0% { transform: translate3d(0,-20px,0) rotate(0deg); opacity: 0; }
+  8% { opacity: 1; }
+  100% { transform: translate3d(42px,calc(100dvh + 45px),0) rotate(680deg); opacity: .9; }
+}
+
+@keyframes victory-ring {
+  from { opacity: .7; transform: scale(.94); }
+  to { opacity: 0; transform: scale(1.09); }
+}
+
+@keyframes victory-trophy-pulse {
+  from { transform: scale(.96) rotate(-2deg); }
+  to { transform: scale(1.04) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .victory-confetti i,
+  .result-card.victory-card,
+  .victory-card::before,
+  .victory-card::after,
+  .victory-card .victory-trophy { animation: none; }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .tower-tray { gap: 3px; max-height: 100%; overflow-y: auto; scrollbar-width: none; }
+  .tower-tray::-webkit-scrollbar { display: none; }
+  .tower-tray button { min-height: 43px; height: 43px; padding-block: 1px; }
+  .tower-tray button img { width: 33px; height: 33px; flex-basis: 33px; }
+  .tower-tray button span { font-size: 11px; line-height: 1.05; }
+  .tower-tray button small { margin-top: 1px; font-size: 8px; }
+  .tower-tray .tower-target { font-size: 7px; }
+  .tower-actions { gap: 3px; max-height: 100%; overflow-y: auto; scrollbar-width: none; }
+  .tower-actions::-webkit-scrollbar { display: none; }
+  .tower-actions button { min-height: 38px; height: 38px; padding-block: 2px; }
+  .tower-selected-card { grid-template-rows: 48px auto auto auto; padding: 4px 5px; }
+  .tower-selected-card img { width: 50px; height: 50px; margin-top: -2px; }
+  .tower-selected-card span { font-size: 10px; line-height: 1.05; }
+  .tower-selected-card > b { margin-top: 1px; font-size: 11px; }
+  .tower-stat-compare { gap: 2px 3px; margin-top: 3px; padding-top: 4px; }
+}
+
+/* Keep both native battle-side panels usable when their controls exceed the
+   available landscape height. Each side scrolls without moving the map. */
+@media (max-width: 1400px) and (orientation: landscape) {
+  .pocket-shell[data-native="true"] .command-bar {
+    min-height: 0;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls,
+  .pocket-shell[data-native="true"] .tower-tray,
+  .pocket-shell[data-native="true"] .tower-actions {
+    align-self: stretch;
+    min-height: 0;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #bd8a55 #172119cc;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls,
+  .pocket-shell[data-native="true"] .tower-tray {
+    justify-content: flex-start;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls::-webkit-scrollbar,
+  .pocket-shell[data-native="true"] .tower-tray::-webkit-scrollbar,
+  .pocket-shell[data-native="true"] .tower-actions::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls::-webkit-scrollbar-track,
+  .pocket-shell[data-native="true"] .tower-tray::-webkit-scrollbar-track,
+  .pocket-shell[data-native="true"] .tower-actions::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: #172119cc;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls::-webkit-scrollbar-thumb,
+  .pocket-shell[data-native="true"] .tower-tray::-webkit-scrollbar-thumb,
+  .pocket-shell[data-native="true"] .tower-actions::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #bd8a55;
+  }
+}
+
+/* Native phones and tablets: the wave rail is intentionally icon-first so the
+   battlefield receives the width previously consumed by full text buttons. */
+@media (max-width: 1400px) and (orientation: landscape) {
+  .pocket-shell[data-native="true"] .command-bar {
+    grid-template-columns: 66px minmax(0, 1fr) 128px;
+    gap: 5px;
+    padding-left: max(4px, env(safe-area-inset-left));
+  }
+
+  .pocket-shell[data-native="true"] .battlefield {
+    max-width: calc(100vw - 204px);
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls {
+    width: 58px;
+    justify-self: start;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 0;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls button,
+  .pocket-shell[data-native="true"] .wave-controls .start-wave {
+    position: relative;
+    width: 56px;
+    min-width: 56px;
+    min-height: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 10px;
+    background: #172119ed;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .start-wave {
+    color: #201a13;
+    background: #dfa064;
+    border-color: #f0bd86;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .control-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .speed-value {
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .instant-wave-icon {
+    position: relative;
+    width: 29px;
+    height: 22px;
+    display: block;
+    flex: 0 0 29px;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .instant-wave-icon svg {
+    position: absolute;
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .instant-wave-icon svg:first-child {
+    left: -1px;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .instant-wave-icon svg:last-child {
+    left: 10px;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .compact-hold-hint,
+  .pocket-shell[data-native="true"] .wave-controls .compact-countdown {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    min-width: 17px;
+    margin: 0;
+    padding: 1px 2px;
+    border-radius: 6px;
+    color: #2a1c10;
+    background: #f8d7a4;
+    font-size: 6px;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls .compact-countdown {
+    color: #10271d;
+    background: #c5f4d4;
+    font-size: 8px;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls button.enabled,
+  .pocket-shell[data-native="true"] .wave-controls .start-wave.auto-active {
+    color: #10271d;
+    background: #75d39f;
+    border-color: #a7efc2;
+    box-shadow: 0 0 0 2px #75d39f2e, 0 0 13px #75d39f42;
+  }
+
+  .pocket-shell[data-native="true"] .wave-intel {
+    max-width: calc(100% - 232px);
+  }
+}
+
+/* Fit the complete native control rail on short phone screens. The rail still
+   scrolls as a fallback, but its ordinary six controls no longer begin clipped. */
+@media (max-width: 1400px) and (max-height: 520px) and (orientation: landscape) {
+  .pocket-shell[data-native="true"] .wave-controls {
+    gap: 3px;
+    padding-block: 1px;
+  }
+
+  .pocket-shell[data-native="true"] .wave-controls button,
+  .pocket-shell[data-native="true"] .wave-controls .start-wave {
+    min-height: 39px;
+    height: 39px;
+    flex-basis: 39px;
+  }
+}
+
+/* Keep the chosen browser tower readable over the more-specific dark panel styles. */
+.pocket-shell[data-native="false"] .tower-tray button.placing{background:#e9ae72;color:#201a13;border-color:#ffd19f}

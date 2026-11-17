@@ -1,0 +1,32 @@
+import {useCallback,useEffect,useState} from 'react';
+import {ArrowLeft,ChevronRight,Gamepad2,HardDrive,ListOrdered,RefreshCw,ShieldCheck,Sparkles,Trophy} from 'lucide-react';
+import {achievementProgress,googleAchievementUpdates,googleLeaderboards,googleLeaderboardScores,leaderboardDefinitions,careerSnapshot,honorTitle,type PocketRecords} from './records';
+import {CareerStats} from './LocalCareerPanel';
+import {connectPlayGames,openPlayGamesAchievements,openPlayGamesLeaderboard,openPlayGamesLeaderboards,playGamesSupported,readPlayGamesLeaderboards,readPlayGamesStatus,syncPlayGamesAchievements,syncPlayGamesLeaderboards,type GoogleLeaderboardEntry,type PlayGamesStatus} from './playGames';
+import type {PocketMap} from './types';
+
+export function Records({records,maps,onBack}:{records:PocketRecords;maps:PocketMap[];onBack:()=>void}){
+ const progress=achievementProgress(records),earned=progress.filter(item=>item.earned).length,boards=leaderboardDefinitions(maps),title=honorTitle(records);
+ const [games,setGames]=useState<PlayGamesStatus>(()=>({supported:playGamesSupported(),authenticated:false}));
+ const [checking,setChecking]=useState(playGamesSupported);
+ const [googleScores,setGoogleScores]=useState<GoogleLeaderboardEntry[]>([]),[leaderboardsLoading,setLeaderboardsLoading]=useState(false);
+ const refresh=useCallback(async()=>{setChecking(true);setGames(await readPlayGamesStatus());setChecking(false);},[]);
+ const connect=useCallback(async()=>{setChecking(true);setGames(await connectPlayGames());setChecking(false);},[]);
+ const loadLeaderboards=useCallback(async()=>{setLeaderboardsLoading(true);setGoogleScores(await readPlayGamesLeaderboards());setLeaderboardsLoading(false);},[]);
+ useEffect(()=>{void refresh();},[refresh]);
+ useEffect(()=>{if(!games.authenticated)return;let active=true;setLeaderboardsLoading(true);void (async()=>{await syncPlayGamesAchievements(googleAchievementUpdates(records));await syncPlayGamesLeaderboards(googleLeaderboardScores(records));const scores=await readPlayGamesLeaderboards();if(active){setGoogleScores(scores);setLeaderboardsLoading(false);}})();return()=>{active=false;};},[games.authenticated,records]);
+ return <section className="records-page" aria-label="Records">
+  <header className="records-heading"><div><span>Player records</span><h1>Records</h1><p>Your complete career remains saved on this phone, with optional Google Play Games features.</p></div><button onClick={onBack}><ArrowLeft size={18}/>Back to battlefield</button></header>
+  {games.supported&&<section className={`play-games-status${games.authenticated?' connected':''}`} aria-label="Google Play Games status"><Gamepad2 size={21}/><div><strong>{checking?'Checking Google Play Games…':games.authenticated?`Connected${games.playerName?` as ${games.playerName}`:''}`:'Google Play Games is not connected'}</strong><span>{games.authenticated?'Local achievements and best scores are mirrored to this Play Games profile.':'Local records still work without an account.'}</span>{games.message&&<small>{games.message}</small>}</div><div className="play-games-actions">{games.authenticated?<><button type="button" onClick={()=>void openPlayGamesAchievements()}><Trophy size={15}/>Achievements</button><button type="button" onClick={()=>void openPlayGamesLeaderboards()}><ListOrdered size={15}/>Leaderboards</button></>:<button type="button" disabled={checking} onClick={connect}><RefreshCw size={15}/>Connect</button>}</div></section>}
+  {games.authenticated&&<section className="google-leaderboard-summary" aria-label="Google leaderboard scores"><header><div><strong>Google leaderboard scores</strong><span>Your all-time public scores and ranks. Tap a row for Google’s full leaderboard.</span></div><button type="button" aria-label="Refresh Google leaderboard scores" disabled={leaderboardsLoading} onClick={()=>void loadLeaderboards()}><RefreshCw size={14}/>{leaderboardsLoading?'Loading…':'Refresh'}</button></header><div>{googleLeaderboards.map(board=>{const local=googleLeaderboardScores(records).find(item=>item.id===board.id)!,remote=googleScores.find(item=>item.id===board.id),score=remote&&remote.score>0?(remote.displayScore||remote.score.toLocaleString()):local.score.toLocaleString(),rank=leaderboardsLoading?'Loading rank…':remote?.displayRank?`Rank ${remote.displayRank}`:'Not ranked yet';return <button type="button" key={board.id} onClick={()=>void openPlayGamesLeaderboard(board.id)}><span>{board.name}</span><b>{score}</b><small>{rank}</small><ChevronRight size={15}/></button>;})}</div></section>}
+  <section className="local-records" aria-label="Local records status"><HardDrive size={21}/><div><strong>Saved on this phone</strong><span>No account or connection is required; your records stay here.</span>{title&&<b className="pocket-honor-title">{title}</b>}</div></section>
+  <CareerStats local={careerSnapshot(records)}/>
+  <div className="records-summary">
+   <article><Trophy/><span>Victories</span><b>{records.wins}</b></article><article><ShieldCheck/><span>Perfect wins</span><b>{records.perfectWins}</b></article><article><Sparkles/><span>Enemies defeated</span><b>{records.kills}</b></article><article><HardDrive/><span>Achievements</span><b>{earned}/{progress.length}</b></article>
+  </div>
+  <div className="records-columns"><section><h2>Achievements</h2><p className="records-note">Progress is stored only on this phone.</p><div className="achievement-list">{progress.map(item=><article className={item.earned?'earned':''} key={item.id}><Trophy size={19}/><div><strong>{item.name}</strong><span>{item.description}</span><div><i style={{width:`${item.earned?100:item.current/item.target*100}%`}}/></div><small>{item.earned?'Earned on this phone':`${item.current} / ${item.target}`}</small></div></article>)}</div></section>
+   <section><h2>Local leaderboards</h2><p className="records-note">These personal best scores stay on this phone.</p><div className="leaderboard-list">{boards.map(board=>{const record=board.mapId?records.maps[board.mapId]:undefined,value=board.mapId?record?.bestScore||0:Math.max(0,...Object.values(records.maps).map(item=>item.bestScore));return <article key={board.id}><div><strong>{board.name}</strong><span>{board.description}</span></div><b>{value.toLocaleString()}</b></article>;})}</div></section>
+  </div>
+  <small className="score-rule">Defense score: wave × 1,000 + portal health × 100 + enemies defeated × 10 + remaining coins.</small>
+ </section>;
+}
