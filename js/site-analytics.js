@@ -188,6 +188,7 @@
     if (host === "apps.microsoft.com") return "microsoft-store";
     if (host === "play.google.com") return "google-play";
     if (host === "apps.apple.com") return "apple-app-store";
+    if (host === "forged-by-fire-software.itch.io") return "itch-io";
     return "";
   }
 

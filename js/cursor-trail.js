@@ -49,7 +49,7 @@
   const loader = document.currentScript;
   if (!loader || !loader.src) return;
   const script = document.createElement('script');
-  script.src = new URL('site-analytics.js', loader.src).href;
+  script.src = new URL('site-analytics.js?v=20261117-itchio', loader.src).href;
   script.defer = true;
   script.dataset.forgeAnalytics = 'anonymous';
   document.head.appendChild(script);
