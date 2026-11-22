@@ -402,8 +402,8 @@ window.DEV_BLOG_POSTS = [
     summary: "A 24-cycle stress test built successfully but could not launch under Windows Application Control, leaving an important reliability question unanswered.",
     image: "assets/logos/creative_pdf.png",
     imageAlt: "Creative PDF app icon",
-    productUrl: "paid-software.html#creative-pdf",
-    productLabel: "Read about Creative PDF",
+    productUrl: "",
+    productLabel: "",
     intro: "Creative PDF is planned as a one-time-purchase application, and that's changing how I think about testing. It's not enough for a feature to look finished on screen. A customer has to be able to trust it with real documents.",
     sections: [
       {
@@ -516,8 +516,8 @@ window.DEV_BLOG_POSTS = [
     summary: "Creative PDF's Windows search work is testing whether highlights remain trustworthy as documents are zoomed, rotated, and viewed near cropped page boundaries.",
     image: "assets/logos/creative_pdf.png",
     imageAlt: "Creative PDF logo",
-    productUrl: "paid-software.html#creative-pdf",
-    productLabel: "View Creative PDF",
+    productUrl: "",
+    productLabel: "",
     intro: "Development continued on Creative PDF yesterday, with particular attention on the Windows document-search experience.",
     sections: [
       {
@@ -756,8 +756,8 @@ window.DEV_BLOG_POSTS = [
     summary: "Creative PDF's less visible work is about preservation: supporting protected documents without damaging the originals people trust it to handle.",
     image: "assets/logos/creative_pdf.png",
     imageAlt: "Creative PDF logo",
-    productUrl: "paid-software.html#creative-pdf",
-    productLabel: "View Creative PDF",
+    productUrl: "",
+    productLabel: "",
     intro: "When I started developing Creative PDF, I knew I wanted a practical document application that could work locally without unnecessary online services.",
     sections: [
       {
@@ -1094,8 +1094,8 @@ window.DEV_BLOG_POSTS = [
     summary: "Creative PDF learned to create a document without opening one first, and that simple blank page had to survive editing, recovery, saving, and two operating systems.",
     image: "assets/logos/creative_pdf.png",
     imageAlt: "Creative PDF logo",
-    productUrl: "paid-software.html#creative-pdf",
-    productLabel: "View Creative PDF",
+    productUrl: "",
+    productLabel: "",
     intro: "A blank page looks like nothing. In a PDF editor, it is actually a promise: choose a size, place it in memory, let the user change it, recover it after trouble, save it correctly, and reopen it with every measurement intact.",
     sections: [
       {
