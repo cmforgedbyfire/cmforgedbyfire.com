@@ -1,20 +1,21 @@
 (() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const touchPointer = window.matchMedia('(hover: none), (pointer: coarse)');
+
+  if (reducedMotion.matches) {
     return;
   }
 
   const trailCount = 12;
   const dots = [];
-  const positions = Array.from({ length: trailCount }, () => ({ x: 0, y: 0 }));
+  const positions = [];
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
+  let animationFrame = 0;
 
-  for (let i = 0; i < trailCount; i += 1) {
-    const dot = document.createElement('div');
-    dot.className = 'cursor-trail-dot';
-    document.body.appendChild(dot);
-    dots.push(dot);
+  function isMobileExperience() {
+    return window.innerWidth <= 760 || touchPointer.matches;
   }
 
   window.addEventListener('mousemove', (event) => {
@@ -22,7 +23,19 @@
     mouseY = event.clientY;
   }, { passive: true });
 
+  function removeTrail() {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+    dots.splice(0).forEach((dot) => dot.remove());
+    positions.splice(0);
+  }
+
   function animate() {
+    if (isMobileExperience() || dots.length === 0) {
+      removeTrail();
+      return;
+    }
+
     let x = mouseX;
     let y = mouseY;
 
@@ -38,10 +51,38 @@
       y = pos.y;
     }
 
-    requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
   }
 
-  animate();
+  function createTrail() {
+    if (isMobileExperience() || dots.length > 0) return;
+
+    for (let i = 0; i < trailCount; i += 1) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-trail-dot';
+      document.body.appendChild(dot);
+      dots.push(dot);
+      positions.push({ x: mouseX, y: mouseY });
+    }
+
+    animate();
+  }
+
+  function syncTrailToDevice() {
+    if (isMobileExperience()) removeTrail();
+    else createTrail();
+  }
+
+  if (typeof touchPointer.addEventListener === 'function') {
+    touchPointer.addEventListener('change', syncTrailToDevice);
+  } else {
+    touchPointer.addListener(syncTrailToDevice);
+  }
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(syncTrailToDevice);
+  }, { passive: true });
+
+  syncTrailToDevice();
 })();
 
 (() => {

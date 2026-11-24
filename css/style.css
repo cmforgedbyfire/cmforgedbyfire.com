@@ -2855,3 +2855,7 @@ img.brand-logo-square[src*="forge_audio_studio"]{
   .cursor-trail-dot{display:none}
 }
 
+@media (max-width: 760px), (hover: none), (pointer: coarse){
+  .cursor-trail-dot{display:none !important}
+}
+
