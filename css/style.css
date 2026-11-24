@@ -699,6 +699,14 @@ main{display:block}
 .game-summary-actions{
   display:flex;
   flex-wrap:wrap;
+  align-items:flex-start;
+  gap:8px;
+}
+
+.game-summary-store-stack{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
   gap:8px;
 }
 
