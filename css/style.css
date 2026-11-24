@@ -697,22 +697,22 @@ main{display:block}
 }
 
 .game-summary-actions{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-start;
-  gap:8px;
-}
-
-.game-summary-store-stack{
-  display:flex;
-  flex-direction:column;
-  align-items:stretch;
+  min-height:88px;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  grid-auto-rows:40px;
+  align-content:start;
   gap:8px;
 }
 
 .game-summary-actions .btn{
-  padding:9px 11px;
-  font-size:.66rem;
+  width:100%;
+  min-height:40px;
+  justify-content:center;
+  padding:8px;
+  font-size:.64rem;
+  line-height:1.1;
+  text-align:center;
 }
 
 .game-letter-icon{
