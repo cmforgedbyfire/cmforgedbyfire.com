@@ -22,10 +22,13 @@ export type PocketMap={
   freePlacement?:boolean;
   towerSize?:number;
   placementAreas?:Point[][];
+  placementExclusions?:Point[][];
   baseFootprints?:Record<string,Point[][]>;
   placementTerrain?:{
     width:number;height:number;roadWidth:number;portalRadius:number;
     route:{x:number;y:number}[];
+    roadWidths?:number[];
+    roadAreas?:{x:number;y:number}[][];
     scenery:({shape:'circle';x:number;y:number;radius:number}|{shape:'rect';x:number;y:number;width:number;height:number})[];
     bridges?:{supports:{x:number;y:number;radius:number}[];deck:{x:number;y:number}[]}[];
   };

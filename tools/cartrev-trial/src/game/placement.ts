@@ -8,5 +8,5 @@ export function towerPosition(map:PocketMap,tower:Tower):BuildPosition|undefined
 }
 export function placement(map:PocketMap,state:GameState,x:number,y:number,kind:TowerKind){
  const towers=state.towers.flatMap(t=>{const p=towerPosition(map,t);return p?[{...t,col:p[2],row:p[3]}]:[];});
- return basePlacement(map,towers,x,y,kind);
+ return basePlacement(map,towers,Math.round(x),Math.round(y),kind);
 }

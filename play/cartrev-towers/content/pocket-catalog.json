@@ -1,11 +1,11 @@
 {
-  "version": "browser-free-placement-1",
+  "version": "browser-iron-switchback-18",
   "maps": [
     {
       "id": "switchback",
       "name": "Iron Switchback",
       "subtitle": "Cross the foundry bridge, loop beneath it, and hold the winding furnace road.",
-      "waves": 13,
+      "waves": 18,
       "cols": 15,
       "rows": 9,
       "path": [],
@@ -722,9 +722,9 @@
         ]
       ],
       "towerSize": 60,
-      "buildClearance": 46,
+      "buildClearance": 61,
       "buildSnapRadius": 28,
-      "showBuildSites": true,
+      "showBuildSites": false,
       "realm": "foundry",
       "freePlacement": true,
       "placementTerrain": {

@@ -13,7 +13,7 @@ export const towerDefinitions:Record<TowerKind,TowerDefinition>={
   monkey:{kind:'monkey',name:'Monkey Launcher',shortName:'Monkey',cost:380,damage:46,range:205,cooldown:.85,target:'both',splash:0,slow:0,color:'#f0a75a',maxTargets:5,effectRange:145,falloff:.88}
 };
 
-export const TOTAL_WAVES=13;
+export const TOTAL_WAVES=18;
 
 const enemyDefinitions:Record<EnemyKind,{health:number;speed:number;reward:number;flying:boolean;color:string}>={
   crawler:{health:1,speed:43,reward:9,flying:false,color:'#d99a56'},
@@ -25,30 +25,25 @@ const enemyDefinitions:Record<EnemyKind,{health:number;speed:number;reward:numbe
   shielded:{health:1.55,speed:57,reward:12,flying:false,color:'#f7df5e'}
 };
 
-const baseWaves:EnemyKind[][]=[
-  [...Array(7).fill('crawler')],
-  [...Array(10).fill('crawler')],
-  ['runner','crawler','runner','crawler','runner','crawler','runner','crawler','runner','crawler','runner','crawler'],
-  ['runner','runner','crawler','runner','crawler','runner','runner','crawler','runner','crawler','runner','crawler'],
-  ['flyer','crawler','crawler','flyer','crawler','crawler','flyer','crawler','crawler','flyer','crawler','crawler'],
-  ['armored','crawler','crawler','armored','crawler','crawler','armored','crawler','crawler','armored','crawler','crawler'],
-  ['runner','flyer','runner','crawler','runner','flyer','runner','crawler','runner','flyer','runner','crawler','flyer'],
-  ['armored','runner','runner','armored','runner','runner','armored','runner','runner','armored','runner','runner','armored','runner'],
-  ['armored','runner','crawler','flyer','armored','runner','crawler','flyer','boss','runner','armored','flyer','runner','crawler'],
-  ['armored','runner','crawler','runner','flyer','armored','runner','crawler','runner','flyer','armored','runner','crawler','flyer','runner','armored'],
-  ['flyer','runner','crawler','flyer','armored','runner','flyer','crawler','runner','flyer','armored','crawler','flyer','runner','crawler','armored'],
-  ['armored','runner','armored','crawler','flyer','armored','runner','armored','crawler','flyer','armored','runner','crawler','armored','runner','flyer'],
-  ['armored','runner','flyer','crawler','armored','runner','crawler','flyer','armored','boss','runner','armored','flyer','crawler','runner','armored','crawler','flyer']
-] as EnemyKind[][];
-const waves:EnemyKind[][]=baseWaves.map((wave,index)=>index===8?[...wave,...wave.filter(kind=>kind!=='boss')]:[...wave,...wave]);
 const FOUNDRY_MAPS=new Set(['verdant-falls','switchback','ember-pass','frostline-outpost','sunmeadow-bend','sunscar-canyon','orbital-breach']);
 const MEDIEVAL_MAPS=new Set(['harvest-hollow','kings-crossing','siegebreak-keep']);
 const MONSTER_MAPS=new Set(['mossfang-hollow','moonbone-marsh','dreadspire-rift']);
 const SPACE_MAPS=new Set(['lunar-anchorage','starfall-dockyard','helios-breach']);
-const addShielded=(wave:EnemyKind[],waveNumber:number)=>waveNumber<7?[...wave]:wave.map((kind,index)=>(kind==='crawler'||kind==='runner')&&index%10===6?'shielded':kind);
-const addHeavyAircraft=(wave:EnemyKind[],waveNumber:number)=>{if(waveNumber<13)return [...wave];let airborne=0;return wave.map(kind=>kind==='flyer'&&airborne++%4===0?'airship':kind);};
-const placeFinalBosses=(wave:EnemyKind[],waveNumber:number)=>{if(waveNumber!==TOTAL_WAVES)return wave;const scheduled:EnemyKind[]=wave.map(kind=>kind==='boss'?'armored':kind),middle=Math.floor(scheduled.length/2);scheduled[middle]='boss';scheduled[scheduled.length-1]='boss';return scheduled;};
-const waveFor=(waveNumber:number,foundry:boolean)=>placeFinalBosses(addHeavyAircraft(foundry?addShielded(waves[waveNumber-1]||[],waveNumber):[...(waves[waveNumber-1]||[])],waveNumber),waveNumber);
+// Iron Switchback follows the Windows Foundry campaign spawn schedule.
+function waveFor(wave: number, foundry: boolean): EnemyKind[] {
+  const final = wave === TOTAL_WAVES;
+  const count = Math.ceil((16 + 4 * wave) * 133 / 100) + (final ? 1 : 0);
+  return Array.from({ length: count }, (_, index) => {
+    const last = index === count - 1;
+    if (final ? last || index === Math.floor(count / 2) : wave % 6 === 0 && last) return 'boss';
+    if (wave >= 5 && index % 5 === 0) {
+      return wave >= 13 && (index / 5) % 4 === 0 ? 'airship' : 'flyer';
+    }
+    if (wave >= 3 && index % 4 === 0) return 'armored';
+    if (foundry && wave >= 7 && index % 10 === 6) return 'shielded';
+    return wave >= 2 && index % 3 === 0 ? 'runner' : 'crawler';
+  });
+}
 const ENEMY_COIN_MULTIPLIER=.924;
 const WAVE_COIN_MULTIPLIER=1.32;
 const ENEMY_HEALTH_MULTIPLIER=2.5;
@@ -65,7 +60,7 @@ const medievalEnemyNames:Record<EnemyKind,string>={crawler:'War Wagons',runner:'
 const monsterEnemyNames:Record<EnemyKind,string>={crawler:'Moss Slimes',runner:'Ember Hounds',armored:'Stoneback Golems',flyer:'Night Gargoyles',airship:'Sky Leviathans',boss:'Dreadhorn Behemoth',shielded:'Runed Hounds'};
 const spaceEnemyNames:Record<EnemyKind,string>={crawler:'Scuttle Rovers',runner:'Dart Skimmers',armored:'Bulwark Crawlers',flyer:'Void Fighters',airship:'Gravity Dreadnoughts',boss:'Siege Carrier',shielded:'Insulated Skimmers'};
 export function waveSummary(wave:number,realm:PocketRealm='foundry'){
-  const waveNumber=Math.max(1,Math.min(waves.length,wave)),composition=waveFor(waveNumber,realm==='foundry'),counts=new Map<EnemyKind,number>();
+  const waveNumber=Math.max(1,Math.min(TOTAL_WAVES,wave)),composition=waveFor(waveNumber,realm==='foundry'),counts=new Map<EnemyKind,number>();
   for(const kind of composition)counts.set(kind,(counts.get(kind)||0)+1);
   const names=realm==='medieval'?medievalEnemyNames:realm==='monster'?monsterEnemyNames:realm==='space'?spaceEnemyNames:enemyNames;
   return [...counts].map(([kind,count])=>`${count} ${names[kind]}`).join(' · ');
@@ -129,9 +124,16 @@ export function sellTower(state:GameState,id:number){
   state.cash+=refund;state.towers.splice(index,1);return true;
 }
 
+function ironSwitchbackHealth(wave: number, baseHealth: number) {
+  const earlyWave = wave <= 5 ? 0.9 : 1;
+  const lateWave = 1 + 0.02 * Math.max(0, wave - 10);
+  return Math.round((30 + wave * 10) * 1.12 * 1.30 * 1.25 * 1.25 * baseHealth * earlyWave * lateWave);
+}
+
 function spawnEnemy(state:GameState,kind:EnemyKind){
   const base=enemyDefinitions[kind],def=kind==='airship'&&MONSTER_MAPS.has(state.mapId)?{...base,health:7.421875,speed:22,reward:45}:kind==='airship'&&SPACE_MAPS.has(state.mapId)?{...base,health:7.1875,speed:23,reward:45}:kind==='airship'&&MEDIEVAL_MAPS.has(state.mapId)?{...base,health:5.625,speed:20}:base,waveScale=1+(state.wave-1)*.16,mapScale=state.mapId==='ember-pass'?EMBER_PASS_HEALTH_MULTIPLIER:state.mapId==='frostline-outpost'?FROSTLINE_HEALTH_MULTIPLIER:1,flyerMapScale=state.mapId==='ember-pass'&&kind==='flyer'?EMBER_PASS_FLYER_HEALTH_MULTIPLIER:state.mapId==='lunar-anchorage'&&kind==='flyer'?LUNAR_ANCHORAGE_FLYER_HEALTH_MULTIPLIER:1,enemySpeed=state.mapId==='lunar-anchorage'&&kind==='flyer'?def.speed*LUNAR_ANCHORAGE_FLYER_SPEED_MULTIPLIER:def.speed;
-  const bossMapScale=state.mapId==='starfall-dockyard'&&kind==='boss'?.9:1,maxHp=Math.round((36+state.wave*8)*def.health*waveScale*ENEMY_HEALTH_MULTIPLIER*mapScale*flyerMapScale*bossMapScale);
+  const bossMapScale=state.mapId==='starfall-dockyard'&&kind==='boss'?.9:1;
+  const maxHp=state.mapId==='switchback'?ironSwitchbackHealth(state.wave,def.health):Math.round((36+state.wave*8)*def.health*waveScale*ENEMY_HEALTH_MULTIPLIER*mapScale*flyerMapScale*bossMapScale);
   const bossNumber=kind==='boss'&&state.wave===TOTAL_WAVES?(state.spawnQueue.includes('boss')?1:2):undefined,bossBoost=bossNumber===2?1.25:1;
   state.enemies.push({id:state.nextId++,kind,distance:0,hp:maxHp,maxHp,speed:enemySpeed*bossBoost,reward:def.reward*ENEMY_COIN_MULTIPLIER,slow:1,slowTime:0,...(bossNumber?{bossNumber,sizeMultiplier:bossBoost}:{})});
 }
@@ -150,7 +152,10 @@ function tick(state:GameState,map:PocketMap,dt:number){
   addStat(state,'simulationSeconds',dt);
   state.shots.forEach(shot=>{if((shot.delay||0)>0)shot.delay=Math.max(0,(shot.delay||0)-dt);else shot.life-=dt;});state.shots=state.shots.filter(shot=>shot.life>0);
   state.spawnTimer-=dt;
-  if(state.spawnQueue.length&&state.spawnTimer<=0){spawnEnemy(state,state.spawnQueue.shift()!);state.spawnTimer=.72;}
+  if(state.spawnQueue.length&&state.spawnTimer<=0){
+    spawnEnemy(state,state.spawnQueue.shift()!);
+    state.spawnTimer=state.wave===TOTAL_WAVES&&state.spawnQueue.length===1?1.5:Math.max(.35,.95-state.wave*.025);
+  }
   const groundLength=routeLength(map.route,map.routeJumps),airLength=Math.hypot(map.route.at(-1)![0]-map.route[0][0],map.route.at(-1)![1]-map.route[0][1]);
   for(const enemy of [...state.enemies]){
     if(enemy.slowTime>0)enemy.slowTime-=dt;else enemy.slow=1;

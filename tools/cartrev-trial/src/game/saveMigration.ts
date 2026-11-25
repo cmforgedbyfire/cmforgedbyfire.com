@@ -1,8 +1,9 @@
 import type {GameState} from './types';
+import {TOTAL_WAVES} from './engine.ts';
 
 type LegacyGameState=Omit<GameState,'version'|'placementHintSeen'|'airWarningSeen'|'airArrivalWarningSeen'|'heavyAirWarningSeen'|'heavyAirArrivalWarningSeen'|'kills'|'airKills'|'towersBuilt'|'upgrades'>&{version:1|2|3|4|5|6|7|8|9;placementHintSeen?:boolean;airWarningSeen?:boolean;airArrivalWarningSeen?:boolean;heavyAirWarningSeen?:boolean;heavyAirArrivalWarningSeen?:boolean;kills?:number;airKills?:number;towersBuilt?:number;upgrades?:number};
 
-export function migrateSavedGame(value:unknown,mapId:string,totalWaves=13):GameState|null{
+export function migrateSavedGame(value:unknown,mapId:string,totalWaves=TOTAL_WAVES):GameState|null{
  const parsed=value as GameState|LegacyGameState|null;
  if(!parsed||typeof parsed!=='object'||parsed.version<1||parsed.version>10||parsed.mapId!==mapId)return null;
  if(parsed.version<10){

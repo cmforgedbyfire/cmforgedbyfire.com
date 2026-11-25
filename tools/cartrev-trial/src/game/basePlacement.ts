@@ -18,7 +18,9 @@ export function basePlacement(map:MapDef,towers:Run['towers'],x:number,y:number,
  if(!shape.length||!Number.isFinite(x)||!Number.isFinite(y)||shape.some(p=>p.x<2||p.y<2||p.x>terrain.width-2||p.y>terrain.height-2))return no('Keep the whole base on the battlefield');
  // Authored ground polygons keep the complete base off cliffs, water and voids.
  if(map.placementAreas&&!map.placementAreas.some(points=>{const area=points.map(p=>({x:p[0],y:p[1]}));return shape.every(p=>insidePolygon(p,area))&&area.every((b,i)=>lineGap(shape,area[(i+area.length-1)%area.length],b)>2);}))return no('Keep the base on solid ground');
- if(terrain.route.slice(1).some((b,i)=>lineGap(shape,terrain.route[i],b)<=terrain.roadWidth/2+2))return no('Keep the base clear of the road');
+ if(map.placementExclusions?.some(points=>polygonGap(shape,points.map(([x,y])=>({x,y})))<=2))return no('Keep the base on solid ground');
+ if(terrain.roadAreas?.some(area=>polygonGap(shape,area)<=2))return no('Keep the base clear of the road');
+ if(terrain.route.slice(1).some((b,i)=>!map.routeJumps?.includes(i)&&lineGap(shape,terrain.route[i],b)<=(terrain.roadWidths?.[i]??terrain.roadWidth)/2+2))return no('Keep the base clear of the road');
  if([terrain.route[0],terrain.route.at(-1)!].some(p=>pointBaseGap(p,shape)<=terrain.portalRadius+2))return no('Keep the base clear of the portal');
  if(terrain.bridges?.some(b=>b.supports.some(p=>pointBaseGap(p,shape)<=p.radius+2)||b.deck.slice(1).some((p,i)=>lineGap(shape,b.deck[i],p)<=terrain.roadWidth/2+2)))return no('Keep the base clear of the bridge');
  for(const o of terrain.scenery){const blocked=o.shape==='circle'?pointBaseGap(o,shape)<=o.radius+2:polygonGap(shape,[{x:o.x-o.width/2,y:o.y-o.height/2},{x:o.x+o.width/2,y:o.y-o.height/2},{x:o.x+o.width/2,y:o.y+o.height/2},{x:o.x-o.width/2,y:o.y+o.height/2}])<=2;if(blocked)return no('Scenery blocks the tower base');}
