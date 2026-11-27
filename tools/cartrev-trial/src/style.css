@@ -40,11 +40,11 @@
 @media(max-width:950px) and (orientation:landscape){.header-actions button span{display:none}.header-actions .feedback-open,.header-settings{width:38px;padding:5px;justify-content:center}}
 
 /* Browser trial: keep every command in one left-side panel. */
-.pocket-shell[data-native="false"]{grid-template-columns:250px minmax(0,1fr);grid-template-rows:58px minmax(0,1fr)}
+.pocket-shell[data-native="false"]{height:100dvh;min-height:0;grid-template-columns:250px minmax(0,1fr);grid-template-rows:58px minmax(0,1fr)}
 .pocket-shell[data-native="false"] .game-header{grid-column:1/-1;grid-row:1}
 .pocket-shell[data-native="false"] .battle-area{grid-column:2;grid-row:2;height:auto;min-width:0;padding:0}
-.pocket-shell[data-native="false"] .battlefield-scroll{width:100%;height:100%;overflow:hidden;place-items:center}
-.pocket-shell[data-native="false"] .battlefield{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.pocket-shell[data-native="false"] .battlefield-scroll{width:100%;height:100%;overflow:hidden;place-items:center;container-type:size}
+.pocket-shell[data-native="false"] .battlefield{width:min(100cqw,calc(100cqh * var(--battlefield-ratio)));height:auto;aspect-ratio:var(--battlefield-ratio);max-width:none;max-height:none}
 .pocket-shell[data-native="false"] .command-bar{position:relative;inset:auto;grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:stretch;gap:10px;min-width:0;min-height:0;padding:14px 12px calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));overflow-y:auto;overscroll-behavior:contain;border:0;border-right:1px solid #40503e;background:linear-gradient(180deg,#172119,#111914);scrollbar-width:thin;scrollbar-color:#9d764d #172119}
 .pocket-shell[data-native="false"] .command-bar>*{pointer-events:auto}
 .pocket-shell[data-native="false"] .message{display:block;width:auto;min-height:30px;overflow:visible;padding:0 2px;color:#c1cdb9}
@@ -64,8 +64,8 @@
  .pocket-shell[data-native="false"]{grid-template-columns:210px minmax(0,1fr);grid-template-rows:50px minmax(0,1fr)}
  .pocket-shell[data-native="false"] .game-header{height:50px}
  .pocket-shell[data-native="false"] .battle-area{grid-row:2;height:auto;padding:0}
- .pocket-shell[data-native="false"] .battlefield-scroll{width:calc(100% - 76px);overflow-x:auto;overflow-y:hidden;place-items:center start;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x}
- .pocket-shell[data-native="false"] .battlefield{flex:0 0 auto;width:auto;height:100%;max-width:none;max-height:100%;touch-action:pan-x}
+ .pocket-shell[data-native="false"] .battlefield-scroll{width:calc(100% - 76px);overflow-x:auto;overflow-y:hidden;place-items:center safe center;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x}
+ .pocket-shell[data-native="false"] .battlefield{width:calc(100cqh * var(--battlefield-ratio));touch-action:pan-x}
  .pocket-shell[data-native="false"] .command-bar{top:auto;right:auto;bottom:auto;left:auto;padding:8px 8px calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
  .pocket-shell[data-native="false"] .message{min-height:0;font-size:10px}
  .pocket-shell[data-native="false"] .tower-tray{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
@@ -80,4 +80,15 @@
  .pocket-shell[data-native="false"] .wave-controls .start-wave{width:100%;min-width:0}
  .pocket-shell[data-native="false"] .trial-note{margin:0 -8px -8px;font-size:8px}
  .pocket-shell[data-native="false"] .wave-intel{top:8px;max-width:calc(100% - 100px)}
+}
+
+@media(max-height:650px) and (orientation:landscape){
+ .pocket-shell[data-native="false"] .command-bar{gap:6px;padding-block:6px}
+ .pocket-shell[data-native="false"] .message{min-height:0;font-size:10px}
+ .pocket-shell[data-native="false"] .tower-tray{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+ .pocket-shell[data-native="false"] .tower-tray button{min-height:44px;padding:3px 5px;gap:4px;font-size:12px}
+ .pocket-shell[data-native="false"] .tower-tray button img{width:27px;height:27px}
+ .pocket-shell[data-native="false"] .tower-tray small{font-size:8px}
+ .pocket-shell[data-native="false"] .wave-controls button{min-height:44px}
+ .pocket-shell[data-native="false"] .trial-note{display:none}
 }

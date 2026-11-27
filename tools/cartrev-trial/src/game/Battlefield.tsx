@@ -995,6 +995,7 @@ export function Battlefield({
     <canvas
       ref={canvas}
       className="battlefield"
+      style={{'--battlefield-ratio': (map.width || 960) / (map.height || 576)} as React.CSSProperties}
       data-artwork={loadedArtwork === map.artwork ? "loaded" : "loading"}
       data-enemy-artwork={enemyArtworkLoaded ? "loaded" : "loading"}
       aria-label={`${map.name} battlefield`}
